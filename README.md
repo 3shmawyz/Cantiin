@@ -31,8 +31,11 @@ The project is still **under development**.
 
 
 ## Completed Steps ##
-1. Creating the github repo
-2. Creating the README.md file
+1. Creating the **github** repo
+2. Creating the **README.md** file
+3. Creating the **.gitgnore** file
+4. Downloading the **dependencies**
+5. Creating a **login page** (Buttons don't work yet, it's only BootStrap)
 
 
 
