@@ -9,9 +9,5 @@ these **frontend techniques**:
 Also This project will have the **MIT lisence**, So feel free to copy
 this code and make it the foundation of your project.
 
-
-
-
-
-
-
+## Lisence ##
+**MIT Lisence**
