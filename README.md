@@ -11,3 +11,21 @@ this code and make it the foundation of your project.
 
 ## Lisence ##
 **MIT Lisence**
+
+
+## About ##
+- This is the **fronted** of a **E-Commerce Website**.
+- All the **buttons don't work** so far
+- I am just showing my bility to create nice bootstrap frontend interface
+- Functionalities and features might be added later (If God Willed)
+
+
+
+
+
+
+
+
+
+
+
