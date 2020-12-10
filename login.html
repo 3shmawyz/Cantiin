@@ -9,34 +9,55 @@
 
     <style type="text/css">
 
+html, body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+
+.second_row {
+  background-color: orange;
+  flex-grow: 1;
+}
+
+
     </style>
 </head>
-<body>
+<body class=" clearfix">
 
 
-<div class="bg-primary p-5 container-fluid mx-auto my-auto" style="">
-	<div class="text-warning font-weight-bold  container-fluid" 
+<div class="bg-primary p-5 container-fluid mx-auto" style="">
+	<div class="text-warning font-weight-bold  container-fluid align-middle" 
 	style=" width: 200px;">Login Form</div>
 
 </div>
 
-<div bg-primary p-4 container-fluid mx-auto>
-	<div class="row">
-	    <div class="col-4">
+<div class="second_row bg-primary container-fluid mx-auto" style="bottom:0px;"
+	style="height: 100%;" 
+>
+	<div class="row" style="height: 100%;">
+	    <div class="col-4 bg-secondary" style="height: 100%;">
 	      Header of Page
 	    </div>
-	    <div class="col-8">
+	    <div class="col-8 bg-danger" style="height: auto" style="height: 100%;">
 	      Page Data
 	    </div>
   </div>
 
 
-
-	<div class=" text-warning font-weight-bold  container-fluid" 
-	style="width: 200px;"></div>
-	<div class=" text-warning font-weight-bold  container-fluid" 
-	style="width: 200px;"></div>
 </div>
+<div class="bg-warning d-flex justify-content-between p-4" >
+	<div class="container-fluid"style="width: 200px;">
+		This is footer
+	</div>	
+</div>
+
 
 </body>
 </html>
