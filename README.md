@@ -29,3 +29,15 @@ this code and make it the foundation of your project.
 The project is still **under development**.
 
 
+
+## Completed Steps ##
+1. Creating the github repo
+2. Creating the README.md file
+
+
+
+
+
+
+
+
