@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Sign Up</title>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -34,12 +34,29 @@ body > * {
 
 .text_input_field
 {
-  color: black; 
   font-weight: bold;
   font-size: 150%;
-  width: 100%
+  width: 100%;
+  background-color: black; 
+  color: white;
+  border-radius: 15px;
 }
 
+
+input[type=radio] {
+  transform: scale(1.6);
+}
+
+.radio_input_text
+{
+  color: black;font-size: 120%;font-weight: bold;
+}
+
+
+.req
+{
+  color: pink;
+}
     </style>
 </head>
 <body class="">
@@ -48,32 +65,19 @@ body > * {
 <div class="bg-dark p-2 container-fluid mx-auto" style="">
   <div class="text-warning font-weight-bold  
   container-fluid align-middle" 
-  style="font-size: 300%; width: 500px;">Login To Cantiin</div>
+  style="font-size: 300%; 
+  width: 500px;">Sign up in Cantiin</div>
 
 </div>
+
+
+
 
 <div class="second_row bg-success 
 container-fluid mx-auto" style="bottom:0px;"
   style="height: 100%;" 
 >
   <div class="row" style="height: 100%;">
-      <div class="container col-4 p-4" style="height: 100%;">
-        
-        <div>
-        <h2 class="" style="color:black;font-weight: bold;
-        height: 100%;">Why to use Cantiin?
-        </h2>
-        <p style="font-weight: bold; 
-        font-size: 125%; color:black;">
-          With Canttin you will be able to 
-          post buy from our products.
-          <br>
-          Just submit orders, and we will deliver 
-          the orders to you.
-
-        </p>
-      </div>
-  </div>
       
 
 
@@ -88,11 +92,12 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 
-      <div class="col-8 bg-primary pr-2" 
+      <div class="col bg-info pr-2" 
       style="height: auto" style="height: 100%;">
         <h2 class="" 
         style="color:black;font-weight:
-        bold;font-size: 400%;"><b>Login :</b></h2>
+        bold;font-size: 400%;">
+        <b>Sign Up :</b></h2>
         <hr>
 
 
@@ -104,34 +109,172 @@ container-fluid mx-auto" style="bottom:0px;"
 
 <form>
 
+
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <label class="legend_of_input" for="fname">
+        First Name <span class="req">*</span></label>
+      <input  class="text_input_field p-1" type="text" class="form-control" id="fname">
+    </div>
+    <div class="form-group col-md-6">
+      <label class="legend_of_input" for="lname">
+      Last Name <span class="req">*</span></label>
+      <input class="text_input_field p-1" type="text" class="form-control" id="lname">
+    </div>
+  </div>
+
+
+
+
+
   <div class="form-group form-row">
     <label class="legend_of_input" 
-    for="inputEmail">Email address or Username :</label>
+    for="inputEmail">Email address or Username 
+   <span class="req">*</span></label>
     <input class="text_input_field p-1" 
     type="text" class="form-control" id="inputEmail"
-    name="email"  
-    style="background-color: black; color: white;">
+    name="email">
   </div>
+
+
   <div class="form-group">
     <label class="legend_of_input" 
-    for="inputPassword">Password :</label>
+    for="password">Password 
+   <span class="req">*</span></label>
     <input class="text_input_field p-1" 
-    type="password" class="form-control" id="inputPassword"
-    style="background-color: black; 
-    color: white;font-weight:bold;">
+    type="password" class="form-control" id="password"
+    >
   </div>
-  <button type="submit" class="btn btn-success"
+
+  <div class="form-group">
+    <label class="legend_of_input" 
+    for="password_confirm">Confirm Password 
+   <span class="req">*</span></label>
+    <input class="text_input_field p-1" 
+    type="password" class="form-control" id="password_confirm"
+    >
+  </div>
+
+
+
+
+
+  <div class="form-group form-row">
+    <label class="legend_of_input" 
+    for="inputMobile">Mobile Number 
+   <span class="req">*</span></label>
+    <input class="text_input_field p-1" 
+    type="text" class="form-control" id="inputMobile"
+    name="mobile"  
+    >
+  </div>
+
+
+
+
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <label class="legend_of_input" 
+      for="country">Country 
+     <span class="req">*</span></label>
+      <input class="text_input_field p-1" 
+      type="text" class="form-control" id="country">
+    </div>
+    <div class="form-group col-md-6">
+      <label class="legend_of_input" 
+      for="state">State or Governorate </label>
+      <input class="text_input_field p-1" 
+      type="text" class="form-control" id="state">
+    </div>
+  </div>
+
+
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <label  class="legend_of_input" for="city">City </label>
+      <input class="text_input_field p-1" 
+      type="text" class="form-control" id="city">
+    </div>
+    <div class="form-group col-md-6">
+      <label  class="legend_of_input"
+       for="zip">Zip Code </label>
+      <input class="text_input_field p-1" type="text" class="form-control" id="zip">
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="form-group">
+    <label class="legend_of_input" 
+    for="address1">Address Line 1 </label>
+    <input class="text_input_field p-1" 
+    type="text" class="form-control" id="address1">
+  </div>
+
+  <div class="form-group">
+    <label class="legend_of_input" 
+    for="address2">Address Line 2 </label>
+    <input class="text_input_field p-1" 
+    type="text" class="form-control" id="address2">
+  </div>
+
+
+
+<div class="container-fluid">
+  <fieldset class="form-group">
+    <div class="row">
+      <legend  class="legend_of_input" class="col-form-label col-sm-2 pt-0">
+      Gender  <span class="req">*</span></legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" 
+          name="gender" id="male" 
+          value="male" checked>
+          <label class="form-check-label radio_input_text" for="male">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" 
+          name="gender" id="female" value="female">
+          <label class="form-check-label radio_input_text" for="female">
+            Female
+          </label>
+        </div>
+        <div class="form-check ">
+          <input class="form-check-input" type="radio" 
+          name="gender" id="other" value="other" >
+          <label class="form-check-label radio_input_text" for="other">
+            Other
+          </label>
+        </div>
+        <div class="form-check ">
+          <input class="form-check-input" type="radio" name="gender" id="not_tell" value="not_tell" >
+          <label class="form-check-label radio_input_text" 
+          for="not_tell">
+            I would rather not tell
+          </label>
+        </div>
+
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+
+
+  <button type="submit" class="btn btn-success mb-4"
   style=""><div class="" 
-  style="font-size: 200%;font-weight: bold">Submit</div></button>
+  style="font-size: 200%;font-weight: bold">
+  Create Account</div></button>
 </form>
 
 
 
-<div class="mt-3" style="font-size: 120%; color: black;">
-Or <a  href="signup.html"
-style="color:black; font-weight: bold;">Sign Up</a> 
-if you don't have an account
-</div>
 
 
 
