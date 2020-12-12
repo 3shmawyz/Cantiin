@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Add Product</title>
+  <title>Edit Product</title>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -67,7 +67,7 @@ input[type=radio] {
   <div class="text-warning font-weight-bold  
   container-fluid align-middle" 
   style="font-size: 300%; 
-  width: 500px;">Add a New Product</div>
+  width: 500px;">Edit Product</div>
 
 </div>
 
@@ -98,7 +98,7 @@ container-fluid mx-auto" style="bottom:0px;"
         <h2 class="" 
         style="color:black;font-weight:
         bold;font-size: 400%;">
-        <b>Product Details :</b></h2>
+        <b>Product New Details :</b></h2>
         <hr>
 
 
@@ -114,19 +114,21 @@ container-fluid mx-auto" style="bottom:0px;"
  <div class="form-row">
     <div class="form-group col-md-6">
       <label class="legend_of_input" for="p_name">
-        Product Name <span class="req">*</span></label>
+        Product new Name <span class="req">*</span></label>
       <input  class="text_input_field pt-1 pb-1 pl-4" 
       type="text" class="form-control" id="p_name"
-      placeholder="Name of the product you want to add" 
+      placeholder="New name of the product after editing"
+      value="Labtop" 
       >
     </div>
     <div class="form-group col-md-6">
       <label class="legend_of_input" for="p_price">
-        Product Price <span class="req">*</span></label>
+        Product new Price <span class="req">*</span></label>
       <input  
       class="text_input_field pt-1 pb-1 pl-4" 
       type="text" class="form-control" id="p_price"
-      placeholder="Price of the product" 
+      placeholder="New price of the product after editing"
+      value="500" 
       >
     </div>
 
@@ -149,7 +151,7 @@ container-fluid mx-auto" style="bottom:0px;"
   <button type="submit" class="btn btn-success mb-4"
   style=""><div class="" 
   style="font-size: 200%;font-weight: bold">
-  Create Product</div></button>
+  Edit Product</div></button>
 </form>
 
 
