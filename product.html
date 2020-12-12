@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product</title>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style type="text/css">
+
+html, body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+
+.second_row {
+  flex-grow: 1;
+}
+
+.legend_of_input
+{
+  color: black; 
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.text_input_field
+{
+  font-weight: bold;
+  font-size: 150%;
+  width: 100%;
+  background-color: black; 
+  color: white;
+  border-radius: 500px;
+}
+
+    </style>
+</head>
+<body class="">
+
+
+<div class="bg-dark p-2 container-fluid mx-auto" style="">
+  <div class="text-warning font-weight-bold  
+  container-fluid align-middle" 
+  style="font-size: 300%; width: 500px;">Product</div>
+
+</div>
+
+<div class="second_row bg-success 
+container-fluid mx-auto" style="bottom:0px;"
+  style="height: 100%;" 
+>
+  <div class="row" style="height: 100%;">
+      <div class="container col-4 p-4" style="height: 100%;">
+        
+        <div>
+        <h2 class="" style="color:black;font-weight: bold;
+        height: 100%;">Laptop
+        </h2>
+        <h2 class="" style="color:black;font-weight: bold;
+        height: 100%;">Price: 50
+        </h2>
+        
+      </div>
+  </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="col-8 bg-primary pr-2" 
+      style="height: auto" style="height: 100%;">
+        <h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;"><b>Amount: 
+          <span id="amount">1</span>
+        </b></h2>
+      <div class="d-flex bd-highlight mb-3">
+  <div class="mr-auto p-2 bd-highlight">
+    <button class="btn btn-danger"
+      style=""
+      onclick="subtract_one()" 
+      >
+      <div class="pr-4 pl-4" 
+      style="font-size: 400%;font-weight: bold">-
+    </div>
+    </button>
+
+  </div>
+  <div class="p-2 bd-highlight">
+    <button class="btn btn-success"
+      style=""><div class="pr-4 pl-4" 
+      style="font-size: 400%;font-weight: bold"
+      onclick="add_one()" 
+      >+</div>
+    </button>
+
+  </div>
+</div>
+
+
+
+
+<h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;"><b>Total Price: 
+          <span id="total_price"></span>
+        </b></h2>
+
+
+  <button type="submit" class="btn btn-success mb-4"
+  style=""><div class="" 
+  style="font-size: 200%;font-weight: bold">Add to Cart</div></button>
+        
+      </div>
+  </div>
+
+
+</div>
+<div class="bg-danger d-flex justify-content-between p-2" >
+  <div class="container-fluid"
+  style="width: 400px; font-weight: bold;color: black;
+  font-size: 150%;">
+    This is footer
+  </div>  
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  price = 50;
+  amount = 1;
+  total_price;
+  function  setup_all()
+  {
+    document.getElementById('amount').innerHTML = amount;
+    total_price = price * amount;
+    document.getElementById('total_price').innerHTML 
+    = total_price;
+
+  }
+  setup_all();
+
+
+  function add_one()
+  {amount++;setup_all();console.log("Adding One");}
+  function subtract_one()
+  { if (amount == 0) {return;}
+    amount--;setup_all();console.log("Subtracting One");}
+
+
+</script>
+
+
+
+</body>
+</html>
