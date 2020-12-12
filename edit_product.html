@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Product</title>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style type="text/css">
+
+html, body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+
+.second_row {
+  flex-grow: 1;
+}
+
+.legend_of_input
+{
+  color: black; 
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.text_input_field
+{
+  font-weight: bold;
+  font-size: 150%;
+  width: 100%;
+  background-color: black; 
+  color: white;
+  border-radius: 500px;
+}
+
+
+input[type=radio] {
+  transform: scale(1.6);
+}
+
+.radio_input_text
+{
+  color: black;font-size: 120%;font-weight: bold;
+
+}
+
+
+.req
+{
+  color: pink;
+}
+    </style>
+</head>
+<body class="">
+
+
+<div class="bg-dark p-2 container-fluid mx-auto" style="">
+  <div class="text-warning font-weight-bold  
+  container-fluid align-middle" 
+  style="font-size: 300%; 
+  width: 500px;">Add a New Product</div>
+
+</div>
+
+
+
+
+<div class="second_row bg-success 
+container-fluid mx-auto" style="bottom:0px;"
+  style="height: 100%;" 
+>
+  <div class="row" style="height: 100%;">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="col bg-info pr-2" 
+      style="height: auto" style="height: 100%;">
+        <h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;">
+        <b>Product Details :</b></h2>
+        <hr>
+
+
+<!--name, price-->
+
+
+
+
+
+<form>
+
+
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <label class="legend_of_input" for="p_name">
+        Product Name <span class="req">*</span></label>
+      <input  class="text_input_field pt-1 pb-1 pl-4" 
+      type="text" class="form-control" id="p_name"
+      placeholder="Name of the product you want to add" 
+      >
+    </div>
+    <div class="form-group col-md-6">
+      <label class="legend_of_input" for="p_price">
+        Product Price <span class="req">*</span></label>
+      <input  
+      class="text_input_field pt-1 pb-1 pl-4" 
+      type="text" class="form-control" id="p_price"
+      placeholder="Price of the product" 
+      >
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <button type="submit" class="btn btn-success mb-4"
+  style=""><div class="" 
+  style="font-size: 200%;font-weight: bold">
+  Create Product</div></button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+  </div>
+
+
+</div>
+<div class="bg-danger d-flex justify-content-between p-2" >
+  <div class="container-fluid"
+  style="width: 400px; font-weight: bold;color: black;
+  font-size: 150%;">
+    This is footer
+  </div>  
+</div>
+
+
+</body>
+</html>
