@@ -35,8 +35,9 @@ The project is still **under development**.
 2. Creating the **README.md** file
 3. Creating the **.gitgnore** file
 4. Downloading the **dependencies**
-5. Creating a **login page** (Buttons don't work yet, it's only BootStrap)
-
+5. Creating a **Login page** (Buttons don't work 
+yet, it's only BootStrap)
+6. Creating a **Sign Up page**
 
 
 
