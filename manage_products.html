@@ -282,10 +282,15 @@ container-fluid mx-auto" style="bottom:0px;"
   what will trigger the deletion is the delete button 
   in thye pop up modal
   */
-  function delete_product(id = 1)
+  function delete_product(id = 0)
   {
     to_be_deleted = id;
     console.log(to_be_deleted);
+  }
+
+  function delete_really(id = 1)
+  {
+    console.log("Deleting: " + to_be_deleted);
   }
 </script>
 
