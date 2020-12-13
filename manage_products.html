@@ -159,6 +159,7 @@ container-fluid mx-auto" style="bottom:0px;"
        class="ml-auto card_button btn btn-outline-danger" 
       style="font-weight: bold;font-size: 150%"
       data-toggle="modal" data-target="#exampleModal"
+      onclick="delete_product(1)" 
       >
         DELETE
       </a> 
@@ -273,7 +274,7 @@ container-fluid mx-auto" style="bottom:0px;"
 
 <script type="text/javascript">
   /*Handling delete*/
-  to_be_deleted ;
+  var to_be_deleted ;
   /*On clicking this button, this variable will be 
   assigned a value
   the value of the id of the product to be deleted
@@ -281,7 +282,11 @@ container-fluid mx-auto" style="bottom:0px;"
   what will trigger the deletion is the delete button 
   in thye pop up modal
   */
-
+  function delete_product(id = 1)
+  {
+    to_be_deleted = id;
+    console.log(to_be_deleted);
+  }
 </script>
 
 
