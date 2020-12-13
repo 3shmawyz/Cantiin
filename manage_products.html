@@ -188,7 +188,7 @@ container-fluid mx-auto" style="bottom:0px;"
          data-dismiss="modal">
        No, I will keep the product</button>
         <button type="button" class="btn btn-danger"
-        data-dismiss="modal" onclick="console.log('delete')">
+        data-dismiss="modal" onclick="delete_really()">
         <a>Delete the product</a></button>
       </div>
     </div>
@@ -288,7 +288,7 @@ container-fluid mx-auto" style="bottom:0px;"
     console.log(to_be_deleted);
   }
 
-  function delete_really(id = 1)
+  function delete_really()
   {
     console.log("Deleting: " + to_be_deleted);
   }
