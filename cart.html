@@ -227,19 +227,25 @@ container-fluid mx-auto" style="bottom:0px;"
   
 
   add_element_to_list(item_name ="Labtop",
-    unit_price=500, item_id = 1);
+    unit_price=500, total_price= 70000,item_id = 1);
   add_element_to_list(item_name ="CPU",
-    unit_price=5, item_id = 2);
+    unit_price=5,total_price= 80000, item_id = 2);
   add_element_to_list(item_name ="Mobile",
-    unit_price=50, item_id = 3);
+    unit_price=50, total_price= 90000, item_id = 3);
 
 
   
 
   function add_element_to_list(
-    item_name = "Title",unit_price =5,total_price=0
+    item_name = "Title",unit_price =5, total_price = 0
     , item_id = 1)
   {
+
+    console.log("item_name: "+ item_name);
+    console.log("unit_price: "+ unit_price);
+    console.log("total_price: "+ total_price);
+    console.log("item_id: "+ item_id);
+    console.log("____")
     var d1 = document.getElementById('list_of_products');
   d1.insertAdjacentHTML('beforeend', 
     create_list_text(item_name =item_name 
@@ -249,8 +255,13 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
   function create_list_text(item_name = "Title",
-   unit_price =5, total_price=0, item_id = 1)
+   unit_price = 5, total_price = 0, item_id = 1)
   {
+    console.log("item_name: "+ item_name);
+    console.log("unit_price: "+ unit_price);
+    console.log("total_price: "+ total_price);
+    console.log("item_id: "+ item_id);
+    console.log("__++++++++++++++++++__")
 
     return '<div class="card mb-4" style="">'+
 '  <div class="card-body">'+
@@ -265,7 +276,7 @@ container-fluid mx-auto" style="bottom:0px;"
 
 '    <div class="d-flex">'+
 '      <span color: black;">'+
-'        Total Price :<b>'+500+'</b>'+
+'        Total Price :<b>'+total_price+'</b>'+
 '      </span>'   +   
 
 '      <a target="_blank" '+
@@ -308,6 +319,7 @@ container-fluid mx-auto" style="bottom:0px;"
   {
     console.log("Deleting: " + to_be_removed_from_cart);
   }
+
 </script>
 
 
