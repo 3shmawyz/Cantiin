@@ -230,18 +230,18 @@ container-fluid mx-auto" style="bottom:0px;"
   
 
   add_element_to_list(item_name ="Labtop",
-    unit_price=500, total_price= 70000,item_id = 1);
+    unit_price=500,amount = 40, total_price= 70000,item_id = 1);
   add_element_to_list(item_name ="CPU",
-    unit_price=5,total_price= 80000, item_id = 2);
+    unit_price=5,amount = 5,total_price= 80000, item_id = 2);
   add_element_to_list(item_name ="Mobile",
-    unit_price=50, total_price= 90000, item_id = 3);
+    unit_price=50,amount = 7, total_price= 90000, item_id = 3);
 
 
   
 
   function add_element_to_list(
-    item_name = "Title",unit_price =5, total_price = 0
-    , item_id = 1)
+    item_name = "Title",unit_price =5,amount = 1,
+     total_price = 0, item_id = 1)
   {
 
     /*console.log("item_name: "+ item_name);
@@ -252,13 +252,13 @@ container-fluid mx-auto" style="bottom:0px;"
     var d1 = document.getElementById('list_of_products');
   d1.insertAdjacentHTML('beforeend', 
     create_list_text(item_name =item_name 
-      ,unit_price =unit_price, total_price=total_price
-      , item_id =item_id ));
+      ,unit_price =unit_price, amount = amount,
+       total_price=total_price, item_id =item_id ));
   }
 
 
   function create_list_text(item_name = "Title",
-   unit_price = 5, total_price = 0, item_id = 1)
+   unit_price = 5, amount = 1, total_price = 0, item_id = 1)
   {
     /*console.log("item_name: "+ item_name);
     console.log("unit_price: "+ unit_price);
@@ -274,7 +274,7 @@ container-fluid mx-auto" style="bottom:0px;"
 '    <p class="card-text">Unit Price :'+
 '       <b>'+unit_price+'</b></p>'+
 '    <p class="card-text">Amount (Number of units orders) :'+
-'       <b>'+1+'</b></p>'+
+'       <b>'+amount+'</b></p>'+
 
 
 '    <div class="d-flex">'+
