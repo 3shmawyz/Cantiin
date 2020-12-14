@@ -286,7 +286,7 @@ container-fluid mx-auto" style="bottom:0px;"
 
 <script type="text/javascript">
   /*Handling delete*/
-  var to_be_deleted ;
+  var to_be_removed_from_cart ;
   /*On clicking this button, this variable will be 
   assigned a value
   the value of the id of the product to be deleted
@@ -296,13 +296,13 @@ container-fluid mx-auto" style="bottom:0px;"
   */
   function delete_product(id = 0)
   {
-    to_be_deleted = id;
-    console.log(to_be_deleted);
+    to_be_removed_from_cart = id;
+    console.log(to_be_removed_from_cart);
   }
 
   function delete_really()
   {
-    console.log("Deleting: " + to_be_deleted);
+    console.log("Deleting: " + to_be_removed_from_cart);
   }
 </script>
 
