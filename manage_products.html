@@ -147,7 +147,7 @@ container-fluid mx-auto" style="bottom:0px;"
   <div class="card-body">
     <h5 class="card-title" 
     style="font-weight: bold; font-size: 150%;">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">Price :  <b>500</b></p>
     <div class="d-flex">
       <a href="edit_product.html?id=id" target="_blank" 
        class=" card_button btn btn-outline-warning" 
@@ -160,9 +160,13 @@ container-fluid mx-auto" style="bottom:0px;"
       style="font-weight: bold;font-size: 150%"
       data-toggle="modal" data-target="#exampleModal"
       onclick="delete_product(1)" 
-      >
-        DELETE
+      >DELETE
       </a> 
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -196,11 +200,6 @@ container-fluid mx-auto" style="bottom:0px;"
 </div>
 
 
-
-
-    </div>
-  </div>
-</div>
 
 
 
@@ -250,6 +249,37 @@ container-fluid mx-auto" style="bottom:0px;"
   function create_list_text(product_name = "Title",
    product_price =5, product_id = 1)
   {
+
+    return '<div class="card mb-4" style="">'+
+'  <div class="card-body">'+
+'    <h5 class="card-title"'+ 
+'    style="font-weight: bold; '+
+      'font-size: 150%;">'+product_name+'</h5>'+
+'    <p class="card-text">Price :  <b>'+product_price+'</b></p>'+
+'    <div class="d-flex">'+
+'      <a href="edit_product.html?id=id" target="_blank" '+
+'       class=" card_button btn btn-outline-warning" '+
+'      style="font-weight: bold;font-size: '+
+'          150%; color: black;">'+
+'        Edit'+
+'      </a>'   +   
+
+'      <a target="_blank" '+
+'       class="ml-auto card_button btn btn-outline-danger"'+ 
+'      style="font-weight: bold;font-size: 150%"'+
+'      data-toggle="modal" data-target="#exampleModal"'+
+'      onclick="delete_product('+product_id+')" '+
+'      >DELETE'+
+'      </a> '+
+'    </div>'+
+'  </div>'+
+'</div>'
+
+
+
+
+
+
     return '<div class="card mb-4">'+
   '<div class="card-body">'+
     '<h5 class="card-title"'+
