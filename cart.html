@@ -226,37 +226,37 @@ container-fluid mx-auto" style="bottom:0px;"
 <script type="text/javascript">
   
 
-  add_element_to_list(product_name ="Labtop",
-    product_price=500, product_id = 1);
-  add_element_to_list(product_name ="CPU",
-    product_price=5, product_id = 2);
-  add_element_to_list(product_name ="Mobile",
-    product_price=50, product_id = 3);
+  add_element_to_list(item_name ="Labtop",
+    unit_price=500, item_id = 1);
+  add_element_to_list(item_name ="CPU",
+    unit_price=5, item_id = 2);
+  add_element_to_list(item_name ="Mobile",
+    unit_price=50, item_id = 3);
 
 
   
 
   function add_element_to_list(
-    product_name = "Title",product_price =5, product_id = 1)
+    item_name = "Title",unit_price =5, item_id = 1)
   {
     var d1 = document.getElementById('list_of_products');
   d1.insertAdjacentHTML('beforeend', 
-    create_list_text(product_name =product_name 
-      ,product_price =product_price, product_id =product_id ));
+    create_list_text(item_name =item_name 
+      ,unit_price =unit_price, item_id =item_id ));
   }
 
 
-  function create_list_text(product_name = "Title",
-   product_price =5, product_id = 1)
+  function create_list_text(item_name = "Title",
+   unit_price =5, item_id = 1)
   {
 
     return '<div class="card mb-4" style="">'+
 '  <div class="card-body">'+
 '    <h5 class="card-title"'+ 
 '    style="font-weight: bold; '+
-      'font-size: 150%;">'+product_name+'</h5>'+
+      'font-size: 150%;">'+item_name+'</h5>'+
 '    <p class="card-text">Unit Price :'+
-'       <b>'+product_price+'</b></p>'+
+'       <b>'+unit_price+'</b></p>'+
 '    <p class="card-text">Amount (Number of units orders) :'+
 '       <b>'+1+'</b></p>'+
 
@@ -270,7 +270,7 @@ container-fluid mx-auto" style="bottom:0px;"
 '       class="ml-auto card_button btn btn-outline-danger"'+ 
 '      style="font-weight: bold;font-size: 150%"'+
 '      data-toggle="modal" data-target="#exampleModal"'+
-'      onclick="remove_product_from_cart('+product_id+')" '+
+'      onclick="remove_product_from_cart('+item_id+')" '+
 '      >Remove From Cart'+
 '      </a> '+
 '    </div>'+
