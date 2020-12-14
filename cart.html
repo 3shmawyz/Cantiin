@@ -145,22 +145,25 @@ container-fluid mx-auto" style="bottom:0px;"
 <!--
 <div class="card mb-4" style="">
   <div class="card-body">
-    <h5 class="card-title" 
-    style="font-weight: bold; font-size: 150%;">Card title</h5>
-    <p class="card-text">Price :  <b>500</b></p>
-    <div class="d-flex">
-      <a href="edit_product.html?id=id" target="_blank" 
-       class=" card_button btn btn-outline-warning" 
-      style="font-weight: bold;font-size: 150%; color: black;">
-        Edit
-      </a>      
+    <h5 class="card-title"
+    style="font-weight: bold; 
+     'font-size: 150%;">'+item_name+'</h5>
+    <p class="card-text">Unit Price :
+       <b>'+unit_price+'</b></p>
+    <p class="card-text">Amount (Number of units orders) :
+       <b>'+1+'</b></p>
 
+
+    <div class="d-flex">'+
+      <span color: black;">'+
+        Total Price :<b>'+total_price+'</b>
+      </span>  
       <a target="_blank" 
-       class="ml-auto card_button btn btn-outline-danger" 
+       class="ml-auto card_button btn btn-outline-danger"
       style="font-weight: bold;font-size: 150%"
       data-toggle="modal" data-target="#exampleModal"
-      onclick="remove_product_from_cart(1)" 
-      >DELETE
+      onclick="remove_product_from_cart('+item_id+')" 
+      >Remove From Cart
       </a> 
     </div>
   </div>
