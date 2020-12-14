@@ -237,17 +237,19 @@ container-fluid mx-auto" style="bottom:0px;"
   
 
   function add_element_to_list(
-    item_name = "Title",unit_price =5, item_id = 1)
+    item_name = "Title",unit_price =5,total_price=0
+    , item_id = 1)
   {
     var d1 = document.getElementById('list_of_products');
   d1.insertAdjacentHTML('beforeend', 
     create_list_text(item_name =item_name 
-      ,unit_price =unit_price, item_id =item_id ));
+      ,unit_price =unit_price, total_price=total_price
+      , item_id =item_id ));
   }
 
 
   function create_list_text(item_name = "Title",
-   unit_price =5, item_id = 1)
+   unit_price =5, total_price=0, item_id = 1)
   {
 
     return '<div class="card mb-4" style="">'+
