@@ -107,14 +107,13 @@ class Product(db.Model):
             'seller': self.seller
         })
     def simple(self):
-        return #json.dumps(
-        {
+        return {
             'id': self.id,
             'name': self.name,
             'price': self.price,
             'in_stock': self.in_stock,
             'seller': self.seller
-        }#)
+        }
 
 
 
@@ -190,14 +189,13 @@ class Order(db.Model):
             "total_cost":self.product_id*self.amount
         })
     def simple(self):
-        return #json.dumps(
-        {#id, user, product_id, amount
+        return {#id, user, product_id, amount
             'id': self.id,
             'user': self.name,
             'product_id': self.product_id,
             'amount': self.amount,
             "total_cost":self.product_id*self.amount
-        }#)
+        }
  
 
 
