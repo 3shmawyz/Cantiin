@@ -56,11 +56,14 @@ def question_search(input_text):
 
 
 
-def create_app(test_config=None):
+def create_app(test_config=None,testing=False):
 	# create and configure the app
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
-	app.config.from_object("config")
+	if testing:
+		app.config.from_object("config")
+	else:
+		app.config.from_object("config_test")
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
