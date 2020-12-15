@@ -33,10 +33,15 @@ class TriviaTestCase(unittest.TestCase):
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
-	def test_001_test_ot_test(self):
+	def test_001_test_of_test(self):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
 
+	def test_002_test_of_insert(self):
+		product1 = Product(name = "product1",price = 5.5,
+			in_stock=True, seller_id=1)
+		product1.insert()
+		print("Test 2: Product insert")
 
 
 
