@@ -8,7 +8,7 @@ from sqlalchemy import func
 
 from api import create_app
 from models import (db, populate_tables, db_drop_and_create_all,
-Product)
+Product, get_in_stock_products)
 from flask_cors import CORS
 from flask_migrate import Migrate 
 from flask_sqlalchemy import SQLAlchemy
