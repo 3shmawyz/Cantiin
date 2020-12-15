@@ -112,7 +112,7 @@ class Product(db.Model):
 
 """
 Order:
-id, user, product, amount
+id, user, product_id, amount
 """
 class Order(db.Model):
     # Autoincrementing, unique primary key
@@ -123,7 +123,7 @@ class Order(db.Model):
     # This is the id of the user who ordered the products
     # it is an integer
     # Example: 1, 2 or 3
-    product  = Column(Integer,db.ForeignKey("product.id"))
+    product_id  = Column(Integer,db.ForeignKey("product.id"))
     # product is an integer 
     # it refers to the product.id in the products table
     # Example: 1, 2 , 3
@@ -131,12 +131,10 @@ class Order(db.Model):
     # amount is an integer
     # Example: 5, 6, 50
 
-    def __init__(self,  
-        price, name, seller,in_stock=True):
-        self.name = name
-        self.price = price
-        self.in_stock = in_stock
-        self.seller = seller
+    def __init__(self, user, product_id, amount):
+        self.user = user
+        self.product_id = product_id
+        self.amount = amount
 
     '''
     insert()
