@@ -115,6 +115,27 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+	def test_009_product_delete_wrong(self):
+		products = Product.query.all()
+		old_records_number = len(products)
+		try:
+			#This code will not be executed
+			#There is no product with the number 0
+			product1 = Product.query.get(0)
+			product1.delete()
+		except:
+			pass
+		
+		products = Product.query.all()
+		new_records_number = len(products)
+
+		self.assertEqual(old_records_number,
+			new_records_number)
+		print("Test9: product delete mistake, non-existent"+
+		 "product id")
+
+
+
 
 
 
