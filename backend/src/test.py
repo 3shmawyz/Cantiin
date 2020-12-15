@@ -38,7 +38,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
 
-	def test_002_test_of_insert(self):
+	def test_002_test_of_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller_id=1)
 		product1.insert()
