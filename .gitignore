@@ -5,7 +5,7 @@ backend/env/*
 .vscode/*
 backend/src/__pycache__
 backend/src/__pycache__/*
-backend/src/database.sqlite
+database.sqlite
 backend/src/test.sqlite
 
 # Frontend #
