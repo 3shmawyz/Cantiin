@@ -21,7 +21,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def setUp(self):
 		# create and configure the app
-		self.app = create_app() #Flask(__name__)
+		self.app = create_app(testing=True) #Flask(__name__)
 		self.client = self.app.test_client
 		self.app.config.from_object("test")
 		db.app = self.app
