@@ -119,6 +119,91 @@ class Product(db.Model):
 
 
 
+class Order(db.Model):
+    # Autoincrementing, unique primary key
+    id = Column(Integer(), primary_key=True)
+    # String name
+    name = Column(String(), unique=False, nullable=False)
+    # name could be like "Labtop"
+    # name dowsn't have to be unique
+    # allowing several users to sell the same product
+    price =  Column(Float(), unique=False, nullable=False)
+    # Price is a float
+    # Example: 5.0, 6.0 , 50.0, 0.5
+    # It should be float, allowing things with low
+    # price to be sold
+    in_stock =  Column(Boolean(), unique=False, 
+        nullable=False, default=True)
+    # in_stock is a boolean
+    # Example: True, False
+    # it represents whether this product is for sale or not
+    # True = For sale, can be displayed to customers
+    # False = now for sale, can not be displayed to customers
+    seller = Column(Integer(), unique=False, nullable=False)
+    # seller
+    # This is the id of the seller user
+    # The user who sells this product
+    # it is an integer
+    # Example: 1, 2 or 3
+
+    def __init__(self,  
+        price, name, seller,in_stock=True):
+        self.name = name
+        self.price = price
+        self.in_stock = in_stock
+        self.seller = seller
+
+    '''
+    insert()
+        inserts a new model into a database
+        the model must have a unique name
+        the model must have a unique id or null id
+        EXAMPLE
+            drink = Drink(title=req_title, recipe=req_recipe)
+            drink.insert()
+    '''
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    '''
+    delete()
+        deletes a new model into a database
+        the model must exist in the database
+        EXAMPLE
+            drink = Drink(title=req_title, recipe=req_recipe)
+            drink.delete()
+    '''
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    '''
+    update()
+        updates a new model into a database
+        the model must exist in the database
+        EXAMPLE
+            drink = Drink.query.filter(Drink.id == id).one_or_none()
+            drink.title = 'Black Coffee'
+            drink.update()
+    '''
+    def update(self):
+        db.session.commit()
+
+    def __repr__(self):
+        return #json.dumps(
+        {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'in_stock': self.in_stock,
+            'seller': self.seller
+        }#)
+
+
+
+
+
 
 
 def populate_tables():
