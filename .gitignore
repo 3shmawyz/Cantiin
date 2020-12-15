@@ -5,9 +5,7 @@ backend/env/*
 .vscode/*
 backend/src/__pycache__
 backend/src/__pycache__/*
-database.sqlite
-backend/src/database.sqlite
-backend/src/test.sqlite
+backend/src/databases/*
 
 # Frontend #
 frontend/node_modules
