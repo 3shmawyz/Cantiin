@@ -119,7 +119,10 @@ class Product(db.Model):
 
 
 
-
+"""
+Order:
+id, user, product, amount
+"""
 class Order(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
