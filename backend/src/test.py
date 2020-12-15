@@ -102,8 +102,9 @@ class TriviaTestCase(unittest.TestCase):
 			#There are missing required parameters
 			product1 = Product()
 			product1.insert()
+			self.assertEqual(True,False)
 		except:
-			pass
+			self.assertEqual(True,True)
 		
 		products = Product.query.all()
 		new_records_number = len(products)
@@ -123,8 +124,10 @@ class TriviaTestCase(unittest.TestCase):
 			#There is no product with the number 0
 			product1 = Product.query.get(0)
 			product1.delete()
+			self.assertEqual(True,False)
+
 		except:
-			pass
+			self.assertEqual(True,True)
 		
 		products = Product.query.all()
 		new_records_number = len(products)
