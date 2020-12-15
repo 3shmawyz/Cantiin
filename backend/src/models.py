@@ -38,8 +38,10 @@ class product(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
-    name = Column(String(), unique=True, nullable=False)
+    name = Column(String(), unique=False, nullable=False)
     # name could be like "Labtop"
+    # name dowsn't have to be unique
+    # allowing several users to sell the same product
     price =  Column(Integer(), unique=False, nullable=False)
     # Price is an integer
     # Example: 5, 6 , 50
