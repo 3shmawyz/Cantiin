@@ -83,6 +83,17 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 6: Populate Tables")
 
 
+	def test_007_test_product_values(self):
+		produc = Product.query.get(1)
+
+		self.assertEqual(produc.id,1)
+		self.assertEqual(produc.name,"Labtop")
+		self.assertEqual(produc.price,300)
+		self.assertEqual(produc.seller,1)
+		self.assertEqual(produc.in_stock,True)
+		print("Test 7: Product values")
+
+
 
 
 
