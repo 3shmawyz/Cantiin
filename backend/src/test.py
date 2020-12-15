@@ -41,7 +41,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_002_test_of_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
-			in_stock=True, seller_id=1)
+			in_stock=True, seller=1)
 		product1.insert()
 		products = Product.query.all()
 

@@ -55,20 +55,20 @@ class Product(db.Model):
     # it represents whether this product is for sale or not
     # True = For sale, can be displayed to customers
     # False = now for sale, can not be displayed to customers
-    seller_id = Column(Integer(), unique=False, nullable=False,
+    seller = Column(Integer(), unique=False, nullable=False,
         default=1)
-    # seller_id
+    # seller
     # This is the id of the seller user
     # The user who sells this product
     # it is an integer
     # Example: 1, 2 or 3
 
     def __init__(self,  
-        price, name= "Unknown",in_stock=True, seller_id=1):
+        price, name= "Unknown",in_stock=True, seller=1):
         self.name = name
         self.price = price
         self.in_stock = in_stock
-        self.seller_id = seller_id
+        self.seller = seller
 
     '''
     short()
