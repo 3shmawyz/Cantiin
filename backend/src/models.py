@@ -120,7 +120,7 @@ class Product(db.Model):
 
 """
 Order:
-id, user, product_id, amount
+id, user, product, amount
 """
 class Order(db.Model):
     # Autoincrementing, unique primary key
@@ -131,7 +131,7 @@ class Order(db.Model):
     # This is the id of the user who ordered the products
     # it is an integer
     # Example: 1, 2 or 3
-    product_id  = Column(Integer,db.ForeignKey("product.id"))
+    product  = Column(Integer,db.ForeignKey("product.id"))
     # product is an integer 
     # it refers to the product.id in the products table
     # Example: 1, 2 , 3
@@ -139,12 +139,12 @@ class Order(db.Model):
     # amount is an integer
     # Example: 5, 6, 50
     total_cost = 0
-    def __init__(self, user, product_id, amount):
+    def __init__(self, user, product, amount):
         self.user = user
-        self.product_id = product_id
+        self.product = product
         self.amount = amount
         self.total_cost= amount * Product.query.get(
-            product_id).price
+            product).price
 
     '''
     insert()
@@ -180,21 +180,21 @@ class Order(db.Model):
 
     def __repr__(self):
         return json.dumps(
-        {#id, user, product_id, amount
+        {#id, user, product, amount
 
             'id': self.id,
             'user': self.name,
-            'product_id': self.product_id,
+            'product': self.product,
             'amount': self.amount,
-            "total_cost":self.product_id*self.amount
+            "total_cost":self.product*self.amount
         })
     def simple(self):
-        return {#id, user, product_id, amount
+        return {#id, user, product, amount
             'id': self.id,
             'user': self.name,
-            'product_id': self.product_id,
+            'product': self.product.id,
             'amount': self.amount,
-            "total_cost":self.product_id*self.amount
+            "total_cost":self.product.id*self.amount
         }
  
 
