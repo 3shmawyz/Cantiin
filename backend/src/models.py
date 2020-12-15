@@ -139,9 +139,16 @@ def populate_tables():
     products.append(Product(
         name="Mouse", price=4, seller="1", in_stock=True))
 
-    
-
-
     db.session.add_all(products)
     db.session.commit()
+
+
+
+
+
+
+
+def get_in_stockproducts()
+    return Product.query.filter(Product.in_stock==True
+        ).order_by(Product.id).all()
 
