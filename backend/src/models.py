@@ -141,35 +141,25 @@ class Product(db.Model):
 
 def populate_tables():
     db_drop_and_create_all()
-    drinks = list()
+    products = list()
     
 
-    drinks.append(Drink(title="Water Cup", recipe=
-        '[{'+'"name":"Water","color":"blue","parts":1'+'}]'))
-    drinks.append(Drink(title="Nescafe", recipe=
-        '['+
-        '{'+'"name":"Water","color":"blue","parts":1'+'},'+
-        '{'+'"name":"Milk","color":"white","parts":2'+'},'
-        '{'+'"name":"Sugar","color":"yellow","parts":1'+'},'
-        '{'+'"name":"Nescafe","color":"brown","parts":1'+'}'
-        +']'))
-    drinks.append(Drink(title="Ice Cream", recipe=
-        '['+
-        '{'+'"name":"Milk","color":"white","parts":2'+'},'
-        '{'+'"name":"Vanillia","color":"white","parts":1'+'},'
-        '{'+'"name":"Sugar","color":"white","parts":1'+'}'
-        +']'))
-    drinks.append(Drink(title="Sugar Cane", recipe=
-        '['+
-        '{'+'"name":"Cane","color":"yellow","parts":1'+'}'
-        +']'))
-    drinks.append(Drink(title="Mango Juice", recipe=
-        '['+
-        '{'+'"name":"MAngo","color":"orange","parts":1'+'}'
-        +']'))
+    products.append(Product(
+        name="Labtop", price=300, seller="1"))
+    products.append(Product(
+        name="Mobile", price=100, seller="2", in_stock=False))
+    products.append(Product(
+        name="Candy", price=.5, seller="3", in_stock=True))
+    products.append(Product(
+        name="Table", price=150, seller="1", in_stock=False))
+    products.append(Product(
+        name="Keyboard", price=5, seller="2", in_stock=True))
+    products.append(Product(
+        name="Mouse", price=4, seller="1", in_stock=True))
+
     
 
 
-    db.session.add_all(drinks)
+    db.session.add_all(products)
     db.session.commit()
 
