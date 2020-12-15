@@ -48,9 +48,9 @@ class product(db.Model):
     # It should be float, allowing things with low
     # price to be sold
 
-    def __init__(self, title, recipe):
-        self.title = title
-        self.recipe = recipe
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
 
     '''
     short()
