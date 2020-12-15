@@ -15,6 +15,13 @@ from flask_sqlalchemy import SQLAlchemy
 import random
 
 
+"""
+a:models
+a_01=user
+a_02_=product
+a_03_=order
+"""
+
 unittest.TestLoader.sortTestMethodsUsing = None
 
 class TriviaTestCase(unittest.TestCase):
@@ -39,7 +46,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 1:Hello, Tests!")
 
 
-	def test_003_drop_all_create_all(self):
+	def test_002_drop_all_create_all(self):
 		db_drop_and_create_all()
 		products = Product.query.all()
 
@@ -47,43 +54,43 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 2: db_drop_and_create_all")
 
 
-	def test_003_product_insert(self):
+	def test_a_a_001_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller=1)
 		product1.insert()
 		products = Product.query.all()
 
 		self.assertEqual(len(products),1)
-		print("Test 3: Product insert")
+		print("Test a_a_1: Product insert")
 
 
-	def test_004_product_update(self):
+	def test_a_a_002_product_update(self):
 		product1 = Product.query.get(1)
 		product1.name = "modified"
 		product_1 = Product.query.get(1)
 
 		self.assertEqual(product_1.name,"modified")
-		print("Test 4: Product update")
+		print("Test a_a_2: Product update")
 
 
 
-	def test_005_product_delete(self):
+	def test_a_a_003_product_delete(self):
 		product1 = Product.query.get(1)
 		product1.delete()
 		products = Product.query.all()
 
 		self.assertEqual(len(products),0)
-		print("Test 5: Product delete")
+		print("Test a_a_3: Product delete")
 
-	def test_006_populate(self):
+	def test_a_a_004_populate(self):
 		populate_tables()
 		products = Product.query.all()
 
 		self.assertEqual(len(products),6)
-		print("Test 6: Populate Tables")
+		print("Test a_a_4: Populate Tables")
 
 
-	def test_007_product_values(self):
+	def test_a_a_005_product_values(self):
 		produc = Product.query.get(1)
 
 		self.assertEqual(produc.id,1)
@@ -91,10 +98,10 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(produc.price,300)
 		self.assertEqual(produc.seller,1)
 		self.assertEqual(produc.in_stock,True)
-		print("Test 7: Product values")
+		print("Test a_a_5: Product values")
 
 
-	def test_008_product_insert_wrong(self):
+	def test_a_a_006_product_insert_wrong(self):
 		products = Product.query.all()
 		old_records_number = len(products)
 		try:
@@ -111,12 +118,12 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(old_records_number,
 			new_records_number)
-		print("Test8: product insert with missing"+
+		print("Test a_a_6: product insert with missing"+
 		 "required parameters")
 
 
 
-	def test_009_product_delete_wrong(self):
+	def test_a_a_007_product_delete_wrong(self):
 		products = Product.query.all()
 		old_records_number = len(products)
 		try:
@@ -134,17 +141,17 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(old_records_number,
 			new_records_number)
-		print("Test9: product delete mistake, non-existent"+
+		print("Test a_a_7: product delete mistake, non-existent"+
 		 "product id")
 
 
 
 
-	def test_010_get_in_stock_products(self):
+	def test_a_a_008_get_in_stock_products(self):
 		products = get_in_stock_products()
 		for product in products:
 			self.assertEqual(product.in_stock,True)
-		print("Test10:get in stock products")
+		print("Test a_a_8:get in stock products")
 
 
 
