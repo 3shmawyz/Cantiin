@@ -61,9 +61,9 @@ def create_app(test_config=None,testing=False):
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	if testing:
-		app.config.from_object("config")
-	else:
 		app.config.from_object("config_test")
+	else:
+		app.config.from_object("config")
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
