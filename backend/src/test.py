@@ -140,6 +140,15 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+	def test_010_get_in_stock_products(self):
+		products = get_in_stock_products()
+		for product in products:
+			self.assertEqual(product.in_stock,True)
+		print("Test10:get in stock products")
+
+
+
+
 
 
 
