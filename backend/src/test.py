@@ -57,13 +57,23 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 3: Product insert")
 
 
-	def test_004_test_of_product_delete(self):
+	def test_004_test_of_product_update(self):
+		product1 = Product.query.get(1)
+		product1.name = "modified"
+		product_1 = Product.query.get(1)
+
+		self.assertEqual(product_1.name,"modified")
+		print("Test 4: Product update")
+
+
+
+	def test_005_test_of_product_delete(self):
 		product1 = Product.query.get(1)
 		product1.delete()
 		products = Product.query.all()
 
 		self.assertEqual(len(products),0)
-		print("Test 4: Product delete")
+		print("Test 5: Product delete")
 
 
 
