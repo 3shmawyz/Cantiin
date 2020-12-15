@@ -115,7 +115,7 @@ class Product(db.Model):
             'in_stock': self.in_stock,
             'seller': self.seller
         }#)
-   
+
 
 
 
@@ -181,7 +181,7 @@ class Order(db.Model):
 
     def __repr__(self):
         return #json.dumps(
-        {id, user, product_id, amount
+        {#id, user, product_id, amount
 
             'id': self.id,
             'user': self.name,
@@ -189,7 +189,16 @@ class Order(db.Model):
             'amount': self.amount,
             "total_cost":self.product_id*self.amount
         }#)
-
+    def simple(self):
+        return #json.dumps(
+        {#id, user, product_id, amount
+            'id': self.id,
+            'user': self.name,
+            'product_id': self.product_id,
+            'amount': self.amount,
+            "total_cost":self.product_id*self.amount
+        }#)
+ 
 
 
 
