@@ -31,18 +31,18 @@ def db_drop_and_create_all():
     db.create_all()
 
 '''
-Drink
-a persistent drink entity, extends the base SQLAlchemy Model
+Product
+a persistent product entity, extends the base SQLAlchemy Model
 '''
 class product(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
-    # String Title
+    # String name
     name = Column(String(), unique=True, nullable=False)
-    # the ingredients blob - this stores a lazy json blob
-    # the required datatype is [{'color': string, 'name':string, 'parts':number}]
+    # name could be like "Labtop"
     price =  Column(Integer(), unique=False, nullable=False)
-
+    # Price is an integer
+    # Example: 5, 6 , 50
 
     def __init__(self, title, recipe):
         self.title = title
