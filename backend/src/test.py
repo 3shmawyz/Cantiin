@@ -155,6 +155,29 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+	def test_a_a_009_product_simple(self):
+		produc = Product.query.get(1).simple()
+		#print(produc)
+
+		self.assertEqual(produc["id"],1)
+		self.assertEqual(type(produc["id"]),int)
+
+		self.assertEqual(produc["name"],"Labtop")
+		self.assertEqual(type(produc["name"]),str)
+
+		self.assertEqual(produc["price"],300)
+		self.assertEqual(type(produc["price"]),float)
+
+		self.assertEqual(produc["seller"],1)
+		self.assertEqual(type(produc["seller"]),int)
+
+		self.assertEqual(produc["in_stock"],True)
+		self.assertEqual(type(produc["in_stock"]),bool)
+
+		print("Test a_a_9: Product simple")
+
+
+
 
 
 
