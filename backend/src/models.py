@@ -63,8 +63,8 @@ class product(db.Model):
     # it is an integer
     # Example: 1, 2 or 3
 
-    def __init__(self, name= "Unknown", 
-        price, in_stock=True, seller_id=1):
+    def __init__(self,  
+        price, name= "Unknown",in_stock=True, seller_id=1):
         self.name = name
         self.price = price
         self.in_stock = in_stock
