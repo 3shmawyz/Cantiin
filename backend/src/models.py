@@ -33,6 +33,7 @@ def db_drop_and_create_all():
 '''
 Product
 a persistent product entity, extends the base SQLAlchemy Model
+id,name,price,in_stock,seller
 '''
 class Product(db.Model):
     # Autoincrementing, unique primary key
