@@ -75,6 +75,13 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(len(products),0)
 		print("Test 5: Product delete")
 
+	def test_006_test_populate(self):
+		populate_tables()
+		products = Product.query.all()
+
+		self.assertEqual(len(products),6)
+		print("Test 6: Populate Tables")
+
 
 
 
