@@ -39,14 +39,22 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 1:Hello, Tests!")
 
 
-	def test_002_test_of_product_insert(self):
+	def test_003_test_of_drop_all_create_all(self):
+		db_drop_and_create_all()
+		products = Product.query.all()
+
+		self.assertEqual(len(products),0)
+		print("Test 2: db_drop_and_create_all")
+
+
+	def test_003_test_of_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller=1)
 		product1.insert()
 		products = Product.query.all()
 
 		self.assertEqual(len(products),1)
-		print("Test 2: Product insert")
+		print("Test 3: Product insert")
 
 
 
