@@ -23,9 +23,8 @@ class TriviaTestCase(unittest.TestCase):
 		# create and configure the app
 		self.app = create_app(testing=True) #Flask(__name__)
 		self.client = self.app.test_client
-		self.app.config.from_object("test")
-		db.app = self.app
-		db.init_app(self.app)
+		#db.app = self.app
+		#db.init_app(self.app)
 		db.create_all()        
 		
 	
