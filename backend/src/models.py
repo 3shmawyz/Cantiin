@@ -106,7 +106,16 @@ class Product(db.Model):
             'in_stock': self.in_stock,
             'seller': self.seller
         }#)
-
+    def simple(self):
+        return #json.dumps(
+        {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'in_stock': self.in_stock,
+            'seller': self.seller
+        }#)
+   
 
 
 
