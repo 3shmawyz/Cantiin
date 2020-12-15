@@ -5,7 +5,7 @@ backend/env/*
 .vscode/*
 backend/src/__pycache__
 backend/src/__pycache__/*
-backend/src/databse.db
+#backend/src/databse.db
 test.db
 
 # Frontend #
