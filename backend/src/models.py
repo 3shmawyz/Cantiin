@@ -172,12 +172,13 @@ class Order(db.Model):
 
     def __repr__(self):
         return #json.dumps(
-        {
+        {id, user, product_id, amount
+
             'id': self.id,
-            'name': self.name,
-            'price': self.price,
-            'in_stock': self.in_stock,
-            'seller': self.seller
+            'user': self.name,
+            'product_id': self.product_id,
+            'amount': self.amount,
+            "total_cost":self.product_id*self.amount
         }#)
 
 
