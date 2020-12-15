@@ -6,7 +6,7 @@ backend/env/*
 backend/src/__pycache__
 backend/src/__pycache__/*
 backend/src/databse.db
-test.db
+#test.db
 
 # Frontend #
 frontend/node_modules
