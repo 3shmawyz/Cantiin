@@ -6,7 +6,7 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func 
 
-#from flaskr import create_app
+from api import create_app
 from models import db, populate_tables, db_drop_and_create_all
 from flask_cors import CORS
 from flask_migrate import Migrate 
