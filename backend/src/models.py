@@ -42,9 +42,11 @@ class product(db.Model):
     # name could be like "Labtop"
     # name dowsn't have to be unique
     # allowing several users to sell the same product
-    price =  Column(Integer(), unique=False, nullable=False)
-    # Price is an integer
-    # Example: 5, 6 , 50
+    price =  Column(Float(), unique=False, nullable=False)
+    # Price is a float
+    # Example: 5.0, 6.0 , 50.0, 0.5
+    # It should be float, allowing things with low
+    # price to be sold
 
     def __init__(self, title, recipe):
         self.title = title
