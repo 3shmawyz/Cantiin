@@ -136,11 +136,9 @@ class Order(db.Model):
     # name could be like "Labtop"
     # name dowsn't have to be unique
     # allowing several users to sell the same product
-    price =  Column(Float(), unique=False, nullable=False)
-    # Price is a float
-    # Example: 5.0, 6.0 , 50.0, 0.5
-    # It should be float, allowing things with low
-    # price to be sold
+    amount =  Column(Integer(), unique=False, nullable=False)
+    # amount is an integer
+    # Example: 5, 6, 50
     in_stock =  Column(Boolean(), unique=False, 
         nullable=False, default=True)
     # in_stock is a boolean
