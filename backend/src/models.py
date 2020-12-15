@@ -38,8 +38,7 @@ class Product(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
-    name = Column(String(), unique=False, nullable=False,
-        default="Unknown")
+    name = Column(String(), unique=False, nullable=False)
     # name could be like "Labtop"
     # name dowsn't have to be unique
     # allowing several users to sell the same product
@@ -55,8 +54,7 @@ class Product(db.Model):
     # it represents whether this product is for sale or not
     # True = For sale, can be displayed to customers
     # False = now for sale, can not be displayed to customers
-    seller = Column(Integer(), unique=False, nullable=False,
-        default=1)
+    seller = Column(Integer(), unique=False, nullable=False)
     # seller
     # This is the id of the seller user
     # The user who sells this product
@@ -64,7 +62,7 @@ class Product(db.Model):
     # Example: 1, 2 or 3
 
     def __init__(self,  
-        price, name= "Unknown",in_stock=True, seller=1):
+        price, name, seller,in_stock=True):
         self.name = name
         self.price = price
         self.in_stock = in_stock
