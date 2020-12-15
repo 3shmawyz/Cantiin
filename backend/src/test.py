@@ -35,7 +35,7 @@ class TriviaTestCase(unittest.TestCase):
 	#Note: Tests are run alphapetically
 	def test_001_test_ot_test(self):
 		self.assertEqual(1,1)
-		print("Test1: To test that test file is working.")
+		print("Test 1:Hello, Tests!")
 
 
 
