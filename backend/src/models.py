@@ -129,7 +129,14 @@ class Product(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return json.dumps(self.short())
+        return #json.dumps(
+        {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'in_stock': self.in_stock,
+            'seller': self.seller
+        }#)
 
 
 
