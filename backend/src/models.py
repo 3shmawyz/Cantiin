@@ -222,6 +222,34 @@ def populate_tables():
         name="Mouse", price=4, seller="1", in_stock=True))
 
     db.session.add_all(products)
+
+
+
+    orders = list() 
+    #id, user, product, amount
+    orders.append(Order(user="1", product=1, amount=1))
+    orders.append(Order(user="2", product=1, amount=4))
+    orders.append(Order(user="3", product=2, amount=3))
+    orders.append(Order(user="1", product=1, amount=2))
+    orders.append(Order(user="2", product=2, amount=1))
+    orders.append(Order(user="2", product=3, amount=5))
+    orders.append(Order(user="1", product=4, amount=20))
+    orders.append(Order(user="3", product=5, amount=4))
+
+
+
+
+
+
+    db.session.add_all(orders)
+
+
+
+
+
+
+
+
     db.session.commit()
 
 
