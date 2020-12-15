@@ -74,9 +74,7 @@ class Product(db.Model):
         inserts a new model into a database
         the model must have a unique name
         the model must have a unique id or null id
-        EXAMPLE
-            drink = Drink(title=req_title, recipe=req_recipe)
-            drink.insert()
+
     '''
     def insert(self):
         db.session.add(self)
@@ -86,9 +84,6 @@ class Product(db.Model):
     delete()
         deletes a new model into a database
         the model must exist in the database
-        EXAMPLE
-            drink = Drink(title=req_title, recipe=req_recipe)
-            drink.delete()
     '''
     def delete(self):
         db.session.delete(self)
@@ -98,10 +93,6 @@ class Product(db.Model):
     update()
         updates a new model into a database
         the model must exist in the database
-        EXAMPLE
-            drink = Drink.query.filter(Drink.id == id).one_or_none()
-            drink.title = 'Black Coffee'
-            drink.update()
     '''
     def update(self):
         db.session.commit()
@@ -139,14 +130,6 @@ class Order(db.Model):
     amount =  Column(Integer(), unique=False, nullable=False)
     # amount is an integer
     # Example: 5, 6, 50
-    in_stock =  Column(Boolean(), unique=False, 
-        nullable=False, default=True)
-    # in_stock is a boolean
-    # Example: True, False
-    # it represents whether this product is for sale or not
-    # True = For sale, can be displayed to customers
-    # False = now for sale, can not be displayed to customers
-
 
     def __init__(self,  
         price, name, seller,in_stock=True):
@@ -160,9 +143,7 @@ class Order(db.Model):
         inserts a new model into a database
         the model must have a unique name
         the model must have a unique id or null id
-        EXAMPLE
-            drink = Drink(title=req_title, recipe=req_recipe)
-            drink.insert()
+
     '''
     def insert(self):
         db.session.add(self)
@@ -184,10 +165,7 @@ class Order(db.Model):
     update()
         updates a new model into a database
         the model must exist in the database
-        EXAMPLE
-            drink = Drink.query.filter(Drink.id == id).one_or_none()
-            drink.title = 'Black Coffee'
-            drink.update()
+
     '''
     def update(self):
         db.session.commit()
