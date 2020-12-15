@@ -98,14 +98,14 @@ class Product(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return #json.dumps(
+        return json.dumps(
         {
             'id': self.id,
             'name': self.name,
             'price': self.price,
             'in_stock': self.in_stock,
             'seller': self.seller
-        }#)
+        })
     def simple(self):
         return #json.dumps(
         {
@@ -180,7 +180,7 @@ class Order(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return #json.dumps(
+        return json.dumps(
         {#id, user, product_id, amount
 
             'id': self.id,
@@ -188,7 +188,7 @@ class Order(db.Model):
             'product_id': self.product_id,
             'amount': self.amount,
             "total_cost":self.product_id*self.amount
-        }#)
+        })
     def simple(self):
         return #json.dumps(
         {#id, user, product_id, amount
