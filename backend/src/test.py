@@ -34,12 +34,12 @@ class TriviaTestCase(unittest.TestCase):
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
-	def test_001_test_of_test(self):
+	def test_001_test_test(self):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
 
 
-	def test_003_test_of_drop_all_create_all(self):
+	def test_003_test_drop_all_create_all(self):
 		db_drop_and_create_all()
 		products = Product.query.all()
 
@@ -47,7 +47,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 2: db_drop_and_create_all")
 
 
-	def test_003_test_of_product_insert(self):
+	def test_003_test_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller=1)
 		product1.insert()
@@ -57,7 +57,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 3: Product insert")
 
 
-	def test_004_test_of_product_update(self):
+	def test_004_test_product_update(self):
 		product1 = Product.query.get(1)
 		product1.name = "modified"
 		product_1 = Product.query.get(1)
@@ -67,7 +67,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_005_test_of_product_delete(self):
+	def test_005_test_product_delete(self):
 		product1 = Product.query.get(1)
 		product1.delete()
 		products = Product.query.all()
