@@ -47,6 +47,14 @@ class product(db.Model):
     # Example: 5.0, 6.0 , 50.0, 0.5
     # It should be float, allowing things with low
     # price to be sold
+    in_stock =  Column(Boolean(), unique=False, 
+        nullable=False, default=True)
+    # in_stock is a boolean
+    # Example: True, False
+    # it represents whether this product is for sale or not
+    # True = For sale, can be displayed to customers
+    # False = now for sale, can not be displayed to customers
+
 
     def __init__(self, name, price):
         self.name = name
