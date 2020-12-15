@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from random import shuffle
 import json
-from models import Question, Category, db, populate_tables, clear_tables
+from models import db, populate_tables, db_drop_and_create_all
 from random import shuffle
 
 """
