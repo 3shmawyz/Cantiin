@@ -132,10 +132,10 @@ class Order(db.Model):
     # This is the id of the user who ordered the products
     # it is an integer
     # Example: 1, 2 or 3
-    name = Column(String(), unique=False, nullable=False)
-    # name could be like "Labtop"
-    # name dowsn't have to be unique
-    # allowing several users to sell the same product
+    product  = Column(Integer,db.ForeignKey("product.id"))
+    # product is an integer 
+    # it refers to the product.id in the products table
+    # Example: 1, 2 , 3
     amount =  Column(Integer(), unique=False, nullable=False)
     # amount is an integer
     # Example: 5, 6, 50
