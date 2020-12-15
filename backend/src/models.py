@@ -148,7 +148,7 @@ def populate_tables():
 
 
 
-def get_in_stock_products()
+def get_in_stock_products():
     return Product.query.filter(Product.in_stock==True
         ).order_by(Product.id).all()
 
