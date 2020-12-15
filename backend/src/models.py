@@ -139,7 +139,7 @@ class product(db.Model):
 
 
 
-def populate_drink():
+def populate_tables():
     db_drop_and_create_all()
     drinks = list()
     
