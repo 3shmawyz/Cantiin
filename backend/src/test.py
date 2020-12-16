@@ -292,26 +292,23 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_3_007_order_delete_wrong(self):
-		products = Product.query.all()
-		old_records_number = len(products)
+	def test_a_3_008_order_delete_wrong(self):
+		before = len(Order.query.all())
 		try:
 			#This code will not be executed
-			#There is no product with the number 0
-			product1 = Product.query.get(0)
-			product1.delete()
+			#There is no order with the number 700000
+			order = Product.query.get(700000)
+			order.delete()
 			self.assertEqual(True,False)
 
 		except:
 			self.assertEqual(True,True)
 		
-		products = Product.query.all()
-		new_records_number = len(products)
+		after = len(Order.query.all())
 
-		self.assertEqual(old_records_number,
-			new_records_number)
-		print("Test a_1_7: product delete mistake, non-existent"+
-		 "product id")
+		self.assertEqual(before,after)
+		print("Test a_3_8: order delete mistake, non-existent"+
+		 "order id")
 
 
 
