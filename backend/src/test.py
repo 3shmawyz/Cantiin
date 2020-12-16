@@ -332,7 +332,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(order["total_cost"],2.5)
 		self.assertEqual(type(order["total_cost"]),float)
 
-		print("Test a_1_9: Product simple")
+		print("Test a_3_9: Product simple")
 
 
 
