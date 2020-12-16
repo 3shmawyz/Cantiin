@@ -97,6 +97,20 @@
 			"item": [
 				{
 					"name": "http://127.0.0.1:5000/populate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02054015-80b0-4404-b2ac-dc0b9e95ca4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
