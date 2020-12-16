@@ -4,6 +4,12 @@ It works using normal HTML, CSS and JavaScript.
 
 The home page is index.html
 
+
+## Functionality: ##
+Frontend is not functional yet.  
+The project is still under development, so I am doing my best 
+ now to edit the backend to make it support the frontend.
+
 ## Existing Pages: ##
 1. **index.html**  
 	This is the home page  
@@ -27,7 +33,7 @@ The home page is index.html
 8. **manage_products.html**  
 	This page enables the seller to manage, delete or edit the 
 	products that he has put for sale
-	
+
 ## How to use: ##
 
 Double clack on any file you want to.  
