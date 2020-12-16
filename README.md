@@ -1,10 +1,28 @@
-# BootStrap Project #
+# Cantiin #
 ## Purpose ##
 
-The purpose behind this project is to prove infront of employers that
-these **frontend techniques**:
-1. **Git** and **Github**
-2. **BootStrap**  
+The purpose behind this project is to prove that I am a 
+web developer.
+
+## Used Technologies: ##
+In this project have used this technologies:
+
+### frontend technologies: ###
+1. **HTML**
+2. **JavaScript**
+3. **CSS**
+4. **BootStrap**  
+
+### Backend Technologies: ###
+1. **Python**
+2. **Flask**
+3. **SqlAlchemy (ORM)**
+
+
+
+### Additional Technologies: ###
+1. **Git**
+2. **Github**
 
 Also This project will have the **MIT lisence**, So feel free to copy
 this code and make it the foundation of your project.
