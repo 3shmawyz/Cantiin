@@ -11,6 +11,20 @@
 			"item": [
 				{
 					"name": "http://127.0.0.1:5000/clear_tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47c27cfc-052f-48de-bb4a-3ad9b7eebf45",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
