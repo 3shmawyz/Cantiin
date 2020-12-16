@@ -24,11 +24,14 @@ In this project have used this technologies:
 1. **Git**
 2. **Github**
 
-Also This project will have the **MIT lisence**, So feel free to copy
-this code and make it the foundation of your project.
+
 
 ## Lisence ##
-**MIT Lisence**
+**MIT Lisence**  
+So feel free to copy
+this code and make it the foundation of your project.  
+You can also edit this code, distribute it, redistribute it without
+permission or attribution.
 
 
 ## About ##
