@@ -167,4 +167,7 @@ Tests: test_02_populate_test
 		return jsonify({"success":False,"error":405,
 			"message":"method not allowed"}),405
 	
-	return app		
+	return app	
+
+if __name__ == '__main__':
+		create_app().run()	
