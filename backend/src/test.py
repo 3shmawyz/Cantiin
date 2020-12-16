@@ -269,13 +269,14 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_3_003_order_delete(self):
-		product1 = Product.query.get(1)
-		product1.delete()
-		products = Product.query.all()
+	def test_a_3_006_order_delete(self):
+		before = len(Order.query.all())
+		order1 = Order.query.get(7)
+		order1.delete()
+		after = len(Order.query.all())
 
-		self.assertEqual(len(products),0)
-		print("Test a_1_3: Product delete")
+		self.assertEqual(before,after+1)
+		print("Test a_3_6: Order delete")
 
 	def test_a_3_004_populate(self):
 		populate_tables()
