@@ -257,6 +257,16 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(order_1.amount,2)
 		print("Test a_3_4: Order update")
 
+	def test_a_3_005_order_update_wrong(self):
+		before = len(Order.query.all())
+		order1 = Order.query.get(8)
+		order1.amount = 0
+		order1.update()
+		after = len(Order.query.all())
+
+		self.assertEqual(before,after+1)
+		print("Test a_3_5: Order update wrong: amount=0")
+
 
 
 	def test_a_3_003_order_delete(self):
