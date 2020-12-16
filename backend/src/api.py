@@ -13,6 +13,7 @@ from random import shuffle
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"
 	2)	"/populate" ->--------->"GET" , "OPTIONS"
+	3)	"/products"	->--------->"GET" , "OPTIONS"
 
 """
 
@@ -85,7 +86,9 @@ def create_app(test_config=None,testing=False):
 
 
 
-
+	"""
+	1)	"/clear_tables"-------->"GET" , "OPTIONS"
+	"""
 	@app.route("/clear_tables", methods=["GET"])
 	def clear_all_tables():
 		db.session.rollback()
@@ -102,7 +105,9 @@ Tests: test_02_populate_test
 
 
 
-
+	"""
+	2)	"/populate" ->--------->"GET" , "OPTIONS"
+	"""
 	@app.route("/populate", methods=["GET"])
 	def populate_all_tables():
 		#This endpoint will clear all the data in the database and 
@@ -119,7 +124,9 @@ Tests: test_01_clear_tables
 		
 
 
-
+	"""
+	3)	"/products"	->--------->"GET" , "OPTIONS"
+	"""
 	@app.route("/products", methods=["GET"])
 	def get_products():
 		db.session.rollback()
