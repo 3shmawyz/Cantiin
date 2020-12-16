@@ -290,26 +290,6 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test a_3_7: Order values")
 
 
-	def test_a_3_006_order_insert_wrong(self):
-		products = Product.query.all()
-		old_records_number = len(products)
-		try:
-			#This code will not be executed
-			#There are missing required parameters
-			product1 = Product()
-			product1.insert()
-			self.assertEqual(True,False)
-		except:
-			self.assertEqual(True,True)
-		
-		products = Product.query.all()
-		new_records_number = len(products)
-
-		self.assertEqual(old_records_number,
-			new_records_number)
-		print("Test a_1_6: product insert with missing"+
-		 "required parameters")
-
 
 
 	def test_a_3_007_order_delete_wrong(self):
