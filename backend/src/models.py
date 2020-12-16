@@ -138,7 +138,7 @@ class Order(db.Model):
     amount =  Column(Integer(), unique=False, nullable=False)
     # amount is an integer
     # Example: 5, 6, 50
-    total_cost = 0
+    total_cost = 0.0
     def __init__(self, user, product, amount):
         self.user = user
         self.product = product
