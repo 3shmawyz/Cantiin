@@ -78,6 +78,7 @@ class TriviaTestCase(unittest.TestCase):
 	def test_a_2_002_product_update(self):
 		product1 = Product.query.get(1)
 		product1.name = "modified"
+		product1.update()
 		product_1 = Product.query.get(1)
 
 		self.assertEqual(product_1.name,"modified")
