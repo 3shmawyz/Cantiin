@@ -54,6 +54,17 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test 2: db_drop_and_create_all")
 
 
+	def test_a_1_000_product_insert(self):
+		print("")
+		print("")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("_+++++++++++++++++++ Models : 1 ) Product ++_")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("")
+		print("")
+
+
+
 	def test_a_1_001_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller=1)
