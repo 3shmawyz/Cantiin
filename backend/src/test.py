@@ -247,13 +247,14 @@ class TriviaTestCase(unittest.TestCase):
 			" parameters")
 
 
-	def test_a_3_002_order_update(self):
-		product1 = Product.query.get(1)
-		product1.name = "modified"
-		product_1 = Product.query.get(1)
+	def test_a_3_004_order_update(self):
+		order1 = Order.query.get(1)
+		order1.amount = 2
+		order1.update()
+		order_1 = Order.query.get(1)
 
-		self.assertEqual(product_1.name,"modified")
-		print("Test a_1_2: Product update")
+		self.assertEqual(order_1.amount,2)
+		print("Test a_3_4: Order update")
 
 
 
