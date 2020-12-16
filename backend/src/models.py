@@ -143,8 +143,8 @@ class Order(db.Model):
         self.user = user
         self.product = product
         self.amount = amount
-        self.total_cost= amount * Product.query.get(
-            product).price
+        self.total_cost= float(amount) * float(Product.query.get(
+            product).price)
 
     '''
     insert()
@@ -192,7 +192,7 @@ class Order(db.Model):
             'user': self.name,
             'product': self.product,
             'amount': self.amount,
-            "total_cost":self.product*self.amount
+            "total_cost":float(self.product)*float(self.amount)
         })
     def simple(self):
         return {#id, user, product, amount
@@ -200,7 +200,7 @@ class Order(db.Model):
             'user': self.name,
             'product': self.product.id,
             'amount': self.amount,
-            "total_cost":self.product.id*self.amount
+            "total_cost":float(self.product.id)*float(self.amount)
         }
  
 
