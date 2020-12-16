@@ -19,6 +19,10 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.test(\"Success is True\", () => {\r",
+									"  pm.expect(responseJson.success).to.eql(true);\r",
 									"});"
 								],
 								"type": "text/javascript"
