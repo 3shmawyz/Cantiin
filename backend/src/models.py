@@ -198,9 +198,10 @@ class Order(db.Model):
         return {#id, user, product, amount
             'id': self.id,
             'user': self.user,
-            'product': self.product.id,
+            'product': self.product,
             'amount': self.amount,
-            "total_cost":float(self.product.id)*float(self.amount)
+            "total_cost":
+            float(Product.query.get(self.product).price)*float(self.amount)
         }
  
 
