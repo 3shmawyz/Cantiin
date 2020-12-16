@@ -195,7 +195,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_2_001_product_insert(self):
+	def test_a_2_001_odrer_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller=1)
 		product1.insert()
@@ -205,7 +205,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test a_1_1: Product insert")
 
 
-	def test_a_2_002_product_update(self):
+	def test_a_2_002_order_update(self):
 		product1 = Product.query.get(1)
 		product1.name = "modified"
 		product_1 = Product.query.get(1)
@@ -215,7 +215,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_2_003_product_delete(self):
+	def test_a_2_003_order_delete(self):
 		product1 = Product.query.get(1)
 		product1.delete()
 		products = Product.query.all()
@@ -231,7 +231,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test a_1_4: Populate Tables")
 
 
-	def test_a_2_005_product_values(self):
+	def test_a_2_005_order_values(self):
 		produc = Product.query.get(1)
 
 		self.assertEqual(produc.id,1)
@@ -242,7 +242,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test a_1_5: Product values")
 
 
-	def test_a_2_006_product_insert_wrong(self):
+	def test_a_2_006_order_insert_wrong(self):
 		products = Product.query.all()
 		old_records_number = len(products)
 		try:
@@ -264,7 +264,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_2_007_product_delete_wrong(self):
+	def test_a_2_007_order_delete_wrong(self):
 		products = Product.query.all()
 		old_records_number = len(products)
 		try:
@@ -296,7 +296,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_2_009_product_simple(self):
+	def test_a_2_009_order_simple(self):
 		produc = Product.query.get(1).simple()
 		#print(produc)
 
