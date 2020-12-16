@@ -106,6 +106,7 @@ Tests: test_02_populate_test
 	def populate_all_tables():
 		#This endpoint will clear all the data in the database and 
 		#populate with new data
+		db.session.rollback()
 		try:
 			populate_tables()
 			return jsonify({"success":True})
