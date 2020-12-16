@@ -5,6 +5,122 @@
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": [],
+	"item": [
+		{
+			"name": "1) clear_tables",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/clear_tables",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/clear_tables",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"clear_tables"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http://127.0.0.1:5000/clear_tables",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/clear_tables",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"clear_tables"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "22"
+								},
+								{
+									"key": "Access-Control-allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-allow-Headers",
+									"value": "Content-Type,Autorization,true"
+								},
+								{
+									"key": "Access-Control-allow-Methods",
+									"value": "GET,PUT,POST,DELETE,OPTIONS"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.6"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 16 Dec 2020 18:45:25 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true\n}"
+						}
+					]
+				}
+			],
+			"description": "The clear_tables Endpoint",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "2) populate",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/populate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/populate",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"populate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The populate endpoint",
+			"protocolProfileBehavior": {}
+		}
+	],
 	"protocolProfileBehavior": {}
 }
