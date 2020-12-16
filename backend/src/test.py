@@ -279,15 +279,15 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test a_3_6: Order delete")
 
 
-	def test_a_3_005_order_values(self):
-		produc = Product.query.get(1)
+	def test_a_3_007_order_values(self):
+		order = Order.query.get(6)
 
-		self.assertEqual(produc.id,1)
-		self.assertEqual(produc.name,"Labtop")
-		self.assertEqual(produc.price,300)
-		self.assertEqual(produc.seller,1)
-		self.assertEqual(produc.in_stock,True)
-		print("Test a_1_5: Product values")
+		self.assertEqual(order.id,6)
+		self.assertEqual(order.user,2)
+		self.assertEqual(order.product,3)
+		self.assertEqual(order.amount,5)
+		self.assertEqual(order.total_cost,0)
+		print("Test a_3_7: Order values")
 
 
 	def test_a_3_006_order_insert_wrong(self):
