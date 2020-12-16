@@ -35,10 +35,10 @@ permission or attribution.
 
 
 ## About ##
-- This is the **fronted** of a **E-Commerce Website**.
+- This is the an **E-Commerce Website**.
 - All the **buttons don't work** so far
-- I am just showing my bility to create nice bootstrap frontend interface
-- Functionalities and features might be added later (If God Willed)
+- I am currently working on the backend of the project
+- Functionalities and features will be added soon (If God Willed)
 
 
 
