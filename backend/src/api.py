@@ -87,6 +87,7 @@ def create_app(test_config=None,testing=False):
 
 	@app.route("/clear_tables", methods=["GET"])
 	def clear_all_tables():
+		db.session.rollback()
 		db_drop_and_create_all()
 		"""
 Tests: test_02_populate_test
