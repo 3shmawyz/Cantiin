@@ -154,6 +154,8 @@ class Order(db.Model):
 
     '''
     def insert(self):
+        if self.amount == 0 : 
+            return
         db.session.add(self)
         db.session.commit()
 
