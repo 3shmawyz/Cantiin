@@ -313,14 +313,6 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_a_3_008_get_in_stock_products(self):
-		products = get_in_stock_products()
-		for product in products:
-			self.assertEqual(product.in_stock,True)
-		print("Test a_1_8:get in stock products")
-
-
-
 	def test_a_3_009_order_simple(self):
 		produc = Product.query.get(1).simple()
 		#print(produc)
