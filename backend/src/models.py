@@ -178,6 +178,10 @@ class Order(db.Model):
 
     '''
     def update(self):
+        if self.amount == 0 : 
+            db.session.rollback()
+            self.delete()
+            return
         db.session.commit()
 
     def __repr__(self):
