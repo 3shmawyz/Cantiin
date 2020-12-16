@@ -196,13 +196,12 @@ class TriviaTestCase(unittest.TestCase):
 
 
 	def test_a_2_001_odrer_insert(self):
-		product1 = Product(name = "product1",price = 5.5,
-			in_stock=True, seller=1)
-		product1.insert()
-		products = Product.query.all()
+		order1 = Order(user=20, product=5, amount=5)
+		order1.insert()
+		orders = Order.query.all()
 
-		self.assertEqual(len(products),1)
-		print("Test a_1_1: Product insert")
+		self.assertEqual(len(products),9)
+		print("Test a_2_1: Order insert")
 
 
 	def test_a_2_002_order_update(self):
