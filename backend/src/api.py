@@ -82,6 +82,25 @@ def create_app(test_config=None,testing=False):
 		
 
 
+
+
+
+	@app.route("/clear_tables", methods=["GET"])
+	def clear_all_tables():
+		db_drop_and_create_all()
+		"""
+Tests: test_02_populate_test
+		"""
+		return jsonify({"success":True})
+
+
+
+
+
+
+
+
+
 	@app.route("/populate", methods=["GET"])
 	def populate_all_tables():
 		#This endpoint will clear all the data in the database and 
@@ -95,16 +114,6 @@ def create_app(test_config=None,testing=False):
 Tests: test_01_clear_tables
 		"""
 		
-
-	@app.route("/clear_tables", methods=["GET"])
-	def clear_all_tables():
-		db_drop_and_create_all()
-		"""
-Tests: test_02_populate_test
-		"""
-		return jsonify({"success":True})
-
-
 
 
 
