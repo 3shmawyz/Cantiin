@@ -278,13 +278,6 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(before,after+1)
 		print("Test a_3_6: Order delete")
 
-	def test_a_3_004_populate(self):
-		populate_tables()
-		products = Product.query.all()
-
-		self.assertEqual(len(products),6)
-		print("Test a_1_4: Populate Tables")
-
 
 	def test_a_3_005_order_values(self):
 		produc = Product.query.get(1)
