@@ -200,7 +200,7 @@ class TriviaTestCase(unittest.TestCase):
 		order1.insert()
 		orders = Order.query.all()
 
-		self.assertEqual(len(products),9)
+		self.assertEqual(len(orders),9)
 		print("Test a_2_1: Order insert")
 
 
