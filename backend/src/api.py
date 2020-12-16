@@ -98,7 +98,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/clear_tables", methods=["GET"])
 	def clear_all_tables():
-		clear_tables()
+		db_drop_and_create_all()
 		"""
 Tests: test_02_populate_test
 		"""
