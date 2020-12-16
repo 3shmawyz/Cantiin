@@ -9,9 +9,9 @@ from models import db, populate_tables, db_drop_and_create_all
 from random import shuffle
 
 """
-Routes:
-	1)	"/populate" ->--------->"GET" , "OPTIONS"
-	2)	"/clear_tables"-------->"GET" , "OPTIONS"
+endpoints:
+	1)	"/clear_tables"-------->"GET" , "OPTIONS"
+	2)	"/populate" ->--------->"GET" , "OPTIONS"
 
 """
 
