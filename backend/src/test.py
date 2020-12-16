@@ -314,23 +314,23 @@ class TriviaTestCase(unittest.TestCase):
 
 
 	def test_a_3_009_order_simple(self):
-		produc = Product.query.get(1).simple()
+		order = Order.query.get(6).simple()
 		#print(produc)
 
-		self.assertEqual(produc["id"],1)
-		self.assertEqual(type(produc["id"]),int)
+		self.assertEqual(order["id"],6)
+		self.assertEqual(type(order["id"]),int)
 
-		self.assertEqual(produc["name"],"Labtop")
-		self.assertEqual(type(produc["name"]),str)
+		self.assertEqual(order["user"],2)
+		self.assertEqual(type(order["user"]),int)
 
-		self.assertEqual(produc["price"],300)
-		self.assertEqual(type(produc["price"]),float)
+		self.assertEqual(order["product"],3)
+		self.assertEqual(type(order["product"]),int)
 
-		self.assertEqual(produc["seller"],1)
-		self.assertEqual(type(produc["seller"]),int)
+		self.assertEqual(order["amount"],5)
+		self.assertEqual(type(order["amount"]),int)
 
-		self.assertEqual(produc["in_stock"],True)
-		self.assertEqual(type(produc["in_stock"]),bool)
+		self.assertEqual(order["total_cost"],2.5)
+		self.assertEqual(type(order["total_cost"]),float)
 
 		print("Test a_1_9: Product simple")
 
