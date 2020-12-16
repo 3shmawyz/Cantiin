@@ -59,7 +59,18 @@ The project is still **under development**.
 5. Creating a **Login page** (Buttons don't work 
 yet, it's only BootStrap)
 6. Creating a **Sign Up page**
-
+7. Creating the **Home** (index.html) page
+8. Creating the **product** page
+9. Creating the **add product** page
+10. Creating the **edit product** page
+11. Creating the **manage products** page
+12. Creating the **Cart** page
+13. Creating **dev branch**
+14. Creating **Product SQLAlchemy Model**
+15. Creating **Product SQLAlchemy Model UnitTests**
+16. Creating **Order SQLAlchemy Model**
+17. Creating **Order SQLAlchemy Model UnitTests**
+ 
 
 
 ## What is next? ## 
