@@ -119,6 +119,26 @@ Tests: test_01_clear_tables
 
 
 
+	@app.route("/products", methods=["GET"])
+	def get_products():
+		db.session.rollback()
+		#This endpoint will return all the products
+		products = Product.query.order_by(Product.id).all()
+		to_return=[p.simple() for p in products]
+		return jsonify({"success":True,"products":to_return})
+
+		
+
+
+
+
+
+
+
+
+
+
+
 
 	def return_error(id):
 		if id==1:
