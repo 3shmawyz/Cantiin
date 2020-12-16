@@ -223,6 +223,23 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(len(orders),9)
 		print("Test a_3_1: Order insert")
 
+	def test_a_3_002_odrer_insert_wrong_1(self):
+		
+		before = len(Order.query.all())
+		order1 = Order(user=20, product=5, amount=0)
+		order1.insert()
+		after = len(Order.query.all())
+		self.assertEqual(after,before)
+		print("Test a_3_2: Order insert Wrong: amount=0")
+
+	def test_a_3_002_odrer_insert_wrong_2(self):
+		order1 = Order(user=20, product=5, amount=0)
+		order1.insert()
+		orders = Order.query.all()
+
+		self.assertEqual(len(orders),9)
+		print("Test a_3_1: Order insert")
+
 
 	def test_a_3_002_order_update(self):
 		product1 = Product.query.get(1)
