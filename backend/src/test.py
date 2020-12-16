@@ -230,7 +230,7 @@ class TriviaTestCase(unittest.TestCase):
 		order1.insert()
 		after = len(Order.query.all())
 		self.assertEqual(after,before)
-		print("Test a_3_2: Order insert Wrong: amount=0")
+		print("Test a_3_2: Order insert Wrong 1: amount=0")
 
 	def test_a_3_003_odrer_insert_wrong_2(self):
 		before = len(Order.query.all())
@@ -243,7 +243,7 @@ class TriviaTestCase(unittest.TestCase):
 		after = len(Order.query.all())
 
 		self.assertEqual(before,after)
-		print("Test a_3_3: Order insert Wrong: missing required"+
+		print("Test a_3_3: Order insert Wrong 2: missing required"+
 			" parameters")
 
 
