@@ -78,8 +78,8 @@ yet, it's only BootStrap)
 My Plan for this project is in the issues of the project.  
 You can checkout the issues tab of the project.  
 Or press this link:  
-<a href="https://github.com/OmarThinks/BootstrapProject/issues"
-target="_blank">https://github.com/OmarThinks/BootstrapProject/issues</a>
+<a href="https://github.com/OmarThinks/Cantiin/issues"
+target="_blank">https://github.com/OmarThinks/Cantiin/issues</a>
 
 
 
