@@ -202,6 +202,15 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+	def test_a_2_000_order_intro(self):
+		print("")
+		print("")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("_+++++++++++++++++++ Models : 2 ) Order ++_")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("")
+		print("")
+
 
 
 
