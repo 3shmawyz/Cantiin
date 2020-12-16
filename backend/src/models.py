@@ -197,7 +197,7 @@ class Order(db.Model):
     def simple(self):
         return {#id, user, product, amount
             'id': self.id,
-            'user': self.name,
+            'user': self.user,
             'product': self.product.id,
             'amount': self.amount,
             "total_cost":float(self.product.id)*float(self.amount)
