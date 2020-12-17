@@ -385,7 +385,9 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation[0],False)
 		self.assertEqual("id can not be converted to integer"
-			,validation[1])
+			,validation[1][0]["description"])
+		self.assertEqual(400
+			,validation[1][1])
 		print("Test b_2_1_4: validate_product_exists:i")
 
 
