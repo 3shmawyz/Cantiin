@@ -521,7 +521,18 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_2_3_5: validate_product_price: i")
+		print("Test b_2_3_5: validate_product_price: 0")
+
+	def test_b_02_003_006_product_price_wrong(self):
+		validation = validate_product_price(-40)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("price can not be less than"+
+			" or equal to 0"
+			,validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_3_6: validate_product_price: -40")
 
 
 
