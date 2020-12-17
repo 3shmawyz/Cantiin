@@ -53,15 +53,21 @@ def get_in_stock_products():
 
 
 def validate_product_name(input_n):
+	#Validate that product name has a value, not None
 	if input_n == None: return [True,None]
+	
+	#Validate that product name can be converted to string
 	try:
 		name = str(input_n)
 	except:
 		return [False,my_error(status=400, 
 			description="name can not be converted to string")]
+	
+	#Validate that product name length is less that 100
 	if len(name)>100:
 		return [False,my_error(status=422, 
 			description="maximum name length is 100 letters")]
+
 	return [True,name]
 
 
