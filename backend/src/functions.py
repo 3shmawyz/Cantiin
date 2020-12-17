@@ -296,41 +296,32 @@ def validate_order_product(input_id,all_products):
 
 
 
-def validate_order_price(input_p):
-	#Validate that order price has a value, not None
-	if input_p == None: return [True,None]
+
+
+
+
+def validate_order_amount(input_u):
+	#Validate that order user has a value, not None
+	if input_u == None: return [True,None]
 	
-	#Validate that order price can be converted to float
+	#Validate that order user can be converted to float
 	try:
-		price = float(input_p)
+		user = int(input_u)
 	except:
 		return [False,my_error(status=400, 
-			description="price can not be converted to float")]
+			description="user can not be converted to integer")]
 	
-	#Validate that order price is not negative or zero
-	if price<=0:
+	#Validate that order user is not negative or zero
+	if user<=0:
 		return [False,my_error(status=422, 
-			description="price can not be less than"+
+			description="user can not be less than"+
 			" or equal to 0")]
 
-	return [True,price]
+	#There should be a code to validate that the user
+	#Is in the users table
+	return [True,user]
 
 
-
-
-def validate_order_in_stock(input_i):
-	#Validate that order in_stock has a value, not None
-	if input_i == None: return [True,None]
-	
-	#Validate that order in_stock can be converted to boolean
-	try:
-		in_stock = bool(input_i)
-	except:
-		return [False,my_error(status=400, 
-			description="in_stock can not be "+
-			"converted to boolean")]
-
-	return [True,in_stock]
 
 
 
