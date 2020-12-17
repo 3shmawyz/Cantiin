@@ -154,6 +154,7 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["GET"])
 	def get_products():
 	#This endpoint will return all the products
+		db.session.rollback()
 		in_stock = request.args.get('in_stock')
 		print(in_stock, flush=True)
 		if in_stock != "false":
@@ -172,6 +173,7 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["POST"])
 	def post_products():
 	#This endpoint will add a new product
+		db.session.rollback()
 		body = request.get_json()
 		try:
 			name = body.get("name",None)
