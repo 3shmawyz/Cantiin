@@ -135,11 +135,14 @@ Tests: test_01_clear_tables
 			return name_validation[1]
 			#This is the error message
 
-		recipe_validation = validate_recipe(recipe)
-		if recipe_validation[0]==True:
-			recipe = recipe_validation[1]
+
+
+
+		price_validation = validate_recipe(price)
+		if price_validation[0]==True:
+			price = price_validation[1]
 		else:
-			return recipe_validation[1]
+			return price_validation[1]
 
 		all_drinks = Drink.query
 
