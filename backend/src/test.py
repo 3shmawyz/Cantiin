@@ -379,6 +379,15 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(3),validation[1])
 		print("Test b_2_1_4: validate_product_exists:'3'")
 
+	def test_b_02_001_005_product_exists_wrong(self):
+		all_products = Product.query
+		validation = validate_product_exists("i",all_products)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("id can not be converted to integer"
+			,validation[1])
+		print("Test b_2_1_4: validate_product_exists:i")
+
 
 
 
