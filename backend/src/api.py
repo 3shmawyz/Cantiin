@@ -7,8 +7,9 @@ from random import shuffle
 import json
 from models import (db, Product, Order)
 from random import shuffle
-from functions import (populate_tables, get_in_stock_products,
-	db_drop_and_create_all,)
+from functions import (populate_tables,db_drop_and_create_all,
+	, get_in_stock_products,validate_product_name,
+	validate_product_price)
 """
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"
