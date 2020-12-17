@@ -127,9 +127,9 @@ Tests: test_01_clear_tables
 
 		all_products=Product.query
 
-		name_validation = validate_product_name(title)
+		name_validation = validate_product_name(name)
 		if name_validation[0]==True:
-			title = name_validation[1]
+			name = name_validation[1]
 			#This is the valid data
 		else:
 			return name_validation[1]
@@ -141,8 +141,10 @@ Tests: test_01_clear_tables
 		price_validation = validate_recipe(price)
 		if price_validation[0]==True:
 			price = price_validation[1]
+			#This is the valid data
 		else:
 			return price_validation[1]
+			#This is the error message
 
 		all_drinks = Drink.query
 
