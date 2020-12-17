@@ -132,7 +132,7 @@ Tests: test_01_clear_tables
 	#This endpoint will return all the products
 		in_stock = request.args.get('in_stock')
 		print(in_stock, flush=True)
-		if in_stock != False:
+		if in_stock != "false":
 			products = get_in_stock_products()
 		else:
 			products = Product.query.order_by(Product.id).all()
