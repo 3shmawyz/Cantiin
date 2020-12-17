@@ -354,6 +354,13 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(1),validation[1])
 		print("Test b_2_1_1: validate_product_exists:correct")
+	def test_b_02_001_002_product_exists(self):
+		all_products = Product.query
+		validation = validate_product_exists(6,all_products)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(all_products.get(6),validation[1])
+		print("Test b_2_1_2: validate_product_exists:correct")
 
 
 
