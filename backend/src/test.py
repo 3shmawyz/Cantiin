@@ -347,6 +347,13 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+
+
+
+
+
+
+
 	def test_b_02_001_001_product_exists(self):
 		all_products = Product.query
 		validation = validate_product_exists(1,all_products)
@@ -413,6 +420,99 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_2_1_7: validate_product_exists:-1")
 
 	def test_b_02_001_008_product_exists_wrong(self):
+		all_products = Product.query
+		validation = validate_product_exists(20,all_products)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("there is no product with this id"
+			,validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_1_8: validate_product_exists:20")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	def test_b_03_001_001_order_exists(self):
+		all_products = Product.query
+		validation = validate_product_exists(1,all_products)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(all_products.get(1),validation[1])
+		print("Test b_2_1_1: validate_product_exists:1")
+
+	def test_b_03_001_002_order_exists(self):
+		all_products = Product.query
+		validation = validate_product_exists(6,all_products)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(all_products.get(6),validation[1])
+		print("Test b_2_1_2: validate_product_exists:6")
+
+	def test_b_03_001_003_order_exists_float(self):
+		all_products = Product.query
+		validation = validate_product_exists(5.5,all_products)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(all_products.get(5),validation[1])
+		print("Test b_2_1_3: validate_product_exists:5.5")
+
+	def test_b_03_001_004_order_exists_string(self):
+		all_products = Product.query
+		validation = validate_product_exists("3",all_products)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(all_products.get(3),validation[1])
+		print("Test b_2_1_4: validate_product_exists:'3'")
+
+	def test_b_03_001_005_order_exists_wrong(self):
+		all_products = Product.query
+		validation = validate_product_exists("i",all_products)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("id can not be converted to integer"
+			,validation[1][0]["description"])
+		self.assertEqual(400
+			,validation[1][1])
+		print("Test b_2_1_5: validate_product_exists:i")
+
+	def test_b_03_001_006_order_exists_wrong(self):
+		all_products = Product.query
+		validation = validate_product_exists(0,all_products)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("id can not be less than"+
+			" or equal to 0",validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_1_6: validate_product_exists:0")
+
+	def test_b_03_001_007_order_exists_wrong(self):
+		all_products = Product.query
+		validation = validate_product_exists(-1,all_products)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("id can not be less than"+
+			" or equal to 0",validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_1_7: validate_product_exists:-1")
+
+	def test_b_03_001_008_order_exists_wrong(self):
 		all_products = Product.query
 		validation = validate_product_exists(20,all_products)
 
