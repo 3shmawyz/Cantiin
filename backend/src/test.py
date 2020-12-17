@@ -454,6 +454,25 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual("1",validation[1])
 		print("Test b_2_2_2: validate_product_Name: 1")
 
+	def test_b_02_002_003_product_name_wrong(self):
+		validation = validate_product_name('1111111'+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111"+
+			"111111111111111111111111111111111111111")
+		self.assertEqual(validation[0],False)
+		self.assertEqual("maximum name length is 100 letters"
+			,validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_2_3: validate_product_Name:"+
+			"very long name")
+
 
 
 
