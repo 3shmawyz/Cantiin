@@ -74,8 +74,6 @@ def validate_product_exists(input_id,all_products):
 			description="id can not be less than"+
 			" or equal to 0")]
 
-	#There should be a code to validate that the id
-	#Is in the users table
 	try:
 		product = all_products.get(id)
 	except Exception as e:
@@ -204,67 +202,77 @@ def validate_product_seller(input_s):
 
 
 
-def validate_order_exists(input_id,all_products):
-	#Validate that product id has a value, not None
+
+
+
+
+
+
+
+
+
+
+
+def validate_order_exists(input_id,all_orders):
+	#Validate that order id has a value, not None
 	if input_id == None: return [False,None]
 	
-	#Validate that product id can be converted to float
+	#Validate that order id can be converted to float
 	try:
 		id = int(input_id)
 	except:
 		return [False,my_error(status=400, 
 			description="id can not be converted to integer")]
 	
-	#Validate that product id is not negative or zero
+	#Validate that order id is not negative or zero
 	if id<=0:
 		return [False,my_error(status=422, 
 			description="id can not be less than"+
 			" or equal to 0")]
 
-	#There should be a code to validate that the id
-	#Is in the users table
+
 	try:
-		product = all_products.get(id)
+		order = all_orders.get(id)
 	except Exception as e:
 		return [False,my_error(status=422, 
-			description="there is no product with this id")]
-	if product == None :
+			description="there is no order with this id")]
+	if order == None :
 		return [False,my_error(status=422, 
-			description="there is no product with this id")]
+			description="there is no order with this id")]
 
-	return [True,product]
-
-
+	return [True,order]
 
 
 
 
 
 
-def validate_product_name(input_n #,all_products
+
+
+def validate_order_name(input_n #,all_orders
 	):
-	#Validate that product name has a value, not None
+	#Validate that order name has a value, not None
 	if input_n == None: return [True,None]
 	
-	#Validate that product name can be converted to string
+	#Validate that order name can be converted to string
 	try:
 		name = str(input_n)
 	except:
 		return [False,my_error(status=400, 
 			description="name can not be converted to string")]
 	
-	#Validate that product name length is less that 100
+	#Validate that order name length is less that 100
 	if len(name)>100:
 		return [False,my_error(status=422, 
 			description="maximum name length is 100 letters")]
 
-	#Validating that there is no product wth this name already
-	"""all_products_names = [p.name.strip().casefold(
-		) for p in all_products]
-	print(all_products_names,flush=True)
-	if name.strip().casefold() in all_products_names:
+	#Validating that there is no order wth this name already
+	"""all_orders_names = [p.name.strip().casefold(
+		) for p in all_orders]
+	print(all_orders_names,flush=True)
+	if name.strip().casefold() in all_orders_names:
 		return [False,my_error(status=422, 
-			description="there is a product"+
+			description="there is a order"+
 			" with this name already")]"""
 
 	return [True,name]
@@ -276,18 +284,18 @@ def validate_product_name(input_n #,all_products
 
 
 
-def validate_product_price(input_p):
-	#Validate that product price has a value, not None
+def validate_order_price(input_p):
+	#Validate that order price has a value, not None
 	if input_p == None: return [True,None]
 	
-	#Validate that product price can be converted to float
+	#Validate that order price can be converted to float
 	try:
 		price = float(input_p)
 	except:
 		return [False,my_error(status=400, 
 			description="price can not be converted to float")]
 	
-	#Validate that product price is not negative or zero
+	#Validate that order price is not negative or zero
 	if price<=0:
 		return [False,my_error(status=422, 
 			description="price can not be less than"+
@@ -298,11 +306,11 @@ def validate_product_price(input_p):
 
 
 
-def validate_product_in_stock(input_i):
-	#Validate that product in_stock has a value, not None
+def validate_order_in_stock(input_i):
+	#Validate that order in_stock has a value, not None
 	if input_i == None: return [True,None]
 	
-	#Validate that product in_stock can be converted to boolean
+	#Validate that order in_stock can be converted to boolean
 	try:
 		in_stock = bool(input_i)
 	except:
@@ -317,18 +325,18 @@ def validate_product_in_stock(input_i):
 
 
 
-def validate_product_seller(input_s):
-	#Validate that product seller has a value, not None
+def validate_order_seller(input_s):
+	#Validate that order seller has a value, not None
 	if input_s == None: return [True,None]
 	
-	#Validate that product seller can be converted to float
+	#Validate that order seller can be converted to float
 	try:
 		seller = int(input_s)
 	except:
 		return [False,my_error(status=400, 
 			description="seller can not be converted to integer")]
 	
-	#Validate that product seller is not negative or zero
+	#Validate that order seller is not negative or zero
 	if seller<=0:
 		return [False,my_error(status=422, 
 			description="seller can not be less than"+
