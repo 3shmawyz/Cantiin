@@ -59,7 +59,7 @@ def get_in_stock_products():
 
 def validate_product_exists(input_id,all_products):
 	#Validate that product id has a value, not None
-	if input_id == None: return [True,None]
+	if input_id == None: return [False,None]
 	
 	#Validate that product id can be converted to float
 	try:
