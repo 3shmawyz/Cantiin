@@ -501,39 +501,39 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_b_03_001_001_order_exists(self):
+	def test_b_02_003_001_order_exists(self):
 		all_orders = Order.query
 		validation = validate_order_exists(1,all_orders)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_orders.get(1),validation[1])
-		print("Test b_3_1_1: validate_order_exists:1")
+		print("Test b_2_3_1: validate_order_exists:1")
 
-	def test_b_03_001_002_order_exists(self):
+	def test_b_02_003_002_order_exists(self):
 		all_orders = Order.query
 		validation = validate_order_exists(6,all_orders)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_orders.get(6),validation[1])
-		print("Test b_3_1_2: validate_order_exists:6")
+		print("Test b_2_3_2: validate_order_exists:6")
 
-	def test_b_03_001_003_order_exists_float(self):
+	def test_b_02_003_003_order_exists_float(self):
 		all_orders = Order.query
 		validation = validate_order_exists(5.5,all_orders)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_orders.get(5),validation[1])
-		print("Test b_3_1_3: validate_order_exists:5.5")
+		print("Test b_2_3_3: validate_order_exists:5.5")
 
-	def test_b_03_001_004_order_exists_string(self):
+	def test_b_02_003_004_order_exists_string(self):
 		all_orders = Order.query
 		validation = validate_order_exists("3",all_orders)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_orders.get(3),validation[1])
-		print("Test b_3_1_4: validate_order_exists:'3'")
+		print("Test b_2_3_4: validate_order_exists:'3'")
 
-	def test_b_03_001_005_order_exists_wrong(self):
+	def test_b_02_003_005_order_exists_wrong(self):
 		all_orders = Order.query
 		validation = validate_order_exists("i",all_orders)
 
@@ -542,9 +542,9 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(400
 			,validation[1][1])
-		print("Test b_3_1_5: validate_order_exists:i")
+		print("Test b_2_3_5: validate_order_exists:i")
 
-	def test_b_03_001_006_order_exists_wrong(self):
+	def test_b_02_003_006_order_exists_wrong(self):
 		all_orders = Order.query
 		validation = validate_order_exists(0,all_orders)
 
@@ -553,9 +553,9 @@ class TriviaTestCase(unittest.TestCase):
 			" or equal to 0",validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_3_1_6: validate_order_exists:0")
+		print("Test b_2_3_6: validate_order_exists:0")
 
-	def test_b_03_001_007_order_exists_wrong(self):
+	def test_b_02_003_007_order_exists_wrong(self):
 		all_orders = Order.query
 		validation = validate_order_exists(-1,all_orders)
 
@@ -564,9 +564,9 @@ class TriviaTestCase(unittest.TestCase):
 			" or equal to 0",validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_3_1_7: validate_order_exists:-1")
+		print("Test b_2_3_7: validate_order_exists:-1")
 
-	def test_b_03_001_008_order_exists_wrong(self):
+	def test_b_02_003_008_order_exists_wrong(self):
 		all_orders = Order.query
 		validation = validate_order_exists(20,all_orders)
 
@@ -575,7 +575,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_3_1_8: validate_order_exists:20")
+		print("Test b_2_3_8: validate_order_exists:20")
 
 
 
