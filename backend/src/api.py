@@ -172,14 +172,44 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["POST"])
 	def post_products():
 	#This endpoint will add a new product
-		in_stock = request.args.get('in_stock')
-		print(in_stock, flush=True)
-		if in_stock != "false":
-			products = get_in_stock_products()
+		body = request.get_json()
+		try:
+			name = body.get("name",None)
+			price = body.get("price",None)
+			in_stock = body.get("in_stock",None)
+			seller = body.get("seller",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+		
+		title_validation = validate_title(title)
+		if title_validation[0]==True:
+			title = title_validation[1]
 		else:
-			products = Product.query.order_by(Product.id).all()
-		to_return=[p.simple() for p in products]
-		return jsonify({"success":True,"products":to_return})
+			return title_validation[1]
+		
+
+		recipe_validation = validate_recipe(recipe)
+		if recipe_validation[0]==True:
+			recipe = recipe_validation[1]
+		else:
+			return recipe_validation[1]
+
+		all_drinks = Drink.query
+
+		any_drink = all_drinks.filter(Drink.title.ilike(title)).all()
+		if len(any_drink)!=0:
+			return my_error(status = 422, 
+				description="there is already a drink with this name")
+
+
+
+		drink = Drink(title = title.strip(), recipe = str(recipe))
+		drink.insert()
+		return jsonify({
+			"success":True,"drinks":[drink.long()]
+			}),200
+
 		
 
 
