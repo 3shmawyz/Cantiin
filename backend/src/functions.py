@@ -304,7 +304,7 @@ def validate_order_amount(input_a):
 	#Validate that order amount has a value, not None
 	if input_a == None: return [True,None]
 	
-	#Validate that order amount can be converted to float
+	#Validate that order amount can be converted to int
 	try:
 		amount = int(input_a)
 	except:
