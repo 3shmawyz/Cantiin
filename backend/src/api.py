@@ -5,10 +5,10 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from random import shuffle
 import json
-from models import (db, populate_tables, get_in_stock_products,
-	db_drop_and_create_all,Product, Order)
+from models import (db, Product, Order)
 from random import shuffle
-
+from functions import (populate_tables, get_in_stock_products,
+	db_drop_and_create_all,)
 """
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"
