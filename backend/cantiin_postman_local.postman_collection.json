@@ -266,6 +266,62 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get_products:in_stock=true (Like Normal)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b77d494f-f635-4be8-bbe4-f6821ccb9689",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.test(\"Success is True\", () => {\r",
+									"  pm.expect(responseJson.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"output as expected\", () => {\r",
+									"    responseJson[\"products\"].forEach(function (product, index) {\r",
+									"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
+									"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
+									"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
+									"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
+									"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
+									"    });\r",
+									"  pm.expect(responseJson.success).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/products?in_stock=true",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "in_stock",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "the products endpoint",
