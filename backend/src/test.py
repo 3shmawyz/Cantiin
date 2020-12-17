@@ -543,6 +543,29 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+	def test_b_02_004_001_product_in_stock(self):
+		validation = validate_product_price(True)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(True,validation[1])
+		print("Test b_2_3_1: validate_product_in_stock: True")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
