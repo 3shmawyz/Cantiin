@@ -204,7 +204,7 @@ def validate_product_seller(input_s):
 
 
 
-def validate_product_exists(input_id,all_products):
+def validate_order_exists(input_id,all_products):
 	#Validate that product id has a value, not None
 	if input_id == None: return [False,None]
 	
