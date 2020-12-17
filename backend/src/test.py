@@ -495,6 +495,16 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation[1])
 		print("Test b_2_2_2: validate_product_price: 5.0")
 
+	def test_b_02_003_003_product_price_wrong(self):
+		validation = validate_product_price("i")
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("price can not be converted to float"
+			,validation[1][0]["description"])
+		self.assertEqual(400
+			,validation[1][1])
+		print("Test b_2_2_2: validate_product_price: i")
+
 
 
 
