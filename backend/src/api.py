@@ -123,6 +123,9 @@ Tests: test_01_clear_tables
 			return my_error(status=400, 
 				description = "there is no request body")
 
+
+		all_products=Product.query
+
 		name_validation = validate_product_name(title)
 		if name_validation[0]==True:
 			title = name_validation[1]
