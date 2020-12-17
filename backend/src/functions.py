@@ -1,3 +1,17 @@
+"""
+Functions:
+
+- my_error(status=404 ,description=""):
+- get_in_stock_products()
+- validate_product_name(input_n)
+- db_drop_and_create_all()
+- populate_tables()
+- QUESTIONS_PER_PAGE = 10
+- def paginate_questions(questions_list,pagination)
+- def question_search(input_text)
+
+
+"""
 
 
 # Creatng a function to print the error in an approperiate way 
