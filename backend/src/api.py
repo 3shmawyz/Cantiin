@@ -41,6 +41,30 @@ def paginate_questions(questions_list,pagination):
 
 
 
+
+
+
+# Creatng a function to print the error in an approperiate way 
+#with detailed info
+def my_error(status=404 ,description=""):
+	if description == "":
+		return jsonify({
+					"success": False, 
+					"error": status,
+					"message": "Not Found",
+					}), status
+	return jsonify({
+			"success": False, 
+			"error": status,
+			"message": "Not Found",
+			"description":description
+			}), status
+
+
+
+
+
+
 """
 This method searches inside The question model.
 
