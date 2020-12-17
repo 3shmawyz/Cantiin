@@ -3,6 +3,29 @@ Functions:
 
 - my_error(status=404 ,description=""):
 - get_in_stock_products()
+
+
+
+
+
+
+- validate_product_exists(input_id,all_products)
+- validate_product_name(input_n)
+- validate_product_price(input_p)
+- validate_product_in_stock(input_i)
+- validate_product_seller(input_s)
+
+
+
+
+- validate_order_exists(input_id,all_orders)
+- validate_order_user(input_u)
+- validate_order_product(input_id,all_products)
+- validate_order_amount(input_a)
+
+
+
+
 - validate_product_name(input_n)
 - validate_product_price(imput_p)
 - db_drop_and_create_all()
@@ -57,6 +80,25 @@ def get_in_stock_products():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+Product model : inputs validations
+"""
+
+
 def validate_product_exists(input_id,all_products):
 	#Validate that product id has a value, not None
 	if input_id == None: return [False,None]
@@ -84,12 +126,6 @@ def validate_product_exists(input_id,all_products):
 			description="there is no product with this id")]
 
 	return [True,product]
-
-
-
-
-
-
 
 
 def validate_product_name(input_n #,all_products
@@ -121,12 +157,6 @@ def validate_product_name(input_n #,all_products
 	return [True,name]
 
 
-
-
-
-
-
-
 def validate_product_price(input_p):
 	#Validate that product price has a value, not None
 	if input_p == None: return [True,None]
@@ -147,8 +177,6 @@ def validate_product_price(input_p):
 	return [True,price]
 
 
-
-
 def validate_product_in_stock(input_i):
 	#Validate that product in_stock has a value, not None
 	if input_i == None: return [True,None]
@@ -162,10 +190,6 @@ def validate_product_in_stock(input_i):
 			"converted to boolean")]
 
 	return [True,in_stock]
-
-
-
-
 
 
 def validate_product_seller(input_s):
@@ -212,6 +236,9 @@ def validate_product_seller(input_s):
 
 
 
+"""
+Order model : inputs validations
+"""
 
 def validate_order_exists(input_id,all_orders):
 	#Validate that order id has a value, not None
@@ -229,8 +256,6 @@ def validate_order_exists(input_id,all_orders):
 		return [False,my_error(status=422, 
 			description="id can not be less than"+
 			" or equal to 0")]
-
-
 	try:
 		order = all_orders.get(id)
 	except Exception as e:
@@ -241,17 +266,6 @@ def validate_order_exists(input_id,all_orders):
 			description="there is no order with this id")]
 
 	return [True,order]
-
-
-
-
-
-
-
-
-
-
-
 
 def validate_order_user(input_u):
 	#Validate that order user has a value, not None
@@ -275,29 +289,8 @@ def validate_order_user(input_u):
 	return [True,user]
 
 
-
-
-
-
-
-
-
-
-
-
-
 def validate_order_product(input_id,all_products):
 	validate_product_exists(input_id,all_products)
-
-
-
-
-
-
-
-
-
-
 
 
 def validate_order_amount(input_a):
@@ -318,6 +311,21 @@ def validate_order_amount(input_a):
 			" or equal to -1")]
 
 	return [True,amount]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
