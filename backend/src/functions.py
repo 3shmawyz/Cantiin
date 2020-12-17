@@ -52,7 +52,8 @@ def get_in_stock_products():
 
 
 
-def validate_product_name(input_n,all_products):
+def validate_product_name(input_n #,all_products
+	):
 	#Validate that product name has a value, not None
 	if input_n == None: return [True,None]
 	
