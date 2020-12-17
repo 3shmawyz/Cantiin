@@ -253,26 +253,26 @@ def validate_order_exists(input_id,all_orders):
 
 
 
-def validate_order_user(input_s):
-	#Validate that order seller has a value, not None
-	if input_s == None: return [True,None]
+def validate_order_user(input_u):
+	#Validate that order user has a value, not None
+	if input_u == None: return [True,None]
 	
-	#Validate that order seller can be converted to float
+	#Validate that order user can be converted to float
 	try:
-		seller = int(input_s)
+		user = int(input_u)
 	except:
 		return [False,my_error(status=400, 
-			description="seller can not be converted to integer")]
+			description="user can not be converted to integer")]
 	
-	#Validate that order seller is not negative or zero
-	if seller<=0:
+	#Validate that order user is not negative or zero
+	if user<=0:
 		return [False,my_error(status=422, 
-			description="seller can not be less than"+
+			description="user can not be less than"+
 			" or equal to 0")]
 
-	#There should be a code to validate that the seller
+	#There should be a code to validate that the user
 	#Is in the users table
-	return [True,seller]
+	return [True,user]
 
 
 
