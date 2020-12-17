@@ -145,6 +145,24 @@ Tests: test_01_clear_tables
 
 
 
+	@app.route("/products", methods=["POST"])
+	def post_products():
+	#This endpoint will add a new product
+		in_stock = request.args.get('in_stock')
+		print(in_stock, flush=True)
+		if in_stock != "false":
+			products = get_in_stock_products()
+		else:
+			products = Product.query.order_by(Product.id).all()
+		to_return=[p.simple() for p in products]
+		return jsonify({"success":True,"products":to_return})
+		
+
+
+
+
+
+
 
 
 
