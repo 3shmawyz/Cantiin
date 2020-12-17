@@ -91,7 +91,7 @@ def validate_product_name(input_n):
 			description="name can not be converted to string")]
 	if len(name)>100:
 		return [False,my_error(status=422, 
-			description="maximum title length is 100 letters")]
+			description="maximum name length is 100 letters")]
 	return [True,name]
 
 
