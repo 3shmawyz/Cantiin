@@ -57,26 +57,35 @@ def get_in_stock_products():
 
 
 
-def validate_product_exixts(input_id):
-	#Validate that product seller has a value, not None
-	if input_s == None: return [True,None]
+def validate_product_exists(input_id,all_products):
+	#Validate that product id has a value, not None
+	if input_id == None: return [True,None]
 	
-	#Validate that product seller can be converted to float
+	#Validate that product id can be converted to float
 	try:
-		seller = int(input_s)
+		id = int(input_id)
 	except:
 		return [False,my_error(status=400, 
-			description="seller can not be converted to integer")]
+			description="id can not be converted to integer")]
 	
-	#Validate that product seller is not negative or zero
-	if seller<=0:
+	#Validate that product id is not negative or zero
+	if id<=0:
 		return [False,my_error(status=422, 
-			description="seller can not be less than"+
+			description="id can not be less than"+
 			" or equal to 0")]
 
-	#There should be a code to validate that the seller
+	#There should be a code to validate that the id
 	#Is in the users table
-	return [True,seller]
+	try:
+		product = all_products.get(id)
+	except Exception as e:
+		return [False,my_error(status=422, 
+			description="there is no product with this id")]
+	if product == None :
+		return [False,my_error(status=422, 
+			description="there is no product with this id")]
+
+	return [True,product]
 
 
 
