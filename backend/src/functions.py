@@ -38,23 +38,22 @@ Functions:
 """
 
 from models import (db,Product,Order)
-
+import json
+from flask import Flask, request, jsonify, abort
 
 # Creatng a function to print the error in an approperiate way 
 #with detailed info
 def my_error(status=404 ,description=""):
 	if description == "":
-		return jsonify({
-					"success": False, 
+		return ({"success": False, 
 					"error": status,
 					"message": "Not Found",
-					}), status
-	return jsonify({
-			"success": False, 
+					}, status)
+	return ({"success": False, 
 			"error": status,
 			"message": "Not Found",
 			"description":description
-			}), status
+			}, status)
 
 
 
