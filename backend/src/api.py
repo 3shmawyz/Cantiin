@@ -64,7 +64,6 @@ def my_error(status=404 ,description=""):
 
 
 
-
 """
 This method searches inside The question model.
 
@@ -79,6 +78,22 @@ def question_search(input_text):
 		Question.question.ilike(search_query)).all()
 	to_return = [question.format() for question in all_questions]
 	return to_return
+
+
+
+
+def validate_title(input_t):
+	if input_t == None: return [True,None]
+	try:
+		title = str(input_t)
+	except:
+		return [False,my_error(status=400, 
+			description="title can not be converted to string")]
+	if len(title)>100:
+		return [False,my_error(status=422, 
+			description="maximum title length is 100 letters")]
+	return [True,title]
+
 
 
 
@@ -183,7 +198,7 @@ Tests: test_01_clear_tables
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
-		
+
 		title_validation = validate_title(title)
 		if title_validation[0]==True:
 			title = title_validation[1]
