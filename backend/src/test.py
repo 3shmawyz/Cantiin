@@ -20,6 +20,14 @@ a:models
 a_01=user
 a_02_=product
 a_03_=order
+
+
+b:functions
+b_01=user validation
+b_02=product validation
+b_03=order validation
+
+
 """
 
 unittest.TestLoader.sortTestMethodsUsing = None
@@ -333,6 +341,27 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(type(order["total_cost"]),float)
 
 		print("Test a_3_9: Product simple")
+
+
+
+
+
+
+	def test_b_02_001_001_product_exists(self):
+		all_products = Product.query
+		validation = validate_product_exists(1,all_products)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(all_products.get(1),validation[0])
+
+
+
+
+
+
+
+
+
 
 
 
