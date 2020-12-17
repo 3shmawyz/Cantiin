@@ -249,6 +249,43 @@ def validate_order_exists(input_id,all_orders):
 
 
 
+
+
+
+
+def validate_order_user(input_s):
+	#Validate that order seller has a value, not None
+	if input_s == None: return [True,None]
+	
+	#Validate that order seller can be converted to float
+	try:
+		seller = int(input_s)
+	except:
+		return [False,my_error(status=400, 
+			description="seller can not be converted to integer")]
+	
+	#Validate that order seller is not negative or zero
+	if seller<=0:
+		return [False,my_error(status=422, 
+			description="seller can not be less than"+
+			" or equal to 0")]
+
+	#There should be a code to validate that the seller
+	#Is in the users table
+	return [True,seller]
+
+
+
+
+
+
+
+
+
+
+
+
+
 def validate_order_name(input_n #,all_orders
 	):
 	#Validate that order name has a value, not None
@@ -319,32 +356,6 @@ def validate_order_in_stock(input_i):
 			"converted to boolean")]
 
 	return [True,in_stock]
-
-
-
-
-
-
-def validate_order_seller(input_s):
-	#Validate that order seller has a value, not None
-	if input_s == None: return [True,None]
-	
-	#Validate that order seller can be converted to float
-	try:
-		seller = int(input_s)
-	except:
-		return [False,my_error(status=400, 
-			description="seller can not be converted to integer")]
-	
-	#Validate that order seller is not negative or zero
-	if seller<=0:
-		return [False,my_error(status=422, 
-			description="seller can not be less than"+
-			" or equal to 0")]
-
-	#There should be a code to validate that the seller
-	#Is in the users table
-	return [True,seller]
 
 
 
