@@ -69,13 +69,13 @@ def validate_product_name(input_n,all_products):
 			description="maximum name length is 100 letters")]
 
 	#Validating that there is no product wth this name already
-	all_products_names = [p.name.strip().casefold(
+	"""all_products_names = [p.name.strip().casefold(
 		) for p in all_products]
 	print(all_products_names,flush=True)
 	if name.strip().casefold() in all_products_names:
 		return [False,my_error(status=422, 
 			description="there is a product"+
-			" with this name already")]
+			" with this name already")]"""
 
 	return [True,name]
 
