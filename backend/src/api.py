@@ -82,17 +82,17 @@ def question_search(input_text):
 
 
 
-def validate_title(input_t):
-	if input_t == None: return [True,None]
+def validate_product_name(input_n):
+	if input_n == None: return [True,None]
 	try:
-		title = str(input_t)
+		name = str(input_n)
 	except:
 		return [False,my_error(status=400, 
-			description="title can not be converted to string")]
-	if len(title)>100:
+			description="name can not be converted to string")]
+	if len(name)>100:
 		return [False,my_error(status=422, 
 			description="maximum title length is 100 letters")]
-	return [True,title]
+	return [True,name]
 
 
 
