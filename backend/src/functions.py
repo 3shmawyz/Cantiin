@@ -110,24 +110,19 @@ def validate_product_price(input_p):
 
 
 
-def validate_product_in_stock(input_p):
-	#Validate that product price has a value, not None
-	if input_p == None: return [True,None]
+def validate_product_in_stock(input_i):
+	#Validate that product in_stock has a value, not None
+	if input_i == None: return [True,None]
 	
-	#Validate that product price can be converted to float
+	#Validate that product in_stock can be converted to boolean
 	try:
-		price = float(input_p)
+		in_stock = bool(input_i)
 	except:
 		return [False,my_error(status=400, 
-			description="price can not be converted to float")]
-	
-	#Validate that product price is not negative or zero
-	if price<=0:
-		return [False,my_error(status=422, 
-			description="price can not be less than"+
-			" or equal to 0")]
+			description="in_stock can not be "+
+			"converted to boolean")]
 
-	return [True,price]
+	return [True,in_stock]
 
 
 
