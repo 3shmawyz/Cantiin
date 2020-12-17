@@ -123,12 +123,13 @@ Tests: test_01_clear_tables
 			return my_error(status=400, 
 				description = "there is no request body")
 
-		title_validation = validate_title(title)
-		if title_validation[0]==True:
-			title = title_validation[1]
+		name_validation = validate_product_name(title)
+		if name_validation[0]==True:
+			title = name_validation[1]
+			#This is the valid data
 		else:
-			return title_validation[1]
-		
+			return name_validation[1]
+			#This is the error message
 
 		recipe_validation = validate_recipe(recipe)
 		if recipe_validation[0]==True:
