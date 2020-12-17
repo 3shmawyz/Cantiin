@@ -4,6 +4,7 @@ Functions:
 - my_error(status=404 ,description=""):
 - get_in_stock_products()
 - validate_product_name(input_n)
+- validate_product_price(imput_p)
 - db_drop_and_create_all()
 - populate_tables()
 - QUESTIONS_PER_PAGE = 10
@@ -56,6 +57,40 @@ def validate_product_name(input_n #,all_products
 	):
 	#Validate that product name has a value, not None
 	if input_n == None: return [True,None]
+	
+	#Validate that product name can be converted to string
+	try:
+		name = str(input_n)
+	except:
+		return [False,my_error(status=400, 
+			description="name can not be converted to string")]
+	
+	#Validate that product name length is less that 100
+	if len(name)>100:
+		return [False,my_error(status=422, 
+			description="maximum name length is 100 letters")]
+
+	#Validating that there is no product wth this name already
+	"""all_products_names = [p.name.strip().casefold(
+		) for p in all_products]
+	print(all_products_names,flush=True)
+	if name.strip().casefold() in all_products_names:
+		return [False,my_error(status=422, 
+			description="there is a product"+
+			" with this name already")]"""
+
+	return [True,name]
+
+
+
+
+
+
+
+
+def validate_product_price(imput_p):
+	#Validate that product  has a value, not None
+	if input_p == None: return [True,None]
 	
 	#Validate that product name can be converted to string
 	try:
