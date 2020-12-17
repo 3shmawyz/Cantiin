@@ -181,14 +181,23 @@ def validate_product_in_stock(input_i):
 	if input_i == None: return [True,None]
 	
 	#Validate that product in_stock can be converted to boolean
-	try:
-		in_stock = bool(input_i)
-	except:
-		return [False,my_error(status=400, 
+
+	found_it=False
+
+	if input_i==True or input_i=="true" or input_i=="True" or input_i==1 or input_i=="1":
+		found_it=True
+		in_stock=True
+	if input_i==False or input_i=="false" or input_i=="False" or input_i==0 or input_i=="0":
+		found_it=True
+		in_stock=False
+
+
+	if found_it == True:
+		return [True,in_stock]
+	return [False,my_error(status=400, 
 			description="in_stock can not be "+
 			"converted to boolean")]
 
-	return [True,in_stock]
 
 
 def validate_product_seller(input_s):
