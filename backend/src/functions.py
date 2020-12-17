@@ -300,26 +300,24 @@ def validate_order_product(input_id,all_products):
 
 
 
-def validate_order_amount(input_u):
-	#Validate that order user has a value, not None
-	if input_u == None: return [True,None]
+def validate_order_amount(input_a):
+	#Validate that order amount has a value, not None
+	if input_a == None: return [True,None]
 	
-	#Validate that order user can be converted to float
+	#Validate that order amount can be converted to float
 	try:
-		user = int(input_u)
+		amount = int(input_a)
 	except:
 		return [False,my_error(status=400, 
-			description="user can not be converted to integer")]
+			description="amount can not be converted to integer")]
 	
-	#Validate that order user is not negative or zero
-	if user<=0:
+	#Validate that order amount is not negative or -1
+	if amount<=-1:
 		return [False,my_error(status=422, 
-			description="user can not be less than"+
-			" or equal to 0")]
+			description="amount can not be less than"+
+			" or equal to -1")]
 
-	#There should be a code to validate that the user
-	#Is in the users table
-	return [True,user]
+	return [True,amount]
 
 
 
