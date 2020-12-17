@@ -352,7 +352,8 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate_product_exists(1,all_products)
 
 		self.assertEqual(validation[0],True)
-		self.assertEqual(all_products.get(1),validation[0])
+		self.assertEqual(all_products.get(1),validation[1])
+		print("Test b_2_1_1: validate_product_exists:correct")
 
 
 
