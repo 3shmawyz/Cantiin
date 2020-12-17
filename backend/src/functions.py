@@ -129,24 +129,26 @@ def validate_product_in_stock(input_i):
 
 
 
-def validate_product_seller(input_p):
-	#Validate that product price has a value, not None
-	if input_p == None: return [True,None]
+def validate_product_seller(input_s):
+	#Validate that product seller has a value, not None
+	if input_s == None: return [True,None]
 	
-	#Validate that product price can be converted to float
+	#Validate that product seller can be converted to float
 	try:
-		price = float(input_p)
+		seller = int(input_s)
 	except:
 		return [False,my_error(status=400, 
-			description="price can not be converted to float")]
+			description="seller can not be converted to integer")]
 	
-	#Validate that product price is not negative or zero
-	if price<=0:
+	#Validate that product seller is not negative or zero
+	if seller<=0:
 		return [False,my_error(status=422, 
-			description="price can not be less than"+
+			description="seller can not be less than"+
 			" or equal to 0")]
 
-	return [True,price]
+	#There should be a code to validate that the seller
+	#Is in the users table
+	return [True,seller]
 
 
 
