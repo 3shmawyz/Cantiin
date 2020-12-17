@@ -10,7 +10,7 @@
 			"name": "1) clear_tables",
 			"item": [
 				{
-					"name": "http://127.0.0.1:5000/clear_tables",
+					"name": "clear_tables",
 					"event": [
 						{
 							"listen": "test",
@@ -114,7 +114,7 @@
 			"name": "2) populate",
 			"item": [
 				{
-					"name": "http://127.0.0.1:5000/populate",
+					"name": "populate",
 					"event": [
 						{
 							"listen": "test",
@@ -161,7 +161,7 @@
 			"name": "3) products",
 			"item": [
 				{
-					"name": "http://127.0.0.1:5000/products",
+					"name": "get_products:normal",
 					"event": [
 						{
 							"listen": "test",
@@ -212,7 +212,7 @@
 					"response": []
 				},
 				{
-					"name": "http://127.0.0.1:5000/products?in_stock=false",
+					"name": "get_products:in_stock=false",
 					"event": [
 						{
 							"listen": "test",
