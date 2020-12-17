@@ -23,13 +23,6 @@ db_drop_and_create_all()
 
 
 
-
-
-
-def db_drop_and_create_all():
-    db.drop_all()
-    db.create_all()
-
 '''
 Product
 a persistent product entity, extends the base SQLAlchemy Model
@@ -208,64 +201,4 @@ class Order(db.Model):
 
 
 
-
-
-def populate_tables():
-    db_drop_and_create_all()
-    products = list()
-    
-
-    products.append(Product(
-        name="Labtop", price=300, seller="1"))
-    products.append(Product(
-        name="Mobile", price=100, seller="2", in_stock=False))
-    products.append(Product(
-        name="Candy", price=.5, seller="3", in_stock=True))
-    products.append(Product(
-        name="Table", price=150, seller="1", in_stock=False))
-    products.append(Product(
-        name="Keyboard", price=5, seller="2", in_stock=True))
-    products.append(Product(
-        name="Mouse", price=4, seller="1", in_stock=True))
-
-    db.session.add_all(products)
-
-
-
-    orders = list() 
-    #id, user, product, amount
-    orders.append(Order(user="1", product=1, amount=1))
-    orders.append(Order(user="2", product=1, amount=4))
-    orders.append(Order(user="3", product=2, amount=3))
-    orders.append(Order(user="1", product=1, amount=2))
-    orders.append(Order(user="2", product=2, amount=1))
-    orders.append(Order(user="2", product=3, amount=5))
-    orders.append(Order(user="1", product=4, amount=20))
-    orders.append(Order(user="3", product=5, amount=4))
-
-
-
-
-
-
-    db.session.add_all(orders)
-
-
-
-
-
-
-
-
-    db.session.commit()
-
-
-
-
-
-
-
-def get_in_stock_products():
-    return Product.query.filter(Product.in_stock==True
-        ).order_by(Product.id).all()
 
