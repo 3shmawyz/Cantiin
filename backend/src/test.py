@@ -401,6 +401,17 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][1])
 		print("Test b_2_1_6: validate_product_exists:0")
 
+	def test_b_02_001_007_product_exists_wrong(self):
+		all_products = Product.query
+		validation = validate_product_exists(-1,all_products)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("id can not be less than"+
+			" or equal to 0",validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_1_7: validate_product_exists:-1")
+
 
 
 
