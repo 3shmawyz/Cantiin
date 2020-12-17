@@ -88,32 +88,24 @@ def validate_product_name(input_n #,all_products
 
 
 
-def validate_product_price(imput_p):
-	#Validate that product  has a value, not None
+def validate_product_price(input_p):
+	#Validate that product price has a value, not None
 	if input_p == None: return [True,None]
 	
-	#Validate that product name can be converted to string
+	#Validate that product price can be converted to float
 	try:
-		name = str(input_n)
+		price = float(input_p)
 	except:
 		return [False,my_error(status=400, 
-			description="name can not be converted to string")]
+			description="price can not be converted to float")]
 	
-	#Validate that product name length is less that 100
-	if len(name)>100:
+	#Validate that product price is not negative or zero
+	if price<=0:
 		return [False,my_error(status=422, 
-			description="maximum name length is 100 letters")]
+			description="price can not be less than"+
+			" or equal to 0")]
 
-	#Validating that there is no product wth this name already
-	"""all_products_names = [p.name.strip().casefold(
-		) for p in all_products]
-	print(all_products_names,flush=True)
-	if name.strip().casefold() in all_products_names:
-		return [False,my_error(status=422, 
-			description="there is a product"+
-			" with this name already")]"""
-
-	return [True,name]
+	return [True,price]
 
 
 
