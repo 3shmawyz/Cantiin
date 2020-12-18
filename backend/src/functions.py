@@ -133,32 +133,8 @@ Product model : inputs validations
 
 
 def validate_product_exists(input_id,all_products):
-	#Validate that product id has a value, not None
-	if input_id == None: return [False,None]
-	
-	#Validate that product id can be converted to float
-	try:
-		id = int(input_id)
-	except:
-		return [False,my_error(status=400, 
-			description="id can not be converted to integer")]
-	
-	#Validate that product id is not negative or zero
-	if id<=0:
-		return [False,my_error(status=422, 
-			description="id can not be less than"+
-			" or equal to 0")]
-
-	try:
-		product = all_products.get(id)
-	except Exception as e:
-		return [False,my_error(status=422, 
-			description="there is no product with this id")]
-	if product == None :
-		return [False,my_error(status=422, 
-			description="there is no product with this id")]
-
-	return [True,product]
+	return validate_model_id(input_id,
+		all_products,"product")
 
 
 def validate_product_name(input_n #,all_products
