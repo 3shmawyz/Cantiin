@@ -507,6 +507,20 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_2_2: validate_string: '1'")
 
 
+	def test_b_02_003_validate_string(self):
+		to_validate = "More Than 3"
+		validation = validate_string(
+		input_string=to_validate,max_length=3,
+			string_name="input")		
+		self.assertEqual(validation["case"],2)
+		self.assertEqual("maximum input length is 3 letters"
+			,validation["error"]["description"])
+		self.assertEqual(422
+			,validation["error"]["status"])
+		print("Test b_2_3: validate_string:"+
+			" More than max length")
+
+
 
 
 
