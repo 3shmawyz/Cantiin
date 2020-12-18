@@ -651,7 +651,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_05_001_validate_float(self):
 		validation = validate_float(input_float=5,
-			input_name_string"input",maximum=1000,
+			input_name_string="input",maximum=1000,
 			minimum=0)
 
 		self.assertEqual(validation["case"],1)
@@ -660,7 +660,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_05_002_validate_float(self):
 		validation = validate_float(input_float=5.0,
-			input_name_string"input",maximum=1000,
+			input_name_string="input",maximum=1000,
 			minimum=0)
 
 		self.assertEqual(validation["case"],1)
@@ -669,7 +669,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_05_003_validate_float(self):
 		validation = validate_float(input_float="5.0",
-			input_name_string"input",maximum=1000,
+			input_name_string="input",maximum=1000,
 			minimum=0)
 
 		self.assertEqual(validation["case"],1)
@@ -678,7 +678,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_05_004_validate_float_wrong(self):
 		validation = validate_float(input_float="i",
-			input_name_string"input",maximum=1000,
+			input_name_string="input",maximum=1000,
 			minimum=0)
 
 		self.assertEqual(validation["case"],2)
@@ -690,7 +690,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_05_005_validate_float_wrong(self):
 		validation = validate_float(input_float=0,
-			input_name_string"input",maximum=1000,
+			input_name_string="input",maximum=1000,
 			minimum=0)
 
 		self.assertEqual(validation["case"],2)
@@ -703,7 +703,7 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_05_006_validate_float_wrong(self):
 		validation = validate_float(input_float=-40,
-			input_name_string"input",maximum=1000,
+			input_name_string="input",maximum=1000,
 			minimum=0)
 
 		self.assertEqual(validation["case"],2)
