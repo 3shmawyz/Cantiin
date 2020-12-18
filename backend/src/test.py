@@ -710,6 +710,19 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_5_6: validate_float: -40")
 
+	def test_b_5_006_validate_float_wrong(self):
+		validation = validate_float(input_float=-40,
+			input_name_string="input",maximum=1000,
+			minimum=0)
+
+		self.assertEqual(validation["case"],2)
+		self.assertEqual("input can not be less than"+
+			" 0"
+			,validation["result"]["description"])
+		self.assertEqual(422
+			,validation["result"]["status"])
+		print("Test b_5_6: validate_float: -40")
+
 
 
 
