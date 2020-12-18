@@ -122,6 +122,25 @@ def validate_model_id(input_id,model_query,model_name_string):
 
 
 
+def validate_string(input_string,max_length,string_name):
+	#Validate that product name has a value, not None
+	if input_string == None: return [True,None]
+	
+	#Validate that input can be converted to string
+	try:
+		name = str(input_string)
+	except:
+		return [False,my_error(status=400, 
+			description=string_name+
+			" can not be converted to string")]
+	
+	#Validate that input length is less that 100
+	if len(name)>max_length:
+		return [False,my_error(status=422, 
+			description="maximum "+ string_name
+			+" length is "+str(max_length)+" letters")]
+
+	return [True,name]
 
 
 
