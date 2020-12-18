@@ -638,7 +638,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 	def test_b_4_001_validate_integer(self):
-		validation = validate_integer(input_float=5,
+		validation = validate_integer(input_integer=5,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -647,7 +647,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_1: validate_integer: 5")
 
 	def test_b_4_002_validate_integer(self):
-		validation = validate_integer(input_float=5.0,
+		validation = validate_integer(input_integer=5.0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -656,7 +656,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_2: validate_integer: 5.0")
 
 	def test_b_4_003_validate_integer(self):
-		validation = validate_integer(input_float="5.0",
+		validation = validate_integer(input_integer="5.0",
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -665,7 +665,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_3: validate_integer: '5.0'")
 
 	def test_b_4_004_validate_integer_wrong(self):
-		validation = validate_integer(input_float="i",
+		validation = validate_integer(input_integer="i",
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -677,7 +677,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_4: validate_integer: i")
 
 	def test_b_4_005_validate_integer(self):
-		validation = validate_integer(input_float=0,
+		validation = validate_integer(input_integer=0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -686,7 +686,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_5: validate_integer: 0")
 
 	def test_b_4_006_validate_integer_wrong(self):
-		validation = validate_integer(input_float=-40,
+		validation = validate_integer(input_integer=-40,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -699,7 +699,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_6: validate_integer: -40")
 
 	def test_b_4_007_validate_integer_wrong(self):
-		validation = validate_integer(input_float=4,
+		validation = validate_integer(input_integer=4,
 			input_name_string="input",maximum=3,
 			minimum=0)
 
@@ -712,7 +712,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_4_7: validate_integer: >max")
 
 	def test_b_4_008_validate_integer_wrong(self):
-		validation = validate_integer(input_float=None,
+		validation = validate_integer(input_integer=None,
 			input_name_string="input",maximum=3,
 			minimum=0)
 
