@@ -106,27 +106,28 @@ def validate_model_id(input_id,model_query,model_name_string):
 	try:
 		id = int(input_id)
 	except:
-		return [False,my_error(status=400, 
-			description=model_name_string+
-			" id can not be converted to integer")]
+		return {"case":2,"error":{"status":400, 
+			"description":model_name_string+
+			" id can not be converted to integer"}} 
+		#[False,my_error(status=400, description=model_name_string+" id can not be converted to integer")]
 	
 	#Validate that id is not negative or zero
 	if id<=0:
-		return [False,my_error(status=422, 
-			description=model_name_string+ 
+		return {"case":2,"error":{"status":422, 
+			"description":model_name_string+ 
 			" id can not be less than"+
-			" or equal to 0")]
+			" or equal to 0"}} 
 
 	try:
 		item = model_query.get(id)
 	except Exception as e:
-		return [False,my_error(status=422, 
-			description="there is no "+model_name_string+
-			+" with this id")]
+		return {"case":2,"error":{"status":422, 
+			"description":"there is no "+model_name_string+
+			+" with this id"}} 
 	if item == None :
-		return [False,my_error(status=422, 
-			description="there is no "+model_name_string
-			+" with this id")]
+		return {"case":2,"error":{"status":422, 
+			"description":"there is no "+model_name_string
+			+" with this id"}} 
 
 	return {"case":1,"result":item}
 
@@ -142,15 +143,15 @@ def validate_string(input_string,max_length,string_name):
 	try:
 		result = str(input_string)
 	except:
-		return [False,my_error(status=400, 
-			description=string_name+
-			" can not be converted to string")]
+		return {"case":2,"error":{"status":400, 
+			"description":string_name+
+			" can not be converted to string"}} 
 	
 	#Validate that input length is less that 100
 	if len(result)>max_length:
-		return [False,my_error(status=422, 
-			description="maximum "+ string_name
-			+" length is "+str(max_length)+" letters")]
+		return {"case":2,"error":{"status":422, 
+			"description":"maximum "+ string_name
+			+" length is "+str(max_length)+" letters"}} 
 
 	return {"case":1,"result":result}
 
@@ -178,9 +179,9 @@ def validate_boolean(input_i,input_name_string):
 
 	if found_it == True:
 		return {"case":1,"result":result}
-	return [False,my_error(status=400, 
-			description=input_name_string+" can not be "+
-			"converted to boolean")]
+	return {"case":2,"error":{"status":400, 
+			"description":input_name_string+" can not be "+
+			"converted to boolean"}} 
 
 
 
@@ -197,21 +198,21 @@ def validate_integer(
 	try:
 		result = int(input_integer)
 	except:
-		return [False,my_error(status=400, 
-			description=input_name_string+
-			" can not be converted to integer")]
+		return {"case":2,"error":{"status":400, 
+			"description":input_name_string+
+			" can not be converted to integer"}} 
 	
 	#Validate that input is not less than minimum
 	if result<int(minimum):
-		return [False,my_error(status=422, 
-			description=input_name_string+
-			" can not be less than "+ string(minimum))]
+		return {"case":2,"error":{"status":422, 
+			"description":input_name_string+
+			" can not be less than "+ string(minimum)}} 
 
 	#Validate that input is not more than maximum
 	if result>int(maximum):
-		return [False,my_error(status=422, 
-			description=input_name_string+
-			" can not be more than "+ string(maximum))]
+		return {"case":2,"error":{"status":422, 
+			"description":input_name_string+
+			" can not be more than "+ string(maximum)}} 
 	return {"case":1,"result":result}
 
 
@@ -225,21 +226,21 @@ def validate_float(
 	try:
 		result = float(input_float)
 	except:
-		return [False,my_error(status=400, 
-			description=input_name_string+
-			" can not be converted to float")]
+		return {"case":2,"error":{"status":400, 
+			"description":input_name_string+
+			" can not be converted to float"}} 
 	
 	#Validate that input is not less than minimum
 	if result<float(minimum):
-		return [False,my_error(status=422, 
-			description=input_name_string+
-			" can not be less than "+ string(minimum))]
+		return {"case":2,"error":{"status":422, 
+			"description":input_name_string+
+			" can not be less than "+ string(minimum)}} 
 
 	#Validate that input is not more than maximum
 	if result>float(maximum):
-		return [False,my_error(status=422, 
-			description=input_name_string+
-			" can not be more than "+ string(maximum))]
+		return {"case":2,"error":{"status":422, 
+			"description":input_name_string+
+			" can not be more than "+ string(maximum)}} 
 	return {"case":1,"result":result}
 
 
