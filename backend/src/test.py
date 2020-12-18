@@ -22,6 +22,9 @@ a_02_=product
 a_03_=order
 
 
+b:validation
+
+
 b:functions
 b_01=user validation
 b_02=product validation
@@ -352,39 +355,39 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_b_02_001_001_product_exists(self):
+	def test_b_01_001_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists(1,all_products)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(1),validation[1])
-		print("Test b_2_1_1: validate_product_exists:1")
+		print("Test b_1_1: validate_product_exists:1")
 
-	def test_b_02_001_002_product_exists(self):
+	def test_b_01_002_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists(6,all_products)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(6),validation[1])
-		print("Test b_2_1_2: validate_product_exists:6")
+		print("Test b_1_2: validate_product_exists:6")
 
-	def test_b_02_001_003_product_exists_float(self):
+	def test_b_01_003_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists(5.5,all_products)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(5),validation[1])
-		print("Test b_2_1_3: validate_product_exists:5.5")
+		print("Test b_1_3: validate_product_exists:5.5")
 
-	def test_b_02_001_004_product_exists_string(self):
+	def test_b_01_004_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists("3",all_products)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(3),validation[1])
-		print("Test b_2_1_4: validate_product_exists:'3'")
+		print("Test b_1_4: validate_product_exists:'3'")
 
-	def test_b_02_001_005_product_exists_wrong(self):
+	def test_b_01_005_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists("i",all_products)
 
@@ -393,9 +396,9 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(400
 			,validation[1][1])
-		print("Test b_2_1_5: validate_product_exists:i")
+		print("Test b_1_5: validate_product_exists:i")
 
-	def test_b_02_001_006_product_exists_wrong(self):
+	def test_b_01_006_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists(0,all_products)
 
@@ -404,9 +407,9 @@ class TriviaTestCase(unittest.TestCase):
 			" or equal to 0",validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_2_1_6: validate_product_exists:0")
+		print("Test b_1_6: validate_product_exists:0")
 
-	def test_b_02_001_007_product_exists_wrong(self):
+	def test_b_01_007_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists(-1,all_products)
 
@@ -415,9 +418,9 @@ class TriviaTestCase(unittest.TestCase):
 			" or equal to 0",validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_2_1_7: validate_product_exists:-1")
+		print("Test b_1_7: validate_product_exists:-1")
 
-	def test_b_02_001_008_product_exists_wrong(self):
+	def test_b_01_008_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_product_exists(20,all_products)
 
@@ -426,7 +429,12 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_2_1_8: validate_product_exists:20")
+		print("Test b_1_8: validate_product_exists:20")
+
+
+
+
+
 
 
 
