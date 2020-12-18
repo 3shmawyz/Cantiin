@@ -538,31 +538,31 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_b_02_004_001_validate_boolean(self):
+	def test_b_3_001_validate_boolean(self):
 		validation = validate_boolean(True)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_1: validate_boolean: True")
 
-	def test_b_02_004_002_validate_boolean(self):
+	def test_b_3_002_validate_boolean(self):
 		validation = validate_boolean("True")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_2: validate_boolean: 'True'")
 
-	def test_b_02_004_003_validate_boolean(self):
+	def test_b_3_003_validate_boolean(self):
 		validation = validate_boolean("true")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_3: validate_boolean: 'true'")
 
-	def test_b_02_004_004_validate_boolean(self):
+	def test_b_3_004_validate_boolean(self):
 		validation = validate_boolean(1)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_4: validate_boolean: 1")
 
-	def test_b_02_004_005_validate_boolean(self):
+	def test_b_3_005_validate_boolean(self):
 		validation = validate_boolean("1")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
@@ -570,38 +570,38 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_b_02_004_006_validate_boolean(self):
+	def test_b_3_006_validate_boolean(self):
 		validation = validate_boolean(False)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_6: validate_boolean: False")
 
-	def test_b_02_004_007_validate_boolean(self):
+	def test_b_3_007_validate_boolean(self):
 		validation = validate_boolean("False")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_7: validate_boolean: 'False'")
 
-	def test_b_02_004_008_validate_boolean(self):
+	def test_b_3_008_validate_boolean(self):
 		validation = validate_boolean("false")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_8: validate_boolean: 'false'")
 
-	def test_b_02_004_009_validate_boolean(self):
+	def test_b_3_009_validate_boolean(self):
 		validation = validate_boolean(0)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_9: validate_boolean: 0")
 
-	def test_b_02_004_010_validate_boolean(self):
+	def test_b_3_010_validate_boolean(self):
 		validation = validate_boolean("0")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_10: validate_boolean: '0'")
 
 
-	def test_b_02_004_010_validate_boolean_wrong(self):
+	def test_b_3_010_validate_boolean_wrong(self):
 		validation = validate_boolean("5")
 		self.assertEqual(validation[0],False)
 		self.assertEqual("in_stock can not be "+
