@@ -414,7 +414,6 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_01_006_validate_model_id(self):
 		all_products = Product.query
-		validation = validate_product_exists(0,all_products)
 		validation = validate_model_id(input_id=0,
 			model_query=all_products,model_name_string="product")
 
@@ -430,13 +429,17 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_01_007_validate_model_id(self):
 		all_products = Product.query
-		validation = validate_product_exists(-1,all_products)
+		validation = validate_model_id(input_id=-1,
+			model_query=all_products,model_name_string="product")
 
-		self.assertEqual(validation[0],False)
-		self.assertEqual("id can not be less than"+
-			" or equal to 0",validation[1][0]["description"])
+		self.assertEqual(validation["case"],2)
+
+		self.assertEqual("product id can not be less than"+
+			" or equal to 0"
+			,validation["error"]["description"])
 		self.assertEqual(422
-			,validation[1][1])
+			,validation["error"]["status"])
+
 		print("Test b_1_7: validate_model_id:-1")
 
 	def test_b_01_008_validate_model_id(self):
