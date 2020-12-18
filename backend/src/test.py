@@ -633,6 +633,12 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(1,validation[1])
 		print("Test b_2_5_2: validate_product_seller: '1'")
 
+	def test_b_02_005_003_product_seller(self):
+		validation = validate_product_seller(1.5)
+		self.assertEqual(validation[0],True)
+		self.assertEqual(1,validation[1])
+		print("Test b_2_5_3: validate_product_seller: 1.5")
+
 
 
 
