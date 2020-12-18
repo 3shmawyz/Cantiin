@@ -76,7 +76,16 @@ def get_in_stock_products():
 
 
 
-
+"""
+This function has 3 inputs:
+1)	input_id: an integer, to be valiudated that 
+		it exists or not in the table
+		Example: 1, 2 or 50
+2)	model_query: this is the query of the model
+		Example: Product.query, Order.query
+3)	name_tring: the name of the table
+		Example: "product", "order"
+"""
 def validate_model_id(input_id,model_query,model_name_string):
 	#Validate that model id has a value, not None
 	if input_id == None: return [False,None]
@@ -259,52 +268,8 @@ Order model : inputs validations
 """
 
 def validate_order_exists(input_id,all_orders):
-	#Validate that order id has a value, not None
-	if input_id == None: return [False,None]
-	
-	#Validate that order id can be converted to float
-	try:
-		id = int(input_id)
-	except:
-		return [False,my_error(status=400, 
-			description="id can not be converted to integer")]
-	
-	#Validate that order id is not negative or zero
-	if id<=0:
-		return [False,my_error(status=422, 
-			description="id can not be less than"+
-			" or equal to 0")]
-	try:
-		order = all_orders.get(id)
-	except Exception as e:
-		return [False,my_error(status=422, 
-			description="there is no order with this id")]
-	if order == None :
-		return [False,my_error(status=422, 
-			description="there is no order with this id")]
-
-	return [True,order]
-
-def validate_order_user(input_u):
-	#Validate that order user has a value, not None
-	if input_u == None: return [True,None]
-	
-	#Validate that order user can be converted to float
-	try:
-		user = int(input_u)
-	except:
-		return [False,my_error(status=400, 
-			description="user can not be converted to integer")]
-	
-	#Validate that order user is not negative or zero
-	if user<=0:
-		return [False,my_error(status=422, 
-			description="user can not be less than"+
-			" or equal to 0")]
-
-	#There should be a code to validate that the user
-	#Is in the users table
-	return [True,user]
+	return validate_model_id(input_id,
+		all_orders,"order")
 
 
 def validate_order_product(input_id,all_products):
