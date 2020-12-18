@@ -100,7 +100,7 @@ case:3
 """
 def validate_model_id(input_id,model_query,model_name_string):
 	#Validate that model id has a value, not None
-	if input_id == None: return [False,None]
+	if input_id == None: return {"case":3,"result":None}
 	
 	#Validate that model id can be converted to int
 	try:
@@ -136,7 +136,7 @@ def validate_model_id(input_id,model_query,model_name_string):
 
 def validate_string(input_string,max_length,string_name):
 	#Validate that product name has a value, not None
-	if input_string == None: return [True,None]
+	if input_string == None: return {"case":3,"result":None}
 	
 	#Validate that input can be converted to string
 	try:
@@ -162,7 +162,7 @@ def validate_string(input_string,max_length,string_name):
 
 def validate_boolean(input_i,input_name_string):
 	#Validate that product input_i has a value, not None
-	if input_i == None: return [True,None]
+	if input_i == None: return {"case":3,"result":None}
 	
 	#Validate that input_i can be converted to boolean
 
@@ -191,7 +191,7 @@ def validate_boolean(input_i,input_name_string):
 def validate_integer(
 	input_integer,input_name_string,maximum,minimum):
 	#Validate that input has a value, not None
-	if input_integer == None: return [True,None]
+	if input_integer == None: return {"case":3,"result":None}
 	
 	#Validate that input can be converted to int
 	try:
@@ -219,7 +219,7 @@ def validate_integer(
 def validate_float(
 	input_float,input_name_string,maximum,minimum):
 	#Validate that input has a value, not None
-	if input_float == None: return [True,None]
+	if input_float == None: return {"case":3,"result":None}
 	
 	#Validate that input can be converted to float
 	try:
