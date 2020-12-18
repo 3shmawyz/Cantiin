@@ -654,7 +654,7 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string"input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation[0],True)
+		self.assertEqual(validation["case"],1)
 		self.assertEqual(5.0,validation[1])
 		print("Test b_5_1: validate_float: 5")
 
@@ -663,7 +663,7 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string"input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation[0],True)
+		self.assertEqual(validation["case"],1)
 		self.assertEqual(5.0,validation[1])
 		print("Test b_5_2: validate_float: 5.0")
 
@@ -672,7 +672,7 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string"input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation[0],True)
+		self.assertEqual(validation["case"],1)
 		self.assertEqual(5.0,validation[1])
 		print("Test b_5_3: validate_float: '5.0'")
 
@@ -681,7 +681,7 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string"input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation[0],False)
+		self.assertEqual(validation["case"],2)
 		self.assertEqual("price can not be converted to float"
 			,validation[1][0]["description"])
 		self.assertEqual(400
@@ -693,7 +693,7 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string"input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation[0],False)
+		self.assertEqual(validation["case"],2)
 		self.assertEqual("price can not be less than"+
 			" or equal to 0"
 			,validation[1][0]["description"])
@@ -706,7 +706,7 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string"input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation[0],False)
+		self.assertEqual(validation["case"],2)
 		self.assertEqual("price can not be less than"+
 			" or equal to 0"
 			,validation[1][0]["description"])
