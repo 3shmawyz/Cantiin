@@ -650,28 +650,36 @@ class TriviaTestCase(unittest.TestCase):
 
 
 	def test_b_05_001_validate_float(self):
-		validation = validate_product_price(5)
+		validation = validate_float(input_float=5,
+			input_name_string"input",maximum=1000,
+			minimum=0)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(5.0,validation[1])
 		print("Test b_5_1: validate_float: 5")
 
 	def test_b_05_002_validate_float(self):
-		validation = validate_product_price(5.0)
+		validation = validate_float(input_float=5.0,
+			input_name_string"input",maximum=1000,
+			minimum=0)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(5.0,validation[1])
 		print("Test b_5_2: validate_float: 5.0")
 
 	def test_b_05_003_validate_float(self):
-		validation = validate_product_price("5.0")
+		validation = validate_float(input_float="5.0",
+			input_name_string"input",maximum=1000,
+			minimum=0)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(5.0,validation[1])
 		print("Test b_5_3: validate_float: '5.0'")
 
 	def test_b_05_004_validate_float_wrong(self):
-		validation = validate_product_price("i")
+		validation = validate_float(input_float="i",
+			input_name_string"input",maximum=1000,
+			minimum=0)
 
 		self.assertEqual(validation[0],False)
 		self.assertEqual("price can not be converted to float"
@@ -681,7 +689,9 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_5_4: validate_float: i")
 
 	def test_b_05_005_validate_float_wrong(self):
-		validation = validate_product_price(0)
+		validation = validate_float(input_float=0,
+			input_name_string"input",maximum=1000,
+			minimum=0)
 
 		self.assertEqual(validation[0],False)
 		self.assertEqual("price can not be less than"+
@@ -692,7 +702,9 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_5_5: validate_float: 0")
 
 	def test_b_05_006_validate_float_wrong(self):
-		validation = validate_product_price(-40)
+		validation = validate_float(input_float=-40,
+			input_name_string"input",maximum=1000,
+			minimum=0)
 
 		self.assertEqual(validation[0],False)
 		self.assertEqual("price can not be less than"+
