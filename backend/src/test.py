@@ -606,6 +606,18 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_2_4_10: validate_product_in_stock: '0'")
 
 
+	def test_b_02_004_010_product_in_stock_wrong(self):
+		validation = validate_product_in_stock("5")
+		self.assertEqual(validation[0],False)
+		self.assertEqual("in_stock can not be "+
+			"converted to boolean"
+			,validation[1][0]["description"])
+		self.assertEqual(400
+			,validation[1][1])
+		print("Test b_2_4_10: validate_product_in_stock_wrong:"+
+			" '5'")
+
+
 
 
 
