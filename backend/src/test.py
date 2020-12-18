@@ -644,7 +644,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(5.0,validation["result"])
-		print("Test b_5_1: validate_float: 5")
+		print("Test b_4_1: validate_integer: 5")
 
 	def test_b_4_002_validate_float(self):
 		validation = validate_float(input_float=5.0,
@@ -653,7 +653,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(5.0,validation["result"])
-		print("Test b_5_2: validate_float: 5.0")
+		print("Test b_4_2: validate_integer: 5.0")
 
 	def test_b_4_003_validate_float(self):
 		validation = validate_float(input_float="5.0",
@@ -662,7 +662,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(5.0,validation["result"])
-		print("Test b_5_3: validate_float: '5.0'")
+		print("Test b_4_3: validate_integer: '5.0'")
 
 	def test_b_4_004_validate_float_wrong(self):
 		validation = validate_float(input_float="i",
@@ -674,7 +674,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(400
 			,validation["result"]["status"])
-		print("Test b_5_4: validate_float: i")
+		print("Test b_4_4: validate_integer: i")
 
 	def test_b_4_005_validate_float(self):
 		validation = validate_float(input_float=0,
@@ -683,7 +683,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(0.0,validation["result"])
-		print("Test b_5_5: validate_float: 0")
+		print("Test b_4_5: validate_integer: 0")
 
 	def test_b_4_006_validate_float_wrong(self):
 		validation = validate_float(input_float=-40,
@@ -696,7 +696,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(422
 			,validation["result"]["status"])
-		print("Test b_5_6: validate_float: -40")
+		print("Test b_4_6: validate_integer: -40")
 
 	def test_b_4_007_validate_float_wrong(self):
 		validation = validate_float(input_float=4,
@@ -709,7 +709,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(422
 			,validation["result"]["status"])
-		print("Test b_5_7: validate_float: >max")
+		print("Test b_4_7: validate_integer: >max")
 
 	def test_b_4_008_validate_float_wrong(self):
 		validation = validate_float(input_float=None,
@@ -719,7 +719,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],3)
 		self.assertEqual(None
 			,validation["result"])
-		print("Test b_5_8: validate_float: None")
+		print("Test b_4_8: validate_integer: None")
 
 
 
