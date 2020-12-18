@@ -357,11 +357,13 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_01_001_validate_model_id(self):
 		all_products = Product.query
-		validation = validate_product_exists(1,all_products)
+		validation = validate_model_id(input_id=1,
+			model_query=all_products,model_name_string="product")
 
-		self.assertEqual(validation[0],True)
-		self.assertEqual(all_products.get(1),validation[1])
-		print("Test b_1_1: validate_product_exists:1")
+		self.assertEqual(validation["case"],1)
+		self.assertEqual(all_products.get(1),
+			validation["result"])
+		print("Test b_1_1: validate_model_id: Product 1")
 
 	def test_b_01_002_validate_model_id(self):
 		all_products = Product.query
