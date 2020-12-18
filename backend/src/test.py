@@ -718,7 +718,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("input can not be more than"+
 			" 3"
-			,validation["result"])
+			,validation["result"]["description"])
 		self.assertEqual(422
 			,validation["result"]["status"])
 		print("Test b_5_7: validate_float: >max")
