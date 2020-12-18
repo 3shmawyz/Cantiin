@@ -164,7 +164,7 @@ def validate_string(input_string,max_length,string_name):
 
 
 def validate_boolean(input_boolean,input_name_string):
-	#Validate that product input_i has a value, not None
+	#Validate that product input_boolean has a value, not None
 	if input_boolean == None: return {"case":3,"result":None}
 	
 	#Validate that input_boolean can be converted to boolean
