@@ -708,7 +708,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("input can not be less than"+
-			"  0"
+			" 0"
 			,validation["result"]["description"])
 		self.assertEqual(422
 			,validation["result"]["status"])
