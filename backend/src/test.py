@@ -654,21 +654,21 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(5.0,validation[1])
-		print("Test b_2_3_1: validate_product_price: 5")
+		print("Test b_4_1: validate_float: 5")
 
 	def test_b_04_002_validate_float(self):
 		validation = validate_product_price(5.0)
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(5.0,validation[1])
-		print("Test b_2_3_2: validate_product_price: 5.0")
+		print("Test b_4_2: validate_float: 5.0")
 
 	def test_b_04_003_validate_float(self):
 		validation = validate_product_price("5.0")
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(5.0,validation[1])
-		print("Test b_2_3_3: validate_product_price: '5.0'")
+		print("Test b_4_3: validate_float: '5.0'")
 
 	def test_b_04_004_validate_float_wrong(self):
 		validation = validate_product_price("i")
@@ -678,7 +678,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(400
 			,validation[1][1])
-		print("Test b_2_3_4: validate_product_price: i")
+		print("Test b_4_4: validate_float: i")
 
 	def test_b_04_005_validate_float_wrong(self):
 		validation = validate_product_price(0)
@@ -689,7 +689,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_2_3_5: validate_product_price: 0")
+		print("Test b_4_5: validate_float: 0")
 
 	def test_b_04_006_validate_float_wrong(self):
 		validation = validate_product_price(-40)
@@ -700,7 +700,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_2_3_6: validate_product_price: -40")
+		print("Test b_4_6: validate_float: -40")
 
 
 
