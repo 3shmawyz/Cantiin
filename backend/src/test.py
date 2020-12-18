@@ -374,7 +374,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(6),
 			validation["result"])
 
-		print("Test b_1_2: validate_model_id:6")
+		print("Test b_1_2: validate_model_id: Product 6")
 
 	def test_b_01_003_validate_model_id(self):
 		all_products = Product.query
@@ -385,7 +385,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(5),
 			validation["result"])
 
-		print("Test b_1_3: validate_model_id:5.5")
+		print("Test b_1_3: validate_model_id: Product 5.5")
 
 	def test_b_01_004_validate_model_id(self):
 		all_products = Product.query
@@ -396,7 +396,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(3),
 			validation["result"])
 
-		print("Test b_1_4: validate_model_id:'3'")
+		print("Test b_1_4: validate_model_id: Product '3'")
 
 	def test_b_01_005_validate_model_id(self):
 		all_products = Product.query
@@ -410,7 +410,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["error"]["description"])
 		self.assertEqual(400
 			,validation["error"]["status"])
-		print("Test b_1_5: validate_model_id:i")
+		print("Test b_1_5: validate_model_id: Product i")
 
 	def test_b_01_006_validate_model_id(self):
 		all_products = Product.query
@@ -425,7 +425,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation["error"]["status"])
 
-		print("Test b_1_6: validate_model_id:0")
+		print("Test b_1_6: validate_model_id: Product 0")
 
 	def test_b_01_007_validate_model_id(self):
 		all_products = Product.query
@@ -439,7 +439,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation["error"]["status"])
 
-		print("Test b_1_7: validate_model_id:-1")
+		print("Test b_1_7: validate_model_id: Product -1")
 
 	def test_b_01_008_validate_model_id(self):
 		all_products = Product.query
@@ -452,7 +452,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation["error"]["status"])
 
-		print("Test b_1_8: validate_model_id:20")
+		print("Test b_1_8: validate_model_id: Product 20")
 
 	def test_b_01_009_validate_model_id(self):
 		all_products = Product.query
@@ -463,7 +463,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(None,
 			validation["result"])
 
-		print("Test b_1_9: validate_model_id:None")
+		print("Test b_1_9: validate_model_id: Product None")
 
 
 
