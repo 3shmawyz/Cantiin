@@ -400,17 +400,16 @@ class TriviaTestCase(unittest.TestCase):
 
 	def test_b_01_005_validate_model_id(self):
 		all_products = Product.query
-		validation = validate_model_id(input_id=1,
+		validation = validate_model_id(input_id="i",
 			model_query=all_products,model_name_string="product")
 
-		self.assertEqual(validation["case"],1)
-		self.assertEqual(all_products.get(1),
-			validation["result"])
-		self.assertEqual(validation[0],False)
-		self.assertEqual("id can not be converted to integer"
-			,validation[1][0]["description"])
+		self.assertEqual(validation["case"],2)
+
+		self.assertEqual("product id can not be"+
+			" converted to integer"
+			,validation["error"]["description"])
 		self.assertEqual(400
-			,validation[1][1])
+			,validation["error"]["status"])
 		print("Test b_1_5: validate_model_id:i")
 
 	def test_b_01_006_validate_model_id(self):
