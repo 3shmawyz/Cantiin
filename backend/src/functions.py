@@ -190,18 +190,44 @@ def validate_integer(
 			" can not be converted to integer")]
 	
 	#Validate that input is not less than minimum
-	if result<minimum:
+	if result<int(minimum):
 		return [False,my_error(status=422, 
 			description=input_name_string+
 			" can not be less than "+ string(minimum))]
 
 	#Validate that input is not more than maximum
-	if result>maximum:
+	if result>int(maximum):
 		return [False,my_error(status=422, 
 			description=input_name_string+
 			" can not be more than "+ string(maximum))]
+	return [True,result]
 
 
+
+def validate_float(
+	input_float,input_name_string,maximum,minimum):
+	#Validate that input has a value, not None
+	if input_float == None: return [True,None]
+	
+	#Validate that input can be converted to float
+	try:
+		result = float(input_float)
+	except:
+		return [False,my_error(status=400, 
+			description=input_name_string+
+			" can not be converted to float")]
+	
+	#Validate that input is not less than minimum
+	if result<float(minimum):
+		return [False,my_error(status=422, 
+			description=input_name_string+
+			" can not be less than "+ string(minimum))]
+
+	#Validate that input is not more than maximum
+	if result>float(maximum):
+		return [False,my_error(status=422, 
+			description=input_name_string+
+			" can not be more than "+ string(maximum))]
 	return [True,result]
 
 
