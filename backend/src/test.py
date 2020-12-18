@@ -480,6 +480,35 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+
+
+
+
+
+	def test_b_02_001_validate_string(self):
+		to_validate = "to validate"
+		validation = validate_string(
+			input_string=to_validate,max_length=100,
+			string_name="data")
+		self.assertEqual(validation["case"],1)
+		self.assertEqual("to validate",
+			validation["result"])
+		print("Test b_2_1: validate_string: 'to validate'")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	def test_b_02_002_001_product_name(self):
 		validation = validate_product_name("Hi There")
 		self.assertEqual(validation[0],True)
