@@ -639,6 +639,15 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(1,validation[1])
 		print("Test b_2_5_3: validate_product_seller: 1.5")
 
+	def test_b_02_005_004_product_seller_wrong(self):
+		validation = validate_product_seller("i")
+		self.assertEqual(validation[0],False)
+		self.assertEqual("seller can not be converted to integer"
+			,validation[1][0]["description"])
+		self.assertEqual(400
+			,validation[1][1])
+		print("Test b_2_5_4: validate_product_seller: 1.5")
+
 
 
 
