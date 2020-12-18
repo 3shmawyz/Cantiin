@@ -670,7 +670,7 @@ class TriviaTestCase(unittest.TestCase):
 			minimum=0)
 
 		self.assertEqual(validation["case"],2)
-		self.assertEqual("input can not be converted to float"
+		self.assertEqual("input can not be converted to integer"
 			,validation["result"]["description"])
 		self.assertEqual(400
 			,validation["result"]["status"])
