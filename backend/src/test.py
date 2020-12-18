@@ -660,8 +660,11 @@ class TriviaTestCase(unittest.TestCase):
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation["case"],1)
-		self.assertEqual(5.0,validation["result"])
+		self.assertEqual(validation["case"],2)
+		self.assertEqual("input can not be converted to integer"
+			,validation["result"]["description"])
+		self.assertEqual(400
+			,validation["result"]["status"])
 		print("Test b_4_3: validate_integer: '5.0'")
 
 	def test_b_4_004_validate_integer_wrong(self):
