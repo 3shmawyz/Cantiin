@@ -573,8 +573,6 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(True,validation["result"])
 		print("Test b_3_5: validate_boolean: '1'")
 
-
-
 	def test_b_3_006_validate_boolean(self):
 		validation = validate_boolean(input_boolean=False,
 			input_name_string="variable")
@@ -611,7 +609,7 @@ class TriviaTestCase(unittest.TestCase):
 		print("Test b_3_10: validate_boolean: '0'")
 
 
-	def test_b_3_010_validate_boolean_wrong(self):
+	def test_b_3_011_validate_boolean_wrong(self):
 		validation = validate_boolean(input_boolean="5",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],2)
