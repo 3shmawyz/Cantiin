@@ -407,9 +407,9 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("product id can not be"+
 			" converted to integer"
-			,validation["error"]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(400
-			,validation["error"]["status"])
+			,validation["result"]["status"])
 		print("Test b_1_5: validate_model_id: Product i")
 
 
@@ -421,9 +421,9 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("product id can not be less than"+
 			" or equal to 0"
-			,validation["error"]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(422
-			,validation["error"]["status"])
+			,validation["result"]["status"])
 		print("Test b_1_6: validate_model_id: Product 0")
 
 
@@ -434,9 +434,9 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("product id can not be less than"+
 			" or equal to 0"
-			,validation["error"]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(422
-			,validation["error"]["status"])
+			,validation["result"]["status"])
 		print("Test b_1_7: validate_model_id: Product -1")
 
 
@@ -447,9 +447,9 @@ class TriviaTestCase(unittest.TestCase):
 			model_name_string="product")
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("there is no product with this id"
-			,validation["error"]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(422
-			,validation["error"]["status"])
+			,validation["result"]["status"])
 		print("Test b_1_8: validate_model_id: Product 20")
 
 
@@ -514,11 +514,22 @@ class TriviaTestCase(unittest.TestCase):
 			string_name="input")		
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("maximum input length is 3 letters"
-			,validation["error"]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(422
-			,validation["error"]["status"])
+			,validation["result"]["status"])
 		print("Test b_2_3: validate_string:"+
 			" More than max length")
+
+
+	def test_b_02_004_validate_string(self):
+		to_validate = None
+		validation = validate_string(
+		input_string=to_validate,max_length=3,
+			string_name="input")		
+		self.assertEqual(validation["case"],3)
+		self.assertEqual(validation["result"],None)
+		print("Test b_2_4: validate_string:"+
+			" None")
 
 
 
