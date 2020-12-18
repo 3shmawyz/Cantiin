@@ -371,7 +371,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(6),validation[1])
-		print("Test b_1_2: validate_product_exists:6")
+		print("Test b_1_2: validate_model_id:6")
 
 	def test_b_01_003_validate_model_id(self):
 		all_products = Product.query
@@ -379,7 +379,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(5),validation[1])
-		print("Test b_1_3: validate_product_exists:5.5")
+		print("Test b_1_3: validate_model_id:5.5")
 
 	def test_b_01_004_validate_model_id(self):
 		all_products = Product.query
@@ -387,7 +387,7 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation[0],True)
 		self.assertEqual(all_products.get(3),validation[1])
-		print("Test b_1_4: validate_product_exists:'3'")
+		print("Test b_1_4: validate_model_id:'3'")
 
 	def test_b_01_005_validate_model_id(self):
 		all_products = Product.query
@@ -398,7 +398,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(400
 			,validation[1][1])
-		print("Test b_1_5: validate_product_exists:i")
+		print("Test b_1_5: validate_model_id:i")
 
 	def test_b_01_006_validate_model_id(self):
 		all_products = Product.query
@@ -409,7 +409,7 @@ class TriviaTestCase(unittest.TestCase):
 			" or equal to 0",validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_1_6: validate_product_exists:0")
+		print("Test b_1_6: validate_model_id:0")
 
 	def test_b_01_007_validate_model_id(self):
 		all_products = Product.query
@@ -420,7 +420,7 @@ class TriviaTestCase(unittest.TestCase):
 			" or equal to 0",validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_1_7: validate_product_exists:-1")
+		print("Test b_1_7: validate_model_id:-1")
 
 	def test_b_01_008_validate_model_id(self):
 		all_products = Product.query
@@ -431,7 +431,7 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][0]["description"])
 		self.assertEqual(422
 			,validation[1][1])
-		print("Test b_1_8: validate_product_exists:20")
+		print("Test b_1_8: validate_model_id:20")
 
 
 
