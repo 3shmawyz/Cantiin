@@ -465,6 +465,17 @@ class TriviaTestCase(unittest.TestCase):
 
 		print("Test b_1_9: validate_model_id: Product None")
 
+	def test_b_01_010_validate_model_id(self):
+		all_orders = Order.query
+		validation = validate_model_id(input_id=3,
+			model_query=all_orders,model_name_string="order")
+
+		self.assertEqual(validation["case"],1)
+		self.assertEqual(all_orders.get(3),
+			validation["result"])
+
+		print("Test b_1_10: validate_model_id: Order 7")
+
 
 
 
