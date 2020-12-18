@@ -567,6 +567,12 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_4: validate_product_in_stock: 1")
 
+	def test_b_02_004_005_product_in_stock(self):
+		validation = validate_product_in_stock("1")
+		self.assertEqual(validation[0],True)
+		self.assertEqual(True,validation[1])
+		print("Test b_2_4_5: validate_product_in_stock: '1'")
+
 
 
 
