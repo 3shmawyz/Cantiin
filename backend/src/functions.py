@@ -45,15 +45,17 @@ from flask import Flask, request, jsonify, abort
 #with detailed info
 def my_error(status=404 ,description=""):
 	if description == "":
-		return ({"success": False, 
+		return jsonify({
+					"success": False, 
 					"error": status,
 					"message": "Not Found",
-					}, status)
-	return ({"success": False, 
+					}), status
+	return jsonify({
+			"success": False, 
 			"error": status,
 			"message": "Not Found",
 			"description":description
-			}, status)
+			}), status
 
 
 
