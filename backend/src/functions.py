@@ -77,6 +77,40 @@ def get_in_stock_products():
 
 
 
+def validate_model_id(input_id,model_query,model_name_string):
+	#Validate that model id has a value, not None
+	if input_id == None: return [False,None]
+	
+	#Validate that model id can be converted to int
+	try:
+		id = int(input_id)
+	except:
+		return [False,my_error(status=400, 
+			description=model_name_string+
+			" id can not be converted to integer")]
+	
+	#Validate that id is not negative or zero
+	if id<=0:
+		return [False,my_error(status=422, 
+			description=model_name_string+ 
+			" id can not be less than"+
+			" or equal to 0")]
+
+	try:
+		item = model_query.get(id)
+	except Exception as e:
+		return [False,my_error(status=422, 
+			description="there is no "+model_name_string+
+			+" with this id")]
+	if item == None :
+		return [False,my_error(status=422, 
+			description="there is no "+model_name_string
+			+" with this id")]
+
+	return [True,item]
+
+
+
 
 
 
