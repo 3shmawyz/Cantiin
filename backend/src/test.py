@@ -658,6 +658,16 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][1])
 		print("Test b_2_5_5: validate_product_seller_wrong: 0")
 
+	def test_b_02_005_006_product_seller_wrong(self):
+		validation = validate_product_seller(-1)
+		self.assertEqual(validation[0],False)
+		self.assertEqual("seller can not be less than"+
+			" or equal to 0"
+			,validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_5_6: validate_product_seller_wrong: -1")
+
 
 
 
