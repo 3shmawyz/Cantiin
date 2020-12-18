@@ -85,6 +85,18 @@ This function has 3 inputs:
 		Example: Product.query, Order.query
 3)	name_tring: the name of the table
 		Example: "product", "order"
+
+Output:
+-	{case,result}
+case:1
+	-	Successful: passed all the tests
+	-	result = correct output
+case:2
+	- 	Failed:	there was an error while validating
+	- 	result:	error message
+case:3
+	-	Failed input is none
+	- 	result:	None
 """
 def validate_model_id(input_id,model_query,model_name_string):
 	#Validate that model id has a value, not None
