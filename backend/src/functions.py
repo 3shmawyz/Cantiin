@@ -240,7 +240,7 @@ def validate_float(
 	if result<float(minimum):
 		return {"case":2,"result":{"status":422, 
 			"description":input_name_string+
-			" can not be less than "+ string(minimum)}} 
+			" can not be less than "+ str(minimum)}} 
 
 	#Validate that input is not more than maximum
 	if result>float(maximum):
