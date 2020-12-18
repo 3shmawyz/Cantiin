@@ -128,31 +128,31 @@ def validate_model_id(input_id,model_query,model_name_string):
 			description="there is no "+model_name_string
 			+" with this id")]
 
-	return [True,item]
+	return {"case":1,"result":item}
 
 
 
 
 
 def validate_string(input_string,max_length,string_name):
-	#Validate that product name has a value, not None
+	#Validate that input has a value, not None
 	if input_string == None: return {"case":3,"result":None}
 	
 	#Validate that input can be converted to string
 	try:
-		name = str(input_string)
+		result = str(input_string)
 	except:
 		return [False,my_error(status=400, 
 			description=string_name+
 			" can not be converted to string")]
 	
 	#Validate that input length is less that 100
-	if len(name)>max_length:
+	if len(result)>max_length:
 		return [False,my_error(status=422, 
 			description="maximum "+ string_name
 			+" length is "+str(max_length)+" letters")]
 
-	return [True,name]
+	return {"case":1,"result":result}
 
 
 
@@ -177,7 +177,7 @@ def validate_boolean(input_i,input_name_string):
 
 
 	if found_it == True:
-		return [True,result]
+		return {"case":1,"result":result}
 	return [False,my_error(status=400, 
 			description=input_name_string+" can not be "+
 			"converted to boolean")]
@@ -212,7 +212,7 @@ def validate_integer(
 		return [False,my_error(status=422, 
 			description=input_name_string+
 			" can not be more than "+ string(maximum))]
-	return [True,result]
+	return {"case":1,"result":result}
 
 
 
@@ -240,7 +240,7 @@ def validate_float(
 		return [False,my_error(status=422, 
 			description=input_name_string+
 			" can not be more than "+ string(maximum))]
-	return [True,result]
+	return {"case":1,"result":result}
 
 
 
