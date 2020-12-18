@@ -148,6 +148,36 @@ def validate_string(input_string,max_length,string_name):
 
 
 
+def validate_boolean(input_i,input_name_string):
+	#Validate that product input_i has a value, not None
+	if input_i == None: return [True,None]
+	
+	#Validate that input_i can be converted to boolean
+
+	found_it=False
+
+	if input_i==True or input_i=="true" or input_i=="True" or input_i==1 or input_i=="1":
+		found_it=True
+		result=True
+	if input_i==False or input_i=="false" or input_i=="False" or input_i==0 or input_i=="0":
+		found_it=True
+		result=False
+
+
+	if found_it == True:
+		return [True,result]
+	return [False,my_error(status=400, 
+			description=input_name_string+" can not be "+
+			"converted to boolean")]
+
+
+
+
+
+
+
+
+
 
 
 
