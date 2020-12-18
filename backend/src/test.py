@@ -723,6 +723,16 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_5_7: validate_float: >max")
 
+	def test_b_5_008_validate_float_wrong(self):
+		validation = validate_float(input_float=None,
+			input_name_string="input",maximum=3,
+			minimum=0)
+
+		self.assertEqual(validation["case"],3)
+		self.assertEqual(None
+			,validation["result"])
+		print("Test b_5_8: validate_float: None")
+
 
 
 
