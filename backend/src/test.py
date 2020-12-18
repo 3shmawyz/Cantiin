@@ -538,6 +538,72 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+	def test_b_02_003_001_product_price(self):
+		validation = validate_product_price(5)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(5.0,validation[1])
+		print("Test b_2_3_1: validate_product_price: 5")
+
+	def test_b_02_003_002_product_price(self):
+		validation = validate_product_price(5.0)
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(5.0,validation[1])
+		print("Test b_2_3_2: validate_product_price: 5.0")
+
+	def test_b_02_003_003_product_price(self):
+		validation = validate_product_price("5.0")
+
+		self.assertEqual(validation[0],True)
+		self.assertEqual(5.0,validation[1])
+		print("Test b_2_3_3: validate_product_price: '5.0'")
+
+	def test_b_02_003_004_product_price_wrong(self):
+		validation = validate_product_price("i")
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("price can not be converted to float"
+			,validation[1][0]["description"])
+		self.assertEqual(400
+			,validation[1][1])
+		print("Test b_2_3_4: validate_product_price: i")
+
+	def test_b_02_003_005_product_price_wrong(self):
+		validation = validate_product_price(0)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("price can not be less than"+
+			" or equal to 0"
+			,validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_3_5: validate_product_price: 0")
+
+	def test_b_02_003_006_product_price_wrong(self):
+		validation = validate_product_price(-40)
+
+		self.assertEqual(validation[0],False)
+		self.assertEqual("price can not be less than"+
+			" or equal to 0"
+			,validation[1][0]["description"])
+		self.assertEqual(422
+			,validation[1][1])
+		print("Test b_2_3_6: validate_product_price: -40")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	def test_b_3_001_validate_boolean(self):
 		validation = validate_boolean(input_boolean=True,
 			input_name_string="variable")
