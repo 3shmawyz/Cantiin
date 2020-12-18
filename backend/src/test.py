@@ -637,8 +637,8 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_b_4_001_validate_float(self):
-		validation = validate_float(input_float=5,
+	def test_b_4_001_validate_integer(self):
+		validation = validate_integer(input_float=5,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -646,8 +646,8 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_4_1: validate_integer: 5")
 
-	def test_b_4_002_validate_float(self):
-		validation = validate_float(input_float=5.0,
+	def test_b_4_002_validate_integer(self):
+		validation = validate_integer(input_float=5.0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -655,8 +655,8 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_4_2: validate_integer: 5.0")
 
-	def test_b_4_003_validate_float(self):
-		validation = validate_float(input_float="5.0",
+	def test_b_4_003_validate_integer(self):
+		validation = validate_integer(input_float="5.0",
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -664,8 +664,8 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_4_3: validate_integer: '5.0'")
 
-	def test_b_4_004_validate_float_wrong(self):
-		validation = validate_float(input_float="i",
+	def test_b_4_004_validate_integer_wrong(self):
+		validation = validate_integer(input_float="i",
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -676,8 +676,8 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_4: validate_integer: i")
 
-	def test_b_4_005_validate_float(self):
-		validation = validate_float(input_float=0,
+	def test_b_4_005_validate_integer(self):
+		validation = validate_integer(input_float=0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -685,8 +685,8 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(0.0,validation["result"])
 		print("Test b_4_5: validate_integer: 0")
 
-	def test_b_4_006_validate_float_wrong(self):
-		validation = validate_float(input_float=-40,
+	def test_b_4_006_validate_integer_wrong(self):
+		validation = validate_integer(input_float=-40,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
@@ -698,8 +698,8 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_6: validate_integer: -40")
 
-	def test_b_4_007_validate_float_wrong(self):
-		validation = validate_float(input_float=4,
+	def test_b_4_007_validate_integer_wrong(self):
+		validation = validate_integer(input_float=4,
 			input_name_string="input",maximum=3,
 			minimum=0)
 
@@ -711,8 +711,8 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_7: validate_integer: >max")
 
-	def test_b_4_008_validate_float_wrong(self):
-		validation = validate_float(input_float=None,
+	def test_b_4_008_validate_integer_wrong(self):
+		validation = validate_integer(input_float=None,
 			input_name_string="input",maximum=3,
 			minimum=0)
 
