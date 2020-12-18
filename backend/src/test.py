@@ -352,8 +352,6 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-
-
 	def test_b_02_001_001_product_exists(self):
 		all_products = Product.query
 		validation = validate_product_exists(1,all_products)
@@ -432,14 +430,6 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-
-
-
-
-
-
-
-
 	def test_b_02_002_001_product_name(self):
 		validation = validate_product_name("Hi There")
 
@@ -472,12 +462,6 @@ class TriviaTestCase(unittest.TestCase):
 			,validation[1][1])
 		print("Test b_2_2_3: validate_product_Name:"+
 			"very long name")
-
-
-
-
-
-
 
 
 
@@ -533,13 +517,6 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation[1][1])
 		print("Test b_2_3_6: validate_product_price: -40")
-
-
-
-
-
-
-
 
 
 
@@ -619,8 +596,6 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-
-
 	def test_b_02_005_001_product_seller(self):
 		validation = validate_product_seller(1)
 		self.assertEqual(validation[0],True)
@@ -677,6 +652,8 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation[1][1])
 		print("Test b_2_5_7: validate_product_seller_wrong: '-1'")
+
+
 
 
 
