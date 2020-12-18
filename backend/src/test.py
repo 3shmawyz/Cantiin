@@ -688,17 +688,13 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_5_4: validate_float: i")
 
-	def test_b_5_005_validate_float_wrong(self):
+	def test_b_5_005_validate_float(self):
 		validation = validate_float(input_float=0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
 
-		self.assertEqual(validation["case"],2)
-		self.assertEqual("input can not be less than"+
-			" or equal to 0"
-			,validation["result"]["description"])
-		self.assertEqual(422
-			,validation["result"]["status"])
+		self.assertEqual(validation["case"],1)
+		self.assertEqual(0.0,validation["result"])
 		print("Test b_5_5: validate_float: 0")
 
 	def test_b_5_006_validate_float_wrong(self):
