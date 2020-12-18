@@ -212,13 +212,13 @@ def validate_integer(
 	if result<int(minimum):
 		return {"case":2,"result":{"status":422, 
 			"description":input_name_string+
-			" can not be less than "+ string(minimum)}} 
+			" can not be less than "+ str(minimum)}} 
 
 	#Validate that input is not more than maximum
 	if result>int(maximum):
 		return {"case":2,"result":{"status":422, 
 			"description":input_name_string+
-			" can not be more than "+ string(maximum)}} 
+			" can not be more than "+ str(maximum)}} 
 	return {"case":1,"result":result}
 
 
@@ -246,7 +246,7 @@ def validate_float(
 	if result>float(maximum):
 		return {"case":2,"result":{"status":422, 
 			"description":input_name_string+
-			" can not be more than "+ string(maximum)}} 
+			" can not be more than "+ str(maximum)}} 
 	return {"case":1,"result":result}
 
 
