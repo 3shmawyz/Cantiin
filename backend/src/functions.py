@@ -171,10 +171,14 @@ def validate_boolean(input_boolean,input_name_string):
 
 	found_it=False
 
-	if input_boolean==True or input_boolean=="true" or input_boolean=="True" or input_boolean==1 or input_boolean=="1":
+	if (input_boolean==True or input_boolean=="true" or
+	 input_boolean=="True" or input_boolean==1 or
+	  input_boolean=="1"):
 		found_it=True
 		result=True
-	if input_boolean==False or input_boolean=="false" or input_boolean=="False" or input_boolean==0 or input_boolean=="0":
+	if (input_boolean==False or input_boolean=="false" or
+	 input_boolean=="False" or input_boolean==0 or
+	  input_boolean=="0"):
 		found_it=True
 		result=False
 
