@@ -539,31 +539,31 @@ class TriviaTestCase(unittest.TestCase):
 
 
 	def test_b_02_004_001_product_validate_boolean(self):
-		validation = validate_product_in_stock(True)
+		validation = validate_boolean(True)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_1: validate_product_in_stock: True")
 
 	def test_b_02_004_002_product_validate_boolean(self):
-		validation = validate_product_in_stock("True")
+		validation = validate_boolean("True")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_2: validate_product_in_stock: 'True'")
 
 	def test_b_02_004_003_product_validate_boolean(self):
-		validation = validate_product_in_stock("true")
+		validation = validate_boolean("true")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_3: validate_product_in_stock: 'true'")
 
 	def test_b_02_004_004_product_validate_boolean(self):
-		validation = validate_product_in_stock(1)
+		validation = validate_boolean(1)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_4: validate_product_in_stock: 1")
 
 	def test_b_02_004_005_product_validate_boolean(self):
-		validation = validate_product_in_stock("1")
+		validation = validate_boolean("1")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(True,validation[1])
 		print("Test b_2_4_5: validate_product_in_stock: '1'")
@@ -571,38 +571,38 @@ class TriviaTestCase(unittest.TestCase):
 
 
 	def test_b_02_004_006_product_validate_boolean(self):
-		validation = validate_product_in_stock(False)
+		validation = validate_boolean(False)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_6: validate_product_in_stock: False")
 
 	def test_b_02_004_007_product_validate_boolean(self):
-		validation = validate_product_in_stock("False")
+		validation = validate_boolean("False")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_7: validate_product_in_stock: 'False'")
 
 	def test_b_02_004_008_product_validate_boolean(self):
-		validation = validate_product_in_stock("false")
+		validation = validate_boolean("false")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_8: validate_product_in_stock: 'false'")
 
 	def test_b_02_004_009_product_validate_boolean(self):
-		validation = validate_product_in_stock(0)
+		validation = validate_boolean(0)
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_9: validate_product_in_stock: 0")
 
 	def test_b_02_004_010_product_validate_boolean(self):
-		validation = validate_product_in_stock("0")
+		validation = validate_boolean("0")
 		self.assertEqual(validation[0],True)
 		self.assertEqual(False,validation[1])
 		print("Test b_2_4_10: validate_product_in_stock: '0'")
 
 
 	def test_b_02_004_010_product_validate_boolean_wrong(self):
-		validation = validate_product_in_stock("5")
+		validation = validate_boolean("5")
 		self.assertEqual(validation[0],False)
 		self.assertEqual("in_stock can not be "+
 			"converted to boolean"
