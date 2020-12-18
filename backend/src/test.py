@@ -655,7 +655,7 @@ class TriviaTestCase(unittest.TestCase):
 			minimum=0)
 
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(5.0,validation[1])
+		self.assertEqual(5.0,validation["result"])
 		print("Test b_5_1: validate_float: 5")
 
 	def test_b_05_002_validate_float(self):
@@ -664,7 +664,7 @@ class TriviaTestCase(unittest.TestCase):
 			minimum=0)
 
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(5.0,validation[1])
+		self.assertEqual(5.0,validation["result"])
 		print("Test b_5_2: validate_float: 5.0")
 
 	def test_b_05_003_validate_float(self):
@@ -673,7 +673,7 @@ class TriviaTestCase(unittest.TestCase):
 			minimum=0)
 
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(5.0,validation[1])
+		self.assertEqual(5.0,validation["result"])
 		print("Test b_5_3: validate_float: '5.0'")
 
 	def test_b_05_004_validate_float_wrong(self):
@@ -683,9 +683,9 @@ class TriviaTestCase(unittest.TestCase):
 
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("price can not be converted to float"
-			,validation[1][0]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(400
-			,validation[1][1])
+			,validation["result"]["status"])
 		print("Test b_5_4: validate_float: i")
 
 	def test_b_05_005_validate_float_wrong(self):
@@ -696,9 +696,9 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("price can not be less than"+
 			" or equal to 0"
-			,validation[1][0]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(422
-			,validation[1][1])
+			,validation["result"]["status"])
 		print("Test b_5_5: validate_float: 0")
 
 	def test_b_05_006_validate_float_wrong(self):
@@ -709,9 +709,9 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("price can not be less than"+
 			" or equal to 0"
-			,validation[1][0]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(422
-			,validation[1][1])
+			,validation["result"]["status"])
 		print("Test b_5_6: validate_float: -40")
 
 
