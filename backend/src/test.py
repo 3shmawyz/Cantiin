@@ -542,35 +542,35 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate_boolean(input_boolean=True,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(True,validation[1])
+		self.assertEqual(True,validation["result"])
 		print("Test b_2_4_1: validate_boolean: True")
 
 	def test_b_3_002_validate_boolean(self):
 		validation = validate_boolean(input_boolean="True",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(True,validation[1])
+		self.assertEqual(True,validation["result"])
 		print("Test b_2_4_2: validate_boolean: 'True'")
 
 	def test_b_3_003_validate_boolean(self):
 		validation = validate_boolean(input_boolean="true",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(True,validation[1])
+		self.assertEqual(True,validation["result"])
 		print("Test b_2_4_3: validate_boolean: 'true'")
 
 	def test_b_3_004_validate_boolean(self):
 		validation = validate_boolean(input_boolean=1,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(True,validation[1])
+		self.assertEqual(True,validation["result"])
 		print("Test b_2_4_4: validate_boolean: 1")
 
 	def test_b_3_005_validate_boolean(self):
 		validation = validate_boolean(input_boolean="1",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(True,validation[1])
+		self.assertEqual(True,validation["result"])
 		print("Test b_2_4_5: validate_boolean: '1'")
 
 
@@ -579,35 +579,35 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate_boolean(input_boolean=False,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(False,validation[1])
+		self.assertEqual(False,validation["result"])
 		print("Test b_2_4_6: validate_boolean: False")
 
 	def test_b_3_007_validate_boolean(self):
 		validation = validate_boolean(input_boolean="False",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(False,validation[1])
+		self.assertEqual(False,validation["result"])
 		print("Test b_2_4_7: validate_boolean: 'False'")
 
 	def test_b_3_008_validate_boolean(self):
 		validation = validate_boolean(input_boolean="false",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(False,validation[1])
+		self.assertEqual(False,validation["result"])
 		print("Test b_2_4_8: validate_boolean: 'false'")
 
 	def test_b_3_009_validate_boolean(self):
 		validation = validate_boolean(input_boolean=0,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(False,validation[1])
+		self.assertEqual(False,validation["result"])
 		print("Test b_2_4_9: validate_boolean: 0")
 
 	def test_b_3_010_validate_boolean(self):
 		validation = validate_boolean(input_boolean="0",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
-		self.assertEqual(False,validation[1])
+		self.assertEqual(False,validation["result"])
 		print("Test b_2_4_10: validate_boolean: '0'")
 
 
