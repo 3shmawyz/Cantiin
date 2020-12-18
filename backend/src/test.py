@@ -617,9 +617,9 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],2)
 		self.assertEqual("in_stock can not be "+
 			"converted to boolean"
-			,validation[1][0]["description"])
+			,validation["result"]["description"])
 		self.assertEqual(400
-			,validation[1][1])
+			,validation["result"]["status"])
 		print("Test b_2_4_10: validate_boolean_wrong:"+
 			" '5'")
 
