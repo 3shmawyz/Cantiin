@@ -176,6 +176,34 @@ def validate_boolean(input_i,input_name_string):
 
 
 
+def validate_integer(
+	input_integer,input_name_string,maximum,minimum):
+	#Validate that input has a value, not None
+	if input_integer == None: return [True,None]
+	
+	#Validate that input can be converted to int
+	try:
+		result = int(input_integer)
+	except:
+		return [False,my_error(status=400, 
+			description=input_name_string+
+			" can not be converted to integer")]
+	
+	#Validate that input is not less than minimum
+	if result<minimum:
+		return [False,my_error(status=422, 
+			description=input_name_string+
+			" can not be less than "+ string(minimum))]
+
+	#Validate that input is not more than maximum
+	if result>maximum:
+		return [False,my_error(status=422, 
+			description=input_name_string+
+			" can not be more than "+ string(maximum))]
+
+
+	return [True,result]
+
 
 
 
