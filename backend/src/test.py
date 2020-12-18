@@ -694,7 +694,7 @@ class TriviaTestCase(unittest.TestCase):
 			minimum=0)
 
 		self.assertEqual(validation["case"],2)
-		self.assertEqual("price can not be less than"+
+		self.assertEqual("input can not be less than"+
 			" or equal to 0"
 			,validation["result"]["description"])
 		self.assertEqual(422
@@ -707,8 +707,8 @@ class TriviaTestCase(unittest.TestCase):
 			minimum=0)
 
 		self.assertEqual(validation["case"],2)
-		self.assertEqual("price can not be less than"+
-			" or equal to 0"
+		self.assertEqual("input can not be less than"+
+			"  0"
 			,validation["result"]["description"])
 		self.assertEqual(422
 			,validation["result"]["status"])
