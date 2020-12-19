@@ -267,7 +267,7 @@ type:
 	- "f" : Float
 	- "b" : Boolean
 """
-def validate_must(input,type,
+def validate__must(input,type,
 	input_name_string,maximum=0,minimum=0):
 	validation=0;
 	if type == "s":
