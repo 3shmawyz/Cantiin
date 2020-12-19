@@ -93,9 +93,32 @@ Tests: test_01_clear_tables
 	def get_products():
 	#This endpoint will return all the products
 		db.session.rollback()
-		in_stock = request.args.get('in_stock')
-		print(in_stock, flush=True)
-		if in_stock != "false":
+		in_stock = request.args.get('in_stock',None)
+		#print(in_stock, flush=True)
+		in_stock_validation = validate_boolean(in_stock,"in_stock")
+
+		if in_stock_validation["case"] == 1:
+			# Success: True or false
+			if in_stock_validation["result"] == True:
+				in_stock=True
+			else:
+				in_stock=False
+
+
+		elif in_stock_validation["case"] == 2:
+			# Failure: Can't convert to boolean
+			return my_error(status=in_stock_validation["result"]["status"],
+				description=in_stock_validation["result"]["description"])
+
+		else:
+			# no Input is given, result = None
+			in_stock= True
+
+		#Now: There are 2 possibilties
+			#1) in_stock = True
+			#2) in_stock=False
+
+		if in_stock == True:
 			products = get_in_stock_products()
 		else:
 			products = Product.query.order_by(Product.id).all()
