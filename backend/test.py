@@ -872,6 +872,13 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_6_4: validate_must integer: 'i'")
 
+	def test_b_6_005_validate_must(self):
+		validation = validate__must(input=True,type="b",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+		self.assertEqual(validation["case"],True)
+		self.assertEqual(True,validation["result"])
+		print("Test b_6_5: validate_must boolean: True")
+
 
 
 
