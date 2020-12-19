@@ -843,7 +843,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-
+"""
 
 	def test_b_02_002_001_product_name(self):
 		validation = validate_product_name("Hi There")
@@ -1175,7 +1175,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-
+"""
 
 
 
