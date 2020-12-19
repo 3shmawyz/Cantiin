@@ -26,7 +26,7 @@ db_drop_and_create_all()
 '''
 Product
 a persistent product entity, extends the base SQLAlchemy Model
-id,name,price,in_stock,seller
+id,name,price,in_stock,seller_id
 '''
 class Product(db.Model):
     # Autoincrementing, unique primary key
@@ -48,19 +48,19 @@ class Product(db.Model):
     # it represents whether this product is for sale or not
     # True = For sale, can be displayed to customers
     # False = now for sale, can not be displayed to customers
-    seller = Column(Integer(), unique=False, nullable=False)
-    # seller
+    seller_id = Column(Integer(), unique=False, nullable=False)
+    # seller_id
     # This is the id of the seller user
     # The user who sells this product
     # it is an integer
     # Example: 1, 2 or 3
 
     def __init__(self,  
-        price, name, seller,in_stock=True):
+        price, name, seller_id,in_stock=True):
         self.name = name
         self.price = price
         self.in_stock = in_stock
-        self.seller = seller
+        self.seller_id = seller_id
 
     '''
     insert()
@@ -97,7 +97,7 @@ class Product(db.Model):
             'name': self.name,
             'price': self.price,
             'in_stock': self.in_stock,
-            'seller': self.seller
+            'seller_id': self.seller_id
         })
     def simple(self):
         return {
@@ -105,7 +105,7 @@ class Product(db.Model):
             'name': self.name,
             'price': self.price,
             'in_stock': self.in_stock,
-            'seller': self.seller
+            'seller_id': self.seller_id
         }
 
 
@@ -113,31 +113,31 @@ class Product(db.Model):
 
 """
 Order:
-id, user, product, amount
+id, user_id, product, amount
 """
 class Order(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
-    user = Column(Integer(), unique=False, nullable=False)
-    # user
+    user_id = Column(Integer(), unique=False, nullable=False)
+    # user_id
     # This is the id of the user who ordered the products
     # it is an integer
     # Example: 1, 2 or 3
     product  = Column(Integer,db.ForeignKey("product.id"))
-    # product is an integer 
+    # product_id is an integer 
     # it refers to the product.id in the products table
     # Example: 1, 2 , 3
     amount =  Column(Integer(), unique=False, nullable=False)
     # amount is an integer
     # Example: 5, 6, 50
     total_cost = 0.0
-    def __init__(self, user, product, amount):
-        self.user = user
-        self.product = product
+    def __init__(self, user_id, product_id, amount):
+        self.user_id = user_id
+        self.product_id = product_id
         self.amount = amount
         self.total_cost= float(amount) * float(Product.query.get(
-            product).price)
+            product_id).price)
 
     '''
     insert()
@@ -179,22 +179,23 @@ class Order(db.Model):
 
     def __repr__(self):
         return json.dumps(
-        {#id, user, product, amount
+        {#id, user_id, product_id, amount
 
             'id': self.id,
-            'user': self.name,
-            'product': self.product,
+            'user_id': self.name,##########################
+            'product_id': self.product_id,
             'amount': self.amount,
-            "total_cost":float(self.product)*float(self.amount)
+            "total_cost":float(self.product_id)*float(self.amount)
         })
     def simple(self):
-        return {#id, user, product, amount
+        return {#id, user_id, product_id, amount
             'id': self.id,
-            'user': self.user,
-            'product': self.product,
+            'user_id': self.user_id,
+            'product_id': self.product_id,
             'amount': self.amount,
             "total_cost":
-            float(Product.query.get(self.product).price)*float(self.amount)
+            float(Product.query.get(self.product_id).price
+                )*float(self.amount)
         }
  
 
