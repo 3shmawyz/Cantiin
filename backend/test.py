@@ -446,8 +446,10 @@ class TriviaTestCase(unittest.TestCase):
 			model_query=all_products,
 			model_name_string="product")
 		self.assertEqual(validation["case"],2)
-		self.assertEqual([]
-			,validation["result"])
+		self.assertEqual("there is no product with this id"
+			,validation["result"]["description"])
+		self.assertEqual(422
+			,validation["result"]["status"])
 		print("Test b_1_8: validate_model_id: Product 20")
 
 

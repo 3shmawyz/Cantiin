@@ -132,7 +132,9 @@ def validate_model_id(input_id,model_query,model_name_string):
 			"description":model_name_string+
 			" id can not be converted to integer"}} 
 	if len(item) == 0 :
-		return {"case":2,"result":[]} 
+		return {"case":2,"result":{"status":422, 
+			"description":"there is no " +model_name_string+
+			" with this id"}} 
 
 	return {"case":1,"result":item[0]}
 
