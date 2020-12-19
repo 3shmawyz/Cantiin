@@ -36,11 +36,12 @@ def create_app(test_config=None,testing=False):
 	@app.after_request
 	def after_request(response):
 		response.headers.add("Access-Control-allow-Origin","*")
-
 		response.headers.add("Access-Control-allow-Headers",
 			"Content-Type,Autorization,true")
 		response.headers.add("Access-Control-allow-Methods",
 			"GET,PUT,POST,DELETE,OPTIONS")
+
+		db.session.rollback()
 
 		return response
 		
