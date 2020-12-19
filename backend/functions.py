@@ -533,30 +533,30 @@ def populate_tables():
     products = list()
     
     products.append(Product(
-        name="Labtop", price=300, seller="1"))
+        name="Labtop", price=300, seller_id="1"))
     products.append(Product(
-        name="Mobile", price=100, seller="2", in_stock=False))
+        name="Mobile", price=100, seller_id="2", in_stock=False))
     products.append(Product(
-        name="Candy", price=.5, seller="3", in_stock=True))
+        name="Candy", price=.5, seller_id="3", in_stock=True))
     products.append(Product(
-        name="Table", price=150, seller="1", in_stock=False))
+        name="Table", price=150, seller_id="1", in_stock=False))
     products.append(Product(
-        name="Keyboard", price=5, seller="2", in_stock=True))
+        name="Keyboard", price=5, seller_id="2", in_stock=True))
     products.append(Product(
-        name="Mouse", price=4, seller="1", in_stock=True))
+        name="Mouse", price=4, seller_id="1", in_stock=True))
 
     db.session.add_all(products)
 
     orders = list() 
     #id, user, product, amount
-    orders.append(Order(user="1", product=1, amount=1))
-    orders.append(Order(user="2", product=1, amount=4))
-    orders.append(Order(user="3", product=2, amount=3))
-    orders.append(Order(user="1", product=1, amount=2))
-    orders.append(Order(user="2", product=2, amount=1))
-    orders.append(Order(user="2", product=3, amount=5))
-    orders.append(Order(user="1", product=4, amount=20))
-    orders.append(Order(user="3", product=5, amount=4))
+    orders.append(Order(user_id="1", product_id=1, amount=1))
+    orders.append(Order(user_id="2", product_id=1, amount=4))
+    orders.append(Order(user_id="3", product_id=2, amount=3))
+    orders.append(Order(user_id="1", product_id=1, amount=2))
+    orders.append(Order(user_id="2", product_id=2, amount=1))
+    orders.append(Order(user_id="2", product_id=3, amount=5))
+    orders.append(Order(user_id="1", product_id=4, amount=20))
+    orders.append(Order(user_id="3", product_id=5, amount=4))
 
     db.session.add_all(orders)
     db.session.commit()
