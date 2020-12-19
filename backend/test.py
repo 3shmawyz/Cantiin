@@ -228,7 +228,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_3_001_odrer_insert(self):
-		order1 = Order(user=20, product=5, amount=5)
+		order1 = Order(user_id=20, product_id=5, amount=5)
 		order1.insert()
 		orders = Order.query.all()
 
@@ -238,7 +238,7 @@ class CantiinTestCase(unittest.TestCase):
 	def test_a_3_002_odrer_insert_wrong_1(self):
 		
 		before = len(Order.query.all())
-		order1 = Order(user=20, product=5, amount=0)
+		order1 = Order(user_id=20, product_id=5, amount=0)
 		order1.insert()
 		after = len(Order.query.all())
 		self.assertEqual(after,before)
@@ -294,8 +294,8 @@ class CantiinTestCase(unittest.TestCase):
 		order = Order.query.get(6)
 
 		self.assertEqual(order.id,6)
-		self.assertEqual(order.user,2)
-		self.assertEqual(order.product,3)
+		self.assertEqual(order.user_id,2)
+		self.assertEqual(order.product_id,3)
 		self.assertEqual(order.amount,5)
 		self.assertEqual(order.total_cost,0)
 		print("Test a_3_7: Order values")
@@ -331,11 +331,11 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(order["id"],6)
 		self.assertEqual(type(order["id"]),int)
 
-		self.assertEqual(order["user"],2)
-		self.assertEqual(type(order["user"]),int)
+		self.assertEqual(order["user_id"],2)
+		self.assertEqual(type(order["user_id"]),int)
 
-		self.assertEqual(order["product"],3)
-		self.assertEqual(type(order["product"]),int)
+		self.assertEqual(order["product_id"],3)
+		self.assertEqual(type(order["product_id"]),int)
 
 		self.assertEqual(order["amount"],5)
 		self.assertEqual(type(order["amount"]),int)

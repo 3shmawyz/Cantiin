@@ -113,7 +113,7 @@ class Product(db.Model):
 
 """
 Order:
-id, user_id, product, amount
+id, user_id, product_id, amount
 """
 class Order(db.Model):
     # Autoincrementing, unique primary key
@@ -124,7 +124,7 @@ class Order(db.Model):
     # This is the id of the user who ordered the products
     # it is an integer
     # Example: 1, 2 or 3
-    product  = Column(Integer,db.ForeignKey("product.id"))
+    product_id  = Column(Integer,db.ForeignKey("product.id"))
     # product_id is an integer 
     # it refers to the product.id in the products table
     # Example: 1, 2 , 3
