@@ -3,8 +3,8 @@
 *.sqlite
 
 
-#backend/env
-#backend/env/*
+backend/env
+backend/env/*
 .vscode/*
 backend/__pycache__
 backend/__pycache__/*
