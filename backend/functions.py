@@ -268,7 +268,7 @@ type:
 	- "b" : Boolean
 """
 def validate_must(input,type,
-	input_name_string,maximum=0,minimum=0)
+	input_name_string,maximum=0,minimum=0):
 	validation;
 	if type == "s":
 		validation= validate_string(
