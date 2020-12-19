@@ -289,6 +289,7 @@
 											"    responseJson[\"products\"].forEach(function (product, index) {\r",
 											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
 											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
+											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
 											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
 											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
@@ -336,21 +337,16 @@
 										"id": "16471ff8-efca-4981-84ec-1f2411f472b1",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
-											"  pm.response.to.have.status(200);\r",
+											"  pm.response.to.have.status(400);\r",
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"Success is True\", () => {\r",
-											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
 											"});\r",
-											"pm.test(\"output as expected\", () => {\r",
-											"    responseJson[\"products\"].forEach(function (product, index) {\r",
-											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
-											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
-											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
-											"    });\r",
-											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"pm.test(\"description\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\r",
+											"    \"in_stock can not be converted to boolean\"\r",
+											"  );\r",
 											"});"
 										],
 										"type": "text/javascript"
@@ -361,7 +357,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products?in_stock=true",
+									"raw": "http://127.0.0.1:5000/products?in_stock=t",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -376,7 +372,7 @@
 									"query": [
 										{
 											"key": "in_stock",
-											"value": "true"
+											"value": "t"
 										}
 									]
 								},
@@ -403,6 +399,7 @@
 											"    responseJson[\"products\"].forEach(function (product, index) {\r",
 											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
 											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
+											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
 											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
 											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
@@ -418,7 +415,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products?in_stock=true",
+									"raw": "http://127.0.0.1:5000/products?in_st=false",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -432,8 +429,8 @@
 									],
 									"query": [
 										{
-											"key": "in_stock",
-											"value": "true"
+											"key": "in_st",
+											"value": "false"
 										}
 									]
 								},
