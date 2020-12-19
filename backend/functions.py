@@ -308,6 +308,19 @@ def validate__must(input,type,
 
 
 
+def validate_must(input,type,
+	input_name_string,maximum=0,minimum=0):
+	
+	validation=validate_must(input=input,type=type,
+	input_name_string=input_name_string,
+	maximum=maximum,minimum=minimum)
+
+	if validation["case"]:
+		return validation
+	return  {"case":False,
+		"result": my_error(
+		status=validation["result"]["status"]
+			,description=validation["result"]["description"])}
 
 """
 Product model : inputs validations
