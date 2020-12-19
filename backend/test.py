@@ -837,6 +837,7 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
+
 	def test_b_6_001_validate_must(self):
 		validation = validate_must(input=5,type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
@@ -844,6 +845,15 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_6_1: validate_must float: 5")
+
+	def test_b_6_002_validate_must(self):
+		validation = validate_must(input="i",type="f",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+
+		self.assertEqual(validation["case"],False)
+		print("Test b_6_2: validate_must float: 'i'")
+
+
 
 
 
