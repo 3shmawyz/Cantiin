@@ -353,6 +353,11 @@ class CantiinTestCase(unittest.TestCase):
 
 		print("Test a_3_9: Product simple")
 
+	def test_a_3_010_order_relationship_product(self):
+		order = Order.query.get(6)
+		product=order.product
+		self.assertEqual(product,Product.query.get(3))
+		print("Test a_2_10:order relationship_product")
 
 
 
