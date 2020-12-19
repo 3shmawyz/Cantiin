@@ -94,7 +94,7 @@ Tests: test_01_clear_tables
 		in_stock = request.args.get('in_stock',None)
 		in_stock_validation = validate_boolean(in_stock,"in_stock")
 
-		#No we will validate the in_stock input
+		#Now we will validate the in_stock input
 		if in_stock_validation["case"] == 1:
 			# Success: True or false
 			if in_stock_validation["result"] == True:
@@ -141,6 +141,30 @@ Tests: test_01_clear_tables
 
 
 		all_products=Product.query
+
+
+
+		#Now we will validate the in_stock input
+		if in_stock_validation["case"] == 1:
+			# Success: True or false
+			if in_stock_validation["result"] == True:
+				in_stock=True
+			else:
+				in_stock=False
+		elif in_stock_validation["case"] == 2:
+			# Failure: Can't convert to boolean
+			return my_error(status=in_stock_validation["result"]["status"],
+				description=in_stock_validation["result"]["description"])
+		else:
+			# no Input is given, result = None
+			in_stock= True
+
+
+
+
+
+		
+
 
 		name_validation = validate_product_name(name)
 		if name_validation[0]==True:
