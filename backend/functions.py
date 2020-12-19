@@ -91,31 +91,36 @@ This function has 3 inputs:
 Output:
 -	{case,result}
 case:1
-	-	Successful: passed all the tests
+	-	Successful: id exists
 	-	result = correct output
 case:2
+	-	UnSuccessful: id does not exist
+	-	result = [] (empty list)
+
+case:3
 	- 	Failed:	there was an error while validating
 	- 	result:	error message
-case:3
+case:4
 	-	Failed input is none
 	- 	result:	None
+
 """
 def validate_model_id(input_id,model_query,model_name_string):
 	#Validate that model id has a value, not None
-	if input_id == None: return {"case":3,"result":None}
+	if input_id == None: return {"case":4,"result":None}
 	
 	#Validate that model id can be converted to int
 	try:
 		id = int(input_id)
 	except:
-		return {"case":2,"result":{"status":400, 
+		return {"case":3,"result":{"status":400, 
 			"description":model_name_string+
 			" id can not be converted to integer"}} 
 		#[False,my_error(status=400, description=model_name_string+" id can not be converted to integer")]
 	
 	#Validate that id is not negative or zero
 	if id<=0:
-		return {"case":2,"result":{"status":422, 
+		return {"case":3,"result":{"status":422, 
 			"description":model_name_string+ 
 			" id can not be less than"+
 			" or equal to 0"}} 
@@ -123,13 +128,9 @@ def validate_model_id(input_id,model_query,model_name_string):
 	try:
 		item = model_query.get(id)
 	except Exception as e:
-		return {"case":2,"result":{"status":422, 
-			"description":"there is no "+model_name_string+
-			+" with this id"}} 
+		return {"case":2,"result":[]} 
 	if item == None :
-		return {"case":2,"result":{"status":422, 
-			"description":"there is no "+model_name_string
-			+" with this id"}} 
+		return {"case":2,"result":[]} 
 
 	return {"case":1,"result":item}
 
