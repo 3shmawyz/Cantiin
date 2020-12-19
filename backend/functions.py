@@ -269,7 +269,7 @@ type:
 """
 def validate_must(input,type,
 	input_name_string,maximum=0,minimum=0):
-	validation;
+	validation=0;
 	if type == "s":
 		validation= validate_string(
 			input_string=input,
