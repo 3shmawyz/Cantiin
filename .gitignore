@@ -6,9 +6,9 @@
 backend/env
 backend/env/*
 .vscode/*
-backend/src/__pycache__
-backend/src/__pycache__/*
-backend/src/databases/*
+backend/__pycache__
+backend/__pycache__/*
+backend/databases/*
 
 # Frontend #
 frontend/node_modules
