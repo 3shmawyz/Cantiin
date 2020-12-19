@@ -326,6 +326,63 @@
 								"description": "The default is in_stock=True\r\nso without any inputs in_stock = true\r\nnow when telling that i_stock=true it will return the default response"
 							},
 							"response": []
+						},
+						{
+							"name": "get_products:in_stock=t :Error:400",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "16471ff8-efca-4981-84ec-1f2411f472b1",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"Success is True\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"    responseJson[\"products\"].forEach(function (product, index) {\r",
+											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
+											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
+											"    });\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/products?in_stock=true",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "in_stock",
+											"value": "true"
+										}
+									]
+								},
+								"description": "The default is in_stock=True\r\nso without any inputs in_stock = true\r\nnow when telling that i_stock=true it will return the default response"
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
