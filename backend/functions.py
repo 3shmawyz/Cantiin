@@ -301,7 +301,7 @@ def validate__must(input,type,
 	else:
 		# no Input is given, result = None
 		return  {"case":False,
-		"result": my_error{"status":400,"description":
+		"result": {"status":400,"description":
 			input_name_string+" is missing"}}
 
 
