@@ -291,16 +291,16 @@ def validate_must(input,type,
 			"'s', 'i', 'f' or 'b'")
 	if validation["case"] == 1:
 		# Success: correct data type
-		return {"status":True,
+		return {"case":True,
 		"result": validation["result"]}
 	elif validation["case"] == 2:
 		# Failure: Can't convert to correct data type
-		return {"status":False,
+		return {"case":False,
 		"result": my_error(status=validation["result"]["status"],
 			description=validation["result"]["description"])}
 	else:
 		# no Input is given, result = None
-		return  {"status":False,
+		return  {"case":False,
 		"result": my_error(status=400,description=
 			input_name_string+" is missing")}
 
