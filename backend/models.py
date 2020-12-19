@@ -54,6 +54,8 @@ class Product(db.Model):
     # The user who sells this product
     # it is an integer
     # Example: 1, 2 or 3
+    
+    orders = db.relationship("Order",backref="product")
 
     def __init__(self,  
         price, name, seller_id,in_stock=True):
