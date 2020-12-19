@@ -260,6 +260,52 @@ def validate_float(
 
 
 
+"""
+type:
+	- "s" : String
+	- "i" : Integer
+	- "f" : Float
+	- "b" : Boolean
+"""
+def validate_must(input,type,
+	input_name_string,maximum=0,minimum=0)
+	validation;
+	if type == "s":
+		validation= validate_string(
+			input_string=input,
+			max_length=maximum,string_name=input_name_string)
+	elif type == "i":
+		validation= validate_integer(
+	input_integer=input,input_name_string=input_name_string,
+	maximum=maximum,minimum=minimum)
+	elif type == "f":
+		validation= validate_float(
+	input_float=input,input_name_string=input_name_string,
+	maximum=maximum,minimum=minimum)
+	elif type == "b":
+		validate_boolean(input_boolean=input
+			,input_name_string=input_name_string)
+	else:
+		raise Exception("validate_must: type is"+str(type)
+			+ "and it can not be like this, it should be: "+
+			"'s', 'i', 'f' or 'b'")
+	if validation["case"] == 1:
+		# Success: correct data type
+		{"status":False,
+		"result": validation["result"]}
+	elif validation["case"] == 2:
+		# Failure: Can't convert to correct data type
+		return {"status":False,
+		"result": my_error(status=validation["result"]["status"],
+			description=validation["result"]["description"])}
+	else:
+		# no Input is given, result = None
+		return  {"status":False,
+		"result": my_error(status=400,description=
+			input_name_string+" is missing")}
+
+
+
 
 
 
