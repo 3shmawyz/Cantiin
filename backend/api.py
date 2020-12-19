@@ -42,7 +42,7 @@ def create_app(test_config=None,testing=False):
 			"GET,PUT,POST,DELETE,OPTIONS")
 
 		db.session.rollback()
-
+		#print("roll back", flush=True)
 		return response
 		
 
@@ -54,7 +54,6 @@ def create_app(test_config=None,testing=False):
 	"""
 	@app.route("/clear_tables", methods=["GET"])
 	def clear_all_tables():
-		db.session.rollback()
 		db_drop_and_create_all()
 		"""
 Tests: test_02_populate_test
@@ -75,7 +74,6 @@ Tests: test_02_populate_test
 	def populate_all_tables():
 		#This endpoint will clear all the data in the database and 
 		#populate with new data
-		db.session.rollback()
 		try:
 			populate_tables()
 			return jsonify({"success":True})
@@ -93,7 +91,6 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["GET"])
 	def get_products():
 	#This endpoint will return all the products
-		db.session.rollback()
 		in_stock = request.args.get('in_stock',None)
 		in_stock_validation = validate_boolean(in_stock,"in_stock")
 
@@ -132,7 +129,6 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["POST"])
 	def post_products():
 	#This endpoint will add a new product
-		db.session.rollback()
 		body = request.get_json()
 		try:
 			name = body.get("name",None)
