@@ -849,6 +849,10 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate__must(input="i",type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
+		self.assertEqual("my_data can not be converted to float"
+			,validation["result"]["description"])
+		self.assertEqual(400
+			,validation["result"]["status"])
 		print("Test b_6_2: validate_must float: 'i'")
 
 	def test_b_6_003_validate_must(self):
