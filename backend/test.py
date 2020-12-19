@@ -199,7 +199,15 @@ class CantiinTestCase(unittest.TestCase):
 
 		print("Test a_2_9: Product simple")
 
-
+	def test_a_2_010_product_relationship_order(self):
+		product = Product.query.get(1)
+		orders=product.orders
+		orders_ids=[order.id for order in orders]
+		self.assertEqual(1 in orders_ids,True)
+		self.assertEqual(2 in orders_ids,True)
+		self.assertEqual(3 in orders_ids,False)
+		self.assertEqual(4 in orders_ids,True)
+		print("Test a_2_10:product relationship_order")
 
 
 
