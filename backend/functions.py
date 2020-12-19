@@ -126,13 +126,15 @@ def validate_model_id(input_id,model_query,model_name_string):
 			" or equal to 0"}} 
 
 	try:
-		item = model_query.get(id)
+		item = model_query.filter_by(id=id).all()
 	except Exception as e:
-		return {"case":2,"result":[]} 
-	if item == None :
+		return {"case":3,"result":{"status":400, 
+			"description":model_name_string+
+			" id can not be converted to integer"}} 
+	if len(item) == 0 :
 		return {"case":2,"result":[]} 
 
-	return {"case":1,"result":item}
+	return {"case":1,"result":item[0]}
 
 
 
