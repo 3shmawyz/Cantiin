@@ -889,6 +889,13 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_6_6: validate__must boolean: 'unknown'")
 
+	def test_b_6_007_validate_must(self):
+		validation = validate__must(input="dddaaatta",type="s",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+		self.assertEqual(validation["case"],True)
+		self.assertEqual("dddaaatta",validation["result"])
+		print("Test b_6_7: validate__must string: 'dddaaatta'")
+
 
 
 
