@@ -896,6 +896,15 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual("dddaaatta",validation["result"])
 		print("Test b_6_7: validate__must string: 'dddaaatta'")
 
+	def test_b_6_008_validate_must(self):
+		try:
+			validation = validate__must(input="1",type="wrong",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+			self.assertEqual(True,False)
+		except Exception as e:
+			self.assertEqual(True,True)
+		print("Test b_6_8: validate__must wrong type: 'wrong'")
+
 
 
 
