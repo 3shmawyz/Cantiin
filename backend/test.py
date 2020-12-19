@@ -35,7 +35,7 @@ b_03=order validation
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
-class TriviaTestCase(unittest.TestCase):
+class CantiinTestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
 	def setUp(self):
@@ -838,14 +838,14 @@ class TriviaTestCase(unittest.TestCase):
 
 
 
-	def test_b_6_001_validate_must(self):
+	def test_b_6_001_validate__must(self):
 		validation = validate__must(input=5,type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_6_1: validate__must float: 5")
 
-	def test_b_6_002_validate_must(self):
+	def test_b_6_002_validate__must(self):
 		validation = validate__must(input="unknown",type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -855,14 +855,14 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_6_2: validate__must float: 'i'")
 
-	def test_b_6_003_validate_must(self):
+	def test_b_6_003_validate__must(self):
 		validation = validate__must(input=5,type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5,validation["result"])
 		print("Test b_6_3: validate__must integer: 5")
 
-	def test_b_6_004_validate_must(self):
+	def test_b_6_004_validate__must(self):
 		validation = validate__must(input="unknown",type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -872,14 +872,14 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_6_4: validate__must integer: 'i'")
 
-	def test_b_6_005_validate_must(self):
+	def test_b_6_005_validate__must(self):
 		validation = validate__must(input=True,type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(True,validation["result"])
 		print("Test b_6_5: validate__must boolean: True")
 
-	def test_b_6_006_validate_must(self):
+	def test_b_6_006_validate__must(self):
 		validation = validate__must(input="unknown",type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -889,14 +889,14 @@ class TriviaTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_6_6: validate__must boolean: 'unknown'")
 
-	def test_b_6_007_validate_must(self):
+	def test_b_6_007_validate__must(self):
 		validation = validate__must(input="dddaaatta",type="s",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual("dddaaatta",validation["result"])
 		print("Test b_6_7: validate__must string: 'dddaaatta'")
 
-	def test_b_6_008_validate_must(self):
+	def test_b_6_008_validate__must(self):
 		try:
 			validation = validate__must(input="1",type="wrong",
 			input_name_string="my_data",maximum=1000,minimum=-5)
