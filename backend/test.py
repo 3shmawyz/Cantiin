@@ -905,6 +905,51 @@ class CantiinTestCase(unittest.TestCase):
 			self.assertEqual(True,True)
 		print("Test b_6_8: validate__must wrong type: 'wrong'")
 
+	def test_b_6_009_validate__must(self):
+		validation = validate__must(input=None,type="i",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+		self.assertEqual(validation["case"],False)
+		self.assertEqual("my_data is missing"
+			,validation["result"]["description"])
+		self.assertEqual(400
+			,validation["result"]["status"])
+		
+		print("Test b_6_9: validate__must wrong input: None int")
+
+	def test_b_6_010_validate__must(self):
+		validation = validate__must(input=None,type="f",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+		self.assertEqual(validation["case"],False)
+		self.assertEqual("my_data is missing"
+			,validation["result"]["description"])
+		self.assertEqual(400
+			,validation["result"]["status"])
+		
+		print("Test b_6_10: validate__must wrong input: None float")
+
+	def test_b_6_011_validate__must(self):
+		validation = validate__must(input=None,type="b",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+		self.assertEqual(validation["case"],False)
+		self.assertEqual("my_data is missing"
+			,validation["result"]["description"])
+		self.assertEqual(400
+			,validation["result"]["status"])
+		
+		print("Test b_6_11: validate__must wrong input: None bool")
+
+	def test_b_6_012_validate__must(self):
+		validation = validate__must(input=None,type="s",
+			input_name_string="my_data",maximum=1000,minimum=-5)
+		self.assertEqual(validation["case"],False)
+		self.assertEqual("my_data is missing"
+			,validation["result"]["description"])
+		self.assertEqual(400
+			,validation["result"]["status"])
+		
+		print("Test b_6_12: validate__must wrong input: None str")
+
+
 
 
 
