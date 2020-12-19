@@ -283,7 +283,7 @@ def validate_must(input,type,
 	input_float=input,input_name_string=input_name_string,
 	maximum=maximum,minimum=minimum)
 	elif type == "b":
-		validate_boolean(input_boolean=input
+		validation = validate_boolean(input_boolean=input
 			,input_name_string=input_name_string)
 	else:
 		raise Exception("validate_must: type is"+str(type)
@@ -291,7 +291,7 @@ def validate_must(input,type,
 			"'s', 'i', 'f' or 'b'")
 	if validation["case"] == 1:
 		# Success: correct data type
-		{"status":False,
+		return {"status":True,
 		"result": validation["result"]}
 	elif validation["case"] == 2:
 		# Failure: Can't convert to correct data type
