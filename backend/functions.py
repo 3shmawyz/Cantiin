@@ -265,9 +265,9 @@ def validate_float(
 
 """
 Product model : inputs validations
+#"""
+
 """
-
-
 def validate_product_exists(input_id,all_products):
 	return validate_model_id(input_id,
 		all_products,"product")
@@ -291,13 +291,13 @@ def validate_product_name(input_n #,all_products
 			description="maximum name length is 100 letters")]
 
 	#Validating that there is no product wth this name already
-	"""all_products_names = [p.name.strip().casefold(
-		) for p in all_products]
-	print(all_products_names,flush=True)
-	if name.strip().casefold() in all_products_names:
-		return [False,my_error(status=422, 
-			description="there is a product"+
-			" with this name already")]"""
+	#all_products_names = [p.name.strip().casefold(
+	#	) for p in all_products]
+	#print(all_products_names,flush=True)
+	#if name.strip().casefold() in all_products_names:
+	#	return [False,my_error(status=422, 
+	#		description="there is a product"+
+	#		" with this name already")]
 
 	return [True,name]
 
@@ -390,9 +390,9 @@ def validate_product_seller(input_s):
 
 
 
-"""
+#"
 Order model : inputs validations
-"""
+#"
 
 def validate_order_exists(input_id,all_orders):
 	return validate_model_id(input_id,
@@ -426,7 +426,7 @@ def validate_order_amount(input_a):
 
 
 
-
+"""
 
 
 
