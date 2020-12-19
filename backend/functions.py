@@ -296,13 +296,13 @@ def validate__must(input,type,
 	elif validation["case"] == 2:
 		# Failure: Can't convert to correct data type
 		return {"case":False,
-		"result": my_error(status=validation["result"]["status"],
-			description=validation["result"]["description"])}
+		"result": {"status":validation["result"]["status"],
+			"description":validation["result"]["description"]}}
 	else:
 		# no Input is given, result = None
 		return  {"case":False,
-		"result": my_error(status=400,description=
-			input_name_string+" is missing")}
+		"result": my_error{"status":400,"description":
+			input_name_string+" is missing"}}
 
 
 
