@@ -143,21 +143,19 @@ Tests: test_01_clear_tables
 		all_products=Product.query
 
 
-
-		#Now we will validate the in_stock input
-		if in_stock_validation["case"] == 1:
-			# Success: True or false
-			if in_stock_validation["result"] == True:
-				in_stock=True
-			else:
-				in_stock=False
-		elif in_stock_validation["case"] == 2:
-			# Failure: Can't convert to boolean
-			return my_error(status=in_stock_validation["result"]["status"],
-				description=in_stock_validation["result"]["description"])
+		name_validation = validate_string(name,"name")
+		#Now we will validate the new name of product
+		if name_validation["case"] == 1:
+			# Success: string
+			name=name_validation["result"]
+		elif name_validation["case"] == 2:
+			# Failure: Can't convert to string
+			return my_error(status=name_validation["result"]["status"],
+				description=name_validation["result"]["description"])
 		else:
 			# no Input is given, result = None
-			in_stock= True
+			return my_error(status=400,description=
+				"product name is missing")
 
 
 
