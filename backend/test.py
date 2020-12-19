@@ -78,7 +78,7 @@ class CantiinTestCase(unittest.TestCase):
 
 	def test_a_2_001_product_insert(self):
 		product1 = Product(name = "product1",price = 5.5,
-			in_stock=True, seller=1)
+			in_stock=True, seller_id=1)
 		product1.insert()
 		products = Product.query.all()
 
@@ -119,7 +119,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(produc.id,1)
 		self.assertEqual(produc.name,"Labtop")
 		self.assertEqual(produc.price,300)
-		self.assertEqual(produc.seller,1)
+		self.assertEqual(produc.seller_id,1)
 		self.assertEqual(produc.in_stock,True)
 		print("Test a_2_5: Product values")
 
@@ -191,8 +191,8 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(produc["price"],300)
 		self.assertEqual(type(produc["price"]),float)
 
-		self.assertEqual(produc["seller"],1)
-		self.assertEqual(type(produc["seller"]),int)
+		self.assertEqual(produc["seller_id"],1)
+		self.assertEqual(type(produc["seller_id"]),int)
 
 		self.assertEqual(produc["in_stock"],True)
 		self.assertEqual(type(produc["in_stock"]),bool)
