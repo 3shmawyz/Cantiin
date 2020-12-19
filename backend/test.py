@@ -404,7 +404,7 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate_model_id(input_id="i",
 			model_query=all_products,
 			model_name_string="product")
-		self.assertEqual(validation["case"],2)
+		self.assertEqual(validation["case"],3)
 		self.assertEqual("product id can not be"+
 			" converted to integer"
 			,validation["result"]["description"])
@@ -418,7 +418,7 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate_model_id(input_id=0,
 			model_query=all_products,
 			model_name_string="product")
-		self.assertEqual(validation["case"],2)
+		self.assertEqual(validation["case"],3)
 		self.assertEqual("product id can not be less than"+
 			" or equal to 0"
 			,validation["result"]["description"])
@@ -431,7 +431,7 @@ class TriviaTestCase(unittest.TestCase):
 		all_products = Product.query
 		validation = validate_model_id(input_id=-1,
 			model_query=all_products,model_name_string="product")
-		self.assertEqual(validation["case"],2)
+		self.assertEqual(validation["case"],3)
 		self.assertEqual("product id can not be less than"+
 			" or equal to 0"
 			,validation["result"]["description"])
@@ -458,7 +458,7 @@ class TriviaTestCase(unittest.TestCase):
 		validation = validate_model_id(input_id=None,
 			model_query=all_products,
 			model_name_string="product")
-		self.assertEqual(validation["case"],3)
+		self.assertEqual(validation["case"],4)
 		self.assertEqual(None,
 			validation["result"])
 		print("Test b_1_9: validate_model_id: Product None")
