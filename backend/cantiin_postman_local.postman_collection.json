@@ -725,6 +725,59 @@
 								"description": "The default is in_stock=True\r\nNow the server can not find the in_stock variable\r\nso it acts like normal"
 							},
 							"response": []
+						},
+						{
+							"name": "post_products:Fail:Missing seller_id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eef3655f-cfa9-4abc-ba88-8b5ad6e9dfae",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"seller_id is missing\");\r",
+											"  pm.expect(responseJson.error).to.eql(400);\r",
+											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								},
+								"description": "The default is in_stock=True\r\nNow the server can not find the in_stock variable\r\nso it acts like normal"
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
