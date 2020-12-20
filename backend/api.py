@@ -240,9 +240,11 @@ Tests: test_01_clear_tables
 			minimum=0.1,maximum=1000000)
 		in_stock_validation = validate_must(
 			input=in_stock,type="b",input_name_string="in_stock")
-		seller_id_validation = validate_must(
-			input=seller_id,type="i",input_name_string="seller_id",
-			minimum=1,maximum=100000000000000000)
+		#seller_id_validation = validate_must(
+		#	input=seller_id,type="i",input_name_string="seller_id",
+		#	minimum=1,maximum=100000000000000000)
+		#seller_id can not change
+
 
 		val_group=validate_must_group(
 			[name_validation,price_validation,
