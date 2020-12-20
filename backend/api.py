@@ -145,6 +145,34 @@ Tests: test_01_clear_tables
 				description = "there is no request body")
 
 
+		name_validation = validate_must(
+			input=name,type="s",input_name_string="name")
+
+
+
+
+		#Now we will validate the in_stock input
+		if in_stock_validation["case"] == True:
+			# Success: True or false
+			in_stock=in_stock_validation["result"]		
+		else:
+			# Failure: Can't convert to boolean or None (Impossible)
+			return in_stock_validation["result"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		all_products=Product.query
 
 
