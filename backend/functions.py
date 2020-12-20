@@ -34,6 +34,10 @@ from flask import Flask, request, jsonify, abort
 #with detailed info
 def my_error(status=404 ,description=""):
 	
+	if status not in [400,401,403,404,405,422,500]:
+		raise Exception("status is "+str(status)
+			+ ", not in [[400,401,403,404,405,422,500]]")
+	
 	error_dict = {
 					"success": False, 
 					"error": status,
