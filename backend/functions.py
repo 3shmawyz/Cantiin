@@ -33,18 +33,19 @@ from flask import Flask, request, jsonify, abort
 # Creatng a function to print the error in an approperiate way 
 #with detailed info
 def my_error(status=404 ,description=""):
-	if description == "":
-		return jsonify({
+	
+	error_dict = {
 					"success": False, 
 					"error": status,
 					"message": "Not Found",
-					}), status
-	return jsonify({
-			"success": False, 
-			"error": status,
-			"message": "Not Found",
-			"description":description
-			}), status
+					}
+
+	if description == "":
+		return jsonify(error_dict),status
+	
+	error_dict["description"] = description
+	return jsonify(error_dict),status
+
 
 
 
