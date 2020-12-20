@@ -45,15 +45,10 @@ def my_error(status=404 ,description=""):
 	elif status == 422: message = "unprocessible"
 	else : message = "internal server error"
 
+	error_dict = {"success": False, 
+		"error": status,"message": message,}
 
-	error_dict = {
-					"success": False, 
-					"error": status,
-					"message": message,
-					}
-
-	if description == "":
-		return jsonify(error_dict),status
+	if description == "": return jsonify(error_dict),status
 	
 	error_dict["description"] = description
 	return jsonify(error_dict),status
