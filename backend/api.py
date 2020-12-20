@@ -268,11 +268,17 @@ Tests: test_01_clear_tables
 			# Failure: Something went wrong
 			return val_group["result"]
 
+		#Finally: applying changes
+		product.name=name
+		product.price=price
+		product.in_stock=in_stock
+
 		try:
 			product.update()
 			return jsonify(
 				{"success":True,"product":product.simple()})
 		except Exception as e:
+			db.session.rollback()
 			abort(500)
 
 
