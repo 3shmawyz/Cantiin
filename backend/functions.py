@@ -104,7 +104,9 @@ case:4
 """
 def validate_model_id(input_id,model_query,model_name_string):
 	#Validate that model id has a value, not None
-	if input_id == None: return {"case":4,"result":None}
+	if input_id == None: return {"case":4,"result":{"status":400, 
+			"description":model_name_string+
+			" is missing"}}
 	
 	#Validate that model id can be converted to int
 	try:
