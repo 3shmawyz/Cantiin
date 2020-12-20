@@ -203,6 +203,23 @@ Tests: test_01_clear_tables
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
+		
+
+		products_query=Product.query
+
+		product_id_validation=validate_model_id(
+			input_id=product_id,model_query=products_query
+			,model_name_string="product")
+		if product_id_validation["case"]==1:
+			#The product exists
+			product=product_id_validation["result"]
+
+		else:
+			#No product with this id, can not convert to int
+			return my_error(
+				status=product_id_validation["result"]["status"],
+				description=product_id_validation["result"]["description"])
+		elif 
 
 
 		name_validation = validate_must(
