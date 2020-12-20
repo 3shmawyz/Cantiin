@@ -155,6 +155,10 @@ Tests: test_01_clear_tables
 			input=seller_id,type="i",input_name_string="seller_id")
 
 
+		val_group=validate_must_group(
+			[name_validation,price_validation,
+			in_stock_validation,seller_id_validation])
+
 
 
 		#Now we will validate the in_stock input
