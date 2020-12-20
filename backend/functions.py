@@ -5,31 +5,20 @@ Functions:
 - get_in_stock_products()
 
 
+- validate_model_id(input_id,model_query,model_name_string)
+- validate_string(input_string,max_length,string_name)
+- validate_boolean(input_boolean,input_name_string)
+- validate_integer(input_integer,input_name_string,maximum,minimum)
+- validate_float(input_float,input_name_string,maximum,minimum)
 
 
 
-
-- validate_product_exists(input_id,all_products)
-- validate_product_name(input_n)
-- validate_product_price(input_p)
-- validate_product_in_stock(input_i)
-- validate_product_seller(input_s)
-
-
-
-
-- validate_order_exists(input_id,all_orders)
-- validate_order_user(input_u)
-- validate_order_product(input_id,all_products)
-- validate_order_amount(input_a)
-
-
-
-
-- validate_product_name(input_n)
-- validate_product_price(imput_p)
 - db_drop_and_create_all()
 - populate_tables()
+
+
+
+
 - QUESTIONS_PER_PAGE = 10
 - def paginate_questions(questions_list,pagination)
 - def question_search(input_text)
