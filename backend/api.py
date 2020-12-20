@@ -134,7 +134,11 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["POST"])
 	def post_products():
 	#This endpoint will add a new product
-		body = request.get_json()
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
 		try:
 			name = body.get("name",None)
 			price = body.get("price",None)
