@@ -165,7 +165,21 @@ Tests: test_01_clear_tables
 			# Failure: Can't convert to boolean or None (Impossible)
 			return in_stock_validation["result"]
 
+		#The same with all the other inputs
+		if name_validation["case"] == True:
+			name=name_validation["result"]		
+		else:
+			return name_validation["result"]
+		
+		if price_validation["case"] == True:
+			price=price_validation["result"]		
+		else:
+			return name_validation["result"]
 
+		if seller_id["case"] == True:
+			seller_id=seller_id["result"]		
+		else:
+			return seller_id["result"]
 
 
 
