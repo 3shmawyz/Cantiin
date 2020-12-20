@@ -300,7 +300,7 @@ def validate__must(input,type,
 def validate_must(input,type,
 	input_name_string,maximum=0,minimum=0):
 	
-	validation=validate_must(input=input,type=type,
+	validation=validate__must(input=input,type=type,
 	input_name_string=input_name_string,
 	maximum=maximum,minimum=minimum)
 
