@@ -106,13 +106,14 @@ Tests: test_01_clear_tables
 			input=in_stock,type="b",input_name_string="in_stock")
 
 		#Now we will validate the in_stock input
-		if in_stock_validation["case"] == 1:
+		if in_stock_validation["case"] == True:
 			# Success: True or false
 			in_stock=in_stock_validation["result"]
-		else in_stock_validation["case"] == 2:
+		else in_stock_validation["case"] == False:
 			# Failure: Can't convert to boolean or None (Impossible)
-			return my_error(status=in_stock_validation["result"]["status"],
-				description=in_stock_validation["result"]["description"])
+			return in_stock_validation["result"]
+			#my_error(status=in_stock_validation["result"]["status"],
+				#description=in_stock_validation["result"]["description"])
 
 
 		#Now: There are 2 possibilties
