@@ -322,7 +322,7 @@ def validate_must_group(validations_list):
 			to_return.append(val["result"])
 		else: 
 			return {"case":False,"result":val["result"]}
-	return {"case":True,"description":to_return}  
+	return {"case":True,"result":to_return}  
 
 
 	"""validation=validate__must(input=input,type=type,
