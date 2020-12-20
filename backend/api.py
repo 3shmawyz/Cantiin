@@ -188,6 +188,62 @@ Tests: test_01_clear_tables
 		
 
 
+	@app.route("/products/<int:product_id>", methods=["PUT"])
+	def edit_products(product_id):
+	#This endpoint will add a new product
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			name = body.get("name",None)
+			price = body.get("price",None)
+			in_stock = body.get("in_stock",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+
+
+		name_validation = validate_must(
+			input=name,type="s",input_name_string="name",
+			minimum=3,maximum=150)
+		price_validation = validate_must(
+			input=price,type="f",input_name_string="price",
+			minimum=0.1,maximum=1000000)
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
+		seller_id_validation = validate_must(
+			input=seller_id,type="i",input_name_string="seller_id",
+			minimum=1,maximum=100000000000000000)
+
+		val_group=validate_must_group(
+			[name_validation,price_validation,
+			in_stock_validation,seller_id_validation])
+
+		#Now we will validate the in_stock input
+		if val_group["case"] == True:
+			# Success: True or false
+			name,price,in_stock,seller_id=val_group["result"]		
+		else:
+			# Failure: Can't convert to boolean or None (Impossible)
+			return val_group["result"]
+
+
+		new_product = Product(name=name, price=price,
+			seller_id=seller_id, in_stock=in_stock)
+
+		try:
+			new_product.insert()
+			return jsonify(
+				{"success":True,"product":new_product.simple()})
+		except Exception as e:
+			abort(500)
+
+
+		
+
+
 
 
 
