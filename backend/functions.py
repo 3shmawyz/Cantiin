@@ -315,7 +315,27 @@ def validate_must(input,type,
 
 
 
+def validate_must_group(validations_list):
+	to_return=[]
+	for val in validations_list:
+		if val["case"]==True:
+			to_return.append(val["result"])
+		else: 
+			return {"case":False,"result":val["result"]}
+	return {"case":True,"description":to_return}  
 
+
+	"""validation=validate__must(input=input,type=type,
+	input_name_string=input_name_string,
+	maximum=maximum,minimum=minimum)
+
+	if validation["case"]:
+		return validation
+	return  {"case":False,
+		"result": my_error(
+		status=validation["result"]["status"]
+			,description=validation["result"]["description"])}
+	"""
 
 
 
