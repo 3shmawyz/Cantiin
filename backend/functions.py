@@ -322,49 +322,6 @@ def validate_product_exists(input_id,all_products):
 
 
 
-def validate_product_seller(input_s):
-	#Validate that product seller has a value, not None
-	if input_s == None: return [True,None]
-	
-	#Validate that product seller can be converted to float
-	try:
-		seller = int(input_s)
-	except:
-		return [False,my_error(status=400, 
-			description="seller can not be converted to integer")]
-	
-	#Validate that product seller is not negative or zero
-	if seller<=0:
-		return [False,my_error(status=422, 
-			description="seller can not be less than"+
-			" or equal to 0")]
-
-	#There should be a code to validate that the seller
-	#Is in the users table
-	return [True,seller]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #"
 Order model : inputs validations
