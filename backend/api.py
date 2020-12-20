@@ -167,78 +167,10 @@ Tests: test_01_clear_tables
 			return val_group["result"]
 
 
-		all_products=Product.query
-
-
-		name_validation = validate_string(name,"name")
-		#Now we will validate the new name of product
-		if name_validation["case"] == 1:
-			# Success: string
-			name=name_validation["result"]
-		elif name_validation["case"] == 2:
-			# Failure: Can't convert to string
-			return my_error(status=name_validation["result"]["status"],
-				description=name_validation["result"]["description"])
-		else:
-			# no Input is given, result = None
-			return my_error(status=400,description=
-				"product name is missing")
-
-
-		price_validation = validate_float(price,"price")
-		#Now we will validate the new name of product
-		if price_validation["case"] == 1:
-			# Success: string
-			name=name_validation["result"]
-		elif name_validation["case"] == 2:
-			# Failure: Can't convert to string
-			return my_error(status=name_validation["result"]["status"],
-				description=name_validation["result"]["description"])
-		else:
-			# no Input is given, result = None
-			return my_error(status=400,description=
-				"product name is missing")
-
-
-
-
+		
 
 		
 
-
-		name_validation = validate_product_name(name)
-		if name_validation[0]==True:
-			name = name_validation[1]
-			#This is the valid data
-		else:
-			return name_validation[1]
-			#This is the error message
-
-
-
-
-		price_validation = validate_recipe(price)
-		if price_validation[0]==True:
-			price = price_validation[1]
-			#This is the valid data
-		else:
-			return price_validation[1]
-			#This is the error message
-
-		all_drinks = Drink.query
-
-		any_drink = all_drinks.filter(Drink.title.ilike(title)).all()
-		if len(any_drink)!=0:
-			return my_error(status = 422, 
-				description="there is already a drink with this name")
-
-
-
-		drink = Drink(title = title.strip(), recipe = str(recipe))
-		drink.insert()
-		return jsonify({
-			"success":True,"drinks":[drink.long()]
-			}),200
 
 		
 
