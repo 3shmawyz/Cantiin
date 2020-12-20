@@ -162,12 +162,12 @@ Tests: test_01_clear_tables
 
 
 		#Now we will validate the in_stock input
-		if in_stock_validation["case"] == True:
+		if val_group["case"] == True:
 			# Success: True or false
-			in_stock=in_stock_validation["result"]		
+			name,price,in_stock,seller_id=val_group["result"]		
 		else:
 			# Failure: Can't convert to boolean or None (Impossible)
-			return in_stock_validation["result"]
+			return val_group["result"]
 
 		#The same with all the other inputs
 		if name_validation["case"] == True:
