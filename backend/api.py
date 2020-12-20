@@ -248,19 +248,16 @@ Tests: test_01_clear_tables
 
 		val_group=validate_must_group(
 			[name_validation,price_validation,
-			in_stock_validation,seller_id_validation])
+			in_stock_validation])
 
 		#Now we will validate the in_stock input
 		if val_group["case"] == True:
 			# Success: True or false
-			name,price,in_stock,seller_id=val_group["result"]		
+			name,price,in_stock,=val_group["result"]		
 		else:
 			# Failure: Can't convert to boolean or None (Impossible)
 			return val_group["result"]
 
-
-		new_product = Product(name=name, price=price,
-			seller_id=seller_id, in_stock=in_stock)
 
 		try:
 			new_product.insert()
