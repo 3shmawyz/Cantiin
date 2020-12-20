@@ -139,7 +139,8 @@ def validate_model_id(input_id,model_query,model_name_string):
 
 
 
-def validate_string(input_string,max_length,string_name):
+def validate_string(input_string,minimum_length,
+	max_length,string_name):
 	#Validate that input has a value, not None
 	if input_string == None: return {"case":3,"result":None}
 	
@@ -156,6 +157,11 @@ def validate_string(input_string,max_length,string_name):
 		return {"case":2,"result":{"status":422, 
 			"description":"maximum "+ string_name
 			+" length is "+str(max_length)+" letters"}} 
+
+	if len(result)<min_length:
+		return {"case":2,"result":{"status":422, 
+			"description":"minimum "+ string_name
+			+" length is "+str(min_length)+" letters"}} 
 
 	return {"case":1,"result":result}
 
