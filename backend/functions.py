@@ -158,10 +158,10 @@ def validate_string(input_string,minimum_length,
 			"description":"maximum "+ string_name
 			+" length is "+str(max_length)+" letters"}} 
 
-	if len(result)<min_length:
+	if len(result)<minimum_length:
 		return {"case":2,"result":{"status":422, 
 			"description":"minimum "+ string_name
-			+" length is "+str(min_length)+" letters"}} 
+			+" length is "+str(minimum_length)+" letters"}} 
 
 	return {"case":1,"result":result}
 
@@ -276,7 +276,8 @@ def validate__must(input,type,
 	if type == "s":
 		validation= validate_string(
 			input_string=input,
-			max_length=maximum,string_name=input_name_string)
+			max_length=maximum,string_name=input_name_string,
+			minimum_length=minimum)
 	elif type == "i":
 		validation= validate_integer(
 	input_integer=input,input_name_string=input_name_string,
