@@ -222,8 +222,16 @@ Tests: test_01_clear_tables
 				description=product_id_validation
 				["result"]["description"])
 		 
+		#Now, we have "product", this is essential
 
+		#there will be no None
+		if name == None:name=product.name
+		if price == None:price=product.price
+		if in_stock == None:in_stock=product.in_stock
+		#Now there is no None
+		#There are default values
 
+		
 		name_validation = validate_must(
 			input=name,type="s",input_name_string="name",
 			minimum=3,maximum=150)
