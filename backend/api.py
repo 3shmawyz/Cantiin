@@ -108,13 +108,11 @@ Tests: test_01_clear_tables
 		if in_stock_validation["case"] == 1:
 			# Success: True or false
 			in_stock=in_stock_validation["result"]
-		elif in_stock_validation["case"] == 2:
+		else in_stock_validation["case"] == 2:
 			# Failure: Can't convert to boolean
 			return my_error(status=in_stock_validation["result"]["status"],
 				description=in_stock_validation["result"]["description"])
-		else:
-			# no Input is given, result = None
-			in_stock= True
+
 
 		#Now: There are 2 possibilties
 			#1) in_stock = True
