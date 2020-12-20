@@ -235,6 +235,12 @@ Tests: test_01_clear_tables
 			"message":"bad request"}),400
 
 
+	@app.errorhandler(401)
+	def unauthorized(error):
+		return jsonify({"success":False,"error":401,
+			"message":"unauthorized"}),401
+
+
 	@app.errorhandler(404)
 	def not_found(error):
 		return jsonify({"success":False,"error":404,
