@@ -172,6 +172,8 @@ Tests: test_01_clear_tables
 
 		try:
 			new_product.insert()
+			return jsonify(
+				{"success":True,"product":new_product.simple()})
 		except Exception as e:
 			abort(500)
 
