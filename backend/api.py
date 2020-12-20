@@ -242,7 +242,7 @@ Tests: test_01_clear_tables
 
 
 	@app.errorhandler(403)
-	def unauthorized(error):
+	def forbidden(error):
 		return jsonify({"success":False,"error":403,
 			"message":"forbidden"}),403
 
@@ -250,7 +250,7 @@ Tests: test_01_clear_tables
 	@app.errorhandler(404)
 	def not_found(error):
 		return jsonify({"success":False,"error":404,
-			"message":"resource not found"}),404
+			"message":"not found"}),404
 
 
 	@app.errorhandler(405)
@@ -266,7 +266,7 @@ Tests: test_01_clear_tables
 
 
 	@app.errorhandler(500)
-	def unprocessible(error):
+	def internal_server_error(error):
 		return jsonify({"success":False,"error":500,
 			"message":"internal server error"}),500
 
