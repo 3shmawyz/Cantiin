@@ -311,69 +311,6 @@ def validate_must(input,type,
 		status=validation["result"]["status"]
 			,description=validation["result"]["description"])}
 
-"""
-Product model : inputs validations
-#"""
-
-"""
-def validate_product_exists(input_id,all_products):
-	return validate_model_id(input_id,
-		all_products,"product")
-
-
-
-
-#"
-Order model : inputs validations
-#"
-
-def validate_order_exists(input_id,all_orders):
-	return validate_model_id(input_id,
-		all_orders,"order")
-
-
-def validate_order_product(input_id,all_products):
-	validate_product_exists(input_id,all_products)
-
-
-def validate_order_amount(input_a):
-	#Validate that order amount has a value, not None
-	if input_a == None: return [True,None]
-	
-	#Validate that order amount can be converted to int
-	try:
-		amount = int(input_a)
-	except:
-		return [False,my_error(status=400, 
-			description="amount can not be converted to integer")]
-	
-	#Validate that order amount is not negative or -1
-	if amount<=-1:
-		return [False,my_error(status=422, 
-			description="amount can not be less than"+
-			" or equal to -1")]
-
-	return [True,amount]
-
-
-
-
-
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -389,16 +326,6 @@ def validate_order_amount(input_a):
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -439,12 +366,6 @@ def populate_tables():
 
 
 
-
-
-
-
-
-
 QUESTIONS_PER_PAGE = 10
 
 
@@ -466,9 +387,6 @@ def paginate_questions(questions_list,pagination):
 
 
 
-
-
-
 """
 This method searches inside The question model.
 
@@ -483,6 +401,3 @@ def question_search(input_text):
 		Question.question.ilike(search_query)).all()
 	to_return = [question.format() for question in all_questions]
 	return to_return
-
-
-
