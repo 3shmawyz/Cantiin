@@ -185,7 +185,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
 											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller_id\"])).to.eql(typeof(1));\r",
 											"    });\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -235,7 +235,7 @@
 											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
 											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
 											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller_id\"])).to.eql(typeof(1));\r",
 											"    });\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -292,7 +292,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
 											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller_id\"])).to.eql(typeof(1));\r",
 											"    });\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -402,7 +402,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
 											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(product[\"seller\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller_id\"])).to.eql(typeof(1));\r",
 											"    });\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
