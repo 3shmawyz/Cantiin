@@ -154,12 +154,9 @@ Tests: test_01_clear_tables
 		seller_id_validation = validate_must(
 			input=seller_id,type="i",input_name_string="seller_id")
 
-
 		val_group=validate_must_group(
 			[name_validation,price_validation,
 			in_stock_validation,seller_id_validation])
-
-
 
 		#Now we will validate the in_stock input
 		if val_group["case"] == True:
@@ -168,33 +165,6 @@ Tests: test_01_clear_tables
 		else:
 			# Failure: Can't convert to boolean or None (Impossible)
 			return val_group["result"]
-
-		#The same with all the other inputs
-		if name_validation["case"] == True:
-			name=name_validation["result"]		
-		else:
-			return name_validation["result"]
-		
-		if price_validation["case"] == True:
-			price=price_validation["result"]		
-		else:
-			return name_validation["result"]
-
-		if seller_id["case"] == True:
-			seller_id=seller_id["result"]		
-		else:
-			return seller_id["result"]
-
-
-
-
-
-
-
-
-
-
-
 
 
 		all_products=Product.query
