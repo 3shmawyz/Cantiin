@@ -139,13 +139,19 @@ Tests: test_01_clear_tables
 			name = body.get("name",None)
 			price = body.get("price",None)
 			in_stock = body.get("in_stock",None)
-			seller = body.get("seller",None)
+			seller_id = body.get("seller_id",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
 
 
 		name_validation = validate_must(
+			input=name,type="s",input_name_string="name")
+		price_validation = validate_must(
+			input=name,type="s",input_name_string="name")
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
+		seller_id_validation = validate_must(
 			input=name,type="s",input_name_string="name")
 
 
