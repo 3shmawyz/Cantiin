@@ -167,9 +167,13 @@ Tests: test_01_clear_tables
 			return val_group["result"]
 
 
-		
+		new_product = Product(name=name, price=price,
+			seller_id=seller_id, in_stock=in_stock)
 
-		
+		try:
+			new_product.insert()
+		except Exception as e:
+			abort(500)
 
 
 		
