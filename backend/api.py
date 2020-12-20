@@ -258,11 +258,10 @@ Tests: test_01_clear_tables
 			# Failure: Can't convert to boolean or None (Impossible)
 			return val_group["result"]
 
-
 		try:
-			new_product.insert()
+			product.update()
 			return jsonify(
-				{"success":True,"product":new_product.simple()})
+				{"success":True,"product":product.simple()})
 		except Exception as e:
 			abort(500)
 
