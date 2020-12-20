@@ -218,8 +218,9 @@ Tests: test_01_clear_tables
 			#No product with this id, can not convert to int
 			return my_error(
 				status=product_id_validation["result"]["status"],
-				description=product_id_validation["result"]["description"])
-		elif 
+				description=product_id_validation
+				["result"]["description"])
+		 
 
 
 		name_validation = validate_must(
