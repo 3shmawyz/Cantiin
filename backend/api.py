@@ -149,6 +149,7 @@ Tests: test_01_clear_tables
 				description = "there is no request body")
 
 
+		#Validating inputs one by one
 		name_validation = validate_must(
 			input=name,type="s",input_name_string="name",
 			minimum=3,maximum=150)
@@ -161,22 +162,24 @@ Tests: test_01_clear_tables
 			input=seller_id,type="i",input_name_string="seller_id",
 			minimum=1,maximum=100000000000000000)
 
+		#Validating inputs a group
 		val_group=validate_must_group(
 			[name_validation,price_validation,
 			in_stock_validation,seller_id_validation])
 
-		#Now we will validate the in_stock input
+		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
-			# Success: True or false
+			# Success: they pass the conditions
 			name,price,in_stock,seller_id=val_group["result"]		
 		else:
-			# Failure: Can't convert to boolean or None (Impossible)
+			# Failure: Something went wrong
 			return val_group["result"]
 
-
+		#Create the product
 		new_product = Product(name=name, price=price,
 			seller_id=seller_id, in_stock=in_stock)
 
+		#Insert the product in the database
 		try:
 			new_product.insert()
 			return jsonify(
@@ -236,7 +239,8 @@ Tests: test_01_clear_tables
 		if in_stock == None:in_stock=product.in_stock
 		#Now there is no None
 		#There are default values
-
+		#This step can not change it's place because
+		#here we need default values
 		
 		name_validation = validate_must(
 			input=name,type="s",input_name_string="name",
@@ -256,12 +260,12 @@ Tests: test_01_clear_tables
 			[name_validation,price_validation,
 			in_stock_validation])
 
-		#Now we will validate the in_stock input
+		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
-			# Success: True or false
+			# Success: they pass the conditions
 			name,price,in_stock,=val_group["result"]		
 		else:
-			# Failure: Can't convert to boolean or None (Impossible)
+			# Failure: Something went wrong
 			return val_group["result"]
 
 		try:
