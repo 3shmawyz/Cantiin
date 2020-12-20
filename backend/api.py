@@ -91,7 +91,12 @@ Tests: test_01_clear_tables
 	@app.route("/products", methods=["GET"])
 	def get_products():
 	#This endpoint will return all the products
-		in_stock = request.args.get('in_stock',None)
+		
+		#recievng inputs:
+		#in_stock has a fall back value of True (The default)
+		in_stock = request.args.get('in_stock',True)
+
+
 		in_stock_validation = validate_boolean(in_stock,"in_stock")
 
 		#Now we will validate the in_stock input
