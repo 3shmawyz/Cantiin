@@ -204,6 +204,12 @@ Tests: test_01_clear_tables
 			return my_error(status=400, 
 				description = "there is no request body")
 		
+		#There can not be 0 fields to change
+		#There must be at least one input field
+		if (name==None and price==None and in_stock==None):
+			return my_error(status=400, 
+				description = "you must at least enter"
+				" one field to change")
 
 		products_query=Product.query
 
