@@ -215,7 +215,8 @@ Tests: test_01_clear_tables
 			product=product_id_validation["result"]
 
 		else:
-			#No product with this id, can not convert to int
+			#No product with this id, can not convert to int,
+			# or id is missing (Impossible)
 			return my_error(
 				status=product_id_validation["result"]["status"],
 				description=product_id_validation
