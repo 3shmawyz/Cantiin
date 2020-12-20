@@ -154,7 +154,7 @@ Tests: test_01_clear_tables
 			minimum=3,maximum=150)
 		price_validation = validate_must(
 			input=price,type="f",input_name_string="price",
-			minimum=0,maximum=1000000)
+			minimum=0.1,maximum=1000000)
 		in_stock_validation = validate_must(
 			input=in_stock,type="b",input_name_string="in_stock")
 		seller_id_validation = validate_must(
