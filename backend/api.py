@@ -109,7 +109,8 @@ Tests: test_01_clear_tables
 		if in_stock_validation["case"] == True:
 			# Success: True or false
 			in_stock=in_stock_validation["result"]
-		else in_stock_validation["case"] == False:
+		
+		else:
 			# Failure: Can't convert to boolean or None (Impossible)
 			return in_stock_validation["result"]
 			#my_error(status=in_stock_validation["result"]["status"],
@@ -119,6 +120,8 @@ Tests: test_01_clear_tables
 		#Now: There are 2 possibilties
 			#1) in_stock = True
 			#2) in_stock=False
+
+			#input now must have been converted to True or False
 
 		if in_stock == True:
 			products = get_in_stock_products()
