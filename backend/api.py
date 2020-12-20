@@ -185,6 +185,7 @@ Tests: test_01_clear_tables
 			return jsonify(
 				{"success":True,"product":new_product.simple()})
 		except Exception as e:
+			db.session.rollback()
 			abort(500)
 
 
