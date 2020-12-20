@@ -146,13 +146,16 @@ Tests: test_01_clear_tables
 
 
 		name_validation = validate_must(
-			input=name,type="s",input_name_string="name")
+			input=name,type="s",input_name_string="name",
+			minimum=3,maximum=150)
 		price_validation = validate_must(
-			input=price,type="f",input_name_string="price")
+			input=price,type="f",input_name_string="price",
+			minimum=0,maximum=1000000)
 		in_stock_validation = validate_must(
 			input=in_stock,type="b",input_name_string="in_stock")
 		seller_id_validation = validate_must(
-			input=seller_id,type="i",input_name_string="seller_id")
+			input=seller_id,type="i",input_name_string="seller_id",
+			minimum=1,maximum=100000000000000000)
 
 		val_group=validate_must_group(
 			[name_validation,price_validation,
