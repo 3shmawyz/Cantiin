@@ -890,6 +890,59 @@
 								"description": "The default is in_stock=True\r\nNow the server can not find the in_stock variable\r\nso it acts like normal"
 							},
 							"response": []
+						},
+						{
+							"name": "post_products:Fail:short product name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aaea86f1-c289-462a-b394-cd0eb7d09a74",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"minimum name length is 3 letters\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"St\",\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								},
+								"description": "The default is in_stock=True\r\nNow the server can not find the in_stock variable\r\nso it acts like normal"
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
