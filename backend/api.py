@@ -97,6 +97,11 @@ Tests: test_01_clear_tables
 		in_stock = request.args.get('in_stock',True)
 
 
+		#in stock now has one of two values
+		#1) input value
+		#2) True (Fall back value)
+		#-	I can not be equal to None at all
+		#-	Even if equal to None, it will be rejected
 		in_stock_validation = validate_boolean(in_stock,"in_stock")
 
 		#Now we will validate the in_stock input
