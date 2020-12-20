@@ -90,8 +90,7 @@ Tests: test_01_clear_tables
 	"""
 	@app.route("/products", methods=["GET"])
 	def get_products():
-	#This endpoint will return all the products
-		
+	#This endpoint will return all the products		
 		#recievng inputs:
 		#in_stock has a fall back value of True (The default)
 		in_stock = request.args.get('in_stock',True)
@@ -108,25 +107,21 @@ Tests: test_01_clear_tables
 		#Now we will validate the in_stock input
 		if in_stock_validation["case"] == True:
 			# Success: True or false
-			in_stock=in_stock_validation["result"]
-		
+			in_stock=in_stock_validation["result"]		
 		else:
 			# Failure: Can't convert to boolean or None (Impossible)
 			return in_stock_validation["result"]
-			#my_error(status=in_stock_validation["result"]["status"],
-				#description=in_stock_validation["result"]["description"])
-
 
 		#Now: There are 2 possibilties
 			#1) in_stock = True
 			#2) in_stock=False
-
 			#input now must have been converted to True or False
 
 		if in_stock == True:
 			products = get_in_stock_products()
 		else:
 			products = Product.query.order_by(Product.id).all()
+		
 		to_return=[p.simple() for p in products]
 		return jsonify({"success":True,"products":to_return})
 		
