@@ -102,7 +102,8 @@ Tests: test_01_clear_tables
 		#2) True (Fall back value)
 		#-	I can not be equal to None at all
 		#-	Even if equal to None, it will be rejected
-		in_stock_validation = validate_boolean(in_stock,"in_stock")
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
 
 		#Now we will validate the in_stock input
 		if in_stock_validation["case"] == 1:
