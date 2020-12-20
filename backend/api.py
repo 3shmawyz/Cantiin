@@ -109,7 +109,7 @@ Tests: test_01_clear_tables
 			# Success: True or false
 			in_stock=in_stock_validation["result"]
 		else in_stock_validation["case"] == 2:
-			# Failure: Can't convert to boolean
+			# Failure: Can't convert to boolean or None (Impossible)
 			return my_error(status=in_stock_validation["result"]["status"],
 				description=in_stock_validation["result"]["description"])
 
