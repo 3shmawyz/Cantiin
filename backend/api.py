@@ -265,6 +265,12 @@ Tests: test_01_clear_tables
 			"message":"unprocessible"}),422
 
 
+	@app.errorhandler(500)
+	def unprocessible(error):
+		return jsonify({"success":False,"error":500,
+			"message":"internal server error"}),500
+
+
 	
 	return app	
 
