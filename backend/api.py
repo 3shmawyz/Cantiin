@@ -148,11 +148,11 @@ Tests: test_01_clear_tables
 		name_validation = validate_must(
 			input=name,type="s",input_name_string="name")
 		price_validation = validate_must(
-			input=name,type="s",input_name_string="name")
+			input=price,type="f",input_name_string="price")
 		in_stock_validation = validate_must(
 			input=in_stock,type="b",input_name_string="in_stock")
 		seller_id_validation = validate_must(
-			input=name,type="s",input_name_string="name")
+			input=seller_id,type="i",input_name_string="seller_id")
 
 
 
