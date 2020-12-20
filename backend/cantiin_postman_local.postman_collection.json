@@ -461,6 +461,71 @@
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});\r",
 											"pm.test(\"output as expected\", () => {\r",
+											"   product = responseJson[\"product\"];\r",
+											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
+											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller_id\"])).to.eql(typeof(1));\r",
+											"\r",
+											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
+											"        pm.expect(product[\"name\"]).to.eql(\"Stabler\");\r",
+											"        pm.expect(product[\"price\"]).to.eql(6.0);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products"
+									]
+								},
+								"description": "The default is in_stock=True\r\nNow the server can not find the in_stock variable\r\nso it acts like normal"
+							},
+							"response": []
+						},
+						{
+							"name": "post_products:missing request body",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cbc9a401-baa9-4417-bafc-dac75409c826",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"Success is True\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"output as expected\", () => {\r",
 											"    responseJson[\"products\"].forEach(function (product, index) {\r",
 											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
 											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
