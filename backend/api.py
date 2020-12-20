@@ -107,10 +107,7 @@ Tests: test_01_clear_tables
 		#Now we will validate the in_stock input
 		if in_stock_validation["case"] == 1:
 			# Success: True or false
-			if in_stock_validation["result"] == True:
-				in_stock=True
-			else:
-				in_stock=False
+			in_stock=in_stock_validation["result"]
 		elif in_stock_validation["case"] == 2:
 			# Failure: Can't convert to boolean
 			return my_error(status=in_stock_validation["result"]["status"],
