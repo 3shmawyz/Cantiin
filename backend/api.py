@@ -291,6 +291,8 @@ Tests: test_01_clear_tables
 	@app.route("/products/<int:product_id>", methods=["DELETE"])
 	def delete_products(product_id):
 	#This endpoint will delete an existing product
+		
+		products_query=Product.query
 		product_id_validation=validate_model_id(
 			input_id=product_id,model_query=products_query
 			,model_name_string="product")
