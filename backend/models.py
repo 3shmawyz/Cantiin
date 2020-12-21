@@ -110,6 +110,9 @@ class Product(db.Model):
             'seller_id': self.seller_id
         }
 
+    def get_dict(self):
+        return self.simple()
+
 
 
 
@@ -193,9 +196,8 @@ class Order(db.Model):
         return {#id, user_id, product_id, amount
             'id': self.id,
             'user_id': self.user_id,
-            'product_id': self.product_id,
             'amount': self.amount,
-            'price': self.product.price,
+            "product":self.product.get_dict(),
             "total_cost":self.product.price*float(self.amount)
         }
  
