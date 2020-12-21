@@ -548,7 +548,6 @@ Tests: test_01_clear_tables
 		if order_id_validation["case"]==1:
 			#The order exists
 			order=order_id_validation["result"]
-
 		else:
 			#No order with this id, can not convert to int,
 			# or id is missing (Impossible)
