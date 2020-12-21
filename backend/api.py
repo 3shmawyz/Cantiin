@@ -410,7 +410,7 @@ Tests: test_01_clear_tables
 			minimum=0,maximum=1000)
 		amount_validation = validate_must(
 			input=amount,type="i",input_name_string="amount",
-			minimum=0,maximum=1000000000)
+			minimum=1,maximum=1000000000)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
@@ -444,12 +444,9 @@ Tests: test_01_clear_tables
 		product_id = product.id
 		#Now, we have "product_id", this is essential
 
-
-
 		#Create the Order
 		new_order = Order(user_id=user_id, amount=amount,
 			product_id=product_id)
-
 		#Insert the order in the database
 		try:
 			new_order.insert()
