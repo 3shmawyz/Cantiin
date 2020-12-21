@@ -1081,6 +1081,76 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "put_products",
+					"item": [
+						{
+							"name": "put_products : successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"Success is True\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"   product = responseJson[\"product\"];\r",
+											"        pm.expect(typeof(product[\"id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"in_stock\"])).to.eql(typeof(true));\r",
+											"        pm.expect(typeof(product[\"name\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(product[\"price\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(product[\"seller_id\"])).to.eql(typeof(1));\r",
+											"\r",
+											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
+											"        pm.expect(product[\"name\"]).to.eql(\"Ketchup\");\r",
+											"        pm.expect(product[\"price\"]).to.eql(9.0);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ketchup\",\r\n    \"price\":9,\r\n    \"in_stock\":false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products/7",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "this is the end point of editing a product"
 				}
 			],
 			"description": "the products endpoint"
