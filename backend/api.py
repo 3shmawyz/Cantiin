@@ -354,6 +354,39 @@ Tests: test_01_clear_tables
 	@app.route("/orders", methods=["GET"])
 	def get_orders():
 	#This endpoint will return all the products		
+
+		#recievng inputs:
+		#user_id has a fall back value of None
+		user_id = request.args.get('user_id',None)
+
+		#user_id has one of two values
+		#1) input value
+		#2) None (Fall back value)
+		user_id_validation = validate_must(
+			input=user_id,type="i",input_name_string="user_id",
+			minimum=1,maximum=1000000000000000000000)
+
+		#Now we will validate the user_id input
+		if user_id_validation["case"] == True:
+			# Success: value is integer
+			user_id=user_id_validation["result"]		
+		else:
+			# Failure: Can't convert to integer or None
+			return user_id_validation["result"]
+
+		#Now: There are 2 possibilties
+			#1) in_stock = True
+			#2) in_stock=False
+			#input now must have been converted to True or False
+
+		if in_stock == True:
+			products = get_in_stock_products()
+		else:
+			products = Product.query.order_by(Product.id).all()
+		
+
+
+
 		orders = Order.query.order_by("id").all()
 
 		to_return=[o.simple() for o in orders]
