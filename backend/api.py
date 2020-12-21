@@ -412,16 +412,23 @@ Tests: test_01_clear_tables
 			input=amount,type="i",input_name_string="amount",
 			minimum=0,maximum=1000000000)
 
+		#Validating inputs a group
+		val_group=validate_must_group(
+			[user_id_validation,amount_validation])
+
+
+		#Now we will validate all inputs as a group
+		if val_group["case"] == True:
+			# Success: they pass the conditions
+			user_id,amount=val_group["result"]		
+		else:
+			# Failure: Something went wrong
+			return val_group["result"]
 
 
 		seller_id_validation = validate_must(
 			input=seller_id,type="i",input_name_string="seller_id",
 			minimum=1,maximum=100000000000000000)
-
-		#Validating inputs a group
-		val_group=validate_must_group(
-			[name_validation,price_validation,
-			in_stock_validation,seller_id_validation])
 
 
 
@@ -431,14 +438,6 @@ Tests: test_01_clear_tables
 
 
 
-
-		#Now we will validate all inputs as a group
-		if val_group["case"] == True:
-			# Success: they pass the conditions
-			name,price,in_stock,seller_id=val_group["result"]		
-		else:
-			# Failure: Something went wrong
-			return val_group["result"]
 
 		#Create the product
 		new_product = Product(name=name, price=price,
