@@ -4,21 +4,14 @@ var backend_location="http://127.0.0.1:5000/"
 function get_products(in_stock=true)
 {
 	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
-		in_stock==1||in_stock=="1"){in_stock=true;}
-		else{in_stock=false;}
-	{	url = backend_location+"products?in_stock=true";}
-	else
-	{	url = backend_location+"products?in_stock=false"}
-	url=build_url(
-		"products",query_inputs={"in_stock":String(in_stock)});
-	 //backend_location+"products?in_stock="+String(in_stock);
-	var settings = {
-	  "url": url,
-	  "method": "GET"
-	};
-	var to_return="";
+		in_stock==1||in_stock=="1")
+		{in_stock=true;}
+	else{in_stock=false;}
+	
+	method="GET";endpoint="products";
+	var settings = getAjaxSettings(method,endpoint,query_inputs=
+		{"in_stock":String(in_stock)})
 	return $.ajax(settings).done(function(response) {
-	  //to_be_done(input=response);
 	  to_return = response;
 	});
 }
@@ -27,14 +20,6 @@ Example:
 get_products().then(function(value) {console.log(value);});
 it will console.log all the result
 */
-
-let get_products_promise = new Promise
-(
-	function(myResolve, myReject)
-		{
-
-		}
-)
 
 
 function build_url(endpoint,query_inputs=Array())
@@ -50,13 +35,6 @@ function build_url(endpoint,query_inputs=Array())
 	}
 	to_return=to_return.substring(0,to_return.length-1);
 	return to_return;
-
-	/*query_inputs.forEach(function (value, i) {
-    	console.log("Looping");
-    	to_return=to_return+i+"="+value+"&";
-	});*/
-	//To trim the last letter of the sting
-	//to_return=to_return.substring(0,to_return.length-1);
 }
 
 /*
@@ -69,3 +47,12 @@ function build_url(endpoint,query_inputs=Array())
 http://127.0.0.1:5000/products?stock_id=1&user_id=5
 
 */
+
+
+
+function getAjaxSettings(method,endpoint,query_inputs={})
+{
+	url=build_url(endpoint,query_inputs);
+	return settings = {"url": url,"method": method};
+
+}
