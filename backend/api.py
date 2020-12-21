@@ -416,7 +416,6 @@ Tests: test_01_clear_tables
 		val_group=validate_must_group(
 			[user_id_validation,amount_validation])
 
-
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
@@ -424,18 +423,26 @@ Tests: test_01_clear_tables
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
+		#Now the inputs user_id and amount are validated
 
-
-		seller_id_validation = validate_must(
-			input=seller_id,type="i",input_name_string="seller_id",
-			minimum=1,maximum=100000000000000000)
-
-
-
-		product_id_validation = validate_must(
-			input=price,type="f",input_name_string="price",
-			minimum=0.1,maximum=1000000)
-
+		#Now we will validate product_id
+		products_query=Product.query
+		product_id_validation=validate_model_id(
+			input_id=product_id,model_query=products_query
+			,model_name_string="product")
+		if product_id_validation["case"]==1:
+			#The product exists
+			product=product_id_validation["result"]
+		else:
+			#No product with this id, can not convert to int,
+			# or id is missing
+			return my_error(
+				status=product_id_validation["result"]["status"],
+				description=product_id_validation
+				["result"]["description"])
+		 
+		product_id = product.id
+		#Now, we have "product_id", this is essential
 
 
 
