@@ -197,6 +197,15 @@ class Order(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'amount': self.amount,
+            "product_id":self.product_id
+        }
+ 
+
+    def get_dic(self):
+        return {#id, user_id, product_id, amount
+            'id': self.id,
+            'user_id': self.user_id,
+            'amount': self.amount,
             "product":self.product.get_dict(),
             "total_cost":self.product.price*float(self.amount)
         }
