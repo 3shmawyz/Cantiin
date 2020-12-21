@@ -1392,6 +1392,110 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "put_products : Fail : wrong id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"there is no product with this id\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ketchup\",\r\n    \"price\":9,\r\n    \"in_stock\":false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products/100000000000000000",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"100000000000000000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put_products : Fail : wrong name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"minimum name length is 3 letters\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"K\",\r\n    \"price\":9,\r\n    \"in_stock\":false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products/7",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"7"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "this is the end point of editing a product"
