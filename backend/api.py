@@ -351,6 +351,229 @@ Tests: test_01_clear_tables
 	"""
 	5) and 6) Order endpoints
 	"""
+	@app.route("/orders", methods=["GET"])
+	def get_orders():
+	#This endpoint will return all the products		
+		#recievng inputs:
+		#in_stock has a fall back value of True (The default)
+		in_stock = request.args.get('in_stock',True)
+
+		#in stock now has one of two values
+		#1) input value
+		#2) True (Fall back value)
+		#-	I can not be equal to None at all
+		#-	Even if equal to None, it will be rejected
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
+
+		#Now we will validate the in_stock input
+		if in_stock_validation["case"] == True:
+			# Success: True or false
+			in_stock=in_stock_validation["result"]		
+		else:
+			# Failure: Can't convert to boolean or None (Impossible)
+			return in_stock_validation["result"]
+
+		#Now: There are 2 possibilties
+			#1) in_stock = True
+			#2) in_stock=False
+			#input now must have been converted to True or False
+
+		if in_stock == True:
+			products = get_in_stock_products()
+		else:
+			products = Product.query.order_by(Product.id).all()
+		
+		to_return=[p.simple() for p in products]
+		return jsonify({"success":True,"products":to_return})
+		
+
+
+	@app.route("/orders", methods=["POST"])
+	def post_orders():
+	#This endpoint will add a new product
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			name = body.get("name",None)
+			price = body.get("price",None)
+			in_stock = body.get("in_stock",None)
+			seller_id = body.get("seller_id",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+
+		#Validating inputs one by one
+		name_validation = validate_must(
+			input=name,type="s",input_name_string="name",
+			minimum=3,maximum=150)
+		price_validation = validate_must(
+			input=price,type="f",input_name_string="price",
+			minimum=0.1,maximum=1000000)
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
+		seller_id_validation = validate_must(
+			input=seller_id,type="i",input_name_string="seller_id",
+			minimum=1,maximum=100000000000000000)
+
+		#Validating inputs a group
+		val_group=validate_must_group(
+			[name_validation,price_validation,
+			in_stock_validation,seller_id_validation])
+
+		#Now we will validate all inputs as a group
+		if val_group["case"] == True:
+			# Success: they pass the conditions
+			name,price,in_stock,seller_id=val_group["result"]		
+		else:
+			# Failure: Something went wrong
+			return val_group["result"]
+
+		#Create the product
+		new_product = Product(name=name, price=price,
+			seller_id=seller_id, in_stock=in_stock)
+
+		#Insert the product in the database
+		try:
+			new_product.insert()
+			return jsonify(
+				{"success":True,"product":new_product.simple()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+		
+
+
+	@app.route("/orders/<int:product_id>", methods=["PUT"])
+	def edit_orders(product_id):
+	#This endpoint will add a new product
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			name = body.get("name",None)
+			price = body.get("price",None)
+			in_stock = body.get("in_stock",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+		
+		#There can not be 0 fields to change
+		#There must be at least one input field
+		if (name==None and price==None and in_stock==None):
+			return my_error(status=400, 
+				description = "you must at least enter"
+				" one field to change")
+
+		products_query=Product.query
+
+		product_id_validation=validate_model_id(
+			input_id=product_id,model_query=products_query
+			,model_name_string="product")
+		if product_id_validation["case"]==1:
+			#The product exists
+			product=product_id_validation["result"]
+
+		else:
+			#No product with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=product_id_validation["result"]["status"],
+				description=product_id_validation
+				["result"]["description"])
+		 
+		#Now, we have "product", this is essential
+
+		#there will be no None
+		if name == None:name=product.name
+		if price == None:price=product.price
+		if in_stock == None:in_stock=product.in_stock
+		#Now there is no None
+		#There are default values
+		#This step can not change it's place because
+		#here we need default values
+		
+		name_validation = validate_must(
+			input=name,type="s",input_name_string="name",
+			minimum=3,maximum=150)
+		price_validation = validate_must(
+			input=price,type="f",input_name_string="price",
+			minimum=0.1,maximum=1000000)
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
+		#seller_id_validation = validate_must(
+		#	input=seller_id,type="i",input_name_string="seller_id",
+		#	minimum=1,maximum=100000000000000000)
+		#seller_id can not change
+
+		val_group=validate_must_group(
+			[name_validation,price_validation,
+			in_stock_validation])
+
+		#Now we will validate all inputs as a group
+		if val_group["case"] == True:
+			# Success: they pass the conditions
+			name,price,in_stock,=val_group["result"]		
+		else:
+			# Failure: Something went wrong
+			return val_group["result"]
+
+		#Finally: applying changes
+		product.name=name
+		product.price=price
+		product.in_stock=in_stock
+
+		try:
+			product.update()
+			return jsonify(
+				{"success":True,"product":product.simple()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+		
+
+	@app.route("/orders/<int:product_id>", methods=["DELETE"])
+	def delete_orders(product_id):
+	#This endpoint will delete an existing product
+		
+		products_query=Product.query
+		product_id_validation=validate_model_id(
+			input_id=product_id,model_query=products_query
+			,model_name_string="product")
+		if product_id_validation["case"]==1:
+			#The product exists
+			product=product_id_validation["result"]
+
+		else:
+			#No product with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=product_id_validation["result"]["status"],
+				description=product_id_validation
+				["result"]["description"])
+		 
+		#Now, we have "product", this is essential
+
+		try:
+			# Finally, deleting the product itself
+			product.delete()
+			return jsonify(
+				{"success":True,
+				"result":"product deleted successfully"})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
 
 
 
