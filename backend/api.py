@@ -484,7 +484,7 @@ Tests: test_01_clear_tables
 		#Validating inputs one by one
 		amount_validation = validate_must(
 			input=amount,type="i",input_name_string="amount",
-			minimum=1,maximum=1000000000)
+			minimum=0,maximum=1000000000)
 
 		#Now we will validate all inputs as a group
 		if amount_validation["case"] == True:
@@ -494,11 +494,6 @@ Tests: test_01_clear_tables
 			# Failure: Something went wrong
 			return amount_validation["result"]
 		#Now the inputs user_id and amount are validated
-
-
-
-
-
 
 		orders_query=Order.query
 
@@ -519,59 +514,22 @@ Tests: test_01_clear_tables
 		 
 		#Now, we have "order", this is essential
 
-		"""#there will be no None
-		if name == None:name=product.name
-		if price == None:price=product.price
-		if in_stock == None:in_stock=product.in_stock
-		#Now there is no None
-		#There are default values
-		#This step can not change it's place because
-		#here we need default values
-		
-		name_validation = validate_must(
-			input=name,type="s",input_name_string="name",
-			minimum=3,maximum=150)
-		price_validation = validate_must(
-			input=price,type="f",input_name_string="price",
-			minimum=0.1,maximum=1000000)
-		in_stock_validation = validate_must(
-			input=in_stock,type="b",input_name_string="in_stock")
-		#seller_id_validation = validate_must(
-		#	input=seller_id,type="i",input_name_string="seller_id",
-		#	minimum=1,maximum=100000000000000000)
-		#seller_id can not change
-
-		val_group=validate_must_group(
-			[name_validation,price_validation,
-			in_stock_validation])
-
-		#Now we will validate all inputs as a group
-		if val_group["case"] == True:
-			# Success: they pass the conditions
-			name,price,in_stock,=val_group["result"]		
-		else:
-			# Failure: Something went wrong
-			return val_group["result"]"""
-
-
 		#Finally: applying changes
 		order.amount=amount
 
-
 		if amount == 0:
-		try:
-			amount.update()
-			return jsonify(
-				{"success":True,"result":"order"+
-				" deleted successfully"})
-		except Exception as e:
-			db.session.rollback()
-			abort(500)
-
+			try:
+				amount.update()
+				return jsonify(
+					{"success":True,"result":"order"+
+					" deleted successfully"})
+			except Exception as e:
+				db.session.rollback()
+				abort(500)
 		try:
 			order.update()
 			return jsonify(
-				{"success":True,"order":order.simple()})
+				{"success":True,"order":order.get_dict()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
