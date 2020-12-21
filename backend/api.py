@@ -451,7 +451,7 @@ Tests: test_01_clear_tables
 		try:
 			new_order.insert()
 			return jsonify(
-				{"success":True,"product":new_order.get_dict()})
+				{"success":True,"order":new_order.get_dict()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
