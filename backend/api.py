@@ -290,29 +290,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/products/<int:product_id>", methods=["DELETE"])
 	def delete_products(product_id):
-	#This endpoint will add a new product
-		try:
-			body = request.get_json()
-		except:
-			return my_error(status=400,
-				description="request body can not be parsed to json")
-		try:
-			name = body.get("name",None)
-			price = body.get("price",None)
-			in_stock = body.get("in_stock",None)
-		except:
-			return my_error(status=400, 
-				description = "there is no request body")
-		
-		#There can not be 0 fields to change
-		#There must be at least one input field
-		if (name==None and price==None and in_stock==None):
-			return my_error(status=400, 
-				description = "you must at least enter"
-				" one field to change")
-
-		products_query=Product.query
-
+	#This endpoint will delete an existing product
 		product_id_validation=validate_model_id(
 			input_id=product_id,model_query=products_query
 			,model_name_string="product")
@@ -329,46 +307,6 @@ Tests: test_01_clear_tables
 				["result"]["description"])
 		 
 		#Now, we have "product", this is essential
-
-		#there will be no None
-		if name == None:name=product.name
-		if price == None:price=product.price
-		if in_stock == None:in_stock=product.in_stock
-		#Now there is no None
-		#There are default values
-		#This step can not change it's place because
-		#here we need default values
-		
-		name_validation = validate_must(
-			input=name,type="s",input_name_string="name",
-			minimum=3,maximum=150)
-		price_validation = validate_must(
-			input=price,type="f",input_name_string="price",
-			minimum=0.1,maximum=1000000)
-		in_stock_validation = validate_must(
-			input=in_stock,type="b",input_name_string="in_stock")
-		#seller_id_validation = validate_must(
-		#	input=seller_id,type="i",input_name_string="seller_id",
-		#	minimum=1,maximum=100000000000000000)
-		#seller_id can not change
-
-
-		val_group=validate_must_group(
-			[name_validation,price_validation,
-			in_stock_validation])
-
-		#Now we will validate all inputs as a group
-		if val_group["case"] == True:
-			# Success: they pass the conditions
-			name,price,in_stock,=val_group["result"]		
-		else:
-			# Failure: Something went wrong
-			return val_group["result"]
-
-		#Finally: applying changes
-		product.name=name
-		product.price=price
-		product.in_stock=in_stock
 
 		try:
 			product.update()
