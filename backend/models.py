@@ -201,7 +201,7 @@ class Order(db.Model):
         }
  
 
-    def get_dic(self):
+    def get_dict(self):
         return {#id, user_id, product_id, amount
             'id': self.id,
             'user_id': self.user_id,

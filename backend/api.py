@@ -383,7 +383,7 @@ Tests: test_01_clear_tables
 		orders = Order.query.filter(
 			Order.user_id==user_id).order_by("id").all()
 
-		to_return=[o.simple() for o in orders]
+		to_return=[o.get_dict() for o in orders]
 		return jsonify({"success":True,"orders":to_return})
 		
 
