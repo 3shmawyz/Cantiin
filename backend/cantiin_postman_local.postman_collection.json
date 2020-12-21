@@ -1603,6 +1603,53 @@
 						}
 					],
 					"description": "this is the end point of editing a product"
+				},
+				{
+					"name": "delete_products",
+					"item": [
+						{
+							"name": "delete_products:successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.result).to.eql(\"product deleted successfully\");\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/products/7",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "this endpoint will delete the product with the given id"
 				}
 			],
 			"description": "the products endpoint"
