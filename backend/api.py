@@ -12,7 +12,8 @@ from functions import *
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"
 	2)	"/populate" ->--------->"GET" , "OPTIONS"
-	3)	"/products"	->--------->"GET" , "OPTIONS"
+	3)	"/products"	->--------->"GET" , "POST" , "OPTIONS"
+	4)	"/products/product_id"->"DELETE" , "PUT" , "OPTIONS"
 
 """
 
@@ -86,7 +87,7 @@ Tests: test_01_clear_tables
 
 
 	"""
-	3)	"/products"	->--------->"GET" , "OPTIONS"
+	3)	and 4) Product endpoints
 	"""
 	@app.route("/products", methods=["GET"])
 	def get_products():
@@ -322,6 +323,48 @@ Tests: test_01_clear_tables
 
 
 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
