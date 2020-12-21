@@ -460,8 +460,8 @@ Tests: test_01_clear_tables
 		
 
 
-	@app.route("/orders/<int:product_id>", methods=["PUT"])
-	def edit_orders(product_id):
+	@app.route("/orders/<int:order_id>", methods=["PUT"])
+	def edit_orders(order_id):
 	#This endpoint will add a new product
 		try:
 			body = request.get_json()
@@ -469,16 +469,14 @@ Tests: test_01_clear_tables
 			return my_error(status=400,
 				description="request body can not be parsed to json")
 		try:
-			name = body.get("name",None)
-			price = body.get("price",None)
-			in_stock = body.get("in_stock",None)
+			amount = body.get("amount",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
 		
 		#There can not be 0 fields to change
 		#There must be at least one input field
-		if (name==None and price==None and in_stock==None):
+		if (amount==None):
 			return my_error(status=400, 
 				description = "you must at least enter"
 				" one field to change")
