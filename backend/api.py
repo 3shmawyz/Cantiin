@@ -519,7 +519,7 @@ Tests: test_01_clear_tables
 		 
 		#Now, we have "order", this is essential
 
-		#there will be no None
+		"""#there will be no None
 		if name == None:name=product.name
 		if price == None:price=product.price
 		if in_stock == None:in_stock=product.in_stock
@@ -551,17 +551,27 @@ Tests: test_01_clear_tables
 			name,price,in_stock,=val_group["result"]		
 		else:
 			# Failure: Something went wrong
-			return val_group["result"]
+			return val_group["result"]"""
+
 
 		#Finally: applying changes
-		product.name=name
-		product.price=price
-		product.in_stock=in_stock
+		order.amount=amount
+
+
+		if amount == 0:
+		try:
+			amount.update()
+			return jsonify(
+				{"success":True,"result":"order"+
+				" deleted successfully"})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
 
 		try:
-			product.update()
+			order.update()
 			return jsonify(
-				{"success":True,"product":product.simple()})
+				{"success":True,"order":order.simple()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
