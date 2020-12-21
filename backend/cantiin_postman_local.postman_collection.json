@@ -1340,6 +1340,58 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "put_products : Fail : no inputs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"you must at least enter one field to change\");\r",
+											"  pm.expect(responseJson.error).to.eql(400);\r",
+											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products/7",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"7"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "this is the end point of editing a product"
