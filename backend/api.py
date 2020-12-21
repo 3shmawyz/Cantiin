@@ -374,20 +374,14 @@ Tests: test_01_clear_tables
 			# Failure: Can't convert to integer or None
 			return user_id_validation["result"]
 
-		#Now: There are 2 possibilties
-			#1) in_stock = True
-			#2) in_stock=False
-			#input now must have been converted to True or False
-
-		if in_stock == True:
-			products = get_in_stock_products()
-		else:
-			products = Product.query.order_by(Product.id).all()
-		
+		#Now: There is only one possibility
+			#1) type(user_id) = int
+			#input now must have been converted to integer
 
 
-
-		orders = Order.query.order_by("id").all()
+		#Filtering by user_id
+		orders = Order.query.filter(
+			Order.user_id==user_id).order_by("id").all()
 
 		to_return=[o.simple() for o in orders]
 		return jsonify({"success":True,"orders":to_return})
