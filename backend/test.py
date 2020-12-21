@@ -338,13 +338,10 @@ class CantiinTestCase(unittest.TestCase):
 
 		self.assertEqual(order["id"],6)
 		self.assertEqual(type(order["id"]),int)
-
 		self.assertEqual(order["user_id"],2)
 		self.assertEqual(type(order["user_id"]),int)
-
 		self.assertEqual(order["product_id"],3)
 		self.assertEqual(type(order["product_id"]),int)
-
 		self.assertEqual(order["amount"],5)
 		self.assertEqual(type(order["amount"]),int)
 
@@ -373,8 +370,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(order["product"]["price"],0.5)
 		self.assertEqual(order["product"]["in_stock"],True)
 		self.assertEqual(order["product"]["seller_id"],3)
-
-
 
 		print("Test a_3_9: Order get_dict")
 
