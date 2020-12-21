@@ -14,6 +14,8 @@ endpoints:
 	2)	"/populate" ->--------->"GET" , "OPTIONS"
 	3)	"/products"	->--------->"GET" , "POST" , "OPTIONS"
 	4)	"/products/product_id"->"DELETE" , "PUT" , "OPTIONS"
+	5)	"/orders"	->--------->"GET" , "POST" , "OPTIONS"
+	6)	"/orders/product_id"--->"DELETE" , "PUT" , "OPTIONS"
 
 """
 
@@ -96,7 +98,6 @@ Tests: test_01_clear_tables
 		#in_stock has a fall back value of True (The default)
 		in_stock = request.args.get('in_stock',True)
 
-
 		#in stock now has one of two values
 		#1) input value
 		#2) True (Fall back value)
@@ -128,10 +129,6 @@ Tests: test_01_clear_tables
 		
 
 
-
-
-
-
 	@app.route("/products", methods=["POST"])
 	def post_products():
 	#This endpoint will add a new product
@@ -148,7 +145,6 @@ Tests: test_01_clear_tables
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
-
 
 		#Validating inputs one by one
 		name_validation = validate_must(
@@ -257,7 +253,6 @@ Tests: test_01_clear_tables
 		#	minimum=1,maximum=100000000000000000)
 		#seller_id can not change
 
-
 		val_group=validate_must_group(
 			[name_validation,price_validation,
 			in_stock_validation])
@@ -285,9 +280,6 @@ Tests: test_01_clear_tables
 
 
 		
-
-
-
 
 	@app.route("/products/<int:product_id>", methods=["DELETE"])
 	def delete_products(product_id):
@@ -325,6 +317,40 @@ Tests: test_01_clear_tables
 		
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	"""
+	5) and 6) Order endpoints
+	"""
 
 
 
