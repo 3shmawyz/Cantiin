@@ -195,9 +195,8 @@ class Order(db.Model):
             'user_id': self.user_id,
             'product_id': self.product_id,
             'amount': self.amount,
-            "total_cost":
-            float(Product.query.get(self.product_id).price
-                )*float(self.amount)
+            'price': self.product.price,
+            "total_cost":self.product.price*float(self.amount)
         }
  
 
