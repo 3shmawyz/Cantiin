@@ -397,10 +397,9 @@ Tests: test_01_clear_tables
 			return my_error(status=400,
 				description="request body can not be parsed to json")
 		try:
-			name = body.get("name",None)
-			price = body.get("price",None)
-			in_stock = body.get("in_stock",None)
-			seller_id = body.get("seller_id",None)
+			user_id = body.get("user_id",None)
+			product_id = body.get("product_id",None)
+			amount = body.get("amount",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
