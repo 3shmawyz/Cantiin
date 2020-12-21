@@ -481,9 +481,10 @@ Tests: test_01_clear_tables
 				description = "you must at least enter"
 				" one field to change")
 
+		#Validating inputs one by one
 		amount_validation = validate_must(
 			input=amount,type="i",input_name_string="amount",
-			minimum=0,maximum=1000000000)
+			minimum=1,maximum=1000000000)
 
 		#Now we will validate all inputs as a group
 		if amount_validation["case"] == True:
@@ -499,26 +500,24 @@ Tests: test_01_clear_tables
 
 
 
+		orders_query=Order.query
 
-
-		products_query=Product.query
-
-		product_id_validation=validate_model_id(
-			input_id=product_id,model_query=products_query
-			,model_name_string="product")
-		if product_id_validation["case"]==1:
-			#The product exists
-			product=product_id_validation["result"]
+		order_id_validation=validate_model_id(
+			input_id=order_id,model_query=orders_query
+			,model_name_string="order")
+		if order_id_validation["case"]==1:
+			#The order exists
+			order=order_id_validation["result"]
 
 		else:
-			#No product with this id, can not convert to int,
+			#No order with this id, can not convert to int,
 			# or id is missing (Impossible)
 			return my_error(
-				status=product_id_validation["result"]["status"],
-				description=product_id_validation
+				status=order_id_validation["result"]["status"],
+				description=order_id_validation
 				["result"]["description"])
 		 
-		#Now, we have "product", this is essential
+		#Now, we have "order", this is essential
 
 		#there will be no None
 		if name == None:name=product.name
