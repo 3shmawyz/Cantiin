@@ -446,15 +446,15 @@ Tests: test_01_clear_tables
 
 
 
-		#Create the product
-		new_product = Product(name=name, price=price,
-			seller_id=seller_id, in_stock=in_stock)
+		#Create the Order
+		new_order = Order(user_id=user_id, amount=amount,
+			product_id=product_id)
 
-		#Insert the product in the database
+		#Insert the order in the database
 		try:
-			new_product.insert()
+			new_order.insert()
 			return jsonify(
-				{"success":True,"product":new_product.simple()})
+				{"success":True,"product":new_order.get_dict()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
