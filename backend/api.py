@@ -309,9 +309,11 @@ Tests: test_01_clear_tables
 		#Now, we have "product", this is essential
 
 		try:
-			product.update()
+			# Finally, deleting the product itself
+			product.delete()
 			return jsonify(
-				{"success":True,"product":product.simple()})
+				{"success":True,
+				"result":"product deleted successfully"})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
