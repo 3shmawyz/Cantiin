@@ -470,7 +470,7 @@ class CantiinTestCase(unittest.TestCase):
 			model_query=all_products,
 			model_name_string="product")
 		self.assertEqual(validation["case"],4)
-		self.assertEqual(None,
+		self.assertEqual({'status': 400, 'description': 'product is missing'},
 			validation["result"])
 		print("Test b_1_9: validate_model_id: Product None")
 
