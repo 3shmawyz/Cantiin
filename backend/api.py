@@ -353,7 +353,7 @@ Tests: test_01_clear_tables
 	"""
 	@app.route("/orders", methods=["GET"])
 	def get_orders():
-	#This endpoint will return all the products		
+	#This endpoint will return all the orders		
 
 		#recievng inputs:
 		#user_id has a fall back value of None
@@ -462,7 +462,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/orders/<int:order_id>", methods=["PUT"])
 	def edit_orders(order_id):
-	#This endpoint will add a new product
+	#This endpoint will edit an exiting order
 		try:
 			body = request.get_json()
 		except:
