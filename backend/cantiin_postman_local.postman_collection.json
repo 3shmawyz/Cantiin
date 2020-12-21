@@ -15,7 +15,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "47c27cfc-052f-48de-bb4a-3ad9b7eebf45",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"  pm.response.to.have.status(200);\r",
@@ -107,8 +106,7 @@
 					]
 				}
 			],
-			"description": "The clear_tables Endpoint",
-			"protocolProfileBehavior": {}
+			"description": "The clear_tables Endpoint"
 		},
 		{
 			"name": "2) populate",
@@ -119,7 +117,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "02054015-80b0-4404-b2ac-dc0b9e95ca4f",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"  pm.response.to.have.status(200);\r",
@@ -154,8 +151,7 @@
 					"response": []
 				}
 			],
-			"description": "The populate endpoint",
-			"protocolProfileBehavior": {}
+			"description": "The populate endpoint"
 		},
 		{
 			"name": "3) products",
@@ -169,7 +165,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9bf2718f-1eff-4af2-9c4f-ecc7dc9b56d8",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(200);\r",
@@ -220,7 +215,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b01c15ac-70a7-4b04-9724-676bfb74c47e",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(200);\r",
@@ -276,7 +270,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b77d494f-f635-4be8-bbe4-f6821ccb9689",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(200);\r",
@@ -334,7 +327,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "16471ff8-efca-4981-84ec-1f2411f472b1",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -387,7 +379,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d18b992d-8d53-4735-977f-6717829fa520",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(200);\r",
@@ -439,9 +430,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "post_products",
@@ -452,7 +441,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8883895a-33e7-4411-a4b9-683a1c03a3a5",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -508,7 +496,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d5ef5e15-caf8-4683-aa0f-45eeb10d76fc",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(200);\r",
@@ -573,7 +560,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "057a03fb-2adb-4735-a212-612963b58806",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -626,7 +612,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "dba2c394-bca2-4ff8-9c6f-f354634c6e84",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -679,7 +664,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "34014a4e-01d0-4317-b22c-4506cff25555",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -732,7 +716,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "eef3655f-cfa9-4abc-ba88-8b5ad6e9dfae",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -785,7 +768,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f043273f-dc49-4769-9be2-1743988c0c6e",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -841,7 +823,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4c978a7c-770f-4f5b-b9be-d79a38097c16",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(400);\r",
@@ -897,7 +878,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "aaea86f1-c289-462a-b394-cd0eb7d09a74",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(422);\r",
@@ -950,7 +930,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "22bf5e22-cecb-44a2-a01c-a3bc24c714c3",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(422);\r",
@@ -1003,7 +982,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "42969898-b210-4f24-82e6-cc108e406395",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(422);\r",
@@ -1056,7 +1034,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "77faf713-1050-468f-8e5a-0984b747c345",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"  pm.response.to.have.status(422);\r",
@@ -1103,14 +1080,10 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
-			"description": "the products endpoint",
-			"protocolProfileBehavior": {}
+			"description": "the products endpoint"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
