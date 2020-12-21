@@ -1696,6 +1696,58 @@
 				}
 			],
 			"description": "the products endpoint"
+		},
+		{
+			"name": "4)orders",
+			"item": [
+				{
+					"name": "get_orders",
+					"item": [
+						{
+							"name": "get_orders: Fail : user_id is missing",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"user_id is missing\");\r",
+											"  pm.expect(responseJson.error).to.eql(400);\r",
+											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/orders",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	]
 }
