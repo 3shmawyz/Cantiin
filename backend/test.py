@@ -349,13 +349,34 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(type(order["amount"]),int)
 
 
-		print("Test a_3_9: Product simple")
+		print("Test a_3_9: Order simple")
 
 	def test_a_3_010_order_relationship_product(self):
 		order = Order.query.get(6)
 		product=order.product
 		self.assertEqual(product,Product.query.get(3))
 		print("Test a_2_10:order relationship_product")
+
+	def test_a_3_010_order_get_dict(self):
+		order = Order.query.get(6).get_dict()
+		#print(produc)
+
+		self.assertEqual(order["id"],6)
+		self.assertEqual(type(order["id"]),int)
+		self.assertEqual(order["user_id"],2)
+		self.assertEqual(type(order["user_id"]),int)
+		self.assertEqual(order["amount"],5)
+		self.assertEqual(type(order["amount"]),int)
+
+		self.assertEqual(order["product"]["id"],3)
+		self.assertEqual(order["product"]["name"],"Candy")
+		self.assertEqual(order["product"]["price"],0.5)
+		self.assertEqual(order["product"]["in_stock"],True)
+		self.assertEqual(order["product"]["seller_id"],3)
+
+
+
+		print("Test a_3_9: Order get_dict")
 
 
 
