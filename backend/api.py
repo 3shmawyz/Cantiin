@@ -481,6 +481,26 @@ Tests: test_01_clear_tables
 				description = "you must at least enter"
 				" one field to change")
 
+		amount_validation = validate_must(
+			input=amount,type="i",input_name_string="amount",
+			minimum=0,maximum=1000000000)
+
+		#Now we will validate all inputs as a group
+		if amount_validation["case"] == True:
+			# Success: they pass the conditions
+			amount=amount_validation["result"]		
+		else:
+			# Failure: Something went wrong
+			return amount_validation["result"]
+		#Now the inputs user_id and amount are validated
+
+
+
+
+
+
+
+
 		products_query=Product.query
 
 		product_id_validation=validate_model_id(
