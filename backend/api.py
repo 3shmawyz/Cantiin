@@ -519,7 +519,7 @@ Tests: test_01_clear_tables
 
 		if amount == 0:
 			try:
-				amount.update()
+				order.update()
 				return jsonify(
 					{"success":True,"result":"order"+
 					" deleted successfully"})
