@@ -1,16 +1,20 @@
 var backend_location="http://127.0.0.1:5000/"
 
 
-function get_products(/*to_be_done,*/in_stock=true)
+function get_products(in_stock=true)
 {
-	if (in_stock==true)
+	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
+		in_stock==1||in_stock=="1"){in_stock=true;}
+		else{in_stock=false;}
 	{	url = backend_location+"products?in_stock=true";}
 	else
 	{	url = backend_location+"products?in_stock=false"}
+	url=build_url(
+		"products",query_inputs={"in_stock":String(in_stock)});
+	 //backend_location+"products?in_stock="+String(in_stock);
 	var settings = {
 	  "url": url,
-	  "method": "GET",
-	  "timeout": 0
+	  "method": "GET"
 	};
 	var to_return="";
 	return $.ajax(settings).done(function(response) {
