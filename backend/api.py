@@ -537,34 +537,34 @@ Tests: test_01_clear_tables
 
 		
 
-	@app.route("/orders/<int:product_id>", methods=["DELETE"])
-	def delete_orders(product_id):
-	#This endpoint will delete an existing product
+	@app.route("/orders/<int:order_id>", methods=["DELETE"])
+	def delete_orders(order_id):
+	#This endpoint will delete an existing order
 		
-		products_query=Product.query
-		product_id_validation=validate_model_id(
-			input_id=product_id,model_query=products_query
-			,model_name_string="product")
-		if product_id_validation["case"]==1:
-			#The product exists
-			product=product_id_validation["result"]
+		orders_query=Order.query
+		order_id_validation=validate_model_id(
+			input_id=order_id,model_query=orders_query
+			,model_name_string="order")
+		if order_id_validation["case"]==1:
+			#The order exists
+			order=order_id_validation["result"]
 
 		else:
-			#No product with this id, can not convert to int,
+			#No order with this id, can not convert to int,
 			# or id is missing (Impossible)
 			return my_error(
-				status=product_id_validation["result"]["status"],
-				description=product_id_validation
+				status=order_id_validation["result"]["status"],
+				description=order_id_validation
 				["result"]["description"])
 		 
-		#Now, we have "product", this is essential
+		#Now, we have "order", this is essential
 
 		try:
-			# Finally, deleting the product itself
-			product.delete()
+			# Finally, deleting the order itself
+			order.delete()
 			return jsonify(
 				{"success":True,
-				"result":"product deleted successfully"})
+				"result":"order deleted successfully"})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
