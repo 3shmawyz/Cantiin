@@ -354,38 +354,10 @@ Tests: test_01_clear_tables
 	@app.route("/orders", methods=["GET"])
 	def get_orders():
 	#This endpoint will return all the products		
-		#recievng inputs:
-		#in_stock has a fall back value of True (The default)
-		in_stock = request.args.get('in_stock',True)
+		orders = Order.query.order_by("id").all()
 
-		#in stock now has one of two values
-		#1) input value
-		#2) True (Fall back value)
-		#-	I can not be equal to None at all
-		#-	Even if equal to None, it will be rejected
-		in_stock_validation = validate_must(
-			input=in_stock,type="b",input_name_string="in_stock")
-
-		#Now we will validate the in_stock input
-		if in_stock_validation["case"] == True:
-			# Success: True or false
-			in_stock=in_stock_validation["result"]		
-		else:
-			# Failure: Can't convert to boolean or None (Impossible)
-			return in_stock_validation["result"]
-
-		#Now: There are 2 possibilties
-			#1) in_stock = True
-			#2) in_stock=False
-			#input now must have been converted to True or False
-
-		if in_stock == True:
-			products = get_in_stock_products()
-		else:
-			products = Product.query.order_by(Product.id).all()
-		
-		to_return=[p.simple() for p in products]
-		return jsonify({"success":True,"products":to_return})
+		to_return=[o.simple() for o in orders]
+		return jsonify({"success":True,"orders":to_return})
 		
 
 
