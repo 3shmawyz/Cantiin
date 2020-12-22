@@ -116,16 +116,11 @@ get_products().then(function(value) {console.log(value);});
 it will console.log all the result
 */
 
-function post_orders(name,price,in_stock)
+function post_orders(product_id,amount)
 {
-	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
-		in_stock==1||in_stock=="1")
-		{in_stock=true;}
-	else{in_stock=false;}
-	
 	var settings = 
 	{
-	  "url": backend_location+"products",
+	  "url": backend_location+"orders",
 	  "method": "POST",
 	  "timeout": 0,
 	  "headers": 
@@ -133,8 +128,11 @@ function post_orders(name,price,in_stock)
 	    	"Content-Type": "application/json"
 	  	},
 	  "data": JSON.stringify(
-	  	{"name":name,"price":price,
-	  	"in_stock":in_stock,"seller_id":1}),
+	  	{
+    		"user_id":1,
+   			"product_id":product_id,
+    		"amount":amount
+		}),
 	};
 
 	return $.ajax(settings);
