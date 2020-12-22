@@ -175,6 +175,36 @@ container-fluid mx-auto" style="bottom:0px;"
 </script>
 
 
+<script type="text/javascript">
+  
+
+const product_id = new URLSearchParams(
+  window.location.search).get("id");
+
+function getSpecificProduct(data,id)
+{
+  for(p_index in data["products"])
+  {
+    if(data["products"][p_index]["id"]==id)
+    {
+      return data["products"][p_index];
+    }
+  }
+}
+
+function fill_fields(data,id)
+{
+  the_product = getSpecificProduct(data,id);
+  console.log(the_product);
+  document.getElementById('p_name').value=the_product["name"];
+  document.getElementById('p_price').value=the_product["price"];
+}
+
+get_products().then(function(value)
+  {fill_fields(value,id=product_id);});
+
+</script>
+
 
 </body>
 </html>
