@@ -143,6 +143,13 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 
+<div style="font-size: 200%;
+font-weight: bold;color:black;">Result: 
+
+<span id="the_result">
+  </span>
+
+</div>
 
 
 
@@ -255,6 +262,31 @@ get_products().then(function(value)
   {fill_fields(value,id=product_id);});
 
 
+
+function diplayResult(color="success",message="")
+{
+  document.getElementById("the_result").innerHTML=
+  '<span style="color:'+color+';">'+message+'</span>';
+}
+
+diplayResult("yellow","Waiting for your input");
+
+function handleResponse(response)
+{
+  if (response["success"]==true) 
+  {diplayResult("lime","Product added successfully");}
+  else{diplayResult("pink",response["description"]);}
+}
+
+function editTheProduct() 
+{
+  post_products(name=document.getElementById('p_name')["value"]
+    ,price=document.getElementById('p_price')["value"],
+    in_stock=true).then(function(value){
+      handleResponse(value);}).
+    catch(function(value){
+      handleResponse(value["responseJSON"]);});
+}  
 
 
 </script>
