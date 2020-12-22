@@ -182,7 +182,7 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 
-    
+
   </div>
 
 
@@ -258,7 +258,7 @@ container-fluid mx-auto" style="bottom:0px;"
 '       class="ml-auto card_button btn btn-outline-danger"'+ 
 '      style="font-weight: bold;font-size: 150%"'+
 '      data-toggle="modal" data-target="#exampleModal"'+
-'      onclick="remove_product_from_cart('+item_id+')" '+
+'      onclick="remove_order_from_cart('+item_id+')" '+
 '      >Remove From Cart'+
 '      </a> '+
 '    </div>'+
@@ -284,7 +284,7 @@ container-fluid mx-auto" style="bottom:0px;"
   what will trigger the deletion is the delete button 
   in thye pop up modal
   */
-  function remove_product_from_cart(id = 0)
+  function remove_order_from_cart(id = 0)
   {
     to_be_removed_from_cart = id;
     console.log(to_be_removed_from_cart);
@@ -292,7 +292,8 @@ container-fluid mx-auto" style="bottom:0px;"
 
   function remove_really()
   {
-    console.log("Deleting: " + to_be_removed_from_cart);
+    delete_orders(to_be_removed_from_cart).
+    then(function(value){location.reload()});
   }
 
 
