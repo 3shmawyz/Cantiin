@@ -5,6 +5,7 @@
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/backend.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style type="text/css">
@@ -250,7 +251,8 @@ function fill_fields(data,id)
 //fill_fields(data_example,5)
 
 
-get_products().then(function(value){fill_fields(value,id=id);});
+get_products().then(function(value)
+  {fill_fields(value,id=product_id);});
 
 
 
