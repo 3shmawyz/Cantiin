@@ -191,9 +191,6 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 
-const product_id = new URLSearchParams(
-  window.location.search).get("id");
-
 var data_example = {
     "products": [
         {
@@ -229,6 +226,9 @@ var data_example = {
 }
 
 
+const product_id = new URLSearchParams(
+  window.location.search).get("id");
+
 function getSpecificProduct(data,id)
 {
   for(p_index in data["products"])
@@ -240,10 +240,17 @@ function getSpecificProduct(data,id)
   }
 }
 
-console.log(getSpecificProduct(data_example,5))
+function fill_fields(data,id)
+{
+  the_product = getSpecificProduct(data,id);
+  document.getElementById('p_name').value=the_product["name"];
+  document.getElementById('p_price').value=the_product["price"];
+}
+//console.log(getSpecificProduct(data_example,5))
+//fill_fields(data_example,5)
 
-//get_products().then(function(value) 
-//  {fill_fields(value);});
+
+get_products().then(function(value){fill_fields(value,id=id);});
 
 
 
