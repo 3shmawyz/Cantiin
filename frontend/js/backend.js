@@ -17,9 +17,7 @@ function get_products(in_stock=true)
 	method="GET";endpoint="products";
 	var settings = getAjaxSettings(method,endpoint,query_inputs=
 		{"in_stock":String(in_stock)})
-	return $.ajax(settings).done(function(response) {
-	  to_return = response;
-	});
+	return $.ajax(settings);
 }
 /*
 Example:
@@ -110,8 +108,7 @@ function get_orders()
 	  "url": backend_location+"orders?user_id=1",
 	  "method": "GET","timeout": 0,
 	};
-	return $.ajax(settings).done(function (response) 
-	{console.log(response);});
+	return $.ajax(settings);
 }
 /*
 Example:
