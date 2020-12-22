@@ -42,9 +42,7 @@ function post_products(name,price,in_stock)
 	  	"in_stock":in_stock,"seller_id":1}),
 	};
 
-	return $.ajax(settings).done(function (response) {
-	  console.log(response);
-});}
+	return $.ajax(settings);}
 /*
 Example:
 get_products().then(function(value) {console.log(value);});
