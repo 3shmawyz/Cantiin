@@ -151,7 +151,7 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 <script type="text/javascript">
-  price = 50;
+  price = 0;
   amount = 1;
   total_price;
   function  setup_all()
@@ -196,13 +196,21 @@ function fill_fields(data,id)
 {
   the_product = getSpecificProduct(data,id);
   console.log(the_product);
-  document.getElementById('p_name').value=the_product["name"];
-  document.getElementById('p_price').value=the_product["price"];
+  document.getElementById('p_name').innerHTML=the_product["name"];
+  document.getElementById('p_price').innerHTML=the_product["price"];
+  console.log(the_product["name"]);
+  console.log(the_product["price"]);
+  price = the_product["price"];
+  setup_all();
+
 }
 
 get_products().then(function(value)
   {fill_fields(value,id=product_id);});
 
+/*  document.getElementById('p_name').innerHTML="abc";
+  document.getElementById('p_price').innerHTML=5432;
+*/
 </script>
 
 
