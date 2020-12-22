@@ -17,6 +17,13 @@ After installing this, you can now **run linux commands on windows**.
 
 
 
+## cd into the backend directory : ##
+1. Using normal **Windows File Expolorer** get in the 
+backend directory
+2. **Right click** any where
+3. Select the option **Git Bash Here**
+4. now **a window will open**
+
 ## Running on windows: ##
 
 
