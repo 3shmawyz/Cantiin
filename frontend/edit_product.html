@@ -194,9 +194,53 @@ container-fluid mx-auto" style="bottom:0px;"
 const product_id = new URLSearchParams(
   window.location.search).get("id");
 
+var data_example = {
+    "products": [
+        {
+            "id": 1,
+            "in_stock": true,
+            "name": "Labtop",
+            "price": 300.0,
+            "seller_id": 1
+        },
+        {
+            "id": 3,
+            "in_stock": true,
+            "name": "Candy",
+            "price": 0.5,
+            "seller_id": 3
+        },
+        {
+            "id": 5,
+            "in_stock": true,
+            "name": "Keyboard",
+            "price": 5.0,
+            "seller_id": 2
+        },
+        {
+            "id": 6,
+            "in_stock": true,
+            "name": "Mouse",
+            "price": 4.0,
+            "seller_id": 1
+        }
+    ],
+    "success": true
+}
 
 
+function getSpecificProduct(data,id)
+{
+  for(p_index in data["products"])
+  {
+    if(data["products"][p_index]["id"]==id)
+    {
+      return data["products"][p_index];
+    }
+  }
+}
 
+console.log(getSpecificProduct(data_example,5))
 
 //get_products().then(function(value) 
 //  {fill_fields(value);});
