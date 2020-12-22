@@ -196,7 +196,10 @@ function addTheProduct()
 {
   post_products(name=document.getElementById('p_name')["value"]
     ,price=document.getElementById('p_price')["value"],
-    in_stock=true).then(function(value){console.log(value);});
+    in_stock=true).then(function(value){
+      handleResponse(value);}).
+    catch(function(value){
+      handleResponse(value["responseJSON"]);});
 }  
 
 
@@ -221,7 +224,12 @@ response_example =
     "success": true,
     "description": "you failed"
 }
-
+response_example ={
+    "description": "in_stock is missing",
+    "error": 400,
+    "message": "bad request",
+    "success": false
+}
 function handleResponse(response)
 {
   if (response["success"]==true) 
