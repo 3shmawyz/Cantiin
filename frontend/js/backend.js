@@ -1,6 +1,12 @@
 var backend_location="http://127.0.0.1:5000/"
 
 
+
+
+/*
+Product model AJAX functions
+*/
+
 function get_products(in_stock=true)
 {
 	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
@@ -86,6 +92,117 @@ function put_products(id,name,price,in_stock)
 
 	return $.ajax(settings);
 }
+
+
+
+
+
+
+
+/*
+Order model AJAX functions
+*/
+
+function get_orders(in_stock=true)
+{
+	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
+		in_stock==1||in_stock=="1")
+		{in_stock=true;}
+	else{in_stock=false;}
+	
+	method="GET";endpoint="products";
+	var settings = getAjaxSettings(method,endpoint,query_inputs=
+		{"in_stock":String(in_stock)})
+	return $.ajax(settings).done(function(response) {
+	  to_return = response;
+	});
+}
+/*
+Example:
+get_products().then(function(value) {console.log(value);});
+it will console.log all the result
+*/
+
+function post_orders(name,price,in_stock)
+{
+	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
+		in_stock==1||in_stock=="1")
+		{in_stock=true;}
+	else{in_stock=false;}
+	
+	var settings = 
+	{
+	  "url": backend_location+"products",
+	  "method": "POST",
+	  "timeout": 0,
+	  "headers": 
+	  	{
+	    	"Content-Type": "application/json"
+	  	},
+	  "data": JSON.stringify(
+	  	{"name":name,"price":price,
+	  	"in_stock":in_stock,"seller_id":1}),
+	};
+
+	return $.ajax(settings);
+}
+
+
+
+
+function delete_orders(id)
+{
+	var settings = 
+	{
+	  "url": backend_location+"products/"+id,
+	  "method": "DELETE"
+	};
+	return $.ajax(settings);
+}
+
+
+
+
+
+
+function put_orders(id,name,price,in_stock)
+{
+	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
+		in_stock==1||in_stock=="1")
+		{in_stock=true;}
+	else{in_stock=false;}
+	
+	var settings = 
+	{
+	  "url": backend_location+"products/"+id,
+	  "method": "PUT",
+	  "timeout": 0,
+	  "headers": 
+	  	{
+	    	"Content-Type": "application/json"
+	  	},
+	  "data": JSON.stringify(
+	  	{"name":name,"price":price,
+	  	"in_stock":in_stock,"seller_id":1}),
+	};
+
+	return $.ajax(settings);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
