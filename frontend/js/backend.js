@@ -147,7 +147,7 @@ function delete_orders(id)
 {
 	var settings = 
 	{
-	  "url": backend_location+"products/"+id,
+	  "url": backend_location+"orders/"+id,
 	  "method": "DELETE"
 	};
 	return $.ajax(settings);
