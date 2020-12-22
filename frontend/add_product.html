@@ -139,9 +139,7 @@ container-fluid mx-auto" style="bottom:0px;"
 font-weight: bold;color:black;">Result: 
 
 <span id="the_result">
-  <span class="text-warning">
-    
-  </span></span>
+  </span>
 
 </div>
 
@@ -203,13 +201,13 @@ function addTheProduct()
 
 
 
-function diplayResult(type="success",message="")
+function diplayResult(color="success",message="")
 {
   document.getElementById("the_result").innerHTML=
-  '<span class="text-'+type+'">'+message+'</span>';
+  '<span style="color:'+color+';">'+message+'</span>';
 }
 
-diplayResult("warning","Waiting for your input")
+diplayResult("yellow","Waiting for your input")
 
 response_example =
 {
@@ -220,14 +218,17 @@ response_example =
         "price": 6.0,
         "seller_id": 5
     },
-    "success": true
+    "success": true,
+    "description": "you failed"
 }
 
 function handleResponse(response)
 {
-
+  if (response["success"]==true) 
+  {diplayResult("lime","Product added successfully");}
+  else{diplayResult("pink",response["description"]);}
 }
-
+//handleResponse(response_example);
 </script>
 
 </body>
