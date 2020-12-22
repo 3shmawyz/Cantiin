@@ -172,6 +172,18 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 
+
+
+
+
+
+
+
+
+
+        
+      </div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1"
  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -201,14 +213,6 @@ container-fluid mx-auto" style="bottom:0px;"
 </div>
 
 
-
-
-
-
-
-
-        
-      </div>
   </div>
 
 
@@ -304,7 +308,9 @@ container-fluid mx-auto" style="bottom:0px;"
 
   function delete_really()
   {
-    console.log("Deleting: " + to_be_deleted);
+    delete_products(to_be_deleted).then(function(value)
+      {location.reload()});
+    
   }
 
 

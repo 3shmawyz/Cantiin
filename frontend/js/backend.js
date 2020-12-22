@@ -51,12 +51,10 @@ function delete_products(id)
 {
 	var settings = 
 	{
-	  "url": backend_location+"products/"+String(id),
+	  "url": backend_location+"products/"+id,
 	  "method": "DELETE"
 	};
-	$.ajax(settings).done(function (response) {
-	  console.log(response);
-	});
+	return $.ajax(settings);
 }
 
 
