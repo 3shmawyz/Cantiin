@@ -214,7 +214,13 @@ get_products().then(function(value)
 
 function add_to_cart()
 {
-  
+  post_orders(product_id,amount).then
+  (
+    function(value)
+    {
+      window.location.href = "cart.html"
+    }
+  )
 }
 
 </script>
