@@ -176,7 +176,7 @@ viewBox="0 0 16 16">
 
 </body>
 <script type="text/javascript">
-  
+
 
   add_element_to_list(product_name ="Labtop",
     product_price=500, product_id = 1);
@@ -225,7 +225,49 @@ viewBox="0 0 16 16">
 
 get_products().then(function(value) {console.log(value);});
 
+var data_example = {
+    "products": [
+        {
+            "id": 1,
+            "in_stock": true,
+            "name": "Labtop",
+            "price": 300.0,
+            "seller_id": 1
+        },
+        {
+            "id": 3,
+            "in_stock": true,
+            "name": "Candy",
+            "price": 0.5,
+            "seller_id": 3
+        },
+        {
+            "id": 5,
+            "in_stock": true,
+            "name": "Keyboard",
+            "price": 5.0,
+            "seller_id": 2
+        },
+        {
+            "id": 6,
+            "in_stock": true,
+            "name": "Mouse",
+            "price": 4.0,
+            "seller_id": 1
+        }
+    ],
+    "success": true
+}
 
+
+console.log(data_example["products"])
+for (product_index in data_example["products"]) {
+  var product = data_example["products"][product_index];
+  console.log( product );
+  add_element_to_list(
+    product_name = product["name"],product_price =product["price"], 
+    product_id = product["id"]);
+}
 
 </script>
 
