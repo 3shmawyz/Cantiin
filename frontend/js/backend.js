@@ -103,19 +103,15 @@ function put_products(id,name,price,in_stock)
 Order model AJAX functions
 */
 
-function get_orders(in_stock=true)
+function get_orders()
 {
-	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
-		in_stock==1||in_stock=="1")
-		{in_stock=true;}
-	else{in_stock=false;}
-	
-	method="GET";endpoint="products";
-	var settings = getAjaxSettings(method,endpoint,query_inputs=
-		{"in_stock":String(in_stock)})
-	return $.ajax(settings).done(function(response) {
-	  to_return = response;
-	});
+	var settings = 
+	{
+	  "url": backend_location+"orders?user_id=1",
+	  "method": "GET","timeout": 0,
+	};
+	return $.ajax(settings).done(function (response) 
+	{console.log(response);});
 }
 /*
 Example:
