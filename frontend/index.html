@@ -223,7 +223,8 @@ viewBox="0 0 16 16">
 
 <script type="text/javascript">
 
-get_products().then(function(value) {console.log(value);});
+get_products().then(function(value) 
+  {build_products_cards(value);});
 
 var data_example = {
     "products": [
@@ -273,7 +274,7 @@ function build_products_cards(input_array){
       product_id = product["id"]);
   }
 }
-build_products_cards(data_example);
+//build_products_cards(data_example);
 
 </script>
 
