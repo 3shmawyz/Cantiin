@@ -280,8 +280,9 @@ function handleResponse(response)
 
 function editTheProduct() 
 {
-  post_products(name=document.getElementById('p_name')["value"]
-    ,price=document.getElementById('p_price')["value"],
+  put_products(id=product_id,
+    name=document.getElementById('p_name')["value"],
+    price=document.getElementById('p_price')["value"],
     in_stock=true).then(function(value){
       handleResponse(value);}).
     catch(function(value){
