@@ -30,7 +30,7 @@ function post_products(name,price,in_stock)
 	
 	var settings = 
 	{
-	  "url": "http://127.0.0.1:5000/products",
+	  "url": backend_location+"products",
 	  "method": "POST",
 	  "timeout": 0,
 	  "headers": 
@@ -43,11 +43,22 @@ function post_products(name,price,in_stock)
 	};
 
 	return $.ajax(settings);}
-/*
-Example:
-get_products().then(function(value) {console.log(value);});
-it will console.log all the result
-*/
+
+
+
+
+function delete_products(id)
+{
+	var settings = 
+	{
+	  "url": backend_location+"products/"+String(id),
+	  "method": "DELETE"
+	};
+	$.ajax(settings).done(function (response) {
+	  console.log(response);
+	});
+}
+
 
 
 function build_url(endpoint,query_inputs=Array())
