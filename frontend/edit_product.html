@@ -156,8 +156,8 @@ font-weight: bold;color:black;">Result:
 
 
 
-  <button type="submit" class="btn btn-success mb-4"
-  style=""><div class="" 
+  <button type="button" class="btn btn-success mb-4"
+  style="" onclick="editTheProduct()"><div class="" 
   style="font-size: 200%;font-weight: bold">
   Edit Product</div></button>
 </form>
@@ -274,7 +274,7 @@ diplayResult("yellow","Waiting for your input");
 function handleResponse(response)
 {
   if (response["success"]==true) 
-  {diplayResult("lime","Product added successfully");}
+  {diplayResult("lime","Product edited successfully");}
   else{diplayResult("pink",response["description"]);}
 }
 
