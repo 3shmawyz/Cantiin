@@ -21,6 +21,36 @@ get_products().then(function(value) {console.log(value);});
 it will console.log all the result
 */
 
+function post_products(name,price,in_stock)
+{
+	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
+		in_stock==1||in_stock=="1")
+		{in_stock=true;}
+	else{in_stock=false;}
+	
+	var settings = 
+	{
+	  "url": "http://127.0.0.1:5000/products",
+	  "method": "POST",
+	  "timeout": 0,
+	  "headers": 
+	  	{
+	    	"Content-Type": "application/json"
+	  	},
+	  "data": JSON.stringify(
+	  	{"name":name,"price":price,
+	  	"in_stock":in_stock,"seller_id":1}),
+	};
+
+	return $.ajax(settings).done(function (response) {
+	  console.log(response);
+});}
+/*
+Example:
+get_products().then(function(value) {console.log(value);});
+it will console.log all the result
+*/
+
 
 function build_url(endpoint,query_inputs=Array())
 {
