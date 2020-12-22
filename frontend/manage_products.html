@@ -5,6 +5,7 @@
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/backend.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style type="text/css">
@@ -304,6 +305,22 @@ container-fluid mx-auto" style="bottom:0px;"
   {
     console.log("Deleting: " + to_be_deleted);
   }
+
+get_products().then(function(value) 
+  {build_products_cards(value);});
+function build_products_cards(input_array){
+  document.getElementById('list_of_products').innerHTML="";
+  for (product_index in input_array["products"]) {
+    var product = input_array["products"][product_index];
+    //console.log( product );
+    add_element_to_list(
+      product_name = product["name"],
+      product_price =product["price"], 
+      product_id = product["id"]);
+  }
+}
+
+
 </script>
 
 
