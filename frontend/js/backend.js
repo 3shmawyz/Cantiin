@@ -42,7 +42,8 @@ function post_products(name,price,in_stock)
 	  	"in_stock":in_stock,"seller_id":1}),
 	};
 
-	return $.ajax(settings);}
+	return $.ajax(settings);
+}
 
 
 
@@ -56,6 +57,41 @@ function delete_products(id)
 	};
 	return $.ajax(settings);
 }
+
+
+
+
+
+
+function put_products(id,name,price,in_stock)
+{
+	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
+		in_stock==1||in_stock=="1")
+		{in_stock=true;}
+	else{in_stock=false;}
+	
+	var settings = 
+	{
+	  "url": backend_location+"products/"+id,
+	  "method": "PUT",
+	  "timeout": 0,
+	  "headers": 
+	  	{
+	    	"Content-Type": "application/json"
+	  	},
+	  "data": JSON.stringify(
+	  	{"name":name,"price":price,
+	  	"in_stock":in_stock,"seller_id":1}),
+	};
+
+	return $.ajax(settings);
+}
+
+
+
+
+
+
 
 
 
