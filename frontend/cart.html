@@ -291,6 +291,68 @@ container-fluid mx-auto" style="bottom:0px;"
     console.log("Deleting: " + to_be_removed_from_cart);
   }
 
+
+
+
+
+get_orders().then(function(data){console.log(data);})
+
+
+
+get_products().then(function(value) 
+  {build_products_cards(value);});
+
+var data_example = {
+    "products": [
+        {
+            "id": 1,
+            "in_stock": true,
+            "name": "Labtop",
+            "price": 300.0,
+            "seller_id": 1
+        },
+        {
+            "id": 3,
+            "in_stock": true,
+            "name": "Candy",
+            "price": 0.5,
+            "seller_id": 3
+        },
+        {
+            "id": 5,
+            "in_stock": true,
+            "name": "Keyboard",
+            "price": 5.0,
+            "seller_id": 2
+        },
+        {
+            "id": 6,
+            "in_stock": true,
+            "name": "Mouse",
+            "price": 4.0,
+            "seller_id": 1
+        }
+    ],
+    "success": true
+}
+
+
+console.log(data_example["products"])
+
+function build_products_cards(input_array){
+  document.getElementById('list_of_products').innerHTML="";
+  for (product_index in input_array["products"]) {
+    var product = input_array["products"][product_index];
+    //console.log( product );
+    add_element_to_list(
+      product_name = product["name"],
+      product_price =product["price"], 
+      product_id = product["id"]);
+  }
+}
+
+
+
 </script>
 
 
