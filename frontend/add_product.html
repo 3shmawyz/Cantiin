@@ -135,7 +135,15 @@ container-fluid mx-auto" style="bottom:0px;"
 
   </div>
 
+<div style="font-size: 200%;
+font-weight: bold;color:black;">Result: 
 
+<span id="the_result">
+  <span class="text-warning">
+    
+  </span></span>
+
+</div>
 
 
 
@@ -188,10 +196,20 @@ container-fluid mx-auto" style="bottom:0px;"
 <script type="text/javascript">
 function addTheProduct() 
 {
-    console.log(document.getElementById('p_name')["value"]);
-    console.log(document.getElementById('p_price')["value"]);
+  post_products(name=document.getElementById('p_name')["value"]
+    ,price=document.getElementById('p_price')["value"],
+    in_stock=true).then(function(value){console.log(value);});
 }  
 
+
+
+function diplayResult(type="success",message="")
+{
+  document.getElementById("the_result").innerHTML=
+  '<span class="text-'+type+'">'+message+'</span>';
+}
+
+diplayResult("warning","Waiting for your input")
 </script>
 
 </body>
