@@ -12,12 +12,19 @@ In this project have used this technologies:
 2. **JavaScript**
 3. **CSS**
 4. **BootStrap**  
+5. **JSON** (JavaScript Object Notation)
+6. **AJAX**
 
 ### Backend Technologies: ###
 1. **Python**
 2. **Flask**
 3. **SqlAlchemy (ORM)**
-
+4. **RESTful API** endpoints
+5. **Flask-CORS**
+6. **Unittesting**  
+	for python functions and SQLAlchemy models
+7. **Postman** testing  
+	for API endpoints
 
 
 ### Additional Technologies: ###
@@ -36,10 +43,7 @@ permission or attribution.
 
 ## About ##
 - This is the an **E-Commerce Website**.
-- All the **buttons don't work** so far
-- I am currently working on the backend of the project
-- Functionalities and features will be added soon (If God Willed)
-
+- Now, **the buttons are working** 
 
 
 
@@ -52,6 +56,11 @@ The project is still **under development**.
 
 
 ## Completed Steps ##
+You can see a list of the completed steps
+ in the **closed issues on github:**    
+ <a href="https://github.com/OmarThinks/Cantiin/issues?q=is%3Aissue+is%3Aclosed">
+ https://github.com/OmarThinks/Cantiin/issues?q=is%3Aissue+is%3Aclosed</a>
+
 1. Creating the **github** repo
 2. Creating the **README.md** file
 3. Creating the **.gitgnore** file
@@ -70,7 +79,9 @@ yet, it's only BootStrap)
 15. Creating **Product SQLAlchemy Model UnitTests**
 16. Creating **Order SQLAlchemy Model**
 17. Creating **Order SQLAlchemy Model UnitTests**
- 
+18. Created **API endpoints**
+19. **Testing API endpoints** using **postman**
+20. Connected frontend and packend using **AJAX** requests
 
 
 ## What is next? ## 
