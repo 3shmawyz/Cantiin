@@ -25,6 +25,7 @@ def generate_jwt(payload,secret):
 
 
 def decode_jwt(encoded_jwt,secret):
+    secret=str(secret)
     try:
         result = jwt.decode(
             encoded_jwt, secret,algorithms="HS256",verify=True)
