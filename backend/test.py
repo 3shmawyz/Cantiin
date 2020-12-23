@@ -1029,6 +1029,16 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_2_1: generate_jwt")
 
 
+	def test_c_2_002_generate_jwt_fail(self):
+		payload='{"a":"b"}'
+		#Wrong: This is a string of JSON
+		#Not JSON itself 
+		secret="1"
+		encoded = generate_jwt(payload,secret)
+		self.assertEqual(encoded["success"],False)
+		print("Test c_2_2: generate_jwt_fail)
+
+
 
 
 
