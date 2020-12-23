@@ -1138,6 +1138,17 @@ class CantiinTestCase(unittest.TestCase):
 		#user_id can not be converted to int
 		print("Test c_2_3_2: generate_token_wrong")
 
+	def test_c_2_3_003_generate_token_wrong(self):
+		user_id = 0
+		secret = "there"
+		token = generate_token(user_id,secret)
+		self.assertEqual(token["success"],False)
+		self.assertEqual(token["result"]["status"],422)
+		self.assertEqual(token["result"]["description"],
+			"user_id can not be less than 1")
+		#user_id can not be converted to int
+		print("Test c_2_3_3: generate_token_wrong")
+
 
 
 
