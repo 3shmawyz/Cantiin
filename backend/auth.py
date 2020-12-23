@@ -75,12 +75,12 @@ def generate_token(user_id,secret,
     expiration_delta=expiration_after,
     issued_at=datetime.now()):
     
-    user_id_validation=validate_must(input=user_id,type="i",
-    input_name_string="user_id",
+    user_id_validation=validate_integer(
+    input_integer=user_id,input_name_string="user_id",
     maximum=10000000000000000000000000000000000000000,minimum=1)
-    secret_validation=validate_must(input=secret,type="s",
-    input_name_string="secret",
-    maximum=100000000000000000000000000000000000000000,minimum=3)
+    secret_validation=validate_string(
+        input_string=secret,string_name="secret",minimum_length=3,
+    max_length=100000000000000000000000000000000000000000)
 
     #Now we will validate user_id
     if user_id_validation == True:
