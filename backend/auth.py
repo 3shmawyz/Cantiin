@@ -133,6 +133,7 @@ Outputs:
 """
 def validate_token(token,secret):
     decoded_jwt = decode_jwt(token,secret)
+    #print(decoded_jwt)
     payload=""
     if decoded_jwt["success"]:
         payload=decoded_jwt["result"]

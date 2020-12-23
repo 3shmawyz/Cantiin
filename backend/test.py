@@ -1158,6 +1158,12 @@ class CantiinTestCase(unittest.TestCase):
 		token_validation=validate_token(wrong_token,secret)
 		self.assertEqual(token_validation["case"],3)
 		self.assertEqual(token_validation["token"],"")
+		e1=token_validation["error"]
+		e2=jwt.DecodeError('Invalid header padding')
+		if type(e1) is type(e2) and e1.args==e2.args:
+			self.assertEqual(True,True)
+		else:
+			self.assertEqual(True,False)
 		#print(token_validation)
 		#{'case': 3, 'token': '', 'error': 
 		#DecodeError('Invalid header padding')}
@@ -1193,10 +1199,13 @@ class CantiinTestCase(unittest.TestCase):
 		token_validation=validate_token(token["result"],secret)
 		self.assertEqual(token_validation["case"],3)
 		self.assertEqual(token_validation["token"],"")
-		#print(token_validation)
-		#{'case': 3, 'token': '', 'error': 
-		#DecodeError('Expiration Time claim (exp) must be an integer.')}
-		#DecodeError is not defined
+		e1=token_validation["error"]
+		e2=jwt.DecodeError(
+			'Expiration Time claim (exp) must be an integer.')
+		if type(e1) is type(e2) and e1.args==e2.args:
+			self.assertEqual(True,True)
+		else:
+			self.assertEqual(True,False)
 		print("Test c_2_4_4: validate_token_wrong")
 
 	def test_c_2_4_005_decode_jwt_wrong(self):
@@ -1209,10 +1218,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(token_validation["token"],"")
 		self.assertEqual(token_validation["error"],
 			"user_id can not be converted to integer")
-		#print(token_validation)
-		#{'case': 3, 'token': '', 'error': 
-		#DecodeError('Expiration Time claim (exp) must be an integer.')}
-		#DecodeError is not defined
 		print("Test c_2_4_5: validate_token_wrong")
 
 	def test_c_2_4_006_decode_jwt_wrong(self):
@@ -1223,8 +1228,12 @@ class CantiinTestCase(unittest.TestCase):
 		token_validation=validate_token(token["result"],secret)
 		self.assertEqual(token_validation["case"],3)
 		self.assertEqual(token_validation["token"],"")
-		#self.assertEqual(token_validation["error"],
-		#	ExpiredSignatureError('Signature has expired'))
+		e1=token_validation["error"]
+		e2=jwt.ExpiredSignatureError('Signature has expired')
+		if type(e1) is type(e2) and e1.args==e2.args:
+			self.assertEqual(True,True)
+		else:
+			self.assertEqual(True,False)
 		#ExpiredSignatureError is not defined
 		print("Test c_2_4_6: validate_token_wrong")
 
@@ -1237,9 +1246,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(token_validation["case"],1)
 		self.assertEqual(token_validation["token"],token["result"])
 		self.assertEqual(token_validation["error"],"")
-		#self.assertEqual(token_validation["error"],
-		#	ExpiredSignatureError('Signature has expired'))
-		#ExpiredSignatureError is not defined
 		print("Test c_2_4_7: validate_token_correct")
 
 
