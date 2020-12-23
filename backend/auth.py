@@ -69,7 +69,9 @@ def decode_jwt(encoded_jwt,secret):
 
 
 
-def generate_token(user_id,secret):
+def generate_token(user_id,secret,
+    expiration_delta=expiration_after,
+    issued_at=datetime.now()):
     
     user_id_validation=validate_must(input=user_id,type="i",
     input_name_string="user_id",
@@ -89,7 +91,7 @@ def generate_token(user_id,secret):
         return {"success":False,
         "result":val_group["result"]}
     
-    expiration_datetime=datetime.now()+expiration_after
+    expiration_datetime=issued_at+expiration_delta
     expiration_epoch=expiration_datetime.timestamp()
     
     payload = { "uid" : user_id , "exp" : expiration_epoch }
