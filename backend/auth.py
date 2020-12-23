@@ -181,9 +181,16 @@ def validate_token(token,secret):
 
     now_epoch=int(datetime.now().timestamp())
     if now_epoch>exp:
-        return {"succes":True,"result":"new_token"}
+        #Expired token
+        case = 2
+        new_token=generate_token(user_id,secret)
+        error="expired token"
     else:
-        return {"success":True,"result":"old_token"}
+        #Valid Token
+        case = 1
+        new_token=token
+        error=""
+    return {"case":case,"token":new_token,"error":error}
 
 
 
