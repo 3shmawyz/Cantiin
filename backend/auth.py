@@ -123,6 +123,19 @@ def validate_token(token,secret):
         #{"sccuess":False,"result":error string}
     #Now we Have Payload
 
+    user_id=0
+    expiration=0
+    try:
+        user_id=payload["uid"]
+    except:
+        return {"success":False,"result":
+        "payload does not contain user_id"}
+    try:
+        expiration=payload["exp"]
+    except:
+        return {"success":False,"result":
+        "payload does not contain expiration_date"}
+
     user_id_validation=validate_integer(
     input_integer=user_id,input_name_string="user_id",
     maximum=10000000000000000000000000000000000000000,minimum=1)
