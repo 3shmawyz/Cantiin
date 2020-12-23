@@ -12,7 +12,18 @@ import base64
 
 
 
+"""
+Inputs:
+    - payload:  Type must be dictionary
+    - secret:   Type must be string
 
+Outputs:
+    -A dictionary:
+        - success:  True or False
+        - result:   
+            - If suucess=True: The JWT Token
+            - If success=False:The error
+"""
 def generate_jwt(payload,secret):
     algorithm = "HS256"
     try:
