@@ -110,9 +110,15 @@ def generate_token(user_id,secret,
 
 
 
-
-
-
+"""
+Inputs:
+    - token:    string of the token
+    - secret:   string of the secret
+Outputs:
+    - { "case":      1 or 2 or 3, 
+        "token":    string of token to be assigned
+        "error":    the error message}
+"""
 def validate_token(token,secret):
     decoded_jwt = decode_jwt(token,secret)
     payload=""
