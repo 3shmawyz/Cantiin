@@ -1115,7 +1115,16 @@ class CantiinTestCase(unittest.TestCase):
 		token = generate_token(user_id,secret,
     		expiration_delta=expiration,
     		issued_at=datetime.now())
+		#print(token["result"])
+		#fslsdlf.akjdlakjslkjas.askjasdkjhads
 		self.assertEqual(token["success"],True)
+		decoded_jwt=decode_jwt(token["result"],secret)["result"]
+		#print(decoded_jwt)
+		#{'uid': 5, 'exp': 1609345799.712798}
+		self.assertEqual(decoded_jwt["uid"],5)
+		exp_datetime=issued_at+expiration
+		self.assertEqual(decoded_jwt["exp"],
+			exp_datetime.timestamp())
 		print("Test c_2_3_1: generate_token")
 
 
