@@ -4,6 +4,10 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
+import jwt
+import base64
+
+
 #Defining the variables from my auth0 account
 AUTH0_DOMAIN = 'domain'
 ALGORITHMS = ['RS256']
