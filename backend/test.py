@@ -1010,6 +1010,12 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_1_3: decode_jwt_wrong")
 
 
+	def test_c_1_004_decode_jwt_wrong(self):
+		b_s = str(b"abc",'utf-8')
+		self.assertEqual(b_s,"abc")
+		print("Test c_1_3: decode_jwt_wrong")
+
+
 
 
 
