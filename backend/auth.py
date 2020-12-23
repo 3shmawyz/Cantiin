@@ -4,6 +4,8 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
+from functions import *
+
 import jwt
 import base64
 
@@ -66,7 +68,7 @@ def decode_jwt(encoded_jwt,secret):
 
 
 
-def generate_token(user_id,secret)
+def generate_token(user_id,secret):
     user_id=int(user_id)
     
     delta_time= timedelta(days=7)
@@ -77,7 +79,7 @@ def generate_token(user_id,secret)
 
     jwt_generated = generate_jwt(payload=payload,secret=secret)
 
-    
+
 
 
 

@@ -1021,27 +1021,35 @@ class CantiinTestCase(unittest.TestCase):
 
 	def test_c_1_005_datetimes(self):
 		d = datetime(year=2005,month=3,day=4)
-		print(d)
+		#print(d)
+		#2005-03-04 00:00:00
 		now = datetime.now()
-		print(now)
+		#print(now)
+		#2020-12-23 17:23:43.862041
 		months_to_add,days_to_add=-1,3
-		print(now.month)		
+		#print(now.month)
+		#12		
 		future=datetime(year = now.year,
 			month = now.month+months_to_add,
 			day=now.day+days_to_add,
 			hour=now.hour,minute=now.minute,
 			second=now.second)
-		print(future)
+		#print(future)
+		#2020-11-26 17:23:43
 		delta = timedelta(days=50,seconds=27,
 		    minutes=5,hours=8,weeks=2)
-		print(delta)
+		#print(delta)
+		#64 days, 8:05:27
 		example = datetime(year=2005,month=3,day=4)
 		new_time=example+delta
-		print(new_time)
+		#print(new_time)
+		#2005-05-07 08:05:27
 		new_time_epoch=int(new_time.timestamp())
-		print(new_time_epoch)
+		#print(new_time_epoch)
+		#1115445927
 		new_time_returned=datetime.fromtimestamp(new_time_epoch)
-		print(new_time_returned)
+		#print(new_time_returned)
+		#2005-05-07 08:05:27
 		print("Test c_1_5: datetime manipulation")
 
 
