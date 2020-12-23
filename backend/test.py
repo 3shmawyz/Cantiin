@@ -1019,12 +1019,13 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_c_2_001_generate_jwt(self):
-		"""payload={"a":"b"}
+		payload={"a":"b"}
 		secret="1"
-		decoded = generate_jwt(payload,secret)
-		self.assertEqual(decoded,
-			"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.C58TEpM7EJdnnZdAztvOCEhzP_sCYpd5nM2ThE_Lmrc")
-		"""
+		encoded = generate_jwt(payload,secret)
+		self.assertEqual(encoded,
+			{"success":True,"result":
+			"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.C58TEpM7EJdnnZdAztvOCEhzP_sCYpd5nM2ThE_Lmrc"
+			})
 		print("Test c_2_1: generate_jwt")
 
 
