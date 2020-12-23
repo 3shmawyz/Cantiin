@@ -1228,6 +1228,20 @@ class CantiinTestCase(unittest.TestCase):
 		#ExpiredSignatureError is not defined
 		print("Test c_2_4_6: validate_token_wrong")
 
+	def test_c_2_4_007_decode_jwt_correct(self):
+		secret="secret"
+		expiration = (datetime.now()+timedelta(days=7)).timestamp()
+		payload={"uid":123,"exp":expiration}
+		token=generate_jwt(payload,secret)
+		token_validation=validate_token(token["result"],secret)
+		self.assertEqual(token_validation["case"],1)
+		self.assertEqual(token_validation["token"],token["result"])
+		self.assertEqual(token_validation["error"],"")
+		#self.assertEqual(token_validation["error"],
+		#	ExpiredSignatureError('Signature has expired'))
+		#ExpiredSignatureError is not defined
+		print("Test c_2_4_7: validate_token_correct")
+
 
 
 
