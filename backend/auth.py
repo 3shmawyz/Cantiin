@@ -35,6 +35,19 @@ def generate_jwt(payload,secret):
 
 
 
+
+"""
+Inputs:
+    - encoded_jwt:  Type must be String
+    - secret:       Type must be string
+
+Outputs:
+    -A dictionary:
+        - success:  True or False
+        - result:   
+            - If suucess=True: The Payload as a dictionary
+            - If success=False:The error
+"""
 def decode_jwt(encoded_jwt,secret):
     secret=str(secret)
     try:
