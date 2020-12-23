@@ -187,7 +187,7 @@ def validate_token(token,secret):
     if now_epoch>exp:
         #Expired token
         case = 2
-        new_token=generate_token(user_id,secret)
+        new_token=generate_token(user_id,secret)["result"]
         error="expired token"
     else:
         #Valid Token
