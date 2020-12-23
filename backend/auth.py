@@ -158,7 +158,7 @@ def validate_token(token,secret):
     input_integer=user_id,input_name_string="user_id",
     maximum=10000000000000000000000000000000000000000,minimum=1)
     exp_validation=validate_integer(
-        input_integer=exp,input_name_string="exp",
+        input_integer=expiration,input_name_string="expiration",
     maximum=10000000000000000000000000000000000000000,minimum=1)
 
     #Now we will validate user_id

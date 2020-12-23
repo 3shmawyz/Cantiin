@@ -1199,6 +1199,22 @@ class CantiinTestCase(unittest.TestCase):
 		#DecodeError is not defined
 		print("Test c_2_4_4: validate_token_wrong")
 
+	def test_c_2_4_005_decode_jwt_wrong(self):
+		secret="secret"
+		expiration = (datetime.now()+timedelta(days=7)).timestamp()
+		payload={"uid":"abc","exp":expiration}
+		token=generate_jwt(payload,secret)
+		token_validation=validate_token(token["result"],secret)
+		self.assertEqual(token_validation["case"],3)
+		self.assertEqual(token_validation["token"],"")
+		self.assertEqual(token_validation["error"],
+			"user_id can not be converted to integer")
+		#print(token_validation)
+		#{'case': 3, 'token': '', 'error': 
+		#DecodeError('Expiration Time claim (exp) must be an integer.')}
+		#DecodeError is not defined
+		print("Test c_2_4_5: validate_token_wrong")
+
 
 
 
