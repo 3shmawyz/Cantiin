@@ -987,6 +987,16 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_1_1: generate_jwt")
 
 
+	def test_c_1_002_decode_jwt_correct(self):
+		encoded_jwt=b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoidGVzdCJ9.WHBB33Ktq9mVKGspVK7uxpXxlwQngbyCirKKVX3nQY8'
+		#This is a valid token 
+		algorithm ='HS256'#HMAC-SHA 256
+		secret = 'learning'
+		payload = jwt.decode(encoded_jwt,secret,verify=True)
+		self.assertEqual(payload,{"data":"test"})
+		print("Test c_1_2: decode_jwt")
+
+
 
 
 
