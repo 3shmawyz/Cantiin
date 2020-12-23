@@ -1164,12 +1164,23 @@ class CantiinTestCase(unittest.TestCase):
 		secret="secret"
 		payload={"userid":1}
 		token=generate_jwt(payload,secret)
-		token_validation=validate_token(token,secret)
+		token_validation=validate_token(token["result"],secret)
 		self.assertEqual(token_validation["case"],3)
 		self.assertEqual(token_validation["token"],"")
 		self.assertEqual(token_validation["error"],
 			"payload does not contain user_id")
 		print("Test c_2_4_2: validate_token_wrong")
+
+	def test_c_2_4_003_decode_jwt_wrong(self):
+		secret="secret"
+		payload={"uid":1}
+		token=generate_jwt(payload,secret)
+		token_validation=validate_token(token["result"],secret)
+		self.assertEqual(token_validation["case"],3)
+		self.assertEqual(token_validation["token"],"")
+		self.assertEqual(token_validation["error"],
+			"payload does not contain expiration_date")
+		print("Test c_2_4_3: validate_token_wrong")
 
 
 
