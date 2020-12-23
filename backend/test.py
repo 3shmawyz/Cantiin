@@ -1050,6 +1050,16 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_2_2_1: decode_jwt")
 
 
+	def test_c_2_2_002_decode_jwt_wrong(self):
+		token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.C58TEpM7EJdn"
+		#Wrong Token, wrong signature
+		secret = 1
+		decoding = decode_jwt(
+			encoded_jwt=token,secret=secret)
+		self.assertEqual(decoding["success"],False)
+		print("Test c_2_2_2: decode_jwt_wrong")
+
+
 
 
 
