@@ -113,6 +113,64 @@ def generate_token(user_id,secret,
 
 
 
+def validate_token(token,secret):
+    
+    user_id_validation=validate_integer(
+    input_integer=user_id,input_name_string="user_id",
+    maximum=10000000000000000000000000000000000000000,minimum=1)
+    secret_validation=validate_string(
+        input_string=secret,string_name="secret",minimum_length=3,
+    max_length=100000000000000000000000000000000000000000)
+
+    #Now we will validate user_id
+    if user_id_validation["case"] == 1:
+        # Success: they pass the conditions
+        user_id=user_id_validation["result"]       
+    else:
+        # Failure: Something went wrong
+        return {"success":False,
+        "result":user_id_validation["result"]}
+
+    #Now we will validate secret
+    if secret_validation["case"] == 1:
+        # Success: they pass the conditions
+        secret=secret_validation["result"]       
+    else:
+        # Failure: Something went wrong
+        return {"success":False,
+        "result":secret_validation["result"]}
+
+    expiration_datetime=issued_at+expiration_delta
+    expiration_epoch=expiration_datetime.timestamp()
+    
+    payload = { "uid" : user_id , "exp" : expiration_epoch }
+    jwt_generated = generate_jwt(payload=payload,secret=secret)
+    return jwt_generated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def datetime_to_epoch(input):
     pass

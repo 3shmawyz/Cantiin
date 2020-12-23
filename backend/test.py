@@ -1129,6 +1129,7 @@ class CantiinTestCase(unittest.TestCase):
 
 	def test_c_2_3_002_generate_token_wrong(self):
 		user_id = "abc"
+		#user_id should be integer
 		secret = "abcd"
 		token = generate_token(user_id,secret)
 		self.assertEqual(token["success"],False)
