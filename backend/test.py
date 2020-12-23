@@ -1036,7 +1036,7 @@ class CantiinTestCase(unittest.TestCase):
 		secret="1"
 		encoded = generate_jwt(payload,secret)
 		self.assertEqual(encoded["success"],False)
-		print("Test c_2_2: generate_jwt_fail)
+		print("Test c_2_2: generate_jwt_fail")
 
 
 
