@@ -66,6 +66,21 @@ def decode_jwt(encoded_jwt,secret):
 
 
 
+def generate_token(user_id,secret)
+    user_id=int(user_id)
+    
+    delta_time= timedelta(days=7)
+
+    expiration_datetime=datetime.now()+delta
+    expiration_epoch=new_time.timestamp()
+    payload = { "uid" : user_id , "exp" : expiration_epoch }
+
+    jwt_generated = generate_jwt(payload=payload,secret=secret)
+
+    
+
+
+
 
 
 
