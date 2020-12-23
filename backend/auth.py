@@ -75,10 +75,10 @@ def generate_token(user_id,secret,
     
     user_id_validation=validate_must(input=user_id,type="i",
     input_name_string="user_id",
-    maximum=10000000000000000000000000000000000000000,minimum=1):
+    maximum=10000000000000000000000000000000000000000,minimum=1)
     secret_validation=validate_must(input=secret,type="s",
     input_name_string="secret",
-    maximum=100000000000000000000000000000000000000000,minimum=3):
+    maximum=100000000000000000000000000000000000000000,minimum=3)
     val_group=validate_must_group(
             [user_id_validation,secret_validation])
 

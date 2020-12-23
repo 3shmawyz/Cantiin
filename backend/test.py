@@ -1107,6 +1107,18 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_2_2_3: decode_jwt_wrong")
 
 
+	def test_c_2_3_001_generate_token(self):
+		user_id = 5
+		secret = "abcd"
+		expiration= timedelta(days=7)
+		issued_at=datetime.now()
+		token = generate_token(user_id,secret,
+    		expiration_delta=expiration,
+    		issued_at=datetime.now())
+		self.assertEqual(token["success"],True)
+		print("Test c_2_3_1: generate_token")
+
+
 
 
 
