@@ -81,18 +81,25 @@ def generate_token(user_id,secret,
     secret_validation=validate_must(input=secret,type="s",
     input_name_string="secret",
     maximum=100000000000000000000000000000000000000000,minimum=3)
-    val_group=validate_must_group(
-            [user_id_validation,secret_validation])
 
-    #Now we will validate all inputs as a group
-    if val_group["case"] == True:
+    #Now we will validate user_id
+    if user_id_validation == True:
         # Success: they pass the conditions
-        user_id,secret=val_group["result"]       
+        user_id=user_id_validation["result"]       
     else:
         # Failure: Something went wrong
         return {"success":False,
-        "result":val_group["result"]}
-    
+        "result":user_id_validation["result"]}
+ 
+    #Now we will validate secret
+    if secret_validation == True:
+        # Success: they pass the conditions
+        secret=secret_validation["result"]       
+    else:
+        # Failure: Something went wrong
+        return {"success":False,
+        "result":secret_validation["result"]}
+
     expiration_datetime=issued_at+expiration_delta
     expiration_epoch=expiration_datetime.timestamp()
     

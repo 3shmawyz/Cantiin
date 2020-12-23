@@ -1127,7 +1127,7 @@ class CantiinTestCase(unittest.TestCase):
 			exp_datetime.timestamp())
 		print("Test c_2_3_1: generate_token")
 
-	def test_c_2_3_001_generate_token_wrong(self):
+	def test_c_2_3_002_generate_token_wrong(self):
 		user_id = "abc"
 		secret = "abcd"
 		token = generate_token(user_id,secret)
