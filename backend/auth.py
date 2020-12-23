@@ -164,11 +164,11 @@ def validate_token(token,secret):
     #Now we will validate user_id
     if user_id_validation["case"] == 1:
         # Success: they pass the conditions
-        user_id=user_id_validation["result"]       
+        user_id=user_id_validation["result"]      
     else:
         # Failure: Something went wrong
         return {"case":3,"token":"",
-        "error": user_id_validation["result"]}
+        "error": user_id_validation["result"]["description"] }
 
     #Now we will validate exp
     if exp_validation["case"] == 1:
@@ -177,7 +177,7 @@ def validate_token(token,secret):
     else:
         # Failure: Something went wrong
         return {"case":3,"token":"",
-        "error": exp_validation["result"]}
+        "error": exp_validation["result"]["description"]}
 
     now_epoch=int(datetime.now().timestamp())
     if now_epoch>exp:
