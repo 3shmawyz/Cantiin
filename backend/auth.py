@@ -8,6 +8,29 @@ import jwt
 import base64
 
 
+
+
+
+
+
+def generate_jwt(payload,secret)
+{
+    encoded_jwt = jwt.encode(payload,secret,algorithm="HS256")
+    return str(encoded_jwt,'utf-8')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Defining the variables from my auth0 account
 AUTH0_DOMAIN = 'domain'
 ALGORITHMS = ['RS256']
