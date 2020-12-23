@@ -1230,6 +1230,11 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertNotEqual(token_validation["token"],
 			token["result"])
 		self.assertEqual(token_validation["error"],"expired token")
+		correct_token = token_validation["token"]
+		token_validation=validate_token(correct_token,secret)
+		self.assertEqual(token_validation["case"],1)
+		self.assertEqual(token_validation["token"],correct_token)
+		self.assertEqual(token_validation["error"],"")
 		#ExpiredSignatureError is not defined
 		print("Test c_2_4_6: validate_token_wrong")
 
