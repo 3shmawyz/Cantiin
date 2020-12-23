@@ -1012,10 +1012,19 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_1_3: decode_jwt_wrong")
 
 
-	def test_c_1_004_decode_jwt_wrong(self):
+	def test_c_1_004_bytes_to_string(self):
 		b_s = str(b"abc",'utf-8')
 		self.assertEqual(b_s,"abc")
-		print("Test c_1_3: decode_jwt_wrong")
+		print("Test c_1_4: bytes_to_string")
+
+
+	def test_c_2_001_generate_jwt(self):
+		payload={"a":"b"}
+		secret="1"
+		decoded = generate_jwt(payload,secret)
+		self.assertEqual(decoded,
+			"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.C58TEpM7EJdnnZdAztvOCEhzP_sCYpd5nM2ThE_Lmrc")
+		print("Test c_1_4: generate_jwt")
 
 
 
