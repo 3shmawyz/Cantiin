@@ -10,6 +10,7 @@ import jwt
 import base64
 
 
+expiration_after= timedelta(days=7)
 
 
 
@@ -69,15 +70,32 @@ def decode_jwt(encoded_jwt,secret):
 
 
 def generate_token(user_id,secret):
-    user_id=int(user_id)
     
-    delta_time= timedelta(days=7)
+    user_id_validation=validate_must(input=user_id,type="i",
+    input_name_string="user_id",
+    maximum=10000000000000000000000000000000000000000,minimum=1):
+    secret_validation=validate_must(input=secret,type="s",
+    input_name_string="secret",
+    maximum=100000000000000000000000000000000000000000,minimum=3):
+    val_group=validate_must_group(
+            [user_id_validation,secret_validation])
 
-    expiration_datetime=datetime.now()+delta
-    expiration_epoch=new_time.timestamp()
+    #Now we will validate all inputs as a group
+    if val_group["case"] == True:
+        # Success: they pass the conditions
+        user_id,secret=val_group["result"]       
+    else:
+        # Failure: Something went wrong
+        return {"success":False,
+        "result":val_group["result"]}
+    
+    expiration_datetime=datetime.now()+expiration_after
+    expiration_epoch=expiration_datetime.timestamp()
+    
     payload = { "uid" : user_id , "exp" : expiration_epoch }
 
     jwt_generated = generate_jwt(payload=payload,secret=secret)
+    return jwt_generated
 
 
 
