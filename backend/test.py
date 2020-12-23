@@ -1132,6 +1132,9 @@ class CantiinTestCase(unittest.TestCase):
 		secret = "abcd"
 		token = generate_token(user_id,secret)
 		self.assertEqual(token["success"],False)
+		self.assertEqual(token["result"]["status"],400)
+		self.assertEqual(token["result"]["description"],
+			"user_id can not be converted to integer")
 		#user_id can not be converted to int
 		print("Test c_2_3_2: generate_token_wrong")
 
