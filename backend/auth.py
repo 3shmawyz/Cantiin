@@ -125,7 +125,7 @@ Outputs:
         -   "token":
             -   case:1: the same old token
             -   case:2: token refreshed
-            -case:3:    "" empty string
+            -   case:3: "" empty string (You must delete the cookie)
         -   "error":
             -   case:1: "" empty string
             -   case:2: "expired token" 
@@ -137,7 +137,7 @@ def validate_token(token,secret):
     if decoded_jwt["sccuess"]:
         payload=decoded_jwt["result"]
     else:
-        return decoded_jwt
+        return {"case":3,"token":"","error":decoded_jwt["result"]}
         #{"sccuess":False,"result":error string}
     #Now we Have Payload
 
@@ -146,14 +146,13 @@ def validate_token(token,secret):
     try:
         user_id=payload["uid"]
     except:
-        return {"success":False,"result":
-        "payload does not contain user_id"}
+        return {"case":3,"token":"",
+        "error": "payload does not contain user_id"}
     try:
         expiration=payload["exp"]
     except:
-        return {"success":False,"result":
-        "payload does not contain expiration_date"}
-
+        return {"case":3,"token":"",
+        "error": "payload does not contain expiration_date"}
 
     user_id_validation=validate_integer(
     input_integer=user_id,input_name_string="user_id",
@@ -168,8 +167,8 @@ def validate_token(token,secret):
         user_id=user_id_validation["result"]       
     else:
         # Failure: Something went wrong
-        return {"success":False,
-        "result":user_id_validation["result"]}
+        return {"case":3,"token":"",
+        "error": user_id_validation["result"]}
 
     #Now we will validate exp
     if exp_validation["case"] == 1:
@@ -177,9 +176,8 @@ def validate_token(token,secret):
         exp=exp_validation["result"]       
     else:
         # Failure: Something went wrong
-        return {"success":False,
-        "result":exp_validation["result"]}
-
+        return {"case":3,"token":"",
+        "error": exp_validation["result"]}
 
     now_epoch=int(datetime.now().timestamp())
     if now_epoch>exp:
