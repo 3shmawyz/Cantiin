@@ -36,6 +36,9 @@ def generate_jwt(payload,secret):
 
 
 
+
+
+
 """
 Inputs:
     - encoded_jwt:  Type must be String
@@ -62,6 +65,12 @@ def decode_jwt(encoded_jwt,secret):
 
 
 
+
+
+
+
+def datetime_to_epoch(input)
+    pass
 
 
 
