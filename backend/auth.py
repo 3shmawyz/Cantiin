@@ -118,6 +118,18 @@ Outputs:
     - { "case":      1 or 2 or 3, 
         "token":    string of token to be assigned
         "error":    the error message}
+        -   "case":
+            -   1:  success
+            -   2:  expired token
+            -   3:  something went wrong
+        -   "token":
+            -   case:1: the same old token
+            -   case:2: token refreshed
+            -case:3:    "" empty string
+        -   "error":
+            -   case:1: "" empty string
+            -   case:2: "expired token" 
+            -   case:3: "error message"  
 """
 def validate_token(token,secret):
     decoded_jwt = decode_jwt(token,secret)
