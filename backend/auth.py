@@ -114,7 +114,15 @@ def generate_token(user_id,secret,
 
 
 def validate_token(token,secret):
-    
+    decoded_jwt = decode_jwt(token,secret)
+    payload=""
+    if decoded_jwt["sccuess"]:
+        payload=decoded_jwt["result"]
+    else:
+        return decoded_jwt
+        #{"sccuess":False,"result":error string}
+    #Now we Have Payload
+
     user_id_validation=validate_integer(
     input_integer=user_id,input_name_string="user_id",
     maximum=10000000000000000000000000000000000000000,minimum=1)
