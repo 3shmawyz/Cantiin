@@ -978,6 +978,15 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test b_6_12: validate__must wrong input: None str")
 
 
+	def test_c_1_001_generate_jwt(self):
+		payload = {"data":"test"}
+		algorithm ='HS256'#HMAC-SHA 256
+		secret = 'learning'
+		encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
+		self.assertEqual(encoded_jwt,b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoidGVzdCJ9.WHBB33Ktq9mVKGspVK7uxpXxlwQngbyCirKKVX3nQY8')
+		print("Test c_1_1: generate_jwt")
+
+
 
 
 
