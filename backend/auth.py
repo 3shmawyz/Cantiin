@@ -83,16 +83,16 @@ def generate_token(user_id,secret,
     max_length=100000000000000000000000000000000000000000)
 
     #Now we will validate user_id
-    if user_id_validation == True:
+    if user_id_validation["case"] == 1:
         # Success: they pass the conditions
         user_id=user_id_validation["result"]       
     else:
         # Failure: Something went wrong
         return {"success":False,
         "result":user_id_validation["result"]}
- 
+
     #Now we will validate secret
-    if secret_validation == True:
+    if secret_validation["case"] == 1:
         # Success: they pass the conditions
         secret=secret_validation["result"]       
     else:
@@ -104,7 +104,6 @@ def generate_token(user_id,secret,
     expiration_epoch=expiration_datetime.timestamp()
     
     payload = { "uid" : user_id , "exp" : expiration_epoch }
-
     jwt_generated = generate_jwt(payload=payload,secret=secret)
     return jwt_generated
 

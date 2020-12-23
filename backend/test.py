@@ -1112,7 +1112,7 @@ class CantiinTestCase(unittest.TestCase):
 		secret = "abcd"
 		expiration= timedelta(days=7)
 		issued_at=datetime.now()
-		token = generate_token(user_id,secret,
+		token = generate_token(user_id=user_id,secret=secret,
     		expiration_delta=expiration,
     		issued_at=datetime.now())
 		#print(token["result"])
