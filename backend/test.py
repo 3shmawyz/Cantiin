@@ -1152,6 +1152,25 @@ class CantiinTestCase(unittest.TestCase):
 
 
 
+	def test_c_2_4_001_validate_token(self):
+		wrong_token="a.b.c"
+		secret="secret"
+		token_validation=validate_token(wrong_token,secret)
+		self.assertEqual(token_validation["case"],3)
+		self.assertEqual(token_validation["token"],"")
+		print("Test c_2_4_1: validate_token")
+
+	def test_c_2_4_002_decode_jwt_wrong(self):
+		secret="secret"
+		payload=5
+		generate_jwt(payload,secret)
+		token_validation=validate_token(wrong_token,secret)
+		self.assertEqual(token_validation["case"],3)
+		self.assertEqual(token_validation["token"],"")
+		print("Test c_2_3_3: generate_token_wrong")
+
+
+
 
 
 

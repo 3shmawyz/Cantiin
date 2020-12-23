@@ -134,11 +134,11 @@ Outputs:
 def validate_token(token,secret):
     decoded_jwt = decode_jwt(token,secret)
     payload=""
-    if decoded_jwt["sccuess"]:
+    if decoded_jwt["success"]:
         payload=decoded_jwt["result"]
     else:
         return {"case":3,"token":"","error":decoded_jwt["result"]}
-        #{"sccuess":False,"result":error string}
+        #{"success":False,"result":error string}
     #Now we Have Payload
 
     user_id=0
