@@ -1018,7 +1018,7 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_1_4: bytes_to_string")
 
 
-	def test_c_2_001_generate_jwt(self):
+	def test_c_2_1_001_generate_jwt(self):
 		payload={"a":"b"}
 		secret="1"
 		encoded = generate_jwt(payload,secret)
@@ -1026,17 +1026,28 @@ class CantiinTestCase(unittest.TestCase):
 			{"success":True,"result":
 			"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.C58TEpM7EJdnnZdAztvOCEhzP_sCYpd5nM2ThE_Lmrc"
 			})
-		print("Test c_2_1: generate_jwt")
+		print("Test c_2_1_1: generate_jwt")
 
-
-	def test_c_2_002_generate_jwt_fail(self):
+	def test_c_2_1_002_generate_jwt_fail(self):
 		payload='{"a":"b"}'
 		#Wrong: This is a string of JSON
 		#Not JSON itself 
 		secret="1"
 		encoded = generate_jwt(payload,secret)
 		self.assertEqual(encoded["success"],False)
-		print("Test c_2_2: generate_jwt_fail")
+		print("Test c_2_1_2: generate_jwt_fail")
+
+
+
+	def test_c_2_2_001_decode_jwt(self):
+		token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.C58TEpM7EJdnnZdAztvOCEhzP_sCYpd5nM2ThE_Lmrc"
+		#This token is verified
+		secret = 1
+		decoding = decode_jwt(
+			encoded_jwt=token,secret=secret)
+		self.assertEqual(decoding,
+			{"success":True,"result":{"a":"b"}})
+		print("Test c_2_2_1: decode_jwt")
 
 
 
