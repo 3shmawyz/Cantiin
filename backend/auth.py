@@ -34,7 +34,7 @@ def generate_jwt(payload,secret):
     try:
         encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
         return {"success":True,
-        "result":str(encoded_jwt,'utf-8')}
+        "result":str(encoded_jwt,'utf-8')}        
     except Exception as e:
         return{"success":False,"result":e}
 
@@ -61,6 +61,10 @@ def decode_jwt(encoded_jwt,secret):
     try:
         result = jwt.decode(
             encoded_jwt, secret,algorithms="HS256",verify=True)
+        return {"success":True,"result":result}
+    except jwt.ExpiredSignatureError:
+        result = jwt.decode(
+            encoded_jwt, secret,algorithms="HS256",verify=False)
         return {"success":True,"result":result}
     except Exception as e:
         return {"success":False,"result":e}
@@ -141,7 +145,6 @@ def validate_token(token,secret):
         return {"case":3,"token":"","error":decoded_jwt["result"]}
         #{"success":False,"result":error string}
     #Now we Have Payload
-
     user_id=0
     expiration=0
     try:
