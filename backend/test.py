@@ -14,6 +14,9 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 import random
 
+import jwt
+import base64
+
 
 """
 a:models
@@ -27,7 +30,8 @@ b:validation Functions
 
 
 
-c: Authenticaton
+c.1 : Authentication : already there functions
+c.2 : Authentication : functions created by me
 """
 
 unittest.TestLoader.sortTestMethodsUsing = None
