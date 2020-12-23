@@ -15,8 +15,12 @@ import base64
 
 def generate_jwt(payload,secret):
     algorithm = "HS256"
-    encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
-    return str(encoded_jwt,'utf-8')
+    try:
+        encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
+        return {"success":True,
+        "result":str(encoded_jwt,'utf-8')}
+    except Exception as e:
+        return{"success":False,"result":e}
 
 
 
