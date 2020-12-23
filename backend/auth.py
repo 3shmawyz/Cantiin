@@ -13,11 +13,10 @@ import base64
 
 
 
-def generate_jwt(payload,secret)
-{
+def generate_jwt(payload,secret):
     encoded_jwt = jwt.encode(payload,secret,algorithm="HS256")
     return str(encoded_jwt,'utf-8')
-}
+
 
 
 

@@ -6,6 +6,8 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func 
 
+from auth import *
+
 from api import create_app
 from models import (db,Product, Order)
 from functions import *
