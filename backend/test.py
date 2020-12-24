@@ -124,7 +124,7 @@ class CantiinTestCase(unittest.TestCase):
 
 		self.assertEqual(user.id,1)
 		self.assertEqual(user.username,"abc")
-		self.assertEqual(user.password,"123")
+		self.assertEqual(user.password,"123456789")
 		print("Test a_2_5: user values")
 
 
