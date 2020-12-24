@@ -256,26 +256,21 @@ Tests: test_01_clear_tables
 
 		users=User.query.all()
 
-		#Validate that this username is unique
+		#Validate that this username and password are correct
 		all_users=User.query.all()
+		the_user_id="";
 
-		the_user="";
-
-		#To validate if ths username exists or not
 		for usr in all_users:
-			if usr.password==password:
-				the_user=usr
+			if (usr.username == username and 
+				usr.password == password):
+				the_user_id=usr.id # Here we go the user id
 				break
-		if the_user=="":
-			return my_error(status=422,
-				description="wrong username or password")
-		#now we have the user as the_user
 
-		#Validating that this password is correct
-		if str(the_user.password)!=str(password):
+		if the_user_id=="":
 			return my_error(status=422,
 				description="wrong username or password")
-		#Now the password is correct
+		#now we have the_user_id as integer
+
 
 		return jsonify({"success":True,
 			"result":"logged in successfully"})
