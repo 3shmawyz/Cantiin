@@ -386,12 +386,63 @@
 									"script": {
 										"exec": [
 											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(true);\r",
+											"    \r",
+											"    pm.expect(typeof(responseJson.user[\"id\"])).to.eql(typeof(1));\r",
+											"    pm.expect(responseJson.user[\"username\"]).to.eql(\"abcdefg\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"abcdefg\",\r\n    \"password1\":\"abc123456\",\r\n    \"password2\":\"abc123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post_user:fail:same username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
 											"    pm.response.to.have.status(422);\r",
 											"    const responseJson = pm.response.json();\r",
 											"    \r",
 											"    pm.expect(responseJson.success).to.eql(false);\r",
 											"    \r",
-											"    pm.expect(responseJson.description).to.eql(\"please enter the same password\");\r",
+											"    pm.expect(responseJson.description).to.eql(\"this username already exists\");\r",
 											"    pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
 											"    pm.expect(responseJson.error).to.eql(422);\r",
 											"\r",
