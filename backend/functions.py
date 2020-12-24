@@ -356,8 +356,18 @@ def db_drop_and_create_all():
 
 def populate_tables():
     db_drop_and_create_all()
+    users = list()
+    users.append(User(username="abc",password="123"))
+    users.append(User(username="abcde",password="456"))
+    users.append(User(username="klmn",password="fde"))
+    users.append(User(username="rtb",password="uyt"))
+    users.append(User(username="cool",password="freezer"))
+    users.append(User(username="water",password="Tank"))
+    db.session.add_all(users)
+    db.session.commit()
+
+
     products = list()
-    
     products.append(Product(
         name="Labtop", price=300, seller_id="1"))
     products.append(Product(
@@ -370,8 +380,8 @@ def populate_tables():
         name="Keyboard", price=5, seller_id="2", in_stock=True))
     products.append(Product(
         name="Mouse", price=4, seller_id="1", in_stock=True))
-
     db.session.add_all(products)
+    db.session.commit()
 
     orders = list() 
     #id, user, product, amount
