@@ -267,6 +267,61 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "post_user:fail:short pass1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(false);\r",
+											"    \r",
+											"    pm.expect(responseJson.description).to.eql(\"minimum password1 length is 8 letters\");\r",
+											"    pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"    pm.expect(responseJson.error).to.eql(422);\r",
+											"\r",
+											"\r",
+											"\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"abcde\",\r\n    \"password1\":\"abc\",\r\n    \"password2\":\"abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
