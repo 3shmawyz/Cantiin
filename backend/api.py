@@ -91,6 +91,9 @@ Tests: test_01_clear_tables
 
 	"""
 	User endpoints
+	post_users
+	delete users
+	login
 	"""
 
 
@@ -147,8 +150,7 @@ Tests: test_01_clear_tables
 		if password1!=password2:
 			return my_error(status=422,
 				description="please enter the same password")
-			
-
+		
 		#Create the user
 		new_user = User(username=name, password=password1)
 
