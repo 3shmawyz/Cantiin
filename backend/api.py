@@ -223,8 +223,7 @@ Tests: test_01_clear_tables
 				description="request body can not be parsed to json")
 		try:
 			username = body.get("username",None)
-			password1 = body.get("password1",None)
-			password2 = body.get("password2",None)
+			password = body.get("password",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
@@ -233,26 +232,38 @@ Tests: test_01_clear_tables
 		username_validation = validate_must(
 			input=username,type="s",input_name_string="username",
 			minimum=2,maximum=150)
-		password1_validation = validate_must(
-			input=password1,type="s",input_name_string="password1",
-			minimum=8,maximum=150)
-		password2_validation = validate_must(
-			input=password2,type="s",input_name_string="password2",
+		password_validation = validate_must(
+			input=password,type="s",input_name_string="password",
 			minimum=8,maximum=150)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
-			[username_validation,password1_validation
-			,password2_validation])
+			[username_validation,password_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			username,password1,password2=val_group["result"]		
+			username,password=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
-		#Now we have username, password1 and password2 as strings
+		#Now we have username, password and password2 as strings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 		#Validate that this username is unique
 		all_users=User.query.all()
