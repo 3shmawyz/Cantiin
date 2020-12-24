@@ -114,13 +114,13 @@ Tests: test_01_clear_tables
 		#Validating inputs one by one
 		username_validation = validate_must(
 			input=username,type="s",input_name_string="username",
-			minimum=3,maximum=150)
+			minimum=2,maximum=150)
 		password1_validation = validate_must(
-			input=password1,type="s",input_name_string="password",
-			minimum=0.1,maximum=1000000)
+			input=password1,type="s",input_name_string="password1",
+			minimum=8,maximum=150)
 		password2_validation = validate_must(
-			input=password2,type="s",input_name_string="password",
-			minimum=0.1,maximum=1000000)
+			input=password2,type="s",input_name_string="password2",
+			minimum=8,maximum=150)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
@@ -136,7 +136,7 @@ Tests: test_01_clear_tables
 			return val_group["result"]
 
 		#Create the user
-		new_user = User(username=name, password=price)
+		new_user = User(username=name, password=password1)
 
 		#Insert the user in the database
 		try:
