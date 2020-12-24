@@ -34,20 +34,19 @@ id,name,price,in_stock,seller_id
 class User(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
-    # String name
+    # String username
     username = Column(String(), unique=True, nullable=False)
-    # name could be like "Labtop"
-    # name dowsn't have to be unique
-    # allowing several users to sell the same product
+    # username could be like "fish"
+    # username has to be unique
+    # not allowing several users to have the same username
     password =  Column(String(), unique=False, nullable=False)
-    # Price is a float
-    # Example: 5.0, 6.0 , 50.0, 0.5
-    # It should be float, allowing things with low
-    # price to be sold
+    # Password is a string
+    # Example: "12345", "abc"
+    # it doesn't have to be unique
 
-    orders = db.relationship("Order",backref="product")
-    orders = db.relationship("Order",backref="product")
-    sold_orders = db.relationship("Order",backref="product")
+    #products = db.relationship("Product",backref="seller")
+    #orders = db.relationship("Order",backref="buyer")
+    #sold_orders = db.relationship("Order",backref="seller")
 
     def __init__(self,  
         price, name, seller_id,in_stock=True):
