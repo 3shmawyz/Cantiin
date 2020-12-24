@@ -261,8 +261,8 @@ Tests: test_01_clear_tables
 		the_user_id="";
 
 		for usr in all_users:
-			if (usr.username == username and 
-				usr.password == password):
+			if (str(usr.username) == str(username) and 
+				str(usr.password) == str(password)):
 				the_user_id=usr.id # Here we go the user id
 				break
 
