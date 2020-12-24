@@ -12,6 +12,7 @@ from functions import *
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"
 	2)	"/populate" ->--------->"GET" , "OPTIONS"
+	3)	"/user"		----------->"POST", "DELETE"
 	3)	"/products"	->--------->"GET" , "POST" , "OPTIONS"
 	4)	"/products/product_id"->"DELETE" , "PUT" , "OPTIONS"
 	5)	"/orders"	->--------->"GET" , "POST" , "OPTIONS"
@@ -85,6 +86,128 @@ Tests: test_02_populate_test
 		"""
 Tests: test_01_clear_tables
 		"""
+
+
+
+
+
+
+
+	@app.route("/users", methods=["POST"])
+	def post_users():
+	#This endpoint will add a new product
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			name = body.get("name",None)
+			price = body.get("price",None)
+			in_stock = body.get("in_stock",None)
+			seller_id = body.get("seller_id",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+
+		#Validating inputs one by one
+		name_validation = validate_must(
+			input=name,type="s",input_name_string="name",
+			minimum=3,maximum=150)
+		price_validation = validate_must(
+			input=price,type="f",input_name_string="price",
+			minimum=0.1,maximum=1000000)
+		in_stock_validation = validate_must(
+			input=in_stock,type="b",input_name_string="in_stock")
+		seller_id_validation = validate_must(
+			input=seller_id,type="i",input_name_string="seller_id",
+			minimum=1,maximum=100000000000000000)
+
+		#Validating inputs a group
+		val_group=validate_must_group(
+			[name_validation,price_validation,
+			in_stock_validation,seller_id_validation])
+
+		#Now we will validate all inputs as a group
+		if val_group["case"] == True:
+			# Success: they pass the conditions
+			name,price,in_stock,seller_id=val_group["result"]		
+		else:
+			# Failure: Something went wrong
+			return val_group["result"]
+
+		#Create the product
+		new_product = Product(name=name, price=price,
+			seller_id=seller_id, in_stock=in_stock)
+
+		#Insert the product in the database
+		try:
+			new_product.insert()
+			return jsonify(
+				{"success":True,"product":new_product.simple()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+	
+
+
+
+	@app.route("/users", methods=["DELETE"])
+	def delete_users():
+	#This endpoint will delete an existing product
+		
+		products_query=Product.query
+		product_id_validation=validate_model_id(
+			input_id=product_id,model_query=products_query
+			,model_name_string="product")
+		if product_id_validation["case"]==1:
+			#The product exists
+			product=product_id_validation["result"]
+
+		else:
+			#No product with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=product_id_validation["result"]["status"],
+				description=product_id_validation
+				["result"]["description"])
+		 
+		#Now, we have "product", this is essential
+
+		try:
+			# Finally, deleting the product itself
+			product.delete()
+			return jsonify(
+				{"success":True,
+				"result":"product deleted successfully"})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 
 
