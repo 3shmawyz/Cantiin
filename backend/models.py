@@ -84,18 +84,12 @@ class User(db.Model):
         return json.dumps(
         {
             'id': self.id,
-            'name': self.name,
-            'price': self.price,
-            'in_stock': self.in_stock,
-            'seller_id': self.seller_id
+            'username': self.username
         })
     def simple(self):
         return {
             'id': self.id,
-            'name': self.name,
-            'price': self.price,
-            'in_stock': self.in_stock,
-            'seller_id': self.seller_id
+            'username': self.username
         }
 
     def get_dict(self):
