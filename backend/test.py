@@ -120,13 +120,11 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_1_005_user_values(self):
-		produc = User.query.get(1)
+		user = User.query.get(1)
 
-		self.assertEqual(produc.id,1)
-		self.assertEqual(produc.name,"Labtop")
-		self.assertEqual(produc.price,300)
-		self.assertEqual(produc.seller_id,1)
-		self.assertEqual(produc.in_stock,True)
+		self.assertEqual(user.id,1)
+		self.assertEqual(user.username,"abc")
+		self.assertEqual(user.password,"123")
 		print("Test a_2_5: user values")
 
 
