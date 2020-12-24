@@ -358,7 +358,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(product,Product.query.get(3))
 		print("Test a_2_10:order relationship_product")
 
-	def test_a_3_010_order_get_dict(self):
+	def test_a_3_011_order_get_dict(self):
 		order = Order.query.get(6).get_dict()
 		#print(produc)
 
@@ -375,7 +375,40 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(order["product"]["in_stock"],True)
 		self.assertEqual(order["product"]["seller_id"],3)
 
-		print("Test a_3_9: Order get_dict")
+		print("Test a_3_11: Order get_dict")
+
+	def test_a_3_012_order_relationship_product_delete(self):
+		p_before=len(Product.query.all())
+		#Creating the product to be deleted
+		product_del=Product(name="Spoon",price="5",
+			in_stock=True,seller_id=1)
+		product_del.insert()
+		p_del_id=product_del.id
+		p_after=len(Product.query.all())
+		self.assertEqual(p_after,p_before+1)
+
+		o_before = len(Order.query.all())
+		#Creating orders to be deleted
+		o_del_1=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_2=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_3=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_4=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_1.insert();o_del_2.insert();
+		o_del_3.insert();o_del_4.insert();
+		self.assertEqual(len(Order.query.all()),o_before+4)
+
+		#Making the delete action
+		product_del.delete()
+		o_after = len(Order.query.all())
+
+		#Testing values
+		self.assertEqual(len(Product.query.all()),p_before)
+		self.assertEqual(o_before,o_after)
+		self.assertEqual(len(Order.query.filter(
+			Order.product_id==p_del_id
+        ).all()),0)
+
+		print("Test a_2_12:order relationship_product_delete")
 
 
 
