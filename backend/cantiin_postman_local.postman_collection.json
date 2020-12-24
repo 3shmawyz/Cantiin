@@ -689,6 +689,62 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "login_users:fail:missing password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(false);\r",
+											"    \r",
+											"    pm.expect(responseJson.description).to.eql(\"password is missing\");\r",
+											"    pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"    pm.expect(responseJson.error).to.eql(400);\r",
+											"\r",
+											"\r",
+											"\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
