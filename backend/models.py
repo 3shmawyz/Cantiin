@@ -48,16 +48,13 @@ class User(db.Model):
     #orders = db.relationship("Order",backref="buyer")
     #sold_orders = db.relationship("Order",backref="seller")
 
-    def __init__(self,  
-        price, name, seller_id,in_stock=True):
-        self.name = name
-        self.price = price
-        self.in_stock = in_stock
-        self.seller_id = seller_id
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
     '''
     insert()
         inserts a new model into a database
-        the model must have a unique name
+        the model must have a unique username
         the model must have a unique id or null id
 
     '''
