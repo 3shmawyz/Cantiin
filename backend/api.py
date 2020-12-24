@@ -215,7 +215,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/users/login", methods=["POST"])
 	def login_users():
-	#This endpoint will add a new user
+	#This endpoint will log the user in
 		try:
 			body = request.get_json()
 		except:
@@ -278,6 +278,14 @@ Tests: test_01_clear_tables
 
 	
 
+
+
+
+	@app.route("/users/logout", methods=["POST"])
+	def logout_users():
+	#This endpoint will log the user out
+		return jsonify({"success":True,
+			"result":"logged out successfully"})
 
 
 
