@@ -69,6 +69,166 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test 2: db_drop_and_create_all")
 
 
+
+
+
+	def test_a_1_000_user_intro(self):
+		print("")
+		print("")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("_+++++++++++++++++++ Models : 1 ) User ++_")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("")
+		print("")
+
+
+
+	def test_a_1_001_user_insert(self):
+		user1 = user(name = "user1",price = 5.5,
+			in_stock=True, seller_id=1)
+		user1.insert()
+		users = user.query.all()
+
+		self.assertEqual(len(users),1)
+		print("Test a_2_1: user insert")
+
+
+	def test_a_1_002_user_update(self):
+		user1 = user.query.get(1)
+		user1.name = "modified"
+		user1.update()
+		user_1 = user.query.get(1)
+
+		self.assertEqual(user_1.name,"modified")
+		print("Test a_2_2: user update")
+
+
+
+	def test_a_1_003_user_delete(self):
+		user1 = user.query.get(1)
+		user1.delete()
+		users = user.query.all()
+
+		self.assertEqual(len(users),0)
+		print("Test a_2_3: user delete")
+
+	def test_a_1_004_populate(self):
+		populate_tables()
+		users = user.query.all()
+
+		self.assertEqual(len(users),6)
+		print("Test a_2_4: Populate Tables")
+
+
+	def test_a_1_005_user_values(self):
+		produc = user.query.get(1)
+
+		self.assertEqual(produc.id,1)
+		self.assertEqual(produc.name,"Labtop")
+		self.assertEqual(produc.price,300)
+		self.assertEqual(produc.seller_id,1)
+		self.assertEqual(produc.in_stock,True)
+		print("Test a_2_5: user values")
+
+
+	def test_a_1_006_user_insert_wrong(self):
+		users = user.query.all()
+		old_records_number = len(users)
+		try:
+			#This code will not be executed
+			#There are missing required parameters
+			user1 = user()
+			user1.insert()
+			self.assertEqual(True,False)
+		except:
+			self.assertEqual(True,True)
+		
+		users = user.query.all()
+		new_records_number = len(users)
+
+		self.assertEqual(old_records_number,
+			new_records_number)
+		print("Test a_2_6: user insert with missing"+
+		 "required parameters")
+
+
+
+	def test_a_1_007_user_delete_wrong(self):
+		users = user.query.all()
+		old_records_number = len(users)
+		try:
+			#This code will not be executed
+			#There is no user with the number 0
+			user1 = user.query.get(0)
+			user1.delete()
+			self.assertEqual(True,False)
+
+		except:
+			self.assertEqual(True,True)
+		
+		users = useruser.query.all()
+		new_records_number = len(users)
+
+		self.assertEqual(old_records_number,
+			new_records_number)
+		print("Test a_2_7: user delete mistake, non-existent"+
+		 "user id")
+
+
+
+
+	def test_a_1_008_get_in_stock_users(self):
+		users = get_in_stock_users()
+		for user in users:
+			self.assertEqual(user.in_stock,True)
+		print("Test a_2_8:get in stock users")
+
+
+
+	def test_a_1_009_user_simple(self):
+		produc = user.query.get(1).simple()
+		#print(produc)
+
+		self.assertEqual(produc["id"],1)
+		self.assertEqual(type(produc["id"]),int)
+
+		self.assertEqual(produc["name"],"Labtop")
+		self.assertEqual(type(produc["name"]),str)
+
+		self.assertEqual(produc["price"],300)
+		self.assertEqual(type(produc["price"]),float)
+
+		self.assertEqual(produc["seller_id"],1)
+		self.assertEqual(type(produc["seller_id"]),int)
+
+		self.assertEqual(produc["in_stock"],True)
+		self.assertEqual(type(produc["in_stock"]),bool)
+
+		print("Test a_2_9: user simple")
+
+	def test_a_1_010_user_relationship_order(self):
+		user = user.query.get(1)
+		orders=user.orders
+		orders_ids=[order.id for order in orders]
+		self.assertEqual(1 in orders_ids,True)
+		self.assertEqual(2 in orders_ids,True)
+		self.assertEqual(3 in orders_ids,False)
+		self.assertEqual(4 in orders_ids,True)
+		print("Test a_2_10:user relationship_order")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	def test_a_2_000_product_intro(self):
 		print("")
 		print("")
