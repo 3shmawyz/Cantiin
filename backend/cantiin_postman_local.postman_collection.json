@@ -1,6 +1,5 @@
 {
 	"info": {
-		"_postman_id": "8105b3a9-0f0c-4dce-8d76-46e8a89b632b",
 		"name": "cantiin_postman_local",
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -154,7 +153,11 @@
 			"description": "The populate endpoint"
 		},
 		{
-			"name": "3) products",
+			"name": "3)user",
+			"item": []
+		},
+		{
+			"name": "4) products",
 			"item": [
 				{
 					"name": "get_products",
@@ -1698,7 +1701,7 @@
 			"description": "the products endpoint"
 		},
 		{
-			"name": "4)orders",
+			"name": "5)orders",
 			"item": [
 				{
 					"name": "get_orders",
