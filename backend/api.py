@@ -272,7 +272,8 @@ Tests: test_01_clear_tables
 		#now we have the_user_id as integer
 
 		return jsonify({"success":True,
-			"result":"logged in successfully"})
+			"result":"logged in successfully",
+			"user_id":the_user_id})
 
 
 	
