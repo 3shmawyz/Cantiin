@@ -84,8 +84,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_1_001_user_insert(self):
-		user1 = user(name = "user1",price = 5.5,
-			in_stock=True, seller_id=1)
+		user1 = User(username = "useeer1",password="45687")
 		user1.insert()
 		users = user.query.all()
 
