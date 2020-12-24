@@ -90,7 +90,7 @@ Tests: test_01_clear_tables
 
 
 	"""
-	User endpoints
+	User endpoints:
 	post_users
 	delete users
 	login
@@ -206,6 +206,80 @@ Tests: test_01_clear_tables
 
 
 
+
+
+
+
+
+
+
+	@app.route("/users/login", methods=["POST"])
+	def login_users():
+	#This endpoint will add a new user
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			username = body.get("username",None)
+			password1 = body.get("password1",None)
+			password2 = body.get("password2",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+
+		#Validating inputs one by one
+		username_validation = validate_must(
+			input=username,type="s",input_name_string="username",
+			minimum=2,maximum=150)
+		password1_validation = validate_must(
+			input=password1,type="s",input_name_string="password1",
+			minimum=8,maximum=150)
+		password2_validation = validate_must(
+			input=password2,type="s",input_name_string="password2",
+			minimum=8,maximum=150)
+
+		#Validating inputs a group
+		val_group=validate_must_group(
+			[username_validation,password1_validation
+			,password2_validation])
+
+		#Now we will validate all inputs as a group
+		if val_group["case"] == True:
+			# Success: they pass the conditions
+			username,password1,password2=val_group["result"]		
+		else:
+			# Failure: Something went wrong
+			return val_group["result"]
+		#Now we have username, password1 and password2 as strings
+		
+		#Validate that this username is unique
+		all_users=User.query.all()
+		all_names=[str(u.username) for u in all_users]
+		if username in all_names:
+			return my_error(status=422,
+				description="this username already exists")
+
+		#Validate that these passwords are not the same
+		if password1!=password2:
+			return my_error(status=422,
+				description="please enter the same password")
+		
+		#Create the user
+		new_user = User(username=username, password=password1)
+
+		#Insert the user in the database
+		try:
+			new_user.insert()
+			return jsonify(
+				{"success":True,"user":new_user.simple()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+	
 
 
 
