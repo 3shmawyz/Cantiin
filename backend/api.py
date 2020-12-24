@@ -249,45 +249,31 @@ Tests: test_01_clear_tables
 			return val_group["result"]
 		#Now we have username, password and password2 as strings
 
+		users=User.query.all()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 		#Validate that this username is unique
 		all_users=User.query.all()
-		all_names=[str(u.username) for u in all_users]
-		if username in all_names:
-			return my_error(status=422,
-				description="this username already exists")
 
-		#Validate that these passwords are not the same
-		if password1!=password2:
-			return my_error(status=422,
-				description="please enter the same password")
-		
-		#Create the user
-		new_user = User(username=username, password=password1)
+		the_user="";
 
-		#Insert the user in the database
-		try:
-			new_user.insert()
-			return jsonify(
-				{"success":True,"user":new_user.simple()})
-		except Exception as e:
-			db.session.rollback()
-			abort(500)
+		#To validate if ths username exists or not
+		for usr in all_users:
+			if usr.password==password:
+				the_user=usr
+				break
+		if the_user=="":
+			return my_error(status=422,
+				description="wrong username or password")
+		#now we have the user as the_user
+
+		#Validating that this password is correct
+		if str(the_user.password)!=str(password):
+			return my_error(status=422,
+				description="wrong username or password")
+		#Now the password is correct
+
+		return jsonify({"success":True,
+			"result":"logged in successfully"})
 
 
 	
