@@ -271,7 +271,6 @@ Tests: test_01_clear_tables
 				description="wrong username or password")
 		#now we have the_user_id as integer
 
-
 		return jsonify({"success":True,
 			"result":"logged in successfully"})
 
