@@ -89,62 +89,55 @@ Tests: test_01_clear_tables
 
 
 
-
+	"""
+	User endpoints
+	"""
 
 
 
 	@app.route("/users", methods=["POST"])
 	def post_users():
-	#This endpoint will add a new product
+	#This endpoint will add a new user
 		try:
 			body = request.get_json()
 		except:
 			return my_error(status=400,
 				description="request body can not be parsed to json")
 		try:
-			name = body.get("name",None)
-			price = body.get("price",None)
-			in_stock = body.get("in_stock",None)
-			seller_id = body.get("seller_id",None)
+			username = body.get("name",None)
+			password = body.get("price",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
 
 		#Validating inputs one by one
-		name_validation = validate_must(
-			input=name,type="s",input_name_string="name",
+		username_validation = validate_must(
+			input=username,type="s",input_name_string="username",
 			minimum=3,maximum=150)
-		price_validation = validate_must(
-			input=price,type="f",input_name_string="price",
+		password_validation = validate_must(
+			input=password,type="s",input_name_string="password",
 			minimum=0.1,maximum=1000000)
-		in_stock_validation = validate_must(
-			input=in_stock,type="b",input_name_string="in_stock")
-		seller_id_validation = validate_must(
-			input=seller_id,type="i",input_name_string="seller_id",
-			minimum=1,maximum=100000000000000000)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
-			[name_validation,price_validation,
-			in_stock_validation,seller_id_validation])
+			[username_validation,password_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			name,price,in_stock,seller_id=val_group["result"]		
+			username,password=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
 
-		#Create the product
-		new_product = Product(name=name, price=price,
-			seller_id=seller_id, in_stock=in_stock)
+		#Create the user
+		new_user = User(username=name, password=price)
 
-		#Insert the product in the database
+		#Insert the user in the database
 		try:
-			new_product.insert()
+			new_user.insert()
 			return jsonify(
-				{"success":True,"product":new_product.simple()})
+				{"success":True,"user":new_user.simple()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
@@ -156,32 +149,32 @@ Tests: test_01_clear_tables
 
 	@app.route("/users", methods=["DELETE"])
 	def delete_users():
-	#This endpoint will delete an existing product
+	#This endpoint will delete an existing user
 		
-		products_query=Product.query
-		product_id_validation=validate_model_id(
-			input_id=product_id,model_query=products_query
-			,model_name_string="product")
-		if product_id_validation["case"]==1:
-			#The product exists
-			product=product_id_validation["result"]
+		users_query=user.query
+		user_id_validation=validate_model_id(
+			input_id=user_id,model_query=users_query
+			,model_name_string="user")
+		if user_id_validation["case"]==1:
+			#The user exists
+			user=user_id_validation["result"]
 
 		else:
-			#No product with this id, can not convert to int,
+			#No user with this id, can not convert to int,
 			# or id is missing (Impossible)
 			return my_error(
-				status=product_id_validation["result"]["status"],
-				description=product_id_validation
+				status=user_id_validation["result"]["status"],
+				description=user_id_validation
 				["result"]["description"])
 		 
-		#Now, we have "product", this is essential
+		#Now, we have "user", this is essential
 
 		try:
-			# Finally, deleting the product itself
-			product.delete()
+			# Finally, deleting the user itself
+			user.delete()
 			return jsonify(
 				{"success":True,
-				"result":"product deleted successfully"})
+				"result":"user deleted successfully"})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
