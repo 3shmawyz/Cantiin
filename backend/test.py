@@ -9,7 +9,7 @@ from sqlalchemy import func
 from auth import *
 
 from api import create_app
-from models import (db,Product, Order)
+from models import (db,Product, Order, User)
 from functions import *
 from flask_cors import CORS
 from flask_migrate import Migrate 
@@ -86,17 +86,17 @@ class CantiinTestCase(unittest.TestCase):
 	def test_a_1_001_user_insert(self):
 		user1 = User(username = "useeer1",password="45687")
 		user1.insert()
-		users = user.query.all()
+		users = User.query.all()
 
 		self.assertEqual(len(users),1)
 		print("Test a_2_1: user insert")
 
 
 	def test_a_1_002_user_update(self):
-		user1 = user.query.get(1)
+		user1 = User.query.get(1)
 		user1.name = "modified"
 		user1.update()
-		user_1 = user.query.get(1)
+		user_1 = User.query.get(1)
 
 		self.assertEqual(user_1.name,"modified")
 		print("Test a_2_2: user update")
@@ -104,23 +104,23 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_1_003_user_delete(self):
-		user1 = user.query.get(1)
+		user1 = User.query.get(1)
 		user1.delete()
-		users = user.query.all()
+		users = User.query.all()
 
 		self.assertEqual(len(users),0)
 		print("Test a_2_3: user delete")
 
 	def test_a_1_004_populate(self):
 		populate_tables()
-		users = user.query.all()
+		users = User.query.all()
 
 		self.assertEqual(len(users),6)
 		print("Test a_2_4: Populate Tables")
 
 
 	def test_a_1_005_user_values(self):
-		produc = user.query.get(1)
+		produc = User.query.get(1)
 
 		self.assertEqual(produc.id,1)
 		self.assertEqual(produc.name,"Labtop")
@@ -131,7 +131,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_1_006_user_insert_wrong(self):
-		users = user.query.all()
+		users = User.query.all()
 		old_records_number = len(users)
 		try:
 			#This code will not be executed
@@ -142,7 +142,7 @@ class CantiinTestCase(unittest.TestCase):
 		except:
 			self.assertEqual(True,True)
 		
-		users = user.query.all()
+		users = User.query.all()
 		new_records_number = len(users)
 
 		self.assertEqual(old_records_number,
@@ -153,19 +153,19 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_1_007_user_delete_wrong(self):
-		users = user.query.all()
+		users = User.query.all()
 		old_records_number = len(users)
 		try:
 			#This code will not be executed
 			#There is no user with the number 0
-			user1 = user.query.get(0)
+			user1 = User.query.get(0)
 			user1.delete()
 			self.assertEqual(True,False)
 
 		except:
 			self.assertEqual(True,True)
 		
-		users = useruser.query.all()
+		users = User.query.all()
 		new_records_number = len(users)
 
 		self.assertEqual(old_records_number,
@@ -185,7 +185,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_1_009_user_simple(self):
-		produc = user.query.get(1).simple()
+		produc = User.query.get(1).simple()
 		#print(produc)
 
 		self.assertEqual(produc["id"],1)
@@ -206,7 +206,7 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test a_2_9: user simple")
 
 	def test_a_1_010_user_relationship_order(self):
-		user = user.query.get(1)
+		user = User.query.get(1)
 		orders=user.orders
 		orders_ids=[order.id for order in orders]
 		self.assertEqual(1 in orders_ids,True)
