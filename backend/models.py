@@ -63,7 +63,6 @@ class Product(db.Model):
         self.price = price
         self.in_stock = in_stock
         self.seller_id = seller_id
-
     '''
     insert()
         inserts a new model into a database
@@ -74,16 +73,17 @@ class Product(db.Model):
     def insert(self):
         db.session.add(self)
         db.session.commit()
-
     '''
     delete()
         deletes a new model into a database
         the model must exist in the database
     '''
     def delete(self):
+        the_orders=self.orders
+        for ord in the_orders:
+            ord.delete()
         db.session.delete(self)
         db.session.commit()
-
     '''
     update()
         updates a new model into a database
