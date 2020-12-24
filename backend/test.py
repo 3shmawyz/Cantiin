@@ -190,7 +190,7 @@ class CantiinTestCase(unittest.TestCase):
 		orders=user.orders
 		orders_ids=[order.id for order in orders]
 		self.assertEqual(1 in orders_ids,True)
-		self.assertEqual(2 in orders_ids,True)
+		self.assertEqual(2 in orders_ids,False)
 		self.assertEqual(3 in orders_ids,False)
 		self.assertEqual(4 in orders_ids,True)
 		print("Test a_2_9:user relationship_order")
