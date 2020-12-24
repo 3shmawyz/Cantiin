@@ -141,7 +141,7 @@ Tests: test_01_clear_tables
 		
 		#Validate that this username is unique
 		all_users=User.query.all()
-		all_names=[u.name for u in all_users]
+		all_names=[str(u.username) for u in all_users]
 		if username in all_names:
 			return my_error(status=422,
 				description="this username already exists")
@@ -152,7 +152,7 @@ Tests: test_01_clear_tables
 				description="please enter the same password")
 		
 		#Create the user
-		new_user = User(username=name, password=password1)
+		new_user = User(username=username, password=password1)
 
 		#Insert the user in the database
 		try:
