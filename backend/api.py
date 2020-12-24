@@ -139,6 +139,11 @@ Tests: test_01_clear_tables
 			return val_group["result"]
 		#Now we have username, password1 and password2 as strings
 		
+		#validate that the username has no white spaces
+		if " " in username:
+			return my_error(status=422,
+				description="username can not contain white spaces")
+		
 		#Validate that this username is unique
 		all_users=User.query.all()
 		all_names=[str(u.username) for u in all_users]
