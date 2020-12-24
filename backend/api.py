@@ -168,11 +168,11 @@ Tests: test_01_clear_tables
 
 
 
-	@app.route("/users", methods=["DELETE"])
-	def delete_users():
+	@app.route("/users/<int:user_id>", methods=["DELETE"])
+	def delete_users(user_id):
 	#This endpoint will delete an existing user
 		
-		users_query=user.query
+		users_query=User.query
 		user_id_validation=validate_model_id(
 			input_id=user_id,model_query=users_query
 			,model_name_string="user")
