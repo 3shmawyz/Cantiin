@@ -44,7 +44,7 @@ class User(db.Model):
     # Example: "12345", "abc"
     # it doesn't have to be unique
 
-    #products = db.relationship("Product",backref="seller")
+    products = db.relationship("Product",backref="seller")
     #orders = db.relationship("Order",backref="buyer")
     #sold_orders = db.relationship("Order",backref="seller")
 
@@ -129,7 +129,9 @@ class Product(db.Model):
     # it represents whether this product is for sale or not
     # True = For sale, can be displayed to customers
     # False = now for sale, can not be displayed to customers
-    seller_id = Column(Integer(), unique=False, nullable=False)
+    seller_id = Column(Integer(),db.ForeignKey("user.id"),
+     unique=False, nullable=False)
+    #seller_id = Column(Integer(), unique=False, nullable=False)
     # seller_id
     # This is the id of the seller user
     # The user who sells this product
