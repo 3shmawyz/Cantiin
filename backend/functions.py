@@ -357,12 +357,12 @@ def db_drop_and_create_all():
 def populate_tables():
     db_drop_and_create_all()
     users = list()
-    users.append(User(username="abc",password="123"))
-    users.append(User(username="abcde",password="456"))
-    users.append(User(username="klmn",password="fde"))
-    users.append(User(username="rtb",password="uyt"))
-    users.append(User(username="cool",password="freezer"))
-    users.append(User(username="water",password="Tank"))
+    users.append(User(username="abc",password="123456789"))
+    users.append(User(username="abcde",password="456abcderrrt"))
+    users.append(User(username="klmn",password="fde123987byt"))
+    users.append(User(username="rtb",password="uytkltyopi889"))
+    users.append(User(username="cool",password="freezererer"))
+    users.append(User(username="water",password="TankTankTank"))
     db.session.add_all(users)
     db.session.commit()
 
