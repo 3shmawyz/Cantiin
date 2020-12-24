@@ -46,7 +46,6 @@ class User(db.Model):
 
     products = db.relationship("Product",backref="seller")
     orders = db.relationship("Order",backref="buyer")
-    #sold_orders = db.relationship("Order",backref="seller")
 
     def __init__(self, username, password):
         self.username = username
@@ -70,6 +69,9 @@ class User(db.Model):
         the_orders=self.orders
         for ord in the_orders:
             ord.delete()
+        the_products=self.products
+        for pro in the_products:
+            pro.delete()
         db.session.delete(self)
         db.session.commit()
     '''
