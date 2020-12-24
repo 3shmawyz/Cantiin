@@ -173,37 +173,19 @@ class CantiinTestCase(unittest.TestCase):
 
 
 
-
-	def test_a_1_008_get_in_stock_users(self):
-		users = get_in_stock_users()
-		for user in users:
-			self.assertEqual(user.in_stock,True)
-		print("Test a_2_8:get in stock users")
-
-
-
-	def test_a_1_009_user_simple(self):
+	def test_a_1_008_user_simple(self):
 		produc = User.query.get(1).simple()
 		#print(produc)
 
 		self.assertEqual(produc["id"],1)
 		self.assertEqual(type(produc["id"]),int)
 
-		self.assertEqual(produc["name"],"Labtop")
-		self.assertEqual(type(produc["name"]),str)
+		self.assertEqual(produc["username"],"abc")
+		self.assertEqual(type(produc["username"]),str)
 
-		self.assertEqual(produc["price"],300)
-		self.assertEqual(type(produc["price"]),float)
+		print("Test a_2_8: user simple")
 
-		self.assertEqual(produc["seller_id"],1)
-		self.assertEqual(type(produc["seller_id"]),int)
-
-		self.assertEqual(produc["in_stock"],True)
-		self.assertEqual(type(produc["in_stock"]),bool)
-
-		print("Test a_2_9: user simple")
-
-	def test_a_1_010_user_relationship_order(self):
+	def test_a_1_009_user_relationship_order(self):
 		user = User.query.get(1)
 		orders=user.orders
 		orders_ids=[order.id for order in orders]
@@ -211,7 +193,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(2 in orders_ids,True)
 		self.assertEqual(3 in orders_ids,False)
 		self.assertEqual(4 in orders_ids,True)
-		print("Test a_2_10:user relationship_order")
+		print("Test a_2_9:user relationship_order")
 
 
 
