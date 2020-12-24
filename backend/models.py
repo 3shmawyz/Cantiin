@@ -45,7 +45,7 @@ class User(db.Model):
     # it doesn't have to be unique
 
     products = db.relationship("Product",backref="seller")
-    #orders = db.relationship("Order",backref="buyer")
+    orders = db.relationship("Order",backref="buyer")
     #sold_orders = db.relationship("Order",backref="seller")
 
     def __init__(self, username, password):
@@ -207,7 +207,8 @@ class Order(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
-    user_id = Column(Integer(), unique=False, nullable=False)
+    user_id =Column(Integer(),db.ForeignKey("user.id"),
+     unique=False, nullable=False)
     # user_id
     # This is the id of the user who ordered the products
     # it is an integer
