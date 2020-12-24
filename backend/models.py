@@ -23,6 +23,97 @@ db_drop_and_create_all()
 
 
 
+
+
+
+'''
+Product
+a persistent product entity, extends the base SQLAlchemy Model
+id,name,price,in_stock,seller_id
+'''
+class User(db.Model):
+    # Autoincrementing, unique primary key
+    id = Column(Integer(), primary_key=True)
+    # String name
+    username = Column(String(), unique=True, nullable=False)
+    # name could be like "Labtop"
+    # name dowsn't have to be unique
+    # allowing several users to sell the same product
+    password =  Column(String(), unique=False, nullable=False)
+    # Price is a float
+    # Example: 5.0, 6.0 , 50.0, 0.5
+    # It should be float, allowing things with low
+    # price to be sold
+
+    orders = db.relationship("Order",backref="product")
+    orders = db.relationship("Order",backref="product")
+    sold_orders = db.relationship("Order",backref="product")
+
+    def __init__(self,  
+        price, name, seller_id,in_stock=True):
+        self.name = name
+        self.price = price
+        self.in_stock = in_stock
+        self.seller_id = seller_id
+    '''
+    insert()
+        inserts a new model into a database
+        the model must have a unique name
+        the model must have a unique id or null id
+
+    '''
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+    '''
+    delete()
+        deletes a new model into a database
+        the model must exist in the database
+    '''
+    def delete(self):
+        the_orders=self.orders
+        for ord in the_orders:
+            ord.delete()
+        db.session.delete(self)
+        db.session.commit()
+    '''
+    update()
+        updates a new model into a database
+        the model must exist in the database
+    '''
+    def update(self):
+        db.session.commit()
+
+    def __repr__(self):
+        return json.dumps(
+        {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'in_stock': self.in_stock,
+            'seller_id': self.seller_id
+        })
+    def simple(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'in_stock': self.in_stock,
+            'seller_id': self.seller_id
+        }
+
+    def get_dict(self):
+        return self.simple()
+
+
+
+
+
+
+
+
+
+
 '''
 Product
 a persistent product entity, extends the base SQLAlchemy Model
