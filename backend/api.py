@@ -105,7 +105,8 @@ Tests: test_01_clear_tables
 				description="request body can not be parsed to json")
 		try:
 			username = body.get("name",None)
-			password = body.get("price",None)
+			password1 = body.get("price",None)
+			password2 = body.get("price",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
@@ -114,18 +115,22 @@ Tests: test_01_clear_tables
 		username_validation = validate_must(
 			input=username,type="s",input_name_string="username",
 			minimum=3,maximum=150)
-		password_validation = validate_must(
-			input=password,type="s",input_name_string="password",
+		password1_validation = validate_must(
+			input=password1,type="s",input_name_string="password",
+			minimum=0.1,maximum=1000000)
+		password2_validation = validate_must(
+			input=password2,type="s",input_name_string="password",
 			minimum=0.1,maximum=1000000)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
-			[username_validation,password_validation])
+			[username_validation,password1_validation
+			,password2_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			username,password=val_group["result"]		
+			username,password1,password2=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
