@@ -220,6 +220,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_2_001_product_insert(self):
+		db_drop_and_create_all()
 		product1 = Product(name = "product1",price = 5.5,
 			in_stock=True, seller_id=1)
 		product1.insert()
