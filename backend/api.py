@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from random import shuffle
 import json
-from models import (db, Product, Order)
+from models import (db, Product, Order,User)
 from random import shuffle
 from functions import *
 """
