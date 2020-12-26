@@ -1225,6 +1225,14 @@ class CantiinTestCase(unittest.TestCase):
 		#2005-05-07 08:05:27
 		print("Test c_1_5: datetime manipulation")
 
+	def test_c_1_6_001_setcookie(self):
+		res = flask.make_response()
+    	res.set_cookie("name", value="I am cookie")
+		print("Test c_2_4_8: setcookie")
+
+
+
+
 
 
 

@@ -785,6 +785,16 @@ Tests: test_01_clear_tables
 			abort(500)
 
 
+	@app.route("/test_cookies", methods=["GET"])
+	def test_cookies():
+	#This endpoint is for testing
+		res = flask.make_response()
+    	res.set_cookie("name", "I am cookie")
+		res.set_cookie('name', value='I am cookie',
+			secure=True, httponly=True, samesite='Lax')
+		res.body(jsonify(
+				{"success":True}))
+    	return resp, 302
 
 
 
