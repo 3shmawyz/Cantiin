@@ -1,6 +1,5 @@
 {
 	"info": {
-		"_postman_id": "8105b3a9-0f0c-4dce-8d76-46e8a89b632b",
 		"name": "cantiin_postman_local",
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1017,7 +1016,7 @@
 					"name": "logout_users",
 					"item": [
 						{
-							"name": "login_users:success Copy",
+							"name": "login_users:success",
 							"event": [
 								{
 									"listen": "test",
@@ -1030,7 +1029,7 @@
 											"    pm.expect(responseJson.success).to.eql(true);\r",
 											"    \r",
 											"    pm.expect(responseJson.result).to.eql(\"logged in successfully\");\r",
-											"    pm.expect(responseJson.user_id).to.eql(3);\r",
+											"    pm.expect(responseJson.user_id).to.eql(1);\r",
 											"});\r",
 											""
 										],
@@ -1063,6 +1062,57 @@
 									"path": [
 										"users",
 										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout_users:success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(true);\r",
+											"    \r",
+											"    pm.expect(responseJson.result).to.eql(\"logged out successfully\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"abc\",\r\n    \"password\":\"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/logout",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"logout"
 									]
 								}
 							},
