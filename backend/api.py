@@ -1,5 +1,6 @@
 import os
-from flask import Flask, request, abort, jsonify
+from flask import (Flask, 
+	request, abort, jsonify, Response,render_template)
 from flask_cors import CORS
 from flask_migrate import Migrate 
 from flask_sqlalchemy import SQLAlchemy
@@ -788,13 +789,21 @@ Tests: test_01_clear_tables
 	@app.route("/test_cookies", methods=["GET"])
 	def test_cookies():
 	#This endpoint is for testing
-		res = flask.make_response()
-    	res.set_cookie("name", "I am cookie")
-		res.set_cookie('name', value='I am cookie',
-			secure=True, httponly=True, samesite='Lax')
-		res.body(jsonify(
-				{"success":True}))
-    	return resp, 302
+		#res = Flask.make_response(,rv=)
+		#r = Response(
+		#	response=json.dumps({"fail":True,"id":1}),status=302)
+		"""r = app.response_class(
+			response=json.dumps({"fail":True,"id":1}),
+		status=200,mimetype='application/json')
+		r=Flask.make_response(r,rv=dict)
+		r.set_cookie('name', value='I am cookie',
+			secure=True, httponly=True, samesite='Lax')"""
+		#res.body()
+		out = jsonify(
+					{"success":True,"result":"order"+
+					" deleted successfully"})
+		out.set_cookie('my_key', 'my_value')
+		return out
 
 
 

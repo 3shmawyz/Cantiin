@@ -1226,9 +1226,34 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_1_5: datetime manipulation")
 
 	def test_c_1_6_001_setcookie(self):
-		res = flask.make_response()
-    	res.set_cookie("name", value="I am cookie")
-		print("Test c_2_4_8: setcookie")
+		response = self.client().get('/test_cookies') 
+
+		self.assertEqual(response.status_code,302)
+
+		##data = json.loads(response.data)
+		print(response)
+		print(json.loads(response.data))
+		"""self.assertEqual(data["success"],True)
+		self.assertEqual(data["message"],"question inserted successfully")
+		max_id = db.session.query(
+			func.max(Question.id)).one_or_none()[0]
+		q = Question.query.get(max_id)
+
+		self.assertEqual(q.question,question)
+		self.assertEqual(q.answer,answer)
+		self.assertEqual(q.category_id,category_id)
+		self.assertEqual(q.difficulty,difficulty)
+		q.delete()
+
+		print("__________________________________________Test 35:")
+		print("---")
+		print("Testing the route '/questions' POST")
+		print("Perfect values and data types")
+		print("Status code: 200")"""
+
+		print("Test 35 has passed")
+
+
 
 
 
