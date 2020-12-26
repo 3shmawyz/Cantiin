@@ -172,7 +172,7 @@ Tests: test_01_clear_tables
 			print(cookie_value,flush=True)
 			response.set_cookie('cantiin',
 				value=cookie_value,httponly=True, samesite='Lax')
-			return response
+			return auth_cookie_response(response,new_user.id)
 		except Exception as e:
 			raise(e)
 			db.session.rollback()

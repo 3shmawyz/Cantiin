@@ -215,6 +215,34 @@ def validate_token(token,secret):
 
 
 
+
+
+
+
+
+def auth_cookie_response(response,user_id):
+    response = jsonify(response)
+    cookie_value = generate_token(
+        user_id=user_id,secret=SECRET)["result"]
+    response.set_cookie('cantiin',
+    value=cookie_value,httponly=True, samesite='Lax')
+    return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def get_token_auth_cookie():
     """Obtains the Access Token from the Authorization Cookie
     """
