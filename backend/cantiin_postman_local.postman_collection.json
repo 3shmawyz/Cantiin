@@ -3407,6 +3407,23 @@
 				},
 				{
 					"name": "get cookies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.success).to.eql(true);\r",
+									"  pm.expect(responseJson.cookies[\"HOnly\"]).to.eql(\"HTTPOnly Cookieee\");\r",
+									"  pm.expect(responseJson.cookies[\"NotHOnly\"]).to.eql(\"Not HTTPOnly Cookieee\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
