@@ -1170,6 +1170,55 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "login test",
+					"item": [
+						{
+							"name": "login test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(true);\r",
+											"    \r",
+											"    pm.expect(responseJson.result).to.eql(\"logged in successfully\");\r",
+											"    pm.expect(responseJson.user_id).to.eql(1);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/login/test",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"login",
+										"test"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -3490,43 +3539,6 @@
 			"name": "6)cookies",
 			"item": [
 				{
-					"name": "delte cookies",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"  pm.response.to.have.status(200);\r",
-									"  const responseJson = pm.response.json();\r",
-									"  pm.expect(responseJson.success).to.eql(true);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/test_cookies",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"test_cookies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "post cookies",
 					"event": [
 						{
@@ -3585,6 +3597,43 @@
 					],
 					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/test_cookies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"test_cookies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delte cookies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.success).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "http://127.0.0.1:5000/test_cookies",
