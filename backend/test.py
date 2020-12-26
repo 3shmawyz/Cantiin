@@ -1225,15 +1225,6 @@ class CantiinTestCase(unittest.TestCase):
 		#2005-05-07 08:05:27
 		print("Test c_1_5: datetime manipulation")
 
-	def test_c_1_6_001_setcookie(self):
-		response = self.client().get('/test_cookies') 
-
-		self.assertEqual(response.status_code,200)
-		#cookyz = response.cookies
-		print(self.client().get("/"))
-		print(response.cookies)
-		print("Test 35 has passed")
-
 
 
 
