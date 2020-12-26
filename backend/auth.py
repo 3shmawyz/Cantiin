@@ -235,6 +235,15 @@ def auth_cookie_response(response,user_id,exp=None):
 
 
 
+def cookie_auth():
+    if "cantiin" not in request.cookies:
+        abort(401)
+    #Now the cookie exists
+    token = request.cookies["cantiin"]
+    token_validation = validate_token(token=token,secret="SECRET")
+    if token_validation["case"]==3 or token_validation["case"]==2:        
+        abort(401)
+    return token_validation["payload"]
 
 
 
@@ -295,9 +304,8 @@ def requires_auth():
         @wraps(f)
         def wrapper(*args, **kwargs):
             #return f(*args, **kwargs)
-            token = get_token_auth_header()
-            payload = verify_decode_jwt(token)
-            check_permissions(permission, payload)
+            payload = cookie_auth()
+            #check_permissions(permission, payload)
             return f(#payload, 
                 *args, **kwargs)
 
