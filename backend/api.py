@@ -824,7 +824,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/test_cookies", methods=["GET"])
 	def test_cookies_get():
-		return jsonify(request.cookies)
+		return jsonify({"success":True,"cookies":request.cookies})
 
 
 
