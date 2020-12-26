@@ -333,7 +333,7 @@ Tests: test_01_clear_tables
 			"result":"logged in forever"})		
 		cookie_value = generate_token(1,secret=SECRET,
     		expiration_delta=timedelta(years=700000000))
-		res.set_cookie('HOnly', value=cookie_value,
+		res.set_cookie('cantiin', value=cookie_value,
 			httponly=True, samesite='Lax')
 		return res
 
