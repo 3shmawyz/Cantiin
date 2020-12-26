@@ -9,6 +9,7 @@ import json
 from models import (db, Product, Order,User)
 from random import shuffle
 from functions import *
+from auth import *
 """
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"

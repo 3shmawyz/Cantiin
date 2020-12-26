@@ -216,16 +216,16 @@ def validate_token(token,secret):
 
 
 def get_token_auth_cookie():
-    """Obtains the Access Token from the Authorization Header
+    """Obtains the Access Token from the Authorization Cookie
     """
    
-    auth = request.headers.get("Authorization", None)
+    auth = request.cookies.get("cantiin", None)
     if not auth:
         
         abort(401)
-        raise AuthError({"code": "authorization_header_missing",
+        raise AuthError({"code": "authorization_cookie_missing",
                         "description":
-                            "Authorization header is expected"}, 401)
+                            "Authorization cookie is expected"}, 401)
 
     parts = auth.split()
 
