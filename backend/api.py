@@ -163,10 +163,10 @@ Tests: test_01_clear_tables
 
 		#Insert the user in the database
 		try:
+			new_user.insert()
 			response=auth_cookie_response(
 				response={"success":True,"user":new_user.simple()},
 				user_id=new_user.id)
-			new_user.insert()
 			return response
 		except Exception as e:
 			raise(e)
@@ -275,10 +275,16 @@ Tests: test_01_clear_tables
 			return my_error(status=422,
 				description="wrong username or password")
 		#now we have the_user_id as integer
+		
 
-		return jsonify({"success":True,
+		response=auth_cookie_response(
+			response={"success":True,
 			"result":"logged in successfully",
-			"user_id":the_user_id})
+			"user_id":the_user_id},
+			user_id=the_user_id)
+		return response
+
+		#return jsonify()
 
 
 	
