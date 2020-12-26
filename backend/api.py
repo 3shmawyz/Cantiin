@@ -326,20 +326,15 @@ Tests: test_01_clear_tables
 
 
 
-	@app.route("/users/login/forever", methods=["POST"])
-	def login_forever():
+	@app.route("/users/login/test", methods=["POST"])
+	def login_test():
 	#This endpoint will log the user in
-		res =jsonify({"success":True,
-			"result":"logged in forever"})		
-		cookie_value = generate_token(1,secret=SECRET,
-    		expiration_delta=timedelta(years=700000000))
-		res.set_cookie('cantiin', value=cookie_value,
-			httponly=True, samesite='Lax')
-		return res
-
-		#return jsonify()
-
-
+		response=auth_cookie_response(
+			response={"success":True,
+			"result":"logged in successfully",
+			"user_id":1},
+			user_id=1)
+		return response
 	
 
 
