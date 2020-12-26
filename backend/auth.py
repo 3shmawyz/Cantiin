@@ -139,6 +139,7 @@ Outputs:
             -   case:1: payload
             -   case:2: expired payload 
             -   case:3: ""empty string
+            -   NOTE:   exp in payload is the old expiration
 
 """
 def validate_token(token,secret):
@@ -148,7 +149,8 @@ def validate_token(token,secret):
     if decoded_jwt["success"]:
         payload=decoded_jwt["result"]
     else:
-        return {"case":3,"token":"","error":decoded_jwt["result"]}
+        return {"case":3,"token":"",
+        "error":decoded_jwt["result"],"payload":""}
         #{"success":False,"result":error string}
     #Now we Have Payload
     user_id=0
@@ -162,7 +164,8 @@ def validate_token(token,secret):
         expiration=payload["exp"]
     except:
         return {"case":3,"token":"",
-        "error": "payload does not contain expiration_date"}
+        "error": "payload does not contain expiration_date",
+        "payload":""}
 
     user_id_validation=validate_integer(
     input_integer=user_id,input_name_string="user_id",
@@ -178,7 +181,8 @@ def validate_token(token,secret):
     else:
         # Failure: Something went wrong
         return {"case":3,"token":"",
-        "error": user_id_validation["result"]["description"] }
+        "error": user_id_validation["result"]["description"],
+        "payload":""}
 
     #Now we will validate exp
     if exp_validation["case"] == 1:
@@ -187,7 +191,8 @@ def validate_token(token,secret):
     else:
         # Failure: Something went wrong
         return {"case":3,"token":"",
-        "error": exp_validation["result"]["description"]}
+        "error": exp_validation["result"]["description"],
+        "payload":""}
 
     now_epoch=int(datetime.now().timestamp())
     if now_epoch>exp:
@@ -200,7 +205,8 @@ def validate_token(token,secret):
         case = 1
         new_token=token
         error=""
-    return {"case":case,"token":new_token,"error":error}
+    return {"case":case,"token":new_token,"error":error,
+    "payload":payload}
 
 
 
