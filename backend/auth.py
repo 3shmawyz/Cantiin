@@ -121,7 +121,8 @@ Inputs:
 Outputs:
     - { "case":      1 or 2 or 3, 
         "token":    string of token to be assigned
-        "error":    the error message}
+        "error":    the error message
+        "payload:   the payload of the token"}
         -   "case":
             -   1:  success
             -   2:  expired token
@@ -133,7 +134,12 @@ Outputs:
         -   "error":
             -   case:1: "" empty string
             -   case:2: "expired token" 
-            -   case:3: "error message"  
+            -   case:3: "error message"
+        -   "payload":
+            -   case:1: payload
+            -   case:2: expired payload 
+            -   case:3: ""empty string
+
 """
 def validate_token(token,secret):
     decoded_jwt = decode_jwt(token,secret)
