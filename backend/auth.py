@@ -220,12 +220,16 @@ def validate_token(token,secret):
 
 
 
-def auth_cookie_response(response,user_id):
+def auth_cookie_response(response,user_id,exp=None):
     response = jsonify(response)
     cookie_value = generate_token(
         user_id=user_id,secret=SECRET)["result"]
-    response.set_cookie('cantiin',
-    value=cookie_value,httponly=True, samesite='Lax')
+    if exp==None:
+        response.set_cookie('cantiin',
+        value=cookie_value,httponly=True, samesite='Lax')
+    else:
+        response.set_cookie('cantiin',
+        value=cookie_value,httponly=True, samesite='Lax',expires=exp) 
     return response
 
 
