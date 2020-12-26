@@ -163,18 +163,10 @@ Tests: test_01_clear_tables
 
 		#Insert the user in the database
 		try:
-			new_user.insert()
-			
-			response = jsonify(
-				{"success":True,"user":new_user.simple()})
-			cookie_value = generate_token(
-					user_id=new_user.id,secret=SECRET)["result"]
-			print(cookie_value,flush=True)
-			response.set_cookie('cantiin',
-				value=cookie_value,httponly=True, samesite='Lax')
 			response=auth_cookie_response(
 				response={"success":True,"user":new_user.simple()},
-				new_user.id)
+				user_id=new_user.id)
+			new_user.insert()
 			return response
 		except Exception as e:
 			raise(e)
