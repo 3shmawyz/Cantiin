@@ -389,8 +389,9 @@ Tests: test_01_clear_tables
 
 	@app.route("/products", methods=["POST"])
 	@requires_auth()
-	def post_products():
+	def post_products(payload):
 	#This endpoint will add a new product
+		print(payload,flush=True)
 		try:
 			body = request.get_json()
 		except:
