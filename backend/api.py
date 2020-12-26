@@ -203,9 +203,13 @@ Tests: test_01_clear_tables
 		try:
 			# Finally, deleting the user itself
 			user.delete()
-			return jsonify(
-				{"success":True,
-				"result":"user deleted successfully"})
+			r=jsonify({"success":True,
+					"result":"user deleted successfully"})
+			for co in cookies:
+				r.set_cookie(co,value="",expires=-50)
+			return r
+			#return jsonify({"success":True,
+			#	"result":"user deleted successfully"})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
