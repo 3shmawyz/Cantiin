@@ -295,8 +295,14 @@ Tests: test_01_clear_tables
 	@app.route("/users/logout", methods=["POST"])
 	def logout_users():
 	#This endpoint will log the user out
-		return jsonify({"success":True,
+		r=jsonify({"success":True,
 			"result":"logged out successfully"})
+		for co in cookies:
+			r.set_cookie(co,value="",expires=-50)
+		return r
+
+		#return jsonify({"success":True,
+		#	"result":"logged out successfully"})
 
 
 
