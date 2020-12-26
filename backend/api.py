@@ -387,8 +387,8 @@ Tests: test_01_clear_tables
 		return jsonify({"success":True,"products":to_return})
 		
 
-
 	@app.route("/products", methods=["POST"])
+	@requires_auth()
 	def post_products():
 	#This endpoint will add a new product
 		try:

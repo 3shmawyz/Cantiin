@@ -241,6 +241,7 @@ def cookie_auth():
     #Now the cookie exists
     token = request.cookies["cantiin"]
     token_validation = validate_token(token=token,secret="SECRET")
+    print(token_validation["case"],flush=True)
     if token_validation["case"]==3 or token_validation["case"]==2:        
         abort(401)
     return token_validation["payload"]
