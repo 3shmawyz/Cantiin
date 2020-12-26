@@ -3369,6 +3369,22 @@
 				},
 				{
 					"name": "post cookies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.success).to.eql(true);\r",
+									"  pm.expect(responseJson.result).to.eql(\"setting cookie successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
