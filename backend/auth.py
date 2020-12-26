@@ -12,8 +12,8 @@ import jwt
 import base64
 
 
-expiration_after= timedelta(days=7)
-
+EXPIRATION_AFTER= timedelta(days=7)
+SECRET="test"
 
 
 
@@ -76,7 +76,7 @@ def decode_jwt(encoded_jwt,secret):
 
 
 def generate_token(user_id,secret,
-    expiration_delta=expiration_after,
+    expiration_delta=EXPIRATION_AFTER,
     issued_at=datetime.now()):
     
     user_id_validation=validate_integer(
