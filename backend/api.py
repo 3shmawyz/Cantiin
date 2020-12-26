@@ -788,9 +788,11 @@ Tests: test_01_clear_tables
 
 	@app.route("/test_cookies", methods=["DELETE"])
 	def test_cookies_delete():
-		print(request.cookies,flush=True)
-		print(request.cookies.get("HOnly"),flush=True)
-		return jsonify(request.cookies)
+		cookies = request.cookies
+		r=jsonify({"success":True})
+		for co in cookies:
+			r.set_cookie(co,value="",expires=-50)
+		return r
 
 
 
@@ -820,10 +822,8 @@ Tests: test_01_clear_tables
 		return r,200
 
 
-	@app.route("/test_cookies/get", methods=["GET"])
+	@app.route("/test_cookies", methods=["GET"])
 	def test_cookies_get():
-		print(request.cookies,flush=True)
-		print(request.cookies.get("HOnly"),flush=True)
 		return jsonify(request.cookies)
 
 
