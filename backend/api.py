@@ -792,20 +792,31 @@ Tests: test_01_clear_tables
 		#res = Flask.make_response(,rv=)
 		#r = Response(
 		#	response=json.dumps({"fail":True,"id":1}),status=302)
-		"""r = app.response_class(
+		r = app.response_class(
 			response=json.dumps({"fail":True,"id":1}),
 		status=200,mimetype='application/json')
-		r=Flask.make_response(r,rv=dict)
-		r.set_cookie('name', value='I am cookie',
-			secure=True, httponly=True, samesite='Lax')"""
+		#r=Flask.make_response(r,rv=dict)
+		r.set_cookie('HOnly', value='HTTPOnly Cookie',
+			httponly=True, samesite='Lax')
+		r.set_cookie('NotHOnly', value='Not HTTPOnly Cookie',
+			httponly=False, samesite='Lax')
 		#res.body()
-		out = jsonify(
+		"""out = jsonify(
 					{"success":True,
 					"result":"setting cookie successfully"})
 		#out.set_cookie('cantiin_user', 'my_value')
-		out.set_cookie('name', value='I am cookie',
+		out.set_cookie('HOnly', value='HTTPOnly Cookie',
 			secure=True, httponly=True, samesite='Lax')
-		return out,200
+		out.set_cookie('NotHOnly', value='Not HTTPOnly Cookie',
+			secure=True, httponly=False, samesite='Lax')"""
+		return r,200
+
+
+	@app.route("/test_cookies/get", methods=["GET"])
+	def test_cookies_get():
+		print(request.cookies,flush=True)
+		print(request.cookies.get("HOnly"),flush=True)
+		return ""
 
 
 
