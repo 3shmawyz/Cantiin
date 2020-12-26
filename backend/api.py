@@ -788,7 +788,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/test_cookies", methods=["GET"])
 	def test_cookies():
-	#This endpoint is for testing
+	#This endpoint is for testing cookies
 		#res = Flask.make_response(,rv=)
 		#r = Response(
 		#	response=json.dumps({"fail":True,"id":1}),status=302)
@@ -800,10 +800,12 @@ Tests: test_01_clear_tables
 			secure=True, httponly=True, samesite='Lax')"""
 		#res.body()
 		out = jsonify(
-					{"success":True,"result":"order"+
-					" deleted successfully"})
-		out.set_cookie('my_key', 'my_value')
-		return out
+					{"success":True,
+					"result":"setting cookie successfully"})
+		#out.set_cookie('cantiin_user', 'my_value')
+		out.set_cookie('name', value='I am cookie',
+			secure=True, httponly=True, samesite='Lax')
+		return out,200
 
 
 
