@@ -1231,6 +1231,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(response.status_code,200)
 		#cookyz = response.cookies
 		print(self.client().get("/"))
+		print(response.cookies)
 		print("Test 35 has passed")
 
 
