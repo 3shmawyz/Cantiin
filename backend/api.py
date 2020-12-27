@@ -487,6 +487,7 @@ Tests: test_01_clear_tables
 
 
 	@app.route("/products/<int:product_id>", methods=["PUT"])
+	@requires_auth()
 	def edit_products(product_id):
 	#This endpoint will add a new product
 		try:
@@ -579,6 +580,7 @@ Tests: test_01_clear_tables
 		
 
 	@app.route("/products/<int:product_id>", methods=["DELETE"])
+	@requires_auth()
 	def delete_products(product_id):
 	#This endpoint will delete an existing product
 		
@@ -649,6 +651,7 @@ Tests: test_01_clear_tables
 	5) and 6) Order endpoints
 	"""
 	@app.route("/orders", methods=["GET"])
+	@requires_auth()
 	def get_orders():
 	#This endpoint will return all the orders		
 
@@ -686,6 +689,7 @@ Tests: test_01_clear_tables
 
 
 	@app.route("/orders", methods=["POST"])
+	@requires_auth()
 	def post_orders():
 	#This endpoint will add a new product
 		try:
@@ -758,6 +762,7 @@ Tests: test_01_clear_tables
 
 
 	@app.route("/orders/<int:order_id>", methods=["PUT"])
+	@requires_auth()
 	def edit_orders(order_id):
 	#This endpoint will edit an exiting order
 		try:
@@ -835,6 +840,7 @@ Tests: test_01_clear_tables
 		
 
 	@app.route("/orders/<int:order_id>", methods=["DELETE"])
+	@requires_auth()
 	def delete_orders(order_id):
 	#This endpoint will delete an existing order
 		
