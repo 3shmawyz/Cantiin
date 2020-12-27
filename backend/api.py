@@ -13,7 +13,7 @@ from random import shuffle
 from functions import *
 from auth import *
 
-TESTING=True
+TESTING=False
 
 """
 endpoints:
@@ -31,7 +31,7 @@ endpoints:
 
 
 
-def create_app(test_config=None,testing=False):
+def create_app(test_config=None,testing=TESTING):
 	# create and configure the app
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
@@ -518,7 +518,7 @@ Tests: test_01_clear_tables
 	#payload then product id
 	#the opposite will result in error
 		#print("product_id: "+str(product_id),flush=True)
-		#print("payload: "+str(payload),flush=True)
+		print("payload: "+str(payload),flush=True)
 		try:
 			body = request.get_json()
 		except:
