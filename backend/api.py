@@ -337,6 +337,17 @@ Tests: test_01_clear_tables
 		return response
 	
 
+	@app.route("/users/login/expired", methods=["POST"])
+	def login_expired():
+	#This endpoint will log the user in
+		response=auth_cookie_response(
+			response={"success":True,
+			"result":"logged in successfully",
+			"user_id":1},
+			user_id=1)
+		return response
+	
+
 
 
 
