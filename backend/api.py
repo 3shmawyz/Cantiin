@@ -1,4 +1,6 @@
 import os
+import string
+import secrets
 from flask import (Flask, 
 	request, abort, jsonify, Response,render_template)
 from flask_cors import CORS
@@ -34,6 +36,7 @@ def create_app(test_config=None,testing=False):
 		app.config.from_object("config_test")
 	else:
 		app.config.from_object("config")
+	#print(app.config['SECRET_KEY'],flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
