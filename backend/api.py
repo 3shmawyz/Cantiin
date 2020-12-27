@@ -511,8 +511,8 @@ Tests: test_01_clear_tables
 	#This is the correct arrangement
 	#payload then product id
 	#the opposite will result in error
-		print("product_id: "+str(product_id),flush=True)
-		print("payload: "+str(payload),flush=True)
+		#print("product_id: "+str(product_id),flush=True)
+		#print("payload: "+str(payload),flush=True)
 		try:
 			body = request.get_json()
 		except:
@@ -585,6 +585,14 @@ Tests: test_01_clear_tables
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
+
+		#Making sure that this user can change this product
+		if int(product.seller_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not change this product, because"+
+				" you are not the one who created it")
 
 		#Finally: applying changes
 		product.name=name
