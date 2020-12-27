@@ -640,7 +640,7 @@ Tests: test_01_clear_tables
 				description=
 				"you can not delete this product, because"+
 				" you are not the one who created it")
-		
+
 		try:
 			# Finally, deleting the product itself
 			product.delete()
@@ -694,14 +694,9 @@ Tests: test_01_clear_tables
 	def get_orders(payload):
 	#This endpoint will return all the orders		
 
-		#recievng inputs:
-		#user_id has a fall back value of None
-		user_id = request.args.get('user_id',None)
+		user_id=payload["uid"]
 
-		#user_id has one of two values
-		#1) input value
-		#2) None (Fall back value)
-		user_id_validation = validate_must(
+		"""user_id_validation = validate_must(
 			input=user_id,type="i",input_name_string="user_id",
 			minimum=1,maximum=1000000000000000000000)
 
@@ -715,7 +710,7 @@ Tests: test_01_clear_tables
 
 		#Now: There is only one possibility
 			#1) type(user_id) = int
-			#input now must have been converted to integer
+			#input now must have been converted to integer"""
 
 
 		#Filtering by user_id
