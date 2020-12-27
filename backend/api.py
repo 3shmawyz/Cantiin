@@ -732,7 +732,7 @@ Tests: test_01_clear_tables
 			return my_error(status=400,
 				description="request body can not be parsed to json")
 		try:
-			user_id = body.get("user_id",None)
+			#user_id = body.get("user_id",None)
 			product_id = body.get("product_id",None)
 			amount = body.get("amount",None)
 		except:
@@ -740,21 +740,21 @@ Tests: test_01_clear_tables
 				description = "there is no request body")
 
 		#Validating inputs one by one
-		user_id_validation = validate_must(
-			input=user_id,type="i",input_name_string="user_id",
-			minimum=0,maximum=1000)
+		#user_id_validation = validate_must(
+		#	input=user_id,type="i",input_name_string="user_id",
+		#	minimum=0,maximum=1000)
 		amount_validation = validate_must(
 			input=amount,type="i",input_name_string="amount",
 			minimum=1,maximum=1000000000)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
-			[user_id_validation,amount_validation])
+			[amount_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			user_id,amount=val_group["result"]		
+			amount=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
@@ -778,6 +778,8 @@ Tests: test_01_clear_tables
 		 
 		product_id = product.id
 		#Now, we have "product_id", this is essential
+
+		user_id=payload["uid"]
 
 		#Create the Order
 		new_order = Order(user_id=user_id, amount=amount,
