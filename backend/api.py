@@ -857,7 +857,7 @@ Tests: test_01_clear_tables
 			return my_error(
 				status=403,
 				description=
-				"you can not edit this product, because"+
+				"you can not edit this order, because"+
 				" you are not the one who created it")
 
 
