@@ -167,9 +167,13 @@ def validate_token(token,secret):
         "error": "payload does not contain expiration_date",
         "payload":""}
 
-    user_id_validation=validate_integer(
-    input_integer=user_id,input_name_string="user_id",
-    maximum=10000000000000000000000000000000000000000,minimum=1)
+
+    user_id_validation=validate_model_id(
+        input_id=user_id,model_query=User.query,
+        model_name_string="user")
+    #validate_integer(
+    #input_integer=user_id,input_name_string="user_id",
+    #maximum=10000000000000000000000000000000000000000,minimum=1)
     exp_validation=validate_integer(
         input_integer=expiration,input_name_string="expiration",
     maximum=10000000000000000000000000000000000000000,minimum=1)
@@ -182,7 +186,7 @@ def validate_token(token,secret):
         # Failure: Something went wrong
         return {"case":3,"token":"",
         "error": user_id_validation["result"]["description"],
-        "payload":""}
+        "payload":""}    
 
     #Now we will validate exp
     if exp_validation["case"] == 1:

@@ -347,7 +347,6 @@ def validate_must_group(validations_list):
 
 
 
-
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
