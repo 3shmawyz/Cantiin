@@ -1426,6 +1426,92 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "login test Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(true);\r",
+											"    \r",
+											"    pm.expect(responseJson.result).to.eql(\"logged in successfully\");\r",
+											"    pm.expect(responseJson.user_id).to.eql(1);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/login/test",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"login",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "users_who:successful Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(true);\r",
+											"    pm.expect(responseJson.result).to.eql(\"user is logged in\");\r",
+											"    pm.expect(responseJson.user_id).to.eql(1);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/who",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"who"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
