@@ -6,20 +6,13 @@ from jose import jwt
 from urllib.request import urlopen
 
 from functions import *
-from api import TESTING
+from api import *
 from datetime import timedelta,date,datetime,time
 
 import jwt
 import base64
 
-
 EXPIRATION_AFTER= timedelta(days=7)
-
-SECRET=""
-if TESTING == True:
-    SECRET="secret"
-else:
-    SECRET=secrets.token_urlsafe(5000)
 
 
 """
@@ -37,13 +30,12 @@ Outputs:
 def generate_jwt(payload,secret):
     algorithm = "HS256"
     try:
+        #print("jwt secret: "+str(secret))
         encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
         return {"success":True,
         "result":str(encoded_jwt,'utf-8')}        
     except Exception as e:
         return{"success":False,"result":e}
-
-
 
 
 
@@ -214,6 +206,7 @@ def validate_token(token,secret):
         case = 1
         new_token=token
         error=""
+    #print(secret,flush=True)
     return {"case":case,"token":new_token,"error":error,
     "payload":payload}
 

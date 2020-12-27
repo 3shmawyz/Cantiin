@@ -15,6 +15,13 @@ from auth import *
 
 TESTING=False
 
+
+SECRET=""
+if TESTING == True:
+    SECRET="secret"
+else:
+    SECRET=secrets.token_urlsafe(5000)
+
 """
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"
@@ -113,6 +120,8 @@ Tests: test_01_clear_tables
 			abort(401)
 		#Now the cookie exists
 		token = request.cookies["cantiin"]
+		print(SECRET,flush=True)
+		print(request.cookies,flush=True)
 		token_validation = validate_token(token=token,secret=SECRET)
 		#print(token_validation["case"],flush=True)
 		#print(token_validation,flush=True)

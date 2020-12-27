@@ -1,21 +1,21 @@
 import os
+import secrets
 import unittest
 import json
 import random
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func 
+from api import *
 
 from auth import *
 
-from api import create_app
 from models import (db,Product, Order, User)
 from functions import *
 from flask_cors import CORS
 from flask_migrate import Migrate 
 from flask_sqlalchemy import SQLAlchemy
 import random
-
 import jwt
 import base64
 
@@ -1395,13 +1395,13 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(token_validation["case"],3)
 		self.assertEqual(token_validation["token"],"")
 		self.assertEqual(token_validation["error"],
-			"user_id can not be converted to integer")
+			"user id can not be converted to integer")
 		print("Test c_2_4_5: validate_token_wrong")
 
 	def test_c_2_4_006_decode_jwt_wrong(self):
 		secret="secret"
 		expiration = (datetime.now()-timedelta(days=7)).timestamp()
-		payload={"uid":123,"exp":expiration}
+		payload={"uid":1,"exp":expiration}
 		token=generate_jwt(payload,secret)
 		token_validation=validate_token(token["result"],secret)
 		self.assertEqual(token_validation["case"],2)
@@ -1419,13 +1419,31 @@ class CantiinTestCase(unittest.TestCase):
 	def test_c_2_4_007_decode_jwt_correct(self):
 		secret="secret"
 		expiration = (datetime.now()+timedelta(days=7)).timestamp()
-		payload={"uid":123,"exp":expiration}
+		payload={"uid":1,"exp":expiration}
 		token=generate_jwt(payload,secret)
 		token_validation=validate_token(token["result"],secret)
 		self.assertEqual(token_validation["case"],1)
 		self.assertEqual(token_validation["token"],token["result"])
 		self.assertEqual(token_validation["error"],"")
 		print("Test c_2_4_7: validate_token_correct")
+
+	def test_c_2_4_008_generate_jwt(self):
+		secret=secrets.token_urlsafe(10000)
+		expiration = (datetime.now()+timedelta(days=7)).timestamp()
+		payload={"uid":1,"exp":expiration}
+		token=generate_jwt(payload=payload,secret=secret)
+		#print("secret: "+str(secret))
+		#print("______________")
+		#print("token: "+str(token))
+		#print("______________")
+		#print("encoded: "+
+		#	str(jwt.encode(payload,secret,algorithm="HS256")))
+		token_validation=validate_token(token["result"],secret)
+		#print(token_validation)
+		self.assertEqual(token_validation["case"],1)
+		self.assertEqual(token_validation["token"],token["result"])
+		self.assertEqual(token_validation["error"],"")
+		print("Test c_2_4_8: validate_token_correct")
 
 
 
