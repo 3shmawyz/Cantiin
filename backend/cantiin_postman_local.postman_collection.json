@@ -3705,7 +3705,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/8",
+									"raw": "http://127.0.0.1:5000/orders/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3716,7 +3716,7 @@
 									"port": "5000",
 									"path": [
 										"orders",
-										"8"
+										"7"
 									]
 								}
 							},
@@ -3748,7 +3748,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/8",
+									"raw": "http://127.0.0.1:5000/orders/9",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3759,7 +3759,59 @@
 									"port": "5000",
 									"path": [
 										"orders",
-										"8"
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit_orders:fail:can not change Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 403\", function () {\r",
+											"  pm.response.to.have.status(403);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\r",
+											"      \"you can not delete this order, because you are not the one who created it\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"  pm.expect(responseJson.message).to.eql(\"forbidden\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/orders/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"orders",
+										"3"
 									]
 								}
 							},
