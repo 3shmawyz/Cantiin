@@ -754,7 +754,7 @@ Tests: test_01_clear_tables
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			amount=val_group["result"]		
+			amount=val_group["result"][0]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
