@@ -558,7 +558,7 @@
 											"    pm.expect(responseJson.success).to.eql(true);\r",
 											"    \r",
 											"    pm.expect(responseJson.result).to.eql(\"logged in successfully\");\r",
-											"    pm.expect(responseJson.user_id).to.eql(3);\r",
+											"    pm.expect(responseJson.user_id).to.eql(7);\r",
 											"});\r",
 											""
 										],
@@ -643,14 +643,13 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"  pm.response.to.have.status(422);\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"there is no user with this id\");\r",
-											"  pm.expect(responseJson.error).to.eql(422);\r",
-											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.error).to.eql(401);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unauthorized\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
 											"});"
 										],
@@ -662,7 +661,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/7",
+									"raw": "http://127.0.0.1:5000/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -672,8 +671,7 @@
 									],
 									"port": "5000",
 									"path": [
-										"users",
-										"7"
+										"users"
 									]
 								}
 							},
