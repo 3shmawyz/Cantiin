@@ -3164,96 +3164,6 @@
 					"name": "get_orders",
 					"item": [
 						{
-							"name": "get_orders: Fail : user_id is missing",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 400\", function () {\r",
-											"  pm.response.to.have.status(400);\r",
-											"});\r",
-											"const responseJson = pm.response.json();\r",
-											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"user_id is missing\");\r",
-											"  pm.expect(responseJson.error).to.eql(400);\r",
-											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
-											"  pm.expect(responseJson.success).to.eql(false);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/orders",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"orders"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get_orders: Fail : wrong user_id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"  pm.response.to.have.status(422);\r",
-											"});\r",
-											"const responseJson = pm.response.json();\r",
-											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"user_id can not be less than 1\");\r",
-											"  pm.expect(responseJson.error).to.eql(422);\r",
-											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
-											"  pm.expect(responseJson.success).to.eql(false);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/orders?user_id=0",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"orders"
-									],
-									"query": [
-										{
-											"key": "user_id",
-											"value": "0"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "get_orders: success",
 							"event": [
 								{
@@ -3293,7 +3203,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders?user_id=1",
+									"raw": "http://127.0.0.1:5000/orders",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3304,74 +3214,6 @@
 									"port": "5000",
 									"path": [
 										"orders"
-									],
-									"query": [
-										{
-											"key": "user_id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get_orders: success:another user id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"  pm.response.to.have.status(200);\r",
-											"});\r",
-											"const responseJson = pm.response.json();\r",
-											"pm.test(\"Success is True\", () => {\r",
-											"  pm.expect(responseJson.success).to.eql(true);\r",
-											"});\r",
-											"pm.test(\"output as expected\", () => {\r",
-											"    responseJson[\"orders\"].forEach(function (order, index) {\r",
-											"        pm.expect(order[\"user_id\"]).to.eql(2);\r",
-											"\r",
-											"        pm.expect(typeof(order[\"id\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"amount\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"user_id\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"total_cost\"])).to.eql(typeof(1.0));\r",
-											"\r",
-											"        var amount = order[\"amount\"];\r",
-											"        pm.expect(typeof(order[\"product\"][\"id\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"product\"][\"in_stock\"])).to.eql(typeof(true));\r",
-											"        pm.expect(typeof(order[\"product\"][\"name\"])).to.eql(typeof(\"s\"));\r",
-											"        pm.expect(typeof(order[\"product\"][\"price\"])).to.eql(typeof(1.0));\r",
-											"        pm.expect(typeof(order[\"product\"][\"seller_id\"])).to.eql(typeof(1));\r",
-											"     });\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/orders?user_id=2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"orders"
-									],
-									"query": [
-										{
-											"key": "user_id",
-											"value": "2"
-										}
 									]
 								}
 							},
