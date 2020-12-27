@@ -633,6 +633,14 @@ Tests: test_01_clear_tables
 		 
 		#Now, we have "product", this is essential
 
+		#Making sure that this user can delete this product
+		if int(product.seller_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not delete this product, because"+
+				" you are not the one who created it")
+		
 		try:
 			# Finally, deleting the product itself
 			product.delete()
