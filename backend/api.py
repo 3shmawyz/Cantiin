@@ -12,6 +12,9 @@ from models import (db, Product, Order,User)
 from random import shuffle
 from functions import *
 from auth import *
+
+TESTING=True
+
 """
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"

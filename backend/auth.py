@@ -1,3 +1,4 @@
+import secrets
 import json
 from flask import request, _request_ctx_stack,abort,jsonify
 from functools import wraps
@@ -5,7 +6,7 @@ from jose import jwt
 from urllib.request import urlopen
 
 from functions import *
-
+from api import TESTING
 from datetime import timedelta,date,datetime,time
 
 import jwt
@@ -13,8 +14,12 @@ import base64
 
 
 EXPIRATION_AFTER= timedelta(days=7)
-SECRET="test"
 
+SECRET=""
+if TESTING == True:
+    SECRET="secret"
+else:
+    SECRET=secrets.token_urlsafe(5000)
 
 
 """
