@@ -339,13 +339,16 @@ Tests: test_01_clear_tables
 
 	@app.route("/users/login/expired", methods=["POST"])
 	def login_expired():
-	#This endpoint will log the user in
-		response=auth_cookie_response(
-			response={"success":True,
-			"result":"logged in successfully",
-			"user_id":1},
-			user_id=1)
-		return response
+	#This endpoint will log the user in with expired token
+		res = jsonify(
+					{"success":True,
+					"result":"setting expired token successfully"})
+		expired_token=generate_token(user_id=1,secret=SECRET,
+    		expiration_delta=timedelta(days=-7),
+    		issued_at=datetime.now())
+		res.set_cookie('cantiin', value=expired_token,
+			httponly=True, samesite='Lax')
+		return res,200
 	
 
 
