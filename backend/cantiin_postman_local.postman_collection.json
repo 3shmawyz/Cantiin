@@ -1,6 +1,5 @@
 {
 	"info": {
-		"_postman_id": "8105b3a9-0f0c-4dce-8d76-46e8a89b632b",
 		"name": "cantiin_postman_local",
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -2472,7 +2471,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
 											"        pm.expect(product[\"name\"]).to.eql(\"Ketchup\");\r",
 											"        pm.expect(product[\"price\"]).to.eql(9.0);\r",
-											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
 											"\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -2536,7 +2535,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
 											"        pm.expect(product[\"name\"]).to.eql(\"Stabler\");\r",
 											"        pm.expect(product[\"price\"]).to.eql(9.0);\r",
-											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
 											"\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -2600,7 +2599,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
 											"        pm.expect(product[\"name\"]).to.eql(\"Stabler\");\r",
 											"        pm.expect(product[\"price\"]).to.eql(6.0);\r",
-											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
 											"\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -2664,7 +2663,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(product[\"name\"]).to.eql(\"Stabler\");\r",
 											"        pm.expect(product[\"price\"]).to.eql(6.0);\r",
-											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
 											"\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
