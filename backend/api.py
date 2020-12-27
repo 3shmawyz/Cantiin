@@ -215,7 +215,7 @@ Tests: test_01_clear_tables
 	@requires_auth()
 	def delete_users(payload):
 	#This endpoint will delete an existing user
-		
+		user_id=payload["uid"]
 		users_query=User.query
 		user_id_validation=validate_model_id(
 			input_id=user_id,model_query=users_query
