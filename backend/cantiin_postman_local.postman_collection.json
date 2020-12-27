@@ -2961,6 +2961,61 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "put_products : fail:can not edit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 403\", function () {\r",
+											"  pm.response.to.have.status(403);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"  pm.expect(responseJson.error).to.eql(403);\r",
+											"  pm.expect(responseJson.message).to.eql(\"forbidden\");\r",
+											"  pm.expect(responseJson.description).to.eql(\r",
+											"      \"you can not change this product, because you are not the one who created it\"\r",
+											"  );\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ketchup\",\r\n    \"price\":9,\r\n    \"in_stock\":false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/products/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"products",
+										"5"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "this is the end point of editing a product"
