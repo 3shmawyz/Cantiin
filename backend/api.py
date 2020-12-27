@@ -429,7 +429,7 @@ Tests: test_01_clear_tables
 	@requires_auth()
 	def post_products(payload):
 	#This endpoint will add a new product
-		print(payload,flush=True)
+		#print(payload,flush=True)
 		try:
 			body = request.get_json()
 		except:
@@ -439,7 +439,7 @@ Tests: test_01_clear_tables
 			name = body.get("name",None)
 			price = body.get("price",None)
 			in_stock = body.get("in_stock",None)
-			seller_id = body.get("seller_id",None)
+			#seller_id = body.get("seller_id",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
@@ -453,22 +453,41 @@ Tests: test_01_clear_tables
 			minimum=0.1,maximum=1000000)
 		in_stock_validation = validate_must(
 			input=in_stock,type="b",input_name_string="in_stock")
-		seller_id_validation = validate_must(
-			input=seller_id,type="i",input_name_string="seller_id",
-			minimum=1,maximum=100000000000000000)
+		#seller_id_validation = validate_must(
+		#	input=seller_id,type="i",input_name_string="seller_id",
+		#	minimum=1,maximum=100000000000000000)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
 			[name_validation,price_validation,
-			in_stock_validation,seller_id_validation])
+			in_stock_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			name,price,in_stock,seller_id=val_group["result"]		
+			name,price,in_stock=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
+
+		seller_id = payload["uid"]
+		users_query=User.query
+		user_id_validation=validate_model_id(
+			input_id=seller_id,model_query=users_query
+			,model_name_string="user")
+		if user_id_validation["case"]==1:
+			#The user exists
+			seller=user_id_validation["result"]
+		else:
+			#No user with this id, can not convert to int,
+			# or id is missing
+			return my_error(
+				status=user_id_validation["result"]["status"],
+				description=user_id_validation
+				["result"]["description"])
+		 
+		seller_id = seller.id
+
 
 		#Create the product
 		new_product = Product(name=name, price=price,
