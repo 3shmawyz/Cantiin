@@ -484,10 +484,8 @@ Tests: test_01_clear_tables
 			return my_error(
 				status=user_id_validation["result"]["status"],
 				description=user_id_validation
-				["result"]["description"])
-		 
+				["result"]["description"])		 
 		seller_id = seller.id
-
 
 		#Create the product
 		new_product = Product(name=name, price=price,

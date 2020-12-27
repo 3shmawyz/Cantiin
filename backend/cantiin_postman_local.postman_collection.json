@@ -1,5 +1,6 @@
 {
 	"info": {
+		"_postman_id": "8105b3a9-0f0c-4dce-8d76-46e8a89b632b",
 		"name": "cantiin_postman_local",
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1928,7 +1929,7 @@
 											"        pm.expect(product[\"in_stock\"]).to.eql(true);\r",
 											"        pm.expect(product[\"name\"]).to.eql(\"Stabler\");\r",
 											"        pm.expect(product[\"price\"]).to.eql(6.0);\r",
-											"        pm.expect(product[\"seller_id\"]).to.eql(5);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
 											"\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
@@ -1942,7 +1943,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1994,7 +1995,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2046,7 +2047,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2098,59 +2099,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"seller_id\":5\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:5000/products",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"products"
-									]
-								},
-								"description": "The default is in_stock=True\r\nNow the server can not find the in_stock variable\r\nso it acts like normal"
-							},
-							"response": []
-						},
-						{
-							"name": "post_products:Fail:Missing seller_id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"  pm.response.to.have.status(400);\r",
-											"});\r",
-											"const responseJson = pm.response.json();\r",
-											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"seller_id is missing\");\r",
-											"  pm.expect(responseJson.error).to.eql(400);\r",
-											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
-											"  pm.expect(responseJson.success).to.eql(false);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n}",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2205,7 +2154,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2260,7 +2209,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":\"i\",\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"Stabler\",\r\n    \"price\":\"i\",\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2312,7 +2261,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"St\",\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"St\",\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2364,7 +2313,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Staaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n    \"price\":6,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"Staaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n    \"price\":6,\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2416,7 +2365,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stapbler\",\r\n    \"price\":100000000000000000000000000000000000000000000000,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"Stapbler\",\r\n    \"price\":100000000000000000000000000000000000000000000000,\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2468,7 +2417,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Stapbler\",\r\n    \"price\":0,\r\n    \"in_stock\":true,\r\n    \"seller_id\":5\r\n}",
+									"raw": "{\r\n    \"name\":\"Stapbler\",\r\n    \"price\":0,\r\n    \"in_stock\":true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
