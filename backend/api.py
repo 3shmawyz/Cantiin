@@ -118,7 +118,7 @@ Tests: test_01_clear_tables
 			res.set_cookie
 			response=auth_cookie_response(
 				response={"success":True,
-				"result":"refreshed expired cookie",
+				"result":"refreshed expired token",
 				"user_id":user_id},
 				user_id=user_id)
 			return response
