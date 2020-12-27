@@ -369,7 +369,7 @@ Tests: test_01_clear_tables
 		expired_token=generate_token(user_id=1,secret=SECRET,
     		expiration_delta=timedelta(days=-7),
     		issued_at=datetime.now())
-		res.set_cookie('cantiin', value=expired_token,
+		res.set_cookie('cantiin', value=expired_token["result"],
 			httponly=True, samesite='Lax')
 		return res,200
 	
