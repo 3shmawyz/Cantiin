@@ -211,8 +211,9 @@ Tests: test_01_clear_tables
 
 
 
-	@app.route("/users/<int:user_id>", methods=["DELETE"])
-	def delete_users(user_id):
+	@app.route("/users", methods=["DELETE"])
+	@requires_auth()
+	def delete_users(payload):
 	#This endpoint will delete an existing user
 		
 		users_query=User.query
