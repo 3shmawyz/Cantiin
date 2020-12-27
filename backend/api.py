@@ -849,7 +849,6 @@ Tests: test_01_clear_tables
 				status=order_id_validation["result"]["status"],
 				description=order_id_validation
 				["result"]["description"])
-		 
 		#Now, we have "order", this is essential
 
 		#Now we validate if the this user can edit the order
@@ -905,6 +904,14 @@ Tests: test_01_clear_tables
 				["result"]["description"])
 		 
 		#Now, we have "order", this is essential
+
+		#Now we validate if the this user can delete the order
+		if int(order.user_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not delete this order, because"+
+				" you are not the one who created it")
 
 		try:
 			# Finally, deleting the order itself
