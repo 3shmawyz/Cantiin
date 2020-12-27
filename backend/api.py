@@ -488,8 +488,13 @@ Tests: test_01_clear_tables
 
 	@app.route("/products/<int:product_id>", methods=["PUT"])
 	@requires_auth()
-	def edit_products(product_id):
+	def edit_products(payload,product_id):
 	#This endpoint will add a new product
+	#This is the correct arrangement
+	#payload then product id
+	#the opposite will result in error
+		print("product_id: "+str(product_id),flush=True)
+		print("payload: "+str(payload),flush=True)
 		try:
 			body = request.get_json()
 		except:
@@ -581,7 +586,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/products/<int:product_id>", methods=["DELETE"])
 	@requires_auth()
-	def delete_products(product_id):
+	def delete_products(payload,product_id):
 	#This endpoint will delete an existing product
 		
 		products_query=Product.query
@@ -652,7 +657,7 @@ Tests: test_01_clear_tables
 	"""
 	@app.route("/orders", methods=["GET"])
 	@requires_auth()
-	def get_orders():
+	def get_orders(payload):
 	#This endpoint will return all the orders		
 
 		#recievng inputs:
@@ -690,7 +695,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/orders", methods=["POST"])
 	@requires_auth()
-	def post_orders():
+	def post_orders(payload):
 	#This endpoint will add a new product
 		try:
 			body = request.get_json()
@@ -763,7 +768,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/orders/<int:order_id>", methods=["PUT"])
 	@requires_auth()
-	def edit_orders(order_id):
+	def edit_orders(payload,order_id):
 	#This endpoint will edit an exiting order
 		try:
 			body = request.get_json()
@@ -841,7 +846,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/orders/<int:order_id>", methods=["DELETE"])
 	@requires_auth()
-	def delete_orders(order_id):
+	def delete_orders(payload,order_id):
 	#This endpoint will delete an existing order
 		
 		orders_query=Order.query
