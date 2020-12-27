@@ -99,6 +99,38 @@ Tests: test_01_clear_tables
 	"""
 
 
+	@app.route("/users/who", methods=["POST"])
+	def users_who():
+		#This endpoint will tell if the user should pass or not
+		#and if his token expired, it will refresh it
+	    if "cantiin" not in request.cookies:
+	        abort(401)
+	    #Now the cookie exists
+	    token = request.cookies["cantiin"]
+	    token_validation = validate_token(token=token,secret=SECRET)
+	    #print(token_validation["case"],flush=True)
+	    #print(token_validation,flush=True)
+	    if token_validation["case"]==3:        
+	        abort(401)
+	    if token_validation["case"]==2:
+	    	res=jsonify({"success":True})
+	    	user_id=token_validation["payload"]["uid"]
+	    	res.set_cookie
+			response=auth_cookie_response(
+				response={"success":True,
+				"result":"refreshed expired cookie",
+				"user_id":user_id},
+				user_id=user_id)
+			return response
+		else:
+			return jsonify({"success":True,
+				"result":"user is logged in"})
+
+
+
+
+
+
 
 	@app.route("/users", methods=["POST"])
 	def post_users():
@@ -293,11 +325,6 @@ Tests: test_01_clear_tables
 		#return jsonify()
 
 
-	
-
-
-
-
 	@app.route("/users/logout", methods=["POST"])
 	def logout_users():
 	#This endpoint will log the user out
@@ -310,11 +337,6 @@ Tests: test_01_clear_tables
 
 		#return jsonify({"success":True,
 		#	"result":"logged out successfully"})
-
-
-
-
-
 
 
 
