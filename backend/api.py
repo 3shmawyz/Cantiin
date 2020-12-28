@@ -10,7 +10,6 @@ from random import shuffle
 import json
 from models import (db, Product, Order,User)
 from random import shuffle
-from functions import *
 
 
 """
@@ -20,6 +19,7 @@ TESTING=True IN CASE OF PRODUCTION
 TESTING=False
 SECRET=str(secrets.token_urlsafe(5000))
 from auth import *
+from functions import *
 
 
 
@@ -55,7 +55,7 @@ def create_app(test_config=None,testing=TESTING):
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
-    db.create_all()
+	db.create_all()
 	#populate_tables()
 	CORS(app,resources={r"*":{"origins":"*"}})
 	@app.after_request
