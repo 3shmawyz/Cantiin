@@ -18,7 +18,7 @@ IMORTANT:
 TESTING=True IN CASE OF PRODUCTION
 """
 TESTING=False
-SECRET=str(secrets.token_urlsafe(5000))
+SECRET=secrets.token_urlsafe(5000)
 from auth import *
 
 
@@ -130,7 +130,7 @@ Tests: test_01_clear_tables
 		token_validation = validate_token(
 			token=token,secret=SECRET)
 		#print(token_validation["case"],flush=True)
-		print("WHO: "+str(token_validation),flush=True)
+		#print("WHO: "+str(token_validation),flush=True)
 		if token_validation["case"]==3:        
 			abort(401)
 		if token_validation["case"]==2:
