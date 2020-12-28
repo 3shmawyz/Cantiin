@@ -1202,13 +1202,14 @@ class CantiinTestCase(unittest.TestCase):
 		months_to_add,days_to_add=-1,3
 		#print(now.month)
 		#12		
-		future=datetime(year = now.year,
-			month = now.month+months_to_add,
-			day=now.day+days_to_add,
-			hour=now.hour,minute=now.minute,
-			second=now.second)
+		#future=datetime(year = now.year,
+		#	month = now.month+months_to_add,
+		#	day=now.day+days_to_add,
+		#	hour=now.hour,minute=now.minute,
+		#	second=now.second)
 		#print(future)
 		#2020-11-26 17:23:43
+		#the future variable is not the right way to do it
 		delta = timedelta(days=50,seconds=27,
 		    minutes=5,hours=8,weeks=2)
 		#print(delta)
