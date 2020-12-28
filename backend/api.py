@@ -55,6 +55,7 @@ def create_app(test_config=None,testing=TESTING):
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
+    db.create_all()
 	#populate_tables()
 	CORS(app,resources={r"*":{"origins":"*"}})
 	@app.after_request
@@ -78,6 +79,7 @@ def create_app(test_config=None,testing=TESTING):
 	"""
 	@app.route("/clear_tables", methods=["GET"])
 	def clear_all_tables():
+		test_only()
 		db_drop_and_create_all()
 		"""
 Tests: test_02_populate_test
@@ -96,6 +98,7 @@ Tests: test_02_populate_test
 	"""
 	@app.route("/populate", methods=["GET"])
 	def populate_all_tables():
+		test_only()
 		#This endpoint will clear all the data in the database and 
 		#populate with new data
 		try:
@@ -373,6 +376,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/users/login/test", methods=["POST"])
 	def login_test():
+		test_only()
 	#This endpoint will log the user in
 		response=auth_cookie_response(
 			response={"success":True,
@@ -384,6 +388,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/users/login/expired", methods=["POST"])
 	def login_expired():
+		test_only()
 	#This endpoint will log the user in with expired token
 		res = jsonify(
 					{"success":True,
@@ -948,6 +953,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/test_cookies", methods=["DELETE"])
 	def test_cookies_delete():
+		test_only()
 		cookies = request.cookies
 		r=jsonify({"success":True})
 		for co in cookies:
@@ -958,6 +964,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/test_cookies", methods=["POST"])
 	def test_cookies():
+		test_only()
 	#This endpoint is for testing cookies
 		#res = Flask.make_response(,rv=)
 		#r = Response(
@@ -984,6 +991,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/test_cookies", methods=["GET"])
 	def test_cookies_get():
+		test_only()
 		return jsonify({"success":True,"cookies":request.cookies})
 
 
