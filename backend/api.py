@@ -122,11 +122,12 @@ Tests: test_01_clear_tables
 			abort(401)
 		#Now the cookie exists
 		token = request.cookies["cantiin"]
-		print(SECRET,flush=True)
-		print(request.cookies,flush=True)
-		token_validation = validate_token(token=token,secret=SECRET)
+		#print(SECRET,flush=True)
+		#print(request.cookies,flush=True)
+		token_validation = validate_token(
+			token=token,secret=SECRET)
 		#print(token_validation["case"],flush=True)
-		#print(token_validation,flush=True)
+		print("WHO: "+str(token_validation),flush=True)
 		if token_validation["case"]==3:        
 			abort(401)
 		if token_validation["case"]==2:
@@ -387,7 +388,8 @@ Tests: test_01_clear_tables
 		expired_token=generate_token(user_id=1,secret=SECRET,
     		expiration_delta=timedelta(days=-7),
     		issued_at=datetime.now())
-		res.set_cookie('cantiin', value=expired_token["result"],
+		res.set_cookie('cantiin',
+		 value=expired_token["result"],
 			httponly=True, samesite='Lax')
 		return res,200
 	
@@ -529,7 +531,7 @@ Tests: test_01_clear_tables
 	#payload then product id
 	#the opposite will result in error
 		#print("product_id: "+str(product_id),flush=True)
-		print("payload: "+str(payload),flush=True)
+		#print("payload: "+str(payload),flush=True)
 		try:
 			body = request.get_json()
 		except:

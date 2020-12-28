@@ -72,7 +72,7 @@ def decode_jwt(encoded_jwt,secret):
 
 
 
-def generate_token(user_id,secret,
+def generate_token(user_id,secret=SECRET,
     expiration_delta=EXPIRATION_AFTER,
     issued_at=datetime.now()):
     
@@ -168,6 +168,9 @@ def validate_token(token,secret):
     user_id_validation=validate_model_id(
         input_id=user_id,model_query=User.query,
         model_name_string="user")
+    print("user_id_validation: "+str(
+        user_id_validation["result"].id),
+        flush=True)
     #validate_integer(
     #input_integer=user_id,input_name_string="user_id",
     #maximum=10000000000000000000000000000000000000000,minimum=1)
@@ -178,7 +181,7 @@ def validate_token(token,secret):
     #Now we will validate user_id
     if user_id_validation["case"] == 1:
         # Success: they pass the conditions
-        user_id=user_id_validation["result"]      
+        user_id=user_id_validation["result"].id     
     else:
         # Failure: Something went wrong
         return {"case":3,"token":"",
@@ -231,7 +234,8 @@ def auth_cookie_response(response,user_id,exp=None):
         value=cookie_value,httponly=True, samesite='Lax')
     else:
         response.set_cookie('cantiin',
-        value=cookie_value,httponly=True, samesite='Lax',expires=exp) 
+        value=cookie_value,httponly=True,
+         samesite='Lax',expires=exp) 
     return response
 
 
