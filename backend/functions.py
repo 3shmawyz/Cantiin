@@ -435,3 +435,12 @@ def question_search(input_text):
 		Question.question.ilike(search_query)).all()
 	to_return = [question.format() for question in all_questions]
 	return to_return
+
+
+
+
+
+
+def test_only():
+	if TESTING == False:
+		abort(404)
