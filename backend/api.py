@@ -13,6 +13,11 @@ from random import shuffle
 from functions import *
 from auth import *
 
+
+"""
+IMORTANT:
+TESTING=True IN CASE OF PRODUCTION
+"""
 TESTING=False
 
 
