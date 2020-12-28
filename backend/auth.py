@@ -168,9 +168,9 @@ def validate_token(token,secret):
     user_id_validation=validate_model_id(
         input_id=user_id,model_query=User.query,
         model_name_string="user")
-    print("user_id_validation: "+str(
-        user_id_validation["result"].id),
-        flush=True)
+    #print("user_id_validation: "+str(
+    #    user_id_validation["result"].id),
+    #   flush=True)
     #validate_integer(
     #input_integer=user_id,input_name_string="user_id",
     #maximum=10000000000000000000000000000000000000000,minimum=1)

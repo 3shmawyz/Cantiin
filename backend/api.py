@@ -11,7 +11,6 @@ import json
 from models import (db, Product, Order,User)
 from random import shuffle
 from functions import *
-from auth import *
 
 
 """
@@ -19,11 +18,15 @@ IMORTANT:
 TESTING=True IN CASE OF PRODUCTION
 """
 TESTING=False
+SECRET=str(os.urandom(32))
+from auth import *
 
 
 
-SECRET=secrets.token_urlsafe(5000)
-
+#SECRET=secrets.token_urlsafe(4)
+#SECRET="abc"
+#print(SECRET,flush=True)
+#SECRET="ABCDEFGHIGKJKFDTGAYAJHGJHSAYTF"
 """
 endpoints:
 	1)	"/clear_tables"-------->"GET" , "OPTIONS"

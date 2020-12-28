@@ -1389,10 +1389,14 @@ class CantiinTestCase(unittest.TestCase):
 
 	def test_c_2_4_005_decode_jwt_wrong(self):
 		secret="secret"
-		expiration = (datetime.now()+timedelta(days=7)).timestamp()
+		expiration = (datetime.now()+
+			timedelta(days=7)).timestamp()
 		payload={"uid":"abc","exp":expiration}
 		token=generate_jwt(payload,secret)
-		token_validation=validate_token(token["result"],secret)
+		print(token)
+
+		token_validation=validate_token(
+			token["result"],secret)
 		self.assertEqual(token_validation["case"],3)
 		self.assertEqual(token_validation["token"],"")
 		self.assertEqual(token_validation["error"],
@@ -1401,6 +1405,7 @@ class CantiinTestCase(unittest.TestCase):
 
 	def test_c_2_4_006_decode_jwt_wrong(self):
 		secret="secret"
+		
 		expiration = (datetime.now()-timedelta(days=7)).timestamp()
 		payload={"uid":1,"exp":expiration}
 		token=generate_jwt(payload,secret)
@@ -1448,6 +1453,17 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(token_validation["token"],token["result"])
 		self.assertEqual(token_validation["error"],"")
 		print("Test c_2_4_8: validate_token_correct")
+
+	def test_c_2_4_009_generate_from_random(self):
+		secret=str(secrets.token_urlsafe(5000))
+		token=generate_token(user_id=1,secret=secret)
+		token_validation=validate_token(
+			token["result"],secret)
+		#print(token_validation)
+		self.assertEqual(token_validation["case"],1)
+		self.assertEqual(token_validation["token"],token["result"])
+		self.assertEqual(token_validation["error"],"")
+		print("Test c_2_4_9: generate token random")
 
 
 
