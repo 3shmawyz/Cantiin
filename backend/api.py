@@ -16,11 +16,8 @@ from auth import *
 TESTING=False
 
 
-SECRET=""
-if TESTING == True:
-    SECRET="secret"
-else:
-    SECRET=secrets.token_urlsafe(5000)
+
+SECRET=secrets.token_urlsafe(5000)
 
 """
 endpoints:
