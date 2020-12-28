@@ -18,7 +18,7 @@ IMORTANT:
 TESTING=True IN CASE OF PRODUCTION
 """
 TESTING=False
-SECRET=str(os.urandom(32))
+SECRET=str(secrets.token_urlsafe(5000))
 from auth import *
 
 
