@@ -25,6 +25,16 @@ function post_users(username,password1,password2)
 	return $.ajax(settings);
 }
 
+function delete_users()
+{
+	var settings = 
+	{
+		"url": backend_location+"users",
+		"method": "DELETE","timeout": 0
+	};
+	return $.ajax(settings);
+}
+
 
 
 
