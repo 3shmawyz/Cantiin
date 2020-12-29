@@ -10,6 +10,21 @@ function who()
 	return $.ajax(settings);
 }
 
+function post_users(username,password1,password2)
+{
+	var settings = 
+	{
+	  "url": backend_location+"users",
+	  "method": "POST","timeout": 0,
+	  "headers": 
+	  	{"Content-Type": "application/json"},
+	  "data": JSON.stringify(
+	  	{"username":username,"password1":password1,
+	  	"password2":password2}),
+	};
+	return $.ajax(settings);
+}
+
 
 
 
@@ -42,7 +57,6 @@ function post_products(name,price,in_stock)
 		in_stock==1||in_stock=="1")
 		{in_stock=true;}
 	else{in_stock=false;}
-	
 	var settings = 
 	{
 	  "url": backend_location+"products",
@@ -52,7 +66,6 @@ function post_products(name,price,in_stock)
 	  "data": JSON.stringify(
 	  	{"name":name,"price":price,"in_stock":in_stock}),
 	};
-
 	return $.ajax(settings);
 }
 
@@ -62,7 +75,6 @@ function put_products(id,name,price,in_stock)
 		in_stock==1||in_stock=="1")
 		{in_stock=true;}
 	else{in_stock=false;}
-	
 	var settings = 
 	{
 	  "url": backend_location+"products/"+id,
@@ -157,8 +169,6 @@ function build_url(endpoint,query_inputs=Array())
 	if (query_inputs.length == 0)
 		{return to_return;}
 	to_return=to_return+"?";
-
-
 	for (const property in query_inputs) {
   		to_return=to_return+`${property}=${query_inputs[property]}`+"&";
 	}
