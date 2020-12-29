@@ -346,10 +346,12 @@ font-weight: bold;color:black;">Result:
 <script type="text/javascript">
 function signTheUserUp() 
 {
-  login_users(username=
+  post_users(username=
     document.getElementById('inputEmail')["value"]
-    ,password=
-    document.getElementById('inputPassword')["value"]
+    ,password1=
+    document.getElementById('password')["value"],
+    password2=
+    document.getElementById('password_confirm')["value"]
     ).then(function(value){
       handleResponse(value);}).
     catch(function(value){
