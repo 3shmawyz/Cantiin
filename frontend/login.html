@@ -215,7 +215,7 @@ diplayResult("yellow","Waiting for your input")
 function handleResponse(response)
 {
   if (response["success"]==true) 
-  {diplayResult("lime","Product added successfully");}
+  {window.location.href = "index.html"}
   else{diplayResult("pink",response["description"]);}
 }
 //handleResponse(response_example);
