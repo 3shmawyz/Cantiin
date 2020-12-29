@@ -45,6 +45,20 @@ function logout_users()
 	return $.ajax(settings);
 }
 
+function login_users(username,password)
+{
+	var settings = 
+	{
+	  "url": backend_location+"users/login",
+	  "method": "POST","timeout": 0,
+	  "headers": 
+	  	{"Content-Type": "application/json"},
+	  "data": JSON.stringify(
+	  	{"username":username,"password":password}),
+	};
+	return $.ajax(settings);
+}
+
 
 
 
