@@ -1,3 +1,9 @@
+TESTING=False
+"""
+IMORTANT:
+TESTING=False 	IN CASE OF PRODUCTION
+TESTING=True 	IN CASE OF TESTING
+"""
 import os
 import string
 import secrets
@@ -12,11 +18,7 @@ from models import (db, Product, Order,User)
 from random import shuffle
 
 
-"""
-IMORTANT:
-TESTING=True IN CASE OF PRODUCTION
-"""
-TESTING=False
+
 SECRET=str(secrets.token_urlsafe(5000))
 from auth import *
 from functions import *
