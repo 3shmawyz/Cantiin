@@ -1,0 +1,163 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Edit Venue{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+    <form class="form" method="post" action="/venues/{{venue.id}}/edit">
+        <h3 class="form-heading">Edit venue <em>{{ venue.name }}</em> <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+        <div class="form-group">
+            <label for="name">Name *</label>
+            {{ form.name(class_ = 'form-control',placeholder='Name of the venue', autofocus = true) }}
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                City * & State *
+            </label>
+
+            <div class="form-inline">
+
+                <div class="form-group">
+                    {{ form.city(class_ = 'form-control', placeholder='City', autofocus = true) }}
+
+                </div>
+
+                <div class="form-group">
+                    {{ form.state(class_ = 'form-control', placeholder='State', autofocus = true) }}
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address *</label>
+            {{ form.address(class_ = 'form-control',placeholder='The address', autofocus = true) }}
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone *</label>
+            {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
+        </div>
+
+        <div class="form-group">
+            <label for="genres">Genres</label>
+            <small>Ctrl+Click to select multiple</small>
+            {{ form.genres(class_ = 'form-control', autofocus = true) }}
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="image_link">Image Link</label>
+            {{ form.image_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+        </div>
+
+        <div class="form-group">
+            <label for="website">Website</label>
+            {{ form.website(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="facebook_link">Facebook Link</label>
+            {{ form.facebook_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="seeking_talent">Seeking Talent</label>
+            {{ form.seeking_talent(placeholder='Seeking') }}
+        </div>
+
+
+        <div class="form-group">
+            <label for="seeking_description">Seeking Description</label>
+            {{ form.seeking_description(class_ = 'form-control', placeholder='Descriptions of talents you seek', autofocus = true) }}
+        </div>
+
+
+        <input type="submit" value="Edit Venue" class="btn btn-primary btn-lg btn-block">
+    </form>
+</div>
+<div><b>* = Must be filled</b></div>
+
+
+<script>
+    var id = "{{ venue.id }}";
+    var name = "{{ venue.name }}";
+    var genres = "{{ venue.genres }}";
+    var address = "{{ venue.address }}";
+    var city = "{{ venue.city }}";
+    var state = "{{ venue.state }}";
+    var phone = "{{ venue.phone }}";
+    var website = "{{ venue.website }}";
+    var facebook_link = "{{ venue.facebook_link }}";
+    var seeking_talent = "{{ venue.seeking_talent }}";
+    var seeking_description = "{{ venue.seeking_description }}";
+    var image_link = "{{ venue.image_link }}";
+
+  /*  if (seeking_talent == "True") { seeking_talent = true; }
+    else {
+        seeking_talent = false;
+    }
+    */
+
+    /*console.log(id);
+    console.log(name);
+    console.log(genres);
+    console.log(address);
+    console.log(state);
+    console.log(phone);
+    console.log(website);
+    console.log(facebook_link);
+    console.log(seeking_talent);
+    console.log(seeking_description);
+    console.log(image_link);*/
+
+    document.getElementById("name").value = name;
+    document.getElementById("genres").value = genres;
+    document.getElementById("address").value = address;
+    document.getElementById("state").value = state;
+    document.getElementById("city").value = city;
+    document.getElementById("phone").value = phone;
+    document.getElementById("website").value = website;
+    document.getElementById("facebook_link").value = facebook_link;
+    document.getElementById("seeking_talent").value = seeking_talent;
+    document.getElementById("seeking_description").value = seeking_description; 
+    document.getElementById("image_link").value = image_link;
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
