@@ -36,15 +36,11 @@ function post_products(name,price,in_stock)
 	var settings = 
 	{
 	  "url": backend_location+"products",
-	  "method": "POST",
-	  "timeout": 0,
+	  "method": "POST","timeout": 0,
 	  "headers": 
-	  	{
-	    	"Content-Type": "application/json"
-	  	},
+	  	{"Content-Type": "application/json"},
 	  "data": JSON.stringify(
-	  	{"name":name,"price":price,
-	  	"in_stock":in_stock}),
+	  	{"name":name,"price":price,"in_stock":in_stock}),
 	};
 
 	return $.ajax(settings);
@@ -67,17 +63,12 @@ function put_products(id,name,price,in_stock)
 	var settings = 
 	{
 	  "url": backend_location+"products/"+id,
-	  "method": "PUT",
-	  "timeout": 0,
+	  "method": "PUT","timeout": 0,
 	  "headers": 
-	  	{
-	    	"Content-Type": "application/json"
-	  	},
+	  	{"Content-Type": "application/json"},
 	  "data": JSON.stringify(
-	  	{"name":name,"price":price,
-	  	"in_stock":in_stock}),
+	  	{"name":name,"price":price,"in_stock":in_stock}),
 	};
-
 	return $.ajax(settings);
 }
 
@@ -88,8 +79,8 @@ function delete_products(id)
 {
 	var settings = 
 	{
-	  "url": backend_location+"products/"+id,
-	  "method": "DELETE"
+		"url": backend_location+"products/"+id,
+		"method": "DELETE"
 	};
 	return $.ajax(settings);
 }
@@ -123,20 +114,11 @@ function post_orders(product_id,amount)
 {
 	var settings = 
 	{
-	  "url": backend_location+"orders",
-	  "method": "POST",
+	  "url": backend_location+"orders","method": "POST",
 	  "timeout": 0,
-	  "headers": 
-	  	{
-	    	"Content-Type": "application/json"
-	  	},
-	  "data": JSON.stringify(
-	  	{
-   			"product_id":product_id,
-    		"amount":amount
-		}),
-	};
-
+	  "headers": {"Content-Type": "application/json"},
+	  "data": JSON.stringify
+	  ({"product_id":product_id,"amount":amount}),};
 	return $.ajax(settings);
 }
 
@@ -150,16 +132,9 @@ function put_orders(id,amount)
 	var settings = 
 	{
 	  "url": backend_location+"orders/"+id,
-	  "method": "PUT",
-	  "timeout": 0,
-	  "headers": 
-	  	{
-	    	"Content-Type": "application/json"
-	  	},
-	  "data": JSON.stringify(
-	  	{"amount":amount}),
-	};
-
+	  "method": "PUT","timeout": 0,
+	  "headers": {"Content-Type": "application/json"},
+	  "data": JSON.stringify({"amount":amount}),};
 	return $.ajax(settings);
 }
 
