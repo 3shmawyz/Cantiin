@@ -8,6 +8,8 @@ backend/env/*
 .vscode/*
 backend/__pycache__
 backend/__pycache__/*
+frontend/__pycache__
+frontend/__pycache__/*
 backend/databases/*
 
 # Frontend #
