@@ -18,3 +18,23 @@ from logging import Formatter, FileHandler
 from sqlalchemy import func
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField,BooleanField,RadioField
 from wtforms.validators import DataRequired, AnyOf, URL
+
+
+
+app = Flask(__name__)
+moment = Moment(app)
+app.config.from_object('config')
+db = SQLAlchemy(app)
+migrate=Migrate (app,db)
+
+
+
+
+
+
+
+
+
+
+if __name__=="__main__":
+    app.run(port=8000)
