@@ -35,6 +35,16 @@ function delete_users()
 	return $.ajax(settings);
 }
 
+function logout_users()
+{
+	var settings = 
+	{
+		"url": backend_location+"users/logout",
+		"method": "POST","timeout": 0
+	};
+	return $.ajax(settings);
+}
+
 
 
 
