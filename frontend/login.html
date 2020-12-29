@@ -175,5 +175,71 @@ if you don't have an account
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function addTheProduct() 
+{
+  post_products(name=document.getElementById('p_name')["value"]
+    ,price=document.getElementById('p_price')["value"],
+    in_stock=true).then(function(value){
+      handleResponse(value);}).
+    catch(function(value){
+      handleResponse(value["responseJSON"]);});
+}  
+
+
+
+function diplayResult(color="success",message="")
+{
+  document.getElementById("the_result").innerHTML=
+  '<span style="color:'+color+';">'+message+'</span>';
+}
+
+diplayResult("yellow","Waiting for your input")
+
+response_example =
+{
+    "product": {
+        "id": 13,
+        "in_stock": true,
+        "name": "Stabler",
+        "price": 6.0,
+        "seller_id": 5
+    },
+    "success": true,
+    "description": "you failed"
+}
+response_example ={
+    "description": "in_stock is missing",
+    "error": 400,
+    "message": "bad request",
+    "success": false
+}
+function handleResponse(response)
+{
+  if (response["success"]==true) 
+  {diplayResult("lime","Product added successfully");}
+  else{diplayResult("pink",response["description"]);}
+}
+//handleResponse(response_example);
+</script>
+
+
+
+
+
+
+
 </body>
 </html>
