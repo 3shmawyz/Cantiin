@@ -8,7 +8,9 @@ import babel
 import sys,os
 import logging
 import datetime
-from flask import Flask, render_template, request, Response, flash, redirect, url_for
+from flask import (Flask, 
+	render_template, request, Response, flash, 
+	redirect, url_for,abort, jsonify)
 from flask_migrate import Migrate
 from flask_moment import Moment
 #from flask_sqlalchemy import SQLAlchemy
@@ -33,7 +35,7 @@ app.config.from_object('config')
 
 @app.route('/', methods=['GET'])
 def home():
-	return render_template('index.html')
+	return render_template('home.html')
 
 
 
