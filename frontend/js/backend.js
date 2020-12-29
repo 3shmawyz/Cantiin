@@ -15,7 +15,8 @@ function get_products(in_stock=true)
 	else{in_stock=false;}
 	
 	method="GET";endpoint="products";
-	var settings = getAjaxSettings(method,endpoint,query_inputs=
+	var settings = getAjaxSettings(
+		method,endpoint,query_inputs=
 		{"in_stock":String(in_stock)})
 	return $.ajax(settings);
 }
@@ -43,24 +44,13 @@ function post_products(name,price,in_stock)
 	  	},
 	  "data": JSON.stringify(
 	  	{"name":name,"price":price,
-	  	"in_stock":in_stock,"seller_id":1}),
+	  	"in_stock":in_stock}),
 	};
 
 	return $.ajax(settings);
 }
 
 
-
-
-function delete_products(id)
-{
-	var settings = 
-	{
-	  "url": backend_location+"products/"+id,
-	  "method": "DELETE"
-	};
-	return $.ajax(settings);
-}
 
 
 
@@ -85,9 +75,22 @@ function put_products(id,name,price,in_stock)
 	  	},
 	  "data": JSON.stringify(
 	  	{"name":name,"price":price,
-	  	"in_stock":in_stock,"seller_id":1}),
+	  	"in_stock":in_stock}),
 	};
 
+	return $.ajax(settings);
+}
+
+
+
+
+function delete_products(id)
+{
+	var settings = 
+	{
+	  "url": backend_location+"products/"+id,
+	  "method": "DELETE"
+	};
 	return $.ajax(settings);
 }
 
