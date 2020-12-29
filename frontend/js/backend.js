@@ -1,5 +1,15 @@
 var backend_location="http://127.0.0.1:5000/"
 
+/*
+User Model AJAX functions
+*/
+function who()
+{
+	method="POST";endpoint="users/who";
+	var settings = getAjaxSettings(method,endpoint);
+	return $.ajax(settings);
+}
+
 
 
 
@@ -46,13 +56,6 @@ function post_products(name,price,in_stock)
 	return $.ajax(settings);
 }
 
-
-
-
-
-
-
-
 function put_products(id,name,price,in_stock)
 {
 	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
@@ -71,9 +74,6 @@ function put_products(id,name,price,in_stock)
 	};
 	return $.ajax(settings);
 }
-
-
-
 
 function delete_products(id)
 {
@@ -122,11 +122,6 @@ function post_orders(product_id,amount)
 	return $.ajax(settings);
 }
 
-
-
-
-
-
 function put_orders(id,amount)
 {
 	var settings = 
@@ -138,12 +133,6 @@ function put_orders(id,amount)
 	return $.ajax(settings);
 }
 
-
-
-
-
-
-
 function delete_orders(id)
 {
 	var settings = 
@@ -153,18 +142,6 @@ function delete_orders(id)
 	};
 	return $.ajax(settings);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -206,5 +183,4 @@ function getAjaxSettings(method,endpoint,query_inputs={})
 {
 	url=build_url(endpoint,query_inputs);
 	return settings = {"url": url,"method": method};
-
 }
