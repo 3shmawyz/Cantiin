@@ -108,7 +108,7 @@ function get_orders()
 {
 	var settings = 
 	{
-	  "url": backend_location+"orders?user_id=1",
+	  "url": backend_location+"orders",
 	  "method": "GET","timeout": 0,
 	};
 	return $.ajax(settings);
@@ -132,7 +132,6 @@ function post_orders(product_id,amount)
 	  	},
 	  "data": JSON.stringify(
 	  	{
-    		"user_id":1,
    			"product_id":product_id,
     		"amount":amount
 		}),
@@ -140,6 +139,32 @@ function post_orders(product_id,amount)
 
 	return $.ajax(settings);
 }
+
+
+
+
+
+
+function put_orders(id,amount)
+{
+	var settings = 
+	{
+	  "url": backend_location+"orders/"+id,
+	  "method": "PUT",
+	  "timeout": 0,
+	  "headers": 
+	  	{
+	    	"Content-Type": "application/json"
+	  	},
+	  "data": JSON.stringify(
+	  	{"amount":amount}),
+	};
+
+	return $.ajax(settings);
+}
+
+
+
 
 
 
@@ -153,38 +178,6 @@ function delete_orders(id)
 	};
 	return $.ajax(settings);
 }
-
-
-
-
-
-
-function put_orders(id,name,price,in_stock)
-{
-	if (in_stock==true ||in_stock=="true" ||in_stock=="True"||
-		in_stock==1||in_stock=="1")
-		{in_stock=true;}
-	else{in_stock=false;}
-	
-	var settings = 
-	{
-	  "url": backend_location+"products/"+id,
-	  "method": "PUT",
-	  "timeout": 0,
-	  "headers": 
-	  	{
-	    	"Content-Type": "application/json"
-	  	},
-	  "data": JSON.stringify(
-	  	{"name":name,"price":price,
-	  	"in_stock":in_stock,"seller_id":1}),
-	};
-
-	return $.ajax(settings);
-}
-
-
-
 
 
 
