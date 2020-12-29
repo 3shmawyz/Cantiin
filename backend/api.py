@@ -419,6 +419,7 @@ Tests: test_01_clear_tables
 	"""
 	@app.route("/products", methods=["GET"])
 	def get_products():
+		print("Cookies: "+str(request.cookies),flush=True)
 	#This endpoint will return all the products		
 		#recievng inputs:
 		#in_stock has a fall back value of True (The default)
@@ -1128,4 +1129,4 @@ Tests: test_01_clear_tables
 	return app	
 
 if __name__ == '__main__':
-		create_app().run()	
+	create_app().run()
