@@ -19,23 +19,35 @@ from logging import Formatter, FileHandler
 #from sqlalchemy import func
 #from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField,BooleanField,RadioField
 #from wtforms.validators import DataRequired, AnyOf, URL
+import mimetypes
 
 
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 moment = Moment(app)
 app.config.from_object('config')
 #db = SQLAlchemy(app)
 #migrate=Migrate (app,db)
 
-
+mimetypes.add_type("application/javascript", ".js", True)
 
 
 
 
 @app.route('/', methods=['GET'])
 def home():
-	return render_template('home.html')
+	return render_template('index.html')
+
+@app.route('/js/jquery.js', methods=['GET'])
+def jquery():
+	return render_template('/js/jquery.js')
+
+@app.route('/js/bootstrap.bundle.min.js', methods=['GET'])
+def bs_bundle():
+	return render_template('js/bootstrap.bundle.min.js')
+
+@app.route('/js/bootstrap.min.js', methods=['GET'])
+def bs():
+	return render_template('js/bootstrap.min.js')
 
 
 
@@ -45,14 +57,37 @@ def home():
 
 
 
+@app.template_global()
+def static_include(filename):
+    fullpath = os.path.join(app.static_folder, filename)
+    with open(fullpath, 'r') as f:
+        return f.read()
+
+
+def java_script(request):
+    filename = request.path.strip("/")
+    data = open(filename, "rb").read()
+    return HttpResponse(data, mimetype="application/x-javascript")
 
 
 
 
+"""
 
 
+<script type="text/javascript">
+  {{static_include("js/jquery.js") | safe}}
+</script>
+<script type="text/javascript">
+  {{static_include("js/bootstrap.bundle.min.js")| safe}}
+</script>
+<script type="text/javascript">
+  {{static_include("js/bootstrap.min.js")| safe}}
+</script>
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
 
 
+"""
 
 
 
