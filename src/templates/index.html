@@ -353,16 +353,23 @@ changePageHeaderForUser();
 function changePageHeaderForUser()
 {
   document.getElementById("right_top_header_section").innerHTML=
-  '<button type="button" '+
-  '      class="btn btn-success mb-0 mr-2"'+
+  '      <button type="button" '+
+  '         class="btn btn-success mb-0 mr-2"'+
+  '          style="font-weight: bold;font-size: 150%;">'+
+  '            My Products'+
+  '      </button>'+
+  '      <button type="button" '+
+  '         class="btn btn-success mb-0 mr-2"'+
   '          style="font-weight: bold;font-size: 150%;">'+
   '            My Cart'+
   '      </button>'+
   '      <button type="button" '+
-  '      class="btn btn-outline-danger mb-0 mr-2"'+
+  '         class="btn btn-outline-danger mb-0 mr-2"'+
   '          style="font-weight: bold;font-size: 150%;">'+
   '            Sign Out'+
   '      </button>';
+
+
 }
 
 
