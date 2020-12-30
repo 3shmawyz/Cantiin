@@ -106,7 +106,7 @@ input[type=radio] {
     <div class="mr-auto p-0 bd-highlight mb-0">
       <div class="left-top-header mb-0 mt-2">
         <button type="button" 
-        class="btn btn-outline-primary mr-2"
+        class="btn btn-primary mr-2"
             style="font-weight: bold;font-size: 150%;">
               Shopping
         </button>
@@ -342,12 +342,23 @@ function build_products_cards(input_array){
 //build_products_cards(data_example);
 
 
-
+changePageHeaderForUser();
 
 
 function changePageHeaderForUser()
 {
-  
+  document.getElementById("right_top_header_section").innerHTML=
+  '<button type="button" '+
+  '      class="btn btn-success mb-0 mr-2"'+
+  '          style="font-weight: bold;font-size: 150%;">'+
+  '            My Cart'+
+  '      </button>'+
+  '      <button type="button" '+
+  '      class="btn btn-outline-danger mb-0 mr-2"'+
+  '          style="font-weight: bold;font-size: 150%;">'+
+  '            Sign Out'+
+  '      </button>';
+
 }
 
 
