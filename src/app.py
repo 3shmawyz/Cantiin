@@ -407,6 +407,7 @@ Tests: test_01_clear_tables
 			r.set_cookie(co,value="",expires=-50)
 		return r
 
+
 		#return jsonify({"success":True,
 		#	"result":"logged out successfully"})
 

@@ -371,7 +371,8 @@ function changePageHeaderForUser()
   '      </button>'+
   '      <button type="button" '+
   '         class="btn btn-outline-danger mb-0 mr-2"'+
-  '          style="font-weight: bold;font-size: 150%;">'+
+  '          style="font-weight: bold;font-size: 150%;"'+
+  '          onclick="signTheUserOut()">'+
   '            Sign Out'+
   '      </button>';
 }
@@ -379,12 +380,16 @@ function changePageHeaderForUser()
 
 function changeHeaderIfYouSHould()
 {
-  who().then(changePageHeaderForUser());
+  who().then(function(data, textStatus, xhr) {
+        if (xhr.status==200) {changePageHeaderForUser()}});
 }
 
 function signTheUserOut()
 {
-  logout_users().then(window.location.href="/");
+  logout_users().then(
+    function(response){
+    window.location.href="/";}
+    );
 }
 
 changeHeaderIfYouSHould();
