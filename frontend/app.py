@@ -28,7 +28,6 @@ app.config.from_object('config')
 #db = SQLAlchemy(app)
 #migrate=Migrate (app,db)
 
-mimetypes.add_type("application/javascript", ".js", True)
 
 
 
@@ -37,17 +36,6 @@ mimetypes.add_type("application/javascript", ".js", True)
 def home():
 	return render_template('index.html')
 
-@app.route('/js/jquery.js', methods=['GET'])
-def jquery():
-	return render_template('/js/jquery.js')
-
-@app.route('/js/bootstrap.bundle.min.js', methods=['GET'])
-def bs_bundle():
-	return render_template('js/bootstrap.bundle.min.js')
-
-@app.route('/js/bootstrap.min.js', methods=['GET'])
-def bs():
-	return render_template('js/bootstrap.min.js')
 
 
 
@@ -62,13 +50,6 @@ def static_include(filename):
     fullpath = os.path.join(app.static_folder, filename)
     with open(fullpath, 'r') as f:
         return f.read()
-
-
-def java_script(request):
-    filename = request.path.strip("/")
-    data = open(filename, "rb").read()
-    return HttpResponse(data, mimetype="application/x-javascript")
-
 
 
 
