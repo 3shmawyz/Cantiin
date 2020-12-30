@@ -153,7 +153,7 @@ font-weight: bold;color:black;">Result:
 
 
 <div class="mt-3" style="font-size: 120%; color: black;">
-Or <a  href="signup.html"
+Or <a  href="signup"
 style="color:black; font-weight: bold;">Sign Up</a> 
 if you don't have an account
 </div>
@@ -226,7 +226,7 @@ diplayResult("yellow","Waiting for your input")
 function handleResponse(response)
 {
   if (response["success"]==true) 
-  {window.location.href = "index.html"}
+  {window.location.href = "index"}
   else{diplayResult("pink",response["description"]);}
 }
 //handleResponse(response_example);
