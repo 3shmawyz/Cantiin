@@ -2,18 +2,20 @@
 function changePageHeaderForUser()
 {
   document.getElementById("right_top_header_section").innerHTML=
+  '     <a href="/manage-products">'+
   '      <button type="button" '+
   '         class="btn btn-success mb-0 mr-2"'+
-  '          style="font-weight: bold;font-size: 150%;"'+
-  '          onclick="window.location.href=\'/manage-products\'">'+
+  '          style="font-weight: bold;font-size: 150%;">'+
   '            My Products'+
   '      </button>'+
+  '     </a>'+
+  '     <a href="/cart">'+
   '      <button type="button" '+
   '         class="btn btn-success mb-0 mr-2"'+
-  '          style="font-weight: bold;font-size: 150%;"'+
-  '          onclick="window.location.href=\'/cart\'">'+
+  '          style="font-weight: bold;font-size: 150%;">'+
   '            My Cart'+
   '      </button>'+
+  '     </a>'+
   '      <button type="button" '+
   '         class="btn btn-outline-danger mb-0 mr-2"'+
   '          style="font-weight: bold;font-size: 150%;"'+
