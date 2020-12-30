@@ -6,7 +6,7 @@ from jose import jwt
 from urllib.request import urlopen
 
 from functions import *
-from api import *
+from app import *
 from datetime import timedelta,date,datetime,time
 
 import jwt
