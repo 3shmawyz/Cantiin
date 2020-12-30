@@ -36,6 +36,34 @@ app.config.from_object('config')
 def home():
 	return render_template('index.html')
 
+@app.route('/add-product', methods=['GET'])
+def add_product():
+	return render_template('add_product.html')
+
+@app.route('/cart', methods=['GET'])
+def cart():
+	return render_template('cart.html')
+
+@app.route('/edit-product', methods=['GET'])
+def edit_product():
+	return render_template('edit_product.html')
+
+@app.route('/login', methods=['GET'])
+def login():
+	return render_template('login.html')
+
+@app.route('/manage-products', methods=['GET'])
+def manage_products():
+	return render_template('manage_products.html')
+
+@app.route('/product', methods=['GET'])
+def product():
+	return render_template('product.html')
+
+@app.route('/signup', methods=['GET'])
+def signup():
+	return render_template('signup.html')
+
 
 
 
