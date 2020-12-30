@@ -351,7 +351,7 @@ function build_products_cards(input_array){
 //build_products_cards(data_example);
 
 
-changePageHeaderForUser();
+//changePageHeaderForUser();
 
 
 function changePageHeaderForUser()
@@ -374,9 +374,20 @@ function changePageHeaderForUser()
   '          style="font-weight: bold;font-size: 150%;">'+
   '            Sign Out'+
   '      </button>';
-
-
 }
+
+
+function changeHeaderIfYouSHould()
+{
+  who().then(changePageHeaderForUser());
+}
+
+function signTheUserOut()
+{
+  logout_users().then(window.location.href="/");
+}
+
+changeHeaderIfYouSHould();
 
 
 
