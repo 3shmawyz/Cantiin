@@ -126,12 +126,14 @@ input[type=radio] {
       id="right_top_header_section">
         <button type="button" 
         class="btn btn-success mb-0 mr-2"
-            style="font-weight: bold;font-size: 150%;">
+            style="font-weight: bold;font-size: 150%;"
+            onclick="window.location.href='/login'">
               Sign in
         </button>
         <button type="button" 
         class="btn btn-outline-primary mb-0 mr-2"
-            style="font-weight: bold;font-size: 150%;">
+            style="font-weight: bold;font-size: 150%;"
+            onclick="window.location.href='/signup'">
               Create Account
         </button>
         
@@ -349,7 +351,7 @@ function build_products_cards(input_array){
 //build_products_cards(data_example);
 
 
-changePageHeaderForUser();
+//changePageHeaderForUser();
 
 
 function changePageHeaderForUser()
