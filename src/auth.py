@@ -231,7 +231,8 @@ def auth_cookie_response(response,user_id,exp=None):
         user_id=user_id,secret=SECRET)["result"]
     if exp==None:
         response.set_cookie('cantiin',
-        value=cookie_value,httponly=True, samesite='Lax')
+        value=cookie_value,httponly=True, samesite='Lax',
+        expires=datetime.now()+EXPIRATION_AFTER)
     else:
         response.set_cookie('cantiin',
         value=cookie_value,httponly=True,

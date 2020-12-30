@@ -175,10 +175,10 @@ Tests: test_01_clear_tables
 		#Now the cookie exists
 		token = request.cookies["cantiin"]
 		#print(SECRET,flush=True)
-		#print(request.cookies,flush=True)
+		print(request.cookies,flush=True)
 		token_validation = validate_token(
 			token=token,secret=SECRET)
-		#print(token_validation["case"],flush=True)
+		print(token_validation,flush=True)
 		#print("WHO: "+str(token_validation),flush=True)
 		if token_validation["case"]==3:        
 			abort(401)
@@ -462,7 +462,7 @@ Tests: test_01_clear_tables
 	"""
 	@app.route("/products", methods=["GET"])
 	def get_products():
-		print("Cookies: "+str(request.cookies),flush=True)
+		#print("Cookies: "+str(request.cookies),flush=True)
 	#This endpoint will return all the products		
 		#recievng inputs:
 		#in_stock has a fall back value of True (The default)
