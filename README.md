@@ -2,10 +2,12 @@
 
 
 ## Viewing Cantiin : ##
-You can see and test cantiin by yourself.  
-It is deployed.  
 <a href="https://www.cantiin.com/" target="_blank">
 https://www.Cantiin.com</a>
+
+You can see and test cantiin by yourself.  
+It is deployed.
+
 ## Running Cantiin : ##
 In this link on Github, You can see how to get 
 cantiin up and running.  
