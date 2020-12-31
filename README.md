@@ -9,11 +9,12 @@ In this project have used this technologies:
 
 ### frontend technologies: ###
 1. **HTML**
-2. **JavaScript**
-3. **CSS**
+2. **CSS**
+3. **JavaScript**
 4. **BootStrap**  
 5. **JSON** (JavaScript Object Notation)
 6. **AJAX**
+7. **Jinja**
 
 ### Backend Technologies: ###
 1. **Python**
