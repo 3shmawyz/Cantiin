@@ -15,7 +15,7 @@ Youtube: How to Install Python 3.8.2 on Windows 10</a>
 
 
 
-## Displaying Code (Not Essential) : ##
+## Displaying Code Using Code Editor (Not Essential) : ##
 You can download any text editor.  
 This is a list of the text editors, choose one:
 1. **Sublime Text 3 (I use it and recommend it)**  
@@ -68,12 +68,30 @@ target="_blank">
 Youtube: Requirements.txt file for Python Projects | Install python dependencies in bulk | Data Magic</a>
 
 
+## Running the project (On Local Host): ##
+In git bash, run this command:
+```bash
+python cantiin.py
+```
+Now, you can in your browser, in the address bar, type this link: 
+```url
+http://127.0.0.1:5000/
+```
+Then press Enter, Now you have it running on your browser.  
+You turn the server off by pressing: 
+`crtl` + `c`
 
 
-## Up and running : ##
-
-
-
+## Running the project (For Production): ##
+In git bash, run this command:
+```bash
+python production.py
+```
+Now, you can in your browser, in the address bar, type this link: 
+```url
+http://127.0.0.1:5000/
+```
+Then press Enter, Now you have it running on your browser.  
 
 
 
