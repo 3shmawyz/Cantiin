@@ -1159,7 +1159,7 @@ class CantiinTestCase(unittest.TestCase):
 		algorithm ='HS256'#HMAC-SHA 256
 		secret = 'learning'
 		encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
-		self.assertEqual(encoded_jwt,b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoidGVzdCJ9.WHBB33Ktq9mVKGspVK7uxpXxlwQngbyCirKKVX3nQY8')
+		self.assertEqual(encoded_jwt,'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoidGVzdCJ9.WHBB33Ktq9mVKGspVK7uxpXxlwQngbyCirKKVX3nQY8')
 		print("Test c_1_1: generate_jwt")
 
 
