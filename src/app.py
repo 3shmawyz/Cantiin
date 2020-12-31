@@ -179,10 +179,10 @@ Tests: test_01_clear_tables
 		#Now the cookie exists
 		token = request.cookies["cantiin"]
 		#print(SECRET,flush=True)
-		print(request.cookies,flush=True)
+		#print(request.cookies,flush=True)
 		token_validation = validate_token(
 			token=token,secret=SECRET)
-		print(token_validation,flush=True)
+		#print(token_validation,flush=True)
 		#print("WHO: "+str(token_validation),flush=True)
 		if token_validation["case"]==3:        
 			abort(401)
