@@ -132,7 +132,7 @@ function delete_products(id)
 }
 
 
-function get_products_users(in_stock=true)
+function get_products_users()
 {	
 	method="GET";endpoint="products/users";
 	var settings = getAjaxSettings(
