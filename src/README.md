@@ -86,14 +86,22 @@ You turn the server off by pressing:
 In git bash, run this command:
 ```bash
 python production.py
-```
-Now, you can in your browser, in the address bar, type this link: 
-```url
-http://127.0.0.1:5000/
-```
-Then press Enter, Now you have it running on your browser.  
+``` 
 
 
+## Postman testing : ##
+To test the SQLAlchemy models, and the functions.  
+To Test API Endpoints  
+In bash run this command: 
+```bash
+python cantiin.py
+``` 
+and then run the postman collection.  
+For info about how to run postman collections, 
+I recommend watching this Youtube video:  
+<a href="https://www.youtube.com/watch?v=t5n07Ybz7yI&t=181s"
+target="_blank">
+Youtube: The Basics of Using Postman for API Testing</a>
 
 
 
