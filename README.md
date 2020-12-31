@@ -11,7 +11,7 @@ In this project have used this technologies:
 1. **HTML**
 2. **CSS**
 3. **JavaScript**
-4. **BootStrap**  
+4. **Bootstrap**  
 5. **JSON** (JavaScript Object Notation)
 6. **AJAX**
 7. **Jinja**
