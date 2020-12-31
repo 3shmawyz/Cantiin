@@ -20,25 +20,25 @@ In this project have used this technologies:
 1. **Python**
 2. **SQLite**
 3. **SqlAlchemy (ORM)**
-2. **Flask**
+4. **Flask**
 5. **Flask-CORS**
-4. **RESTful API** endpoints
-5. **HTTPOnly Cookies**
-6. **Unittesting**  
+6. **RESTful API** endpoints
+7. **HTTPOnly Cookies**
+8. **Unittesting**  
 	for python functions and SQLAlchemy models
-7. **Postman** testing  
+9. **Postman** testing  
 	for API endpoints
-1. **Authentication**  
+10. **Authentication**  
 Using cookies, username and password
-1. **Authorization**  
+11. **Authorization**  
 The user can only control the products that he posted  
 I might use RBAC model in the future, But I didn't use it here
-1. **JWT** (JSON Web Tokens)  
+12. **JWT** (JSON Web Tokens)  
 In each cookie there is a jwt token, to make the authentication
-1.**UnitTest**  
+13. **UnitTest**  
 To Test Python functions and SQLAlchemy Models
 (I used 112 Tests)
-1. **Postman Collection**  
+14. **Postman Collection**  
 To Test API Endpoints  
 (I used 75 Requests) 
 
