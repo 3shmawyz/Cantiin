@@ -132,6 +132,13 @@ function delete_products(id)
 }
 
 
+function get_products_users(in_stock=true)
+{	
+	method="GET";endpoint="products/users";
+	var settings = getAjaxSettings(
+		method,endpoint)
+	return $.ajax(settings);
+}
 
 
 
