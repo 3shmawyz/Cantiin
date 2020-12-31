@@ -1,7 +1,7 @@
 # Cantiin #
 
 
-## Viewing Cantiin : ##
+## Viewing Cantiin.com : ##
 <a href="https://www.cantiin.com/" target="_blank">
 https://www.Cantiin.com</a>
 
@@ -72,10 +72,6 @@ permission or attribution.
 
 ## About ##
 - This is the an **E-Commerce Website**.
-- Now, **the buttons are working** 
-
-
-
 
 
 
