@@ -44,8 +44,18 @@ target="_blank">
 Youtube: Git Bash, Bash Basics</a>
 
 
-## Running on windows: ##
+## Installing requirements : ##
+After you have done cd into src directory, now run this command:  
+```bash
+pip install -r requirements.txt
+```
+For More info, i recommend watchng this video on Youtube:  
+<a href="https://www.youtube.com/watch?v=empqyr7vZ8o"
+target="_blank">
+Youtube: Requirements.txt file for Python Projects | Install python dependencies in bulk | Data Magic</a>
 
+
+## Up and running : ##
 
 
 
