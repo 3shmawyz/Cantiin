@@ -1,4 +1,11 @@
 # Cantiin #
+
+## Running Cantiin : ##
+In this link on Github, You can see how to get 
+cantiin up and running.  
+<a 
+href="https://github.com/OmarThinks/Cantiin/tree/master/src"
+target="_blank">Github: Ruunning Cantiin</a>
 ## Purpose ##
 
 The purpose behind this project is to prove that I am a 
