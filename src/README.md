@@ -30,12 +30,19 @@ Youtube: How to Install Git Bash on Windows 10</a>
 
 
 
-## cd into the backend directory : ##
+## cd into the src directory : ##
 1. Using normal **Windows File Expolorer** get in the 
-backend directory
+src directory
 2. **Right click** any where
 3. Select the option **Git Bash Here**
 4. now **a window will open**
+
+For more information, or if you don't know how to cd into the
+src directory, I recommend watching this video on Youtube:  
+<a href="https://www.youtube.com/watch?v=oQc-2gsjgDg&t=136s"
+target="_blank">
+Youtube: Git Bash, Bash Basics</a>
+
 
 ## Running on windows: ##
 
