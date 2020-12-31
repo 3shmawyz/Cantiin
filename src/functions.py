@@ -29,7 +29,6 @@ Functions:
 from models import (db,Product,Order,User)
 import json
 from flask import Flask, request, jsonify, abort
-from app import TESTING
 
 # Creatng a function to print the error in an approperiate way 
 #with detailed info
@@ -437,11 +436,3 @@ def question_search(input_text):
 	to_return = [question.format() for question in all_questions]
 	return to_return
 
-
-
-
-
-
-def test_only():
-	if TESTING == False:
-		abort(404)

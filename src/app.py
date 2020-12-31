@@ -1186,6 +1186,11 @@ Tests: test_01_clear_tables
 			"message":"internal server error"}),500
 
 
+
+	def test_only():
+		if testing == False:
+			abort(404)
+
 	
 	return app	
 
