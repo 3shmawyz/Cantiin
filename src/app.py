@@ -110,6 +110,10 @@ def create_app(test_config=None,testing=TESTING):
 	def signup():
 		return render_template('signup.html')
 
+	@app.route('/about', methods=['GET'])
+	def about():
+		return render_template('about.html')
+
 
 
 
