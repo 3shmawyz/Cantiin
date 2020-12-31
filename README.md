@@ -18,14 +18,30 @@ In this project have used this technologies:
 
 ### Backend Technologies: ###
 1. **Python**
-2. **Flask**
+2. **SQLite**
 3. **SqlAlchemy (ORM)**
-4. **RESTful API** endpoints
+2. **Flask**
 5. **Flask-CORS**
+4. **RESTful API** endpoints
+5. **HTTPOnly Cookies**
 6. **Unittesting**  
 	for python functions and SQLAlchemy models
 7. **Postman** testing  
 	for API endpoints
+1. **Authentication**  
+Using cookies, username and password
+1. **Authorization**  
+The user can only control the products that he posted  
+I might use RBAC model in the future, But I didn't use it here
+1. **JWT** (JSON Web Tokens)  
+In each cookie there is a jwt token, to make the authentication
+1.**UnitTest**  
+To Test Python functions and SQLAlchemy Models
+(I used 112 Tests)
+1. **Postman Collection**  
+To Test API Endpoints  
+(I used 75 Requests) 
+
 
 
 ### Additional Technologies: ###
