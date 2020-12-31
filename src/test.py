@@ -1393,7 +1393,7 @@ class CantiinTestCase(unittest.TestCase):
 			timedelta(days=7)).timestamp()
 		payload={"uid":"abc","exp":expiration}
 		token=generate_jwt(payload,secret)
-		print(token)
+		#print(token)
 
 		token_validation=validate_token(
 			token["result"],secret)
