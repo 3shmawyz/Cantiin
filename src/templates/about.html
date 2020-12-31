@@ -150,18 +150,6 @@ container-fluid mx-auto" style="bottom:0px;"
         <b>What is Cantiin :</b></h2>
         <hr>
 
-
-
-
-
-
-
-
-
-
-
-
-
         
       </div>
   </div>
@@ -185,43 +173,6 @@ View source code on github</button>
 </a>
   </div>  
 </div>
-
-
-
-<script type="text/javascript">
-function signTheUserUp() 
-{
-  post_users(username=
-    document.getElementById('inputEmail')["value"]
-    ,password1=
-    document.getElementById('password')["value"],
-    password2=
-    document.getElementById('password_confirm')["value"]
-    ).then(function(value){
-      handleResponse(value);}).
-    catch(function(value){
-      handleResponse(value["responseJSON"]);});
-}  
-
-
-
-function diplayResult(color="success",message="")
-{
-  document.getElementById("the_result").innerHTML=
-  '<span style="color:'+color+';">'+message+'</span>';
-}
-
-diplayResult("yellow","Waiting for your input")
-
-
-function handleResponse(response)
-{
-  if (response["success"]==true) 
-  {window.location.href = "/"}
-  else{diplayResult("pink",response["description"]);}
-}
-//handleResponse(response_example);
-</script>
 
 
 </body>
