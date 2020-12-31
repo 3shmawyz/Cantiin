@@ -14,6 +14,19 @@ target="_blank">
 Youtube: How to Install Python 3.8.2 on Windows 10</a>
 
 
+
+## Displaying Code (Not Essential) : ##
+You can download any text editor.  
+This is a list of the text editors, choose one:
+1. **Sublime Text 3 (I use it and recommend it)**  
+It is very light weight, dark interface, comfortable to your eyes.
+2. Atom
+3. Notepad++
+4. Visual Studio Code
+
+**NOTE**: This step is **not essential**.
+To run the code you do not need a text editor, however.
+
 ## Using the command line : ##
 On **Windows**, you might need to download **Gitbash**, you can
  find it in this link:  
@@ -53,6 +66,8 @@ For More info, i recommend watchng this video on Youtube:
 <a href="https://www.youtube.com/watch?v=empqyr7vZ8o"
 target="_blank">
 Youtube: Requirements.txt file for Python Projects | Install python dependencies in bulk | Data Magic</a>
+
+
 
 
 ## Up and running : ##
