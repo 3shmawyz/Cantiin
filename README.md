@@ -4,7 +4,6 @@
 ## Viewing Cantiin.com : ##
 <a href="https://www.cantiin.com/" target="_blank">
 https://www.Cantiin.com</a>
-
 You can see and test cantiin by yourself.  
 It is deployed.
 
@@ -14,6 +13,16 @@ cantiin up and running.
 <a 
 href="https://github.com/OmarThinks/Cantiin/tree/master/src"
 target="_blank">Github: Ruunning Cantiin</a>
+
+## Latest Stable Version: ##
+On github, you can see the latest 
+satble version that is v1.1.1  
+This s the link: 
+<a 
+href="https://github.com/OmarThinks/Cantiin/releases/tag/v1.1.1"
+target="_blank">
+Github-Cantiin : v1.1.1</a>
+
 ## Purpose ##
 
 The purpose behind this project is to prove that I am a 
