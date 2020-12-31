@@ -31,9 +31,10 @@ def generate_jwt(payload,secret):
     algorithm = "HS256"
     try:
         #print("jwt secret: "+str(secret))
-        encoded_jwt = jwt.encode(payload,secret,algorithm=algorithm)
+        encoded_jwt = jwt.encode(
+            payload,secret,algorithm=algorithm)
         return {"success":True,
-        "result":str(encoded_jwt,'utf-8')}        
+        "result":str(encoded_jwt)}        
     except Exception as e:
         return{"success":False,"result":e}
 
