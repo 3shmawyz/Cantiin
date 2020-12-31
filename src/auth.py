@@ -62,7 +62,8 @@ def decode_jwt(encoded_jwt,secret):
         return {"success":True,"result":result}
     except jwt.ExpiredSignatureError:
         result = jwt.decode(
-            encoded_jwt, secret,algorithms="HS256",verify=False)
+            encoded_jwt, secret,algorithms="HS256",
+            options={"verify_exp":False})
         return {"success":True,"result":result}
     except Exception as e:
         return {"success":False,"result":e}
