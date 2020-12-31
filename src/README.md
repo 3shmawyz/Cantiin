@@ -90,7 +90,6 @@ python production.py
 
 
 ## Postman testing : ##
-To test the SQLAlchemy models, and the functions.  
 To Test API Endpoints  
 In bash run this command: 
 ```bash
@@ -105,4 +104,9 @@ Youtube: The Basics of Using Postman for API Testing</a>
 
 
 
-
+## Unit Testing : ##
+To test the SQLAlchemy models, and the functions.  
+In bash run this command: 
+```bash
+python test.py
+``` 
