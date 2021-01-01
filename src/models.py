@@ -3,10 +3,11 @@ from sqlalchemy import Column, String, Integer, Float, Boolean
 from flask_sqlalchemy import SQLAlchemy
 import json
 
+
 try:
-    from src import db
+    from __init__ import *
 except:
-    from __init__ import db
+    from src import *
 
 
 """

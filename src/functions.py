@@ -25,12 +25,11 @@ Functions:
 
 
 """
+
 try:
-	from src import db
-	from .models import (Product,Order,User)
+	from __init__ import *
 except:
-	from __init__ import db
-	from models import (Product,Order,User)
+	from src import *
 
 
 import json

@@ -14,14 +14,9 @@ import base64
 
 
 try:
-    from src import SECRET
-    from src import EXPIRATION_AFTER
-    from .models import (Product, Order,User)
-    from .functions import *
-except:
     from __init__ import *
-    from models import (Product, Order,User)
-    from functions import *
+except:
+    from src import *
 
 
 """

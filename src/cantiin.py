@@ -1,7 +1,7 @@
 try:
-	from .app import create_app
+	from __init__ import *
 except:
-	from app import create_app
+	from src import *
 
 application = create_app(testing=False)
 

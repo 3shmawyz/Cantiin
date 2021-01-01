@@ -16,11 +16,12 @@ from random import shuffle
 import json
 from random import shuffle
 
-
 try:
-	from src import SECRET
-	from src import EXPIRATION_AFTER
-	from src import db
+	from __init__ import *
+except:
+	from src import *
+"""
+try:
 	from .auth import *
 	from .models import *
 	from .functions import *
@@ -29,7 +30,7 @@ except:
 	from auth import *
 	from models import *
 	from functions import *
-
+"""
 
 
 

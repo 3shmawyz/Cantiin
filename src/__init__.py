@@ -13,4 +13,8 @@ try:
 	from .auth import *
 	from .app import *
 except:
-	pass
+	from models import (db, Product, Order,User)
+	from functions import *
+	from auth import *
+	from app import *
+
