@@ -57,7 +57,10 @@ def create_app(test_config=None,testing=TESTING):
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
-	db.create_all()
+	try:
+		db.create_all()
+	except:
+		pass
 	#populate_tables()
 	CORS(app,resources={r"*":{"origins":"*"}})
 	@app.after_request
