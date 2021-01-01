@@ -16,12 +16,12 @@ target="_blank">Github: Ruunning Cantiin</a>
 
 ## Latest Stable Version: ##
 On github, you can see the latest 
-satble version that is v1.1.1  
+satble version that is v1.1.2  
 This s the link: 
 <a 
-href="https://github.com/OmarThinks/Cantiin/releases/tag/v1.1.1"
+href="https://github.com/OmarThinks/Cantiin/releases/tag/v1.1.2"
 target="_blank">
-Github-Cantiin : v1.1.1</a>
+Github-Cantiin : v1.1.2</a>
 
 ## Purpose ##
 
@@ -62,6 +62,12 @@ To Test Python functions and SQLAlchemy Models
 12. **Postman Collection**  
 To Test API Endpoints  
 (I used 75 Requests) 
+12. **Deployment**  
+	1. On **shared Hosting** (Very Stable): 
+	<a href="https://www.cantiin.com/">cantiin.com/</a>  
+	2. On **Heroku** (Working on the stability of the project):
+	<a href="https://cantiin.herokuapp.com/">
+	cantiin.herokuapp.com/</a> 
 
 
 
