@@ -1,9 +1,9 @@
 # Running Cantiin #
 
-## Python 3.8.1 : ##
-This backend works using Python 3.8.  
+## Python 3.7.9 : ##
+This backend works using Python 3.7.9  
 You can download python from this link:  
-<a href="https://www.python.org/downloads/release/python-380/"
+<a href="https://www.python.org/downloads/release/python-379/"
 target="_blank">
 Download Python</a>  
 For more Information, and if you do not have python 

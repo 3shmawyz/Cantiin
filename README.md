@@ -91,7 +91,7 @@ permission or attribution.
 
 
 ## Current Stauts ##
-This is the first release of cantiin, **v1.1.1**
+This is the second release of cantiin, **v1.1.2**
 
 ## What is next? ## 
 
