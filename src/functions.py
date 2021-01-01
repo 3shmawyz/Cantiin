@@ -25,8 +25,9 @@ Functions:
 
 
 """
+from src import db
 
-from models import (db,Product,Order,User)
+from .models import (Product,Order,User)
 import json
 from flask import Flask, request, jsonify, abort
 

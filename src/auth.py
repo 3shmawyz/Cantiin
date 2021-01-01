@@ -5,15 +5,21 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-from functions import *
-from app import *
+#from functions import *
+#from app import *
 from datetime import timedelta,date,datetime,time
-
+import sys
 import jwt
 import base64
 
-EXPIRATION_AFTER= timedelta(days=7)
 
+from src import SECRET
+from src import EXPIRATION_AFTER
+
+
+
+from .models import (Product, Order,User)
+from .functions import *
 
 """
 Inputs:

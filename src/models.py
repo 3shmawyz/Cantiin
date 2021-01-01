@@ -4,7 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 
-db = SQLAlchemy()
+from src import db
+
+
 
 """
 def setup_db(app):

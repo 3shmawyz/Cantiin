@@ -14,16 +14,14 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from random import shuffle
 import json
-from models import (db, Product, Order,User)
 from random import shuffle
 
-
-
-SECRET=str(secrets.token_urlsafe(5000))
-from auth import *
-from functions import *
-
-
+from src import SECRET
+from src import EXPIRATION_AFTER
+from src import db
+from .auth import *
+from .models import *
+from .functions import *
 
 #SECRET=secrets.token_urlsafe(4)
 #SECRET="abc"
@@ -42,6 +40,24 @@ endpoints:
 """
 
 
+class config:
+	#SECRET_KEY=os.urandom(32)
+	SECRET_KEY=secrets.token_urlsafe(5000)
+	basedir = os.path.abspath(os.path.dirname(__file__))
+	#DEBUG = True
+	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
+		os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/database.sqlite"))
+	SQLALCHEMY_TRACK_MODIFICATIONS= False
+
+
+class config_test:
+	#SECRET_KEY=os.urandom(32)
+	SECRET_KEY=secrets.token_urlsafe(5000)
+	basedir = os.path.abspath(os.path.dirname(__file__))
+	DEBUG = True
+	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
+		os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/test.sqlite"))
+	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
 
 
@@ -50,9 +66,9 @@ def create_app(test_config=None,testing=TESTING):
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	if testing:
-		app.config.from_object("config_test")
+		app.config.from_object(config_test)
 	else:
-		app.config.from_object("config")
+		app.config.from_object(config)
 	#print(app.config['SECRET_KEY'],flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
