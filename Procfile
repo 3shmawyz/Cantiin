@@ -1,1 +1,1 @@
-web: gunicorn src/cantiin:application
+web: gunicorn src.cantiin:application
