@@ -16,12 +16,22 @@ from random import shuffle
 import json
 from random import shuffle
 
-from src import SECRET
-from src import EXPIRATION_AFTER
-from src import db
-from .auth import *
-from .models import *
-from .functions import *
+
+try:
+	from src import SECRET
+	from src import EXPIRATION_AFTER
+	from src import db
+	from .auth import *
+	from .models import *
+	from .functions import *
+except:
+	from __init__ import *
+	from auth import *
+	from models import *
+	from functions import *
+
+
+
 
 #SECRET=secrets.token_urlsafe(4)
 #SECRET="abc"

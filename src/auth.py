@@ -13,13 +13,16 @@ import jwt
 import base64
 
 
-from src import SECRET
-from src import EXPIRATION_AFTER
+try:
+    from src import SECRET
+    from src import EXPIRATION_AFTER
+    from .models import (Product, Order,User)
+    from .functions import *
+except:
+    from __init__ import *
+    from models import (Product, Order,User)
+    from functions import *
 
-
-
-from .models import (Product, Order,User)
-from .functions import *
 
 """
 Inputs:

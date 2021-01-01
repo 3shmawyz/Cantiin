@@ -25,9 +25,14 @@ Functions:
 
 
 """
-from src import db
+try:
+	from src import db
+	from .models import (Product,Order,User)
+except:
+	from __init__ import db
+	from models import (Product,Order,User)
 
-from .models import (Product,Order,User)
+
 import json
 from flask import Flask, request, jsonify, abort
 
