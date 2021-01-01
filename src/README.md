@@ -58,6 +58,28 @@ target="_blank">
 Youtube: Git Bash, Bash Basics</a>
 
 
+
+
+
+
+## Creating virtual environment: ##
+In git bash, run these commands:
+```bash
+pip install virtualenv
+```
+Create a folder called **env** inside **src**  
+Then run these commands: 
+```bash
+virtualenv env --python=3.7.9
+```
+The previous command will create the virtual environment 
+in the folder with the version of 3.7.9
+```bash
+source env/Scripts/activate
+```
+The previous code will run the virtual environment.
+
+
 ## Installing requirements : ##
 After you have done cd into src directory, now run this command:  
 ```bash
