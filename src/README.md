@@ -72,7 +72,7 @@ Youtube: Requirements.txt file for Python Projects | Install python dependencies
 ## Running the project (On Local Host): ##
 In git bash, run this command:
 ```bash
-python cantiin.py
+python app.py
 ```
 Now, you can in your browser, in the address bar, type this link: 
 <a href="http://127.0.0.1:5000/" target="_blank">
@@ -85,18 +85,14 @@ You turn the server off by pressing:
 `crtl` + `c`
 
 
-## Running the project (For Production): ##
-In git bash, run this command:
-```bash
-python production.py
-``` 
+
 
 
 ## Postman testing : ##
 To Test API Endpoints  
 In bash run this command: 
 ```bash
-python cantiin.py
+python app.py
 ``` 
 and then run the postman collection.  
 For info about how to run postman collections, 
@@ -107,9 +103,19 @@ Youtube: The Basics of Using Postman for API Testing</a>
 
 
 
+
+
 ## Unit Testing : ##
 To test the SQLAlchemy models, and the functions.  
 In bash run this command: 
 ```bash
 python test.py
+``` 
+
+
+
+## Running the project (For Production): ##
+In git bash, run this command:
+```bash
+python cantiin.py
 ``` 
