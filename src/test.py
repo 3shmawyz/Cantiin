@@ -6,12 +6,16 @@ import random
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func 
-from app import *
 
-from auth import *
 
-from models import (db,Product, Order, User)
-from functions import *
+
+from .app import *
+from .auth import *
+from .models import (db,Product, Order, User)
+from .functions import *
+from src import SECRET
+from src import EXPIRATION_AFTER
+from src import db
 from flask_cors import CORS
 from flask_migrate import Migrate 
 from flask_sqlalchemy import SQLAlchemy
