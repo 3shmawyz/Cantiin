@@ -12,6 +12,7 @@ try:
 	from .functions import *
 	from .auth import *
 	from .app import *
+	from .test import *
 except:
 	from models import (db, Product, Order,User)
 	from functions import *
