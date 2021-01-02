@@ -1,1 +1,1 @@
-web: gunicorn production:application
+web: gunicorn cantiin:application
