@@ -31,7 +31,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/clear_tables",
+							"raw": "{{host}}/clear_tables",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -47,12 +47,12 @@
 					},
 					"response": [
 						{
-							"name": "http://127.0.0.1:5000/clear_tables",
+							"name": "{{host}}/clear_tables",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/clear_tables",
+									"raw": "{{host}}/clear_tables",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -133,7 +133,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/populate",
+							"raw": "{{host}}/populate",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -197,7 +197,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -252,7 +252,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -307,7 +307,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -362,7 +362,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -413,7 +413,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -468,7 +468,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -523,7 +523,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -579,7 +579,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -620,7 +620,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -661,7 +661,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users",
+									"raw": "{{host}}/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -722,7 +722,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -778,7 +778,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -831,7 +831,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -884,7 +884,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -937,7 +937,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -989,7 +989,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1042,7 +1042,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1099,7 +1099,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login",
+									"raw": "{{host}}/users/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1150,7 +1150,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/logout",
+									"raw": "{{host}}/users/logout",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1201,7 +1201,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/logout",
+									"raw": "{{host}}/users/logout",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1249,7 +1249,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login/test",
+									"raw": "{{host}}/users/login/test",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1293,7 +1293,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/test_cookies",
+									"raw": "{{host}}/test_cookies",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1333,7 +1333,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/who",
+									"raw": "{{host}}/users/who",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1373,7 +1373,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000//users/login/expired",
+									"raw": "{{host}}//users/login/expired",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1417,7 +1417,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/who",
+									"raw": "{{host}}/users/who",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1459,7 +1459,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/who",
+									"raw": "{{host}}/users/who",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1502,7 +1502,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/login/test",
+									"raw": "{{host}}/users/login/test",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1545,7 +1545,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/users/who",
+									"raw": "{{host}}/users/who",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1606,7 +1606,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1655,7 +1655,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products?in_stock=false",
+									"raw": "{{host}}/products?in_stock=false",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1711,7 +1711,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products?in_stock=true",
+									"raw": "{{host}}/products?in_stock=true",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1763,7 +1763,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products?in_stock=t",
+									"raw": "{{host}}/products?in_stock=t",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1820,7 +1820,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products?in_st=false",
+									"raw": "{{host}}/products?in_st=false",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1886,7 +1886,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1950,7 +1950,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2002,7 +2002,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2054,7 +2054,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2106,7 +2106,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2161,7 +2161,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2216,7 +2216,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2268,7 +2268,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2320,7 +2320,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2372,7 +2372,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2424,7 +2424,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products",
+									"raw": "{{host}}/products",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2493,7 +2493,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2557,7 +2557,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2621,7 +2621,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2685,7 +2685,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2737,7 +2737,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2789,7 +2789,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/100000000000000000",
+									"raw": "{{host}}/products/100000000000000000",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2841,7 +2841,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2893,7 +2893,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2945,7 +2945,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3000,7 +3000,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/5",
+									"raw": "{{host}}/products/5",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3047,7 +3047,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3090,7 +3090,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/7",
+									"raw": "{{host}}/products/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3134,7 +3134,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/3",
+									"raw": "{{host}}/products/3",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3188,7 +3188,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/products/users",
+									"raw": "{{host}}/products/users",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3256,7 +3256,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders",
+									"raw": "{{host}}/orders",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3330,7 +3330,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders",
+									"raw": "{{host}}/orders",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3381,7 +3381,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders",
+									"raw": "{{host}}/orders",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3432,7 +3432,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders",
+									"raw": "{{host}}/orders",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3506,7 +3506,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/9",
+									"raw": "{{host}}/orders/9",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3558,7 +3558,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/500",
+									"raw": "{{host}}/orders/500",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3610,7 +3610,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/500",
+									"raw": "{{host}}/orders/500",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3660,7 +3660,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/9",
+									"raw": "{{host}}/orders/9",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3712,7 +3712,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/8",
+									"raw": "{{host}}/orders/8",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3758,7 +3758,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/7",
+									"raw": "{{host}}/orders/7",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3801,7 +3801,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/9",
+									"raw": "{{host}}/orders/9",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3853,7 +3853,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:5000/orders/3",
+									"raw": "{{host}}/orders/3",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3899,7 +3899,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/test_cookies",
+							"raw": "{{host}}/test_cookies",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -3938,7 +3938,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/test_cookies",
+							"raw": "{{host}}/test_cookies",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -3975,7 +3975,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/test_cookies",
+							"raw": "{{host}}/test_cookies",
 							"protocol": "http",
 							"host": [
 								"127",
