@@ -1,21 +1,9 @@
 version: "3.9"
 services:
-  web_1:
+  web:
     build: .
     ports:
       - "5000:5000"
-    volumes:
-      - "the_data_base:/db"
-  web_2:
-    build: .
-    ports:
-      - "5001:5000"
-    volumes:
-      - "the_data_base:/db"
-  web_3:
-    build: .
-    ports:
-      - "5002:5000"
     volumes:
       - "the_data_base:/db"
 
