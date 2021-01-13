@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="page_title">About | Cantiin</title>
+
+
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/jquery.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/bootstrap.bundle.min.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/backend.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/functions.js') }}"></script>
+
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+
+    <style type="text/css">
+
+html, body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+
+.second_row {
+  flex-grow: 1;
+}
+
+.legend_of_input
+{
+  color: black; 
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.text_input_field
+{
+  font-weight: bold;
+  font-size: 150%;
+  width: 100%;
+  background-color: black; 
+  color: white;
+  border-radius: 500px;
+}
+
+
+input[type=radio] {
+  transform: scale(1.6);
+}
+
+.radio_input_text
+{
+  color: black;font-size: 120%;font-weight: bold;
+}
+
+
+.req
+{
+  color: pink;
+}
+
+p{color:black;}
+li{color:black;}
+    </style>
+</head>
+<body class="">
+
+
+<div class="bg-warning p-0 container-fluid mx-auto" style="">
+
+  <div class="d-flex bd-highlight m-2">
+    <div class="mr-auto p-0 bd-highlight mb-0">
+      <div class="left-top-header mb-0 mt-2">
+        <a href="/">
+          <button type="button" 
+          class="btn btn-primary mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                Shopping
+        </button>
+        </a>
+        <span id="left_top_header_section_additional"></span>
+        <a href="/about">
+          <button type="button" 
+          class="btn btn-primary mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                About Cantiin
+          </button>
+        </a>
+
+      </div>
+    </div>
+    <div class="p-0 m-0 bd-highlight">
+      <div class="right-top-header  mt-2" 
+      id="right_top_header_section">
+        <a href="/login">
+          <button type="button" 
+          class="btn btn-success mb-0 mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                Log in
+          </button>
+        </a>
+        <a href="/signup">
+          <button type="button" 
+          class="btn btn-outline-primary mb-0 mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                Create Account
+          </button>
+        </a>        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="bg-dark p-2 container-fluid mx-auto" style="">
+  <div class="text-warning font-weight-bold  
+  container-fluid align-middle" 
+  style="font-size: 300%; 
+  width: 400px;">About Cantiin</div>
+
+</div>
+
+
+
+
+<div class="second_row bg-success 
+container-fluid mx-auto" style="bottom:0px;"
+  style="height: 100%;" 
+>
+  <div class="row" style="height: 100%;">
+      
+      <div class="col bg-info pr-2" 
+      style="height: auto" style="height: 100%;">
+        <h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;">
+        <b>What?</b></h2>
+<p style="font-size: 150%;font-weight: bold;">
+Cantiin is an open source project.<br>
+License is MIT license.<br>
+This is the link to the github project: 
+<a class="text-warning" 
+href="https://github.com/OmarThinks/Cantiin"
+target="_blank"><ins>Cantiin (Opens in a new tab)</ins></a><br>
+Which means that it is so free to use, sell, resell, edit,
+for personal and commercial usage, without taking the permission
+of the producer (me), the only restriction is that there is no 
+warranty.<br>
+Cantiin is an E-Commerce website.<br>
+People post their products and other people can add it to their
+cart, and they specify the amount to add this product into
+the cart.<br>
+You can download the latest  version of Cantiin from Github:<br>
+<a class="text-warning" 
+href="https://github.com/OmarThinks/Cantiin/tags"
+target="_blank"><ins>Latest Release of Cantiin 
+(Opens in a new tab)</ins></a>
+</p>
+<hr>
+
+
+
+
+        <h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;">
+        <b>Who?</b></h2>
+<p style="font-size: 150%;font-weight: bold;">
+Thank you for asking :)<br>
+Peace be upon you!<br>
+My name is <b>Omar Magdy</b>, I am a web 
+developer from Egypt.<br>
+You can find me on 
+<a class="text-warning" 
+href="https://github.com/OmarThinks"
+target="_blank"><ins>Github</ins></a>,
+
+
+<a class="text-warning" 
+href="https://www.linkedin.com/in/omar-magdy-28497a200/"
+target="_blank"><ins>Linkedin</ins></a> and
+
+<a class="text-warning" 
+href="https://www.facebook.com/profile.php?id=100030832995538"
+target="_blank"><ins>Facebook</ins></a>.
+
+
+</p>
+<hr>
+
+
+
+
+
+
+        <h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;">
+        <b>Why?</b></h2>
+<p style="font-size: 150%;font-weight: bold;">
+To prove that i am a web developer.<br>
+I am a job seeker.<br>
+And there is nothing that can help me more than proving 
+my skills in an infinite project that I keep woking on and
+upgrading forever, or until I get a job.<br>
+This is my live CV.<br>
+If God willed. I am planning to keep learning and keep working
+on this project.<br>
+There are more topics to study, like Docker, Kubernetes
+and DevOps.<br>
+And there much more to add to thip project, like product images,
+user data, handling cart .. ect.
+</p>
+<hr>
+
+
+
+
+
+
+        <h2 class="" 
+        style="color:black;font-weight:
+        bold;font-size: 400%;">
+        <b>How?</b></h2>
+
+<p style="font-size: 150%;font-weight: bold;">
+Used Technologies:
+<br>
+Frontend:<br>
+<ol style="font-size: 150%;font-weight: bold;">
+  <li><span class="text-warning">HTML</span></li>
+  <li><span class="text-warning">CSS</span></li>
+  <li><span class="text-warning">JavaScript</span></li>
+  <li><span class="text-warning">Bootstrap</span></li>
+  <li><span class="text-warning">AJAX</span></li>
+  <li><span class="text-warning">JSON</span></li>
+  <li><span class="text-warning">Jinja</span></li>
+</ol>
+</p>
+<p style="font-size: 150%;font-weight: bold;">
+Backend:
+<ol style="font-size: 150%;font-weight: bold;">
+  <li><span class="text-warning">Python</span></li>
+  <li><span class="text-warning">SQLite Database</span></li>
+  <li><span class="text-warning">
+  SQLAlchemy (ORM)(Object Relational Mapping)</span></li>
+  <li><span class="text-warning">Flask</span></li>
+  <li><span class="text-warning">Flask-CORS</span></li>
+  <li><span class="text-warning">API Endpoints</span></li>
+  <li><span class="text-warning">HTTPOnly Cookies</span></li>
+  To minimize the risk of XSS exploits
+  <li><span class="text-warning">Authentication</span></li>
+  Using cookies, username and password
+  <li><span class="text-warning">Authorization</span></li>
+  The user can only control the products that he posted<br>
+  I might use RBAC model in the future, 
+  But I didn't use it here
+  <li><span class="text-warning">JWT (JSON Web Tokens)</span></li>
+  In each cookie there is a jwt token, 
+  to make the authentication
+  <li><span class="text-warning">UnitTest</span></li>
+  To Test Python functions 
+  and SQLAlchemy Models<br>
+  (I used 112 Tests)
+
+  <li><span class="text-warning">Postman Collection 
+  </span></li>
+  To Test API Endpoints<br>
+  (I used 75 Requests)
+  <li><span class="text-warning">Docker</span></li>
+
+
+</ol>
+</p>
+
+<p style="font-size: 150%;font-weight: bold;">
+Other Technologies:
+<ol style="font-size: 150%;font-weight: bold;">
+  <li><span class="text-warning">Git</span></li>
+  <li><span class="text-warning">Github</span></li>
+</ol>
+</p>
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+  </div>
+</div>
+
+
+<div class="bg-dark d-flex justify-content-between pt-1 pb-2" >
+  <div class="container-fluid" 
+  style="width: 500px; font-weight: bold;color: black;
+  font-size: 300%;">
+<a href="https://github.com/OmarThinks/Cantiin" target="_blank">
+<button type="button" class="btn btn-outline-success m-1"
+style="font-weight: bold;
+  font-size: 60%;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="50" 
+  height="50" fill="currentColor" class="bi bi-github" 
+  viewBox="0 0 16 16">
+  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+</svg>
+View source code on github</button>
+</a>
+  </div>  
+</div>
+
+
+</body>
+</html>
