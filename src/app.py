@@ -81,7 +81,7 @@ def create_app(DOCKER=False,testing=TESTING):
 		app.config.from_object(config)
 	if DOCKER:
 		app.config["SQLALCHEMY_DATABASE_URI"]=(
-		"sqlite:////db/test.sqlite")
+		"sqlite:////database/databae.sqlite")
 	#print(app.config['SECRET_KEY'],flush=True)
 	db.app = app
 	migrate = Migrate(app,db)

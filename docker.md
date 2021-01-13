@@ -1,18 +1,10 @@
-# Docker Flask Example
-
-## About
-
-This is an MIT licensed Flask Application running on docker
-
-
-
-
+# Runnng Cantiin using Docker
 
 
 ## Up And Running:
 
 ### 1) Validations:
-Inside the CLI (Git bash for example run these commands)
+Inside the CLI (Git bash for example) run these commands
 
 <b>
 
@@ -36,7 +28,7 @@ and you need to install them correctly.
 
 
 
-### 2) Create a volume called "the_data_base":
+### 2) Create a volume called "cantiin_volume":
 
 
 Inside the CLI (Git bash for example run these commands)
@@ -44,11 +36,11 @@ Inside the CLI (Git bash for example run these commands)
 <b>
 
 ```bash
-docker volume create the_data_base
+docker volume create cantiin_volume
 ```
 </b>
 
-Then validate that the **the_data_base** volume has been created, using
+Then validate that the **cantiin_volume** volume has been created, using
 this command
 <b>
 

@@ -5,8 +5,8 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - "the_data_base:/db"
+      - "cantiin_volume:/database"
 
 volumes:
-  the_data_base:
+  cantiin_volume:
     external: true
