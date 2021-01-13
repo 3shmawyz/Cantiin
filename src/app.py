@@ -146,6 +146,10 @@ def create_app(DOCKER=False,testing=TESTING):
 	def about():
 		return render_template('pages/about.html')
 
+	@app.route('/test_template', methods=['GET'])
+	def test_template():
+		return render_template('pages/test.html')
+
 
 
 
