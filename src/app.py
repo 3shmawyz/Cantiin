@@ -56,8 +56,8 @@ class config:
 	SECRET_KEY=secrets.token_urlsafe(5000)
 	basedir = os.path.abspath(os.path.dirname(__file__))
 	#DEBUG = True
-	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
-		os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/database.sqlite"))
+	#SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
+	#	os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/database.sqlite"))
 	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
 
@@ -66,13 +66,20 @@ class config_test:
 	SECRET_KEY=secrets.token_urlsafe(5000)
 	basedir = os.path.abspath(os.path.dirname(__file__))
 	DEBUG = True
-	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
-		os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/test.sqlite"))
+	#SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
+	#	os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/test.sqlite"))
 	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
 
 
-def create_app(test_config=None,testing=TESTING):
+def config_db_URI(DOCKER):
+	if DOCKER:
+    	return "sqlite:////db/test.sqlite"
+    return 	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
+		os.path.join(os.path.dirname(os.path.abspath(__file__)
+			), "databases/test.sqlite"))
+
+def create_app(DOCKER=false,testing=TESTING):
 	# create and configure the app
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
@@ -80,6 +87,7 @@ def create_app(test_config=None,testing=TESTING):
 		app.config.from_object(config_test)
 	else:
 		app.config.from_object(config)
+	app.config["SQLALCHEMY_DATABASE_URI"]=config_db_URI(DOCKER)
 	#print(app.config['SECRET_KEY'],flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
