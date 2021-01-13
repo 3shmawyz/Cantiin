@@ -49,7 +49,7 @@ docker volume ls
 ```
 </b>
 
-A volume called "**the_data_base**" should appear now.
+A volume called "**cantiin_volume**" should appear now.
 
 
 
@@ -76,7 +76,7 @@ A volume called "**the_data_base**" should appear now.
 	</b>
 
 	and now should see a list of file and direcories in this folder  
-	It should include **app.py**
+	It should include **Dockerfile**
 
 
 
@@ -101,20 +101,14 @@ It will take a while, let it take it's time.
 1. **Open** your favourite **browser**  
 (Like Google chrome, or Firefox)
 
-2. **Open three** different **tabs**
+2. **Open One Browser Tab**
 
-3. In the tabs, in the address bar, type these
+3. In the tab, in the address bar, type this
 
 <b>
 
 ```address
 http://127.0.0.1:5000/
-```
-```address
-http://127.0.0.1:5001/
-```
-```address
-http://127.0.0.1:5002/
 ```
 
 </b>
@@ -134,28 +128,7 @@ http://127.0.0.1:5002/
 	
 	</b>
 	Now you will see a list of the running containers.<br>
-	There are 3 containers
-
-
-
-
-
-
-### 6) Connected to same volume:
-
-Now, Keep refreshing each tab, to make sure that are connected 
-to the same db.  
-This db is inside the volume that we have created earlier.
-
-
-
-
-
-
-
-
-
-
+	There is 1 container
 
 
 
@@ -168,7 +141,7 @@ original setup.
 
 
 
-### 1) Delete the containers
+### 1) Delete the container
 
 Run this command to show the conatiners
 
@@ -180,15 +153,15 @@ docker ps -a
 
 </b>
 Now you will see a list of the running containers.<br>
-Copy the id of each one of them, and use it in the following command:
+Copy the id of the container, and use it in the following command:
 <b>
 
 ```bash
-docker rm -f <conatiner1 id> <conatiner2 id> <conatiner2 id>
+docker rm -f <conatiner id>
 ```
 
 </b>
-Now validate that the conatainers have been deleted, using this command:
+Now validate that the conatainer has been deleted, using this command:
 <b>
 
 ```bash
@@ -214,17 +187,16 @@ docker images
 
 </b>
 Now you will see a list of the images.<br>
-<b>Note: the image id is repeated.</b><br>
-Copy the id of one of them, and use it in the following command:
+Copy the id of one of the image, and use it in the following command:
 
 <b>
 
 ```bash
-docker rmi -f <image1 id>
+docker rmi -f <image id>
 ```
 
 </b>
-Now validate that the images have been deleted, using this command:
+Now validate that the image has been deleted, using this command:
 <b>
 
 ```bash
@@ -247,12 +219,12 @@ docker volume ls
 
 </b>
 Now you will see a list of the volumes.<br>
-<b>Note: there is a volume called "the_data_base".</b><br>
+<b>Note: there is a volume called "cantiin_volume".</b><br>
 Now delete this volume using this command:
 <b>
 
 ```bash
-docker volume rm the_data_base
+docker volume rm cantiin_volume
 ```
 
 </b>
