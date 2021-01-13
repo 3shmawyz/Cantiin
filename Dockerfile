@@ -5,7 +5,7 @@ ENV SECRET="abcdefg"
 RUN pip install -r requirements.txt
 COPY . .
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_APP=application.py
+ENV FLASK_APP=src.app:create_app(True,False)
 ENV FLASK_ENV=development
 ENV FLASK_DEBUG=0
 EXPOSE 5000

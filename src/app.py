@@ -71,7 +71,7 @@ class config_test:
 	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
 
-def create_app(DOCKER=false,testing=TESTING):
+def create_app(DOCKER=False,testing=TESTING):
 	# create and configure the app
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
@@ -81,7 +81,7 @@ def create_app(DOCKER=false,testing=TESTING):
 		app.config.from_object(config)
 	if DOCKER:
 		app.config["SQLALCHEMY_DATABASE_URI"]=(
-			"sqlite:////db/test.sqlite")
+		"sqlite:////db/test.sqlite")
 	#print(app.config['SECRET_KEY'],flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
