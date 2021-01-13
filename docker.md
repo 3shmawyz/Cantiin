@@ -1,4 +1,4 @@
-# Runnng Cantiin using Docker
+# Running Cantiin using Docker
 
 
 ## Up And Running:

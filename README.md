@@ -77,13 +77,13 @@ To Test Python functions and SQLAlchemy Models
 12. **Postman Collection**  
 To Test API Endpoints  
 (I used 75 Requests) 
-12. **Deployment**  
+13. **Deployment**  
 	1. On **shared Hosting** (Very Stable): 
 	<a href="https://www.cantiin.com/">cantiin.com/</a>  
 	2. On **Heroku** (Working on the stability of the project):
 	<a href="https://cantiin.herokuapp.com/">
 	cantiin.herokuapp.com/</a> 
-
+14. **Docker**
 
 
 ### Additional Technologies: ###
