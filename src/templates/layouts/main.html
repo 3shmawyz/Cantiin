@@ -1,3 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="page_title">About | Cantiin</title>
+
+
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/jquery.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/bootstrap.bundle.min.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/backend.js') }}"></script>
+<script type="text/javascript" 
+src="{{ url_for('static', 
+filename='js/functions.js') }}"></script>
+
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+
+    <style type="text/css">
+
+html, body {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+
+.second_row {
+  flex-grow: 1;
+}
+
+.legend_of_input
+{
+  color: black; 
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.text_input_field
+{
+  font-weight: bold;
+  font-size: 150%;
+  width: 100%;
+  background-color: black; 
+  color: white;
+  border-radius: 500px;
+}
+
+
+input[type=radio] {
+  transform: scale(1.6);
+}
+
+.radio_input_text
+{
+  color: black;font-size: 120%;font-weight: bold;
+}
+
+
+.req
+{
+  color: pink;
+}
+
+p{color:black;}
+li{color:black;}
+    </style>
+</head>
+<body class="">
+
+
+<div class="bg-warning p-0 container-fluid mx-auto" style="">
+
+  <div class="d-flex bd-highlight m-2">
+    <div class="mr-auto p-0 bd-highlight mb-0">
+      <div class="left-top-header mb-0 mt-2">
+        <a href="/">
+          <button type="button" 
+          class="btn btn-primary mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                Shopping
+        </button>
+        </a>
+        <span id="left_top_header_section_additional"></span>
+        <a href="/about">
+          <button type="button" 
+          class="btn btn-primary mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                About Cantiin
+          </button>
+        </a>
+
+      </div>
+    </div>
+    <div class="p-0 m-0 bd-highlight">
+      <div class="right-top-header  mt-2" 
+      id="right_top_header_section">
+        <a href="/login">
+          <button type="button" 
+          class="btn btn-success mb-0 mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                Log in
+          </button>
+        </a>
+        <a href="/signup">
+          <button type="button" 
+          class="btn btn-outline-primary mb-0 mr-2"
+              style="font-weight: bold;font-size: 150%;">
+                Create Account
+          </button>
+        </a>        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!doctype html>
 <head>
 <meta charset="utf-8">
