@@ -1,9 +1,13 @@
+{% set title_s %}{% block title %}abc{% endblock %}{% endset %}
+
 <!DOCTYPE html>
 <html>
 <head>
-<title id="page_title">{% block title %}{% endblock %} | Cantiin</title>
+<title id="page_title">
 
+{{ title_s }} | Cantiin
 
+</title>
 <script type="text/javascript" 
 src="{{ url_for('static', 
 filename='js/jquery.js') }}"></script>
@@ -133,7 +137,7 @@ li{color:black;}
   <div class="text-warning font-weight-bold  
   container-fluid align-middle" 
   style="font-size: 300%; 
-  width: 400px;">{% block page_header %}{% endblock %}</div>
+  width: 400px;">{{title_s}}</div>
 
 </div>
 
@@ -156,6 +160,10 @@ li{color:black;}
 
 
       {% block content %}{% endblock %}
+
+
+
+
       
     </main>
 
