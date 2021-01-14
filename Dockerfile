@@ -1,7 +1,7 @@
 FROM python:3.7.9
+ENV SECRET="docker change me"
 LABEL maintainer_name="Omar Magdy"
 COPY requirements.txt requirements.txt
-ENV SECRET="abcdefg"
 RUN pip install -r requirements.txt
 COPY . .
 ENV FLASK_RUN_HOST=0.0.0.0

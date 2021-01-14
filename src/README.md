@@ -29,7 +29,7 @@ To run the code you do not need a text editor, however.
 
 
 ## SECRET: ##
-The ** `SECRET` ** variable is responsible for generating JWT token.  
+The **`SECRET`** variable is responsible for generating JWT token.  
 **You Must Change The Value Of This Variable**.  
 You can find it in this file
 

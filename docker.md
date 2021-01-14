@@ -28,6 +28,49 @@ and you need to install them correctly.
 
 
 
+
+
+
+## SECRET: ##
+The **`SECRET`** variable is responsible for generating JWT token.  
+**You Must Change The Value Of This Variable**.  
+You can find it in this file
+
+<b>
+
+```directory
+Dockerfile
+```
+
+</b>
+Second line.
+<b>
+
+```Dockerfile
+ENV SECRET="docker change me"
+```
+
+</b>
+
+**You must give it another value, long random text.**  
+For Example:  
+
+<b>
+
+```Dockerfile
+ENV SECRET = "lkjgf697465adsuadsjknda5sdads7a8sd6asdaliuaurfjshgjdfada4sd68a7deeaWIUDIUDASJDALKSDJauhjaaAUuYUYIUHHGYTYTYSAUGHzb8547687654564DAHSDUIAWEYSAYGDWYUATWARDADAW8D7A64DS5A1DASDKJASLIUDASHDKAJSGJHASDFATWRAUJGSDHDWA6DS4A68S4687687a56d46sd4a65sd7asdalskijdalkjsdakdbhjdvasdasydaiuwywew687ew8a56ajhdakhdaasdhgahjksdgasdytayusdtasda5d6sa4d65jshdajshdausdaa"
+```
+
+</b>
+
+
+
+
+
+
+
+
+
 ### 2) Create a volume called "cantiin_volume":
 
 
