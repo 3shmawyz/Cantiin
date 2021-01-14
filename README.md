@@ -30,13 +30,14 @@ target="_blank">Github: Ruunning Cantiin With Docker</a>
 
 
 ## Latest Stable Version: ##
-On github, you can see the latest 
-satble version that is v1.1.2  
-This s the link: 
+
+I have made stable releases of Cantiin.<br> 
+You can see a list of canttin releases, and download 
+them from this link on Github:  
 <a 
-href="https://github.com/OmarThinks/Cantiin/releases/tag/v1.1.2"
+href="https://github.com/OmarThinks/Cantiin/tags"
 target="_blank">
-Github-Cantiin : v1.1.2</a>
+Github-Cantiin Stable releases</a>
 
 ## Purpose ##
 

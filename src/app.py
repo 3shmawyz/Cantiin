@@ -83,7 +83,7 @@ def create_app(DOCKER=False,testing=TESTING):
 	print(DOCKER)
 	if DOCKER:
 		app.config["SQLALCHEMY_DATABASE_URI"]=(
-		"sqlite:////database/databae.sqlite")
+		"sqlite:////database/database.sqlite")
 		SECRET = os.environ["SECRET"]
 
 	print(SECRET, flush=True)
