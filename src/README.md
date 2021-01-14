@@ -27,6 +27,40 @@ It is very light weight, dark interface, comfortable to your eyes.
 **NOTE**: This step is **not essential**.
 To run the code you do not need a text editor, however.
 
+
+## SECRET: ##
+The ** `SECRET` ** variable is responsible for generating JWT token.  
+**You Must Change The Value Of This Variable**.  
+You can find it in this file
+
+<b>
+
+```directory
+src/__init__.py
+```
+
+</b>
+First line.
+<b>
+
+```python
+SECRET="change me"
+```
+
+</b>
+
+**You must give it another value, long random text.**  
+For Example:  
+
+<b>
+
+```python
+SECRET = "lkjgf697465adsuadsjknda5sdads7a8sd6asdaliuaurfjshgjdfada4sd68a7deeaWIUDIUDASJDALKSDJauhjaaAUuYUYIUHHGYTYTYSAUGHzb8547687654564DAHSDUIAWEYSAYGDWYUATWARDADAW8D7A64DS5A1DASDKJASLIUDASHDKAJSGJHASDFATWRAUJGSDHDWA6DS4A68S4687687a56d46sd4a65sd7asdalskijdalkjsdakdbhjdvasdasydaiuwywew687ew8a56ajhdakhdaasdhgahjksdgasdytayusdtasda5d6sa4d65jshdajshdausdaa"
+```
+
+</b>
+
+
 ## Using the command line : ##
 On **Windows**, you might need to download **Gitbash**, you can
  find it in this link:  
