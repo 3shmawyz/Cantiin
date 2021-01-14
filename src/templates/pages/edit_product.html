@@ -188,20 +188,12 @@ get_products().then(function(value)
 
 
 
-function diplayResult(color="success",message="")
-{
-  document.getElementById("the_result").innerHTML=
-  '<span style="color:'+color+';">'+message+'</span>';
-}
-
-diplayResult("yellow","Waiting for your input");
-
-function handleResponse(response)
-{
-  if (response["success"]==true) 
-  {diplayResult("lime","Product edited successfully");}
-  else{diplayResult("pink",response["description"]);}
-}
+/*
+This variable is about handle response
+It tells JS where the user will be redirected after 
+he the form is filled successfully
+*/
+after_success="/manage-products"
 
 function editTheProduct() 
 {
