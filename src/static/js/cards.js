@@ -158,7 +158,15 @@ function add_card_to_cards_container(input_card_html)
 
 
 
-
+/*
+Inputs:
+  - input_array: 
+    This is the output of the JSON request
+Function: 
+  - These functions will build the cards inide the "cards container"
+Output:
+  - There is no return value
+*/
 
 
 function build_home_cards(input_array)
@@ -171,7 +179,6 @@ function build_home_cards(input_array)
   }
 }
 
-
 function build_manage_product_cards(input_array)
 {
   document.getElementById('cards_container').innerHTML="";
@@ -179,6 +186,16 @@ function build_manage_product_cards(input_array)
   {
     var product = input_array["products"][product_index];
     add_card_to_cards_container(create_manage_product_card(product));
+  }
+}
+
+function build_cart_cards(input_array)
+{
+  document.getElementById('cards_container').innerHTML="";
+  for (product_index in input_array["products"])
+  {
+    var product = input_array["products"][product_index];
+    add_card_to_cards_container(create_cart_card(product));
   }
 }
 
