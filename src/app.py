@@ -82,7 +82,7 @@ def create_app(DOCKER=False,testing=TESTING):
 	if DOCKER:
 		app.config["SQLALCHEMY_DATABASE_URI"]=(
 		"sqlite:////database/databae.sqlite")
-	#print(app.config['SECRET_KEY'],flush=True)
+	print(SECRET, flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)
