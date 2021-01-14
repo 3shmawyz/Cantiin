@@ -133,22 +133,15 @@ function loginTheUsersIn()
 
 
 
-function diplayResult(color="success",message="")
-{
-  document.getElementById("the_result").innerHTML=
-  '<span style="color:'+color+';">'+message+'</span>';
-}
 
-diplayResult("yellow","Waiting for your input")
+/*
+This variable is about handle response
+It tells JS where the user will be redirected after 
+he the form is filled successfully
+*/
+after_success="/"
 
 
-function handleResponse(response)
-{
-  if (response["success"]==true) 
-  {window.location.href = "/"}
-  else{diplayResult("pink",response["description"]);}
-}
-//handleResponse(response_example);
 </script>
 
 
