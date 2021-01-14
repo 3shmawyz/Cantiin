@@ -25,7 +25,7 @@ container-fluid mx-auto" style="bottom:0px;"
 
 
 
-<div id="list_of_products" class="container-fluid m-0">
+<div id="cards_container" class="container-fluid m-0">
 
 
 
@@ -136,7 +136,7 @@ container-fluid mx-auto" style="bottom:0px;"
     console.log("total_price: "+ total_price);
     console.log("item_id: "+ item_id);
     console.log("____")*/
-    var d1 = document.getElementById('list_of_products');
+    var d1 = document.getElementById('cards_container');
   d1.insertAdjacentHTML('beforeend', 
     create_list_text(item_name =item_name 
       ,unit_price =unit_price, amount = amount,
@@ -271,7 +271,7 @@ var data_example = {
 console.log(data_example["orders"])
 
 function build_orders_cards(input_array){
-  document.getElementById('list_of_products').innerHTML="";
+  document.getElementById('cards_container').innerHTML="";
   for (order_index in input_array["orders"]) {
     var order = input_array["orders"][order_index];
     //console.log( product );
