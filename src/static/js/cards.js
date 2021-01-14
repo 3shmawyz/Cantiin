@@ -127,6 +127,26 @@ function create_cart_card(input_order)
 
 
 
+/*
+Inputs:
+  - input_card_html: 
+    The HTML of the card to be added
+    Created from a function like:
+    create_cart_card, create_manage_product_card, or home_product_card
+Function: 
+  - This function will add a new card to the cards_container nside the HTML of the page
+    Example pages: cart.html, index.html and manage_products.html
+Output:
+  - There is no return value
+
+*/
+
+function add_card_to_cards_container(input_card_html)
+{
+  var d1 = document.getElementById('cards_container');
+  d1.insertAdjacentHTML('beforeend', input_card_html);
+}
+
 
 
 
