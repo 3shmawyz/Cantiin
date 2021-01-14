@@ -128,7 +128,7 @@ Youtube: Requirements.txt file for Python Projects | Install python dependencies
 ## Running the project (On Local Host): ##
 In git bash, run this command:
 ```bash
-python app.py
+python cantiin.py
 ```
 Now, you can in your browser, in the address bar, type this link: 
 <a href="http://127.0.0.1:5000/" target="_blank">
@@ -173,5 +173,5 @@ python test.py
 ## Running the project (For Production): ##
 In git bash, run this command:
 ```bash
-python cantiin.py
+python application.py
 ``` 

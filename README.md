@@ -20,14 +20,14 @@ In this link on Github, You can see how to get
 cantiin up and running.  
 <a 
 href="https://github.com/OmarThinks/Cantiin/tree/master/src"
-target="_blank">Github: Ruunning Cantiin</a>
+target="_blank">Github: Ruuning Cantiin</a>
 
 
 ## Using Docker : ##
 In this link on Github, You can see how to use cantiin and docker.  
 <a 
 href="https://github.com/OmarThinks/Cantiin/tree/master/docker.md"
-target="_blank">Github: Ruunning Cantiin With Docker</a>
+target="_blank">Github: Running Cantiin With Docker</a>
 
 
 
