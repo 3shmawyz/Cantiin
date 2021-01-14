@@ -130,6 +130,60 @@ function create_manage_product_card(input_product)
 
 
 
+/*
+Example input:
+
+{
+  "amount": 1,
+  "id": 1,
+  "product": {
+      "id": 1,
+      "in_stock": true,
+      "name": "Labtop",
+      "price": 300.0,
+      "seller_id": 1
+  },
+  "total_cost": 300.0,
+  "user_id": 1
+}
+
+*/
+
+
+function create_cart_card(input_order)
+{
+
+  product_name=input_order["product"]["name"];
+  product_price = input_order["product"]["price"];
+
+  amount=input_order["amount"]
+  total_cost=input_order["total_cost"]
+  order_id=input_order["id"]
+  return '<div class="card mb-4" style="">'+
+  '  <div class="card-body">'+
+  '    <h5 class="card-title"'+ 
+  '    style="font-weight: bold; '+
+        'font-size: 150%;">'+product_name+'</h5>'+
+  '    <p class="card-text">Unit Price :'+
+  '       <b>'+product_price+'</b></p>'+
+  '    <p class="card-text">Amount (Number of units orders) :'+
+  '       <b>'+amount+'</b></p>'+
+  '    <div class="d-flex">'+
+  '      <span color: black;">'+
+  '        Total Price :<b>'+total_cost+'</b>'+
+  '      </span>'   +   
+  '      <a target="_blank" '+
+  '       class="ml-auto card_button btn btn-outline-danger"'+ 
+  '      style="font-weight: bold;font-size: 150%"'+
+  '      data-toggle="modal" data-target="#exampleModal"'+
+  '      onclick="remove_order_from_cart('+order_id+')" '+
+  '      >Remove From Cart'+
+  '      </a> '+
+  '    </div>'+
+  '  </div>'+
+  '</div>'
+}
+
 
 
 
