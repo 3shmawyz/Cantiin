@@ -155,3 +155,32 @@ function add_card_to_cards_container(input_card_html)
 
 
 
+
+
+
+
+
+
+function build_home_cards(input_array)
+{
+  document.getElementById('cards_container').innerHTML="";
+  for (product_index in input_array["products"])
+  {
+    var product = input_array["products"][product_index];
+    add_card_to_cards_container(home_product_card(product));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
