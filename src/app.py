@@ -20,6 +20,12 @@ try:
 	from __init__ import *
 except:
 	from src import *
+
+
+if "SECRET" in os.environ:
+	SECRET = os.environ["SECRET"]
+
+
 """
 try:
 	from .auth import *
@@ -73,20 +79,18 @@ class config_test:
 
 def create_app(DOCKER=False,testing=TESTING):
 	# create and configure the app
-	global SECRET
+	SECRET
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	if testing:
 		app.config.from_object(config_test)
 	else:
 		app.config.from_object(config)
-	print(DOCKER)
+	#print(DOCKER)
 	if DOCKER:
 		app.config["SQLALCHEMY_DATABASE_URI"]=(
-		"sqlite:////database/database.sqlite")
-		SECRET = os.environ["SECRET"]
-
-	print(SECRET, flush=True)
+		"sqlite:////database//database.sqlite")
+	#print(SECRET, flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
 	db.init_app(app)

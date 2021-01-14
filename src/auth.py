@@ -8,6 +8,7 @@ from urllib.request import urlopen
 #from functions import *
 #from app import *
 from datetime import timedelta,date,datetime,time
+import os
 import sys
 import jwt
 import base64
@@ -19,6 +20,9 @@ except:
     from src import *
 
 
+
+if "SECRET" in os.environ:
+    SECRET = os.environ["SECRET"]
 """
 Inputs:
     - payload:  Type must be dictionary
