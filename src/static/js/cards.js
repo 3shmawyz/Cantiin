@@ -169,6 +169,18 @@ Output:
 */
 
 
+/*
+
+var data_example = {
+  "products": 
+  [
+    {"id": 1, "in_stock": true, "name":"Labtop", "price": 300.0, "seller_id": 1},
+  ],
+  "success": true
+}
+*/
+
+
 function build_home_cards(input_array)
 {
   document.getElementById('cards_container').innerHTML="";
