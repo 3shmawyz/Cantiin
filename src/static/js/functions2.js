@@ -1,44 +1,22 @@
 
-function changePageHeaderForUser()
+
+/*These functions are related to the pages with forms
+Like: add_product.html, edit_product.html, login.html, signup.html
+
+These are about handling the inputs of the form.
+To connect to the "Result:" in the frontend
+*/
+
+
+function diplayResult(color="success",message="")
 {
-  document.getElementById("right_top_header_section").innerHTML=
-  '     <a href="/manage-products">'+
-  '      <button type="button" '+
-  '         class="btn btn-success mb-0 mr-2"'+
-  '          style="font-weight: bold;font-size: 150%;">'+
-  '            My Products'+
-  '      </button>'+
-  '     </a>'+
-  '     <a href="/cart">'+
-  '      <button type="button" '+
-  '         class="btn btn-success mb-0 mr-2"'+
-  '          style="font-weight: bold;font-size: 150%;">'+
-  '            My Cart'+
-  '      </button>'+
-  '     </a>'+
-  '      <button type="button" '+
-  '         class="btn btn-outline-danger mb-0 mr-2"'+
-  '          style="font-weight: bold;font-size: 150%;"'+
-  '          onclick="signTheUserOut()">'+
-  '            Sign Out'+
-  '      </button>';
+  document.getElementById("the_result").innerHTML=
+  '<span style="color:'+color+';">'+message+'</span>';
 }
-
-
-function changeHeaderIfYouSHould()
+diplayResult("yellow","Waiting for your input")
+function handleResponse(response)
 {
-  who().then(function(data, textStatus, xhr) {
-        if (xhr.status==200) {changePageHeaderForUser()}});
+  if (response["success"]==true) 
+  {window.location.href = after_success}
+  else{diplayResult("pink",response["description"]);}
 }
-
-function signTheUserOut()
-{
-  logout_users().then(
-    function(response){
-    window.location.href="/";}
-    );
-}
-
-changeHeaderIfYouSHould();
-
-
