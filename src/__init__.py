@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 EXPIRATION_AFTER= timedelta(days=7)
-SECRET=str(secrets.token_urlsafe(5000))
+SECRET="abc"
 db = SQLAlchemy()
 
 try:
