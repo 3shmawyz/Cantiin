@@ -73,15 +73,19 @@ class config_test:
 
 def create_app(DOCKER=False,testing=TESTING):
 	# create and configure the app
+	global SECRET
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	if testing:
 		app.config.from_object(config_test)
 	else:
 		app.config.from_object(config)
+	print(DOCKER)
 	if DOCKER:
 		app.config["SQLALCHEMY_DATABASE_URI"]=(
 		"sqlite:////database/databae.sqlite")
+		SECRET = os.environ["SECRET"]
+
 	print(SECRET, flush=True)
 	db.app = app
 	migrate = Migrate(app,db)
