@@ -172,6 +172,17 @@ function build_home_cards(input_array)
 }
 
 
+function build_manage_product_cards(input_array)
+{
+  document.getElementById('cards_container').innerHTML="";
+  for (product_index in input_array["products"])
+  {
+    var product = input_array["products"][product_index];
+    add_card_to_cards_container(create_manage_product_card(product));
+  }
+}
+
+
 
 
 
