@@ -1,6 +1,14 @@
 # Cantiin #
 
 
+
+
+## About ##
+- This is the an **E-Commerce MIT open source project**
+- It is a website
+- E-Commerce
+
+
 ## Viewing Cantiin.com : ##
 <a href="https://www.cantiin.com/" target="_blank">
 https://www.Cantiin.com</a>
@@ -101,13 +109,8 @@ You can also edit this code, distribute it, redistribute it without
 permission or attribution.
 
 
-## About ##
-- This is the an **E-Commerce Website**.
 
 
-
-## Current Stauts ##
-This is the second release of cantiin, **v1.1.2**
 
 ## What is next? ## 
 
