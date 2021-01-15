@@ -108,87 +108,6 @@ container-fluid mx-auto" style="bottom:0px;"
 </div>
 
 
-
-
-
-
-
-<script type="text/javascript">
-  
-  /*
-  add_element_to_list(item_name ="Labtop",
-    unit_price=500,amount = 40, total_price= 70000,item_id = 1);
-  add_element_to_list(item_name ="CPU",
-    unit_price=5,amount = 5,total_price= 80000, item_id = 2);
-  add_element_to_list(item_name ="Mobile",
-    unit_price=50,amount = 7, total_price= 90000, item_id = 3);
-  */
-
-  
-
-  function add_element_to_list(
-    item_name = "Title",unit_price =5,amount = 1,
-     total_price = 0, item_id = 1)
-  {
-
-    /*console.log("item_name: "+ item_name);
-    console.log("unit_price: "+ unit_price);
-    console.log("total_price: "+ total_price);
-    console.log("item_id: "+ item_id);
-    console.log("____")*/
-    var d1 = document.getElementById('cards_container');
-  d1.insertAdjacentHTML('beforeend', 
-    create_list_text(item_name =item_name 
-      ,unit_price =unit_price, amount = amount,
-       total_price=total_price, item_id =item_id ));
-  }
-
-
-  function create_list_text(item_name = "Title",
-   unit_price = 5, amount = 1, total_price = 0, item_id = 1)
-  {
-    /*console.log("item_name: "+ item_name);
-    console.log("unit_price: "+ unit_price);
-    console.log("total_price: "+ total_price);
-    console.log("item_id: "+ item_id);
-    console.log("__++++++++++++++++++__")*/
-
-    return '<div class="card mb-4" style="">'+
-'  <div class="card-body">'+
-'    <h5 class="card-title"'+ 
-'    style="font-weight: bold; '+
-      'font-size: 150%;">'+item_name+'</h5>'+
-'    <p class="card-text">Unit Price :'+
-'       <b>'+unit_price+'</b></p>'+
-'    <p class="card-text">Amount (Number of units orders) :'+
-'       <b>'+amount+'</b></p>'+
-
-
-'    <div class="d-flex">'+
-'      <span color: black;">'+
-'        Total Price :<b>'+total_price+'</b>'+
-'      </span>'   +   
-
-'      <a target="_blank" '+
-'       class="ml-auto card_button btn btn-outline-danger"'+ 
-'      style="font-weight: bold;font-size: 150%"'+
-'      data-toggle="modal" data-target="#exampleModal"'+
-'      onclick="remove_order_from_cart('+item_id+')" '+
-'      >Remove From Cart'+
-'      </a> '+
-'    </div>'+
-'  </div>'+
-'</div>'
-
-  }
-
-
-
-
-</script>
-
-
-
 <script type="text/javascript">
   /*Handling delete*/
   var to_be_removed_from_cart ;
@@ -210,79 +129,11 @@ container-fluid mx-auto" style="bottom:0px;"
     delete_orders(to_be_removed_from_cart).
     then(function(value){location.reload()});
   }
+</script>
 
-
-
-
-
-get_orders().then(function(data){console.log(data);})
-
-
-
-get_orders().then(function(value) {build_cart_cards(value);});
-
-var data_example = {
-    "orders": [
-        {
-            "amount": 1,
-            "id": 1,
-            "product": {
-                "id": 1,
-                "in_stock": true,
-                "name": "Labtop",
-                "price": 300.0,
-                "seller_id": 1
-            },
-            "total_cost": 300.0,
-            "user_id": 1
-        },
-        {
-            "amount": 2,
-            "id": 4,
-            "product": {
-                "id": 1,
-                "in_stock": true,
-                "name": "Labtop",
-                "price": 300.0,
-                "seller_id": 1
-            },
-            "total_cost": 600.0,
-            "user_id": 1
-        },
-        {
-            "amount": 20,
-            "id": 7,
-            "product": {
-                "id": 4,
-                "in_stock": false,
-                "name": "Table",
-                "price": 150.0,
-                "seller_id": 1
-            },
-            "total_cost": 3000.0,
-            "user_id": 1
-        }
-    ],
-    "success": true
-}
-
-
-console.log(data_example["orders"])
-
-function build_orders_cards(input_array){
-  document.getElementById('cards_container').innerHTML="";
-  for (order_index in input_array["orders"]) {
-    var order = input_array["orders"][order_index];
-    //console.log( product );
-    add_element_to_list(
-      item_name = order["product"]["name"],
-      unit_price =order["product"]["price"], 
-      amount =order["amount"], 
-      total_price =order["total_cost"], 
-      item_id =order["id"]);
-  }
-}
-
+<script type="text/javascript">
+  //get_orders().then(function(data){console.log(data);})
+  get_orders().then(function(value) {build_cart_cards(value);});
 
 </script>
 
