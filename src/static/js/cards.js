@@ -204,9 +204,9 @@ function build_manage_product_cards(input_array)
 function build_cart_cards(input_array)
 {
   document.getElementById('cards_container').innerHTML="";
-  for (product_index in input_array["products"])
+  for (product_index in input_array["orders"])
   {
-    var product = input_array["products"][product_index];
+    var product = input_array["orders"][product_index];
     add_card_to_cards_container(create_cart_card(product));
   }
 }
