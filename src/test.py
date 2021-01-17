@@ -111,7 +111,7 @@ class CantiinTestCase(unittest.TestCase):
 		users = User.query.all()
 
 		self.assertEqual(len(users),1)
-		print("Test a_2_1: user insert")
+		print("Test a_1_1: user insert")
 
 
 	def test_a_1_002_user_update(self):
@@ -121,7 +121,7 @@ class CantiinTestCase(unittest.TestCase):
 		user_1 = User.query.get(1)
 
 		self.assertEqual(user_1.name,"modified")
-		print("Test a_2_2: user update")
+		print("Test a_1_2: user update")
 
 
 
@@ -131,14 +131,14 @@ class CantiinTestCase(unittest.TestCase):
 		users = User.query.all()
 
 		self.assertEqual(len(users),0)
-		print("Test a_2_3: user delete")
+		print("Test a_1_3: user delete")
 
 	def test_a_1_004_populate(self):
 		populate_tables()
 		users = User.query.all()
 
 		self.assertEqual(len(users),6)
-		print("Test a_2_4: Populate Tables")
+		print("Test a_1_4: Populate Tables")
 
 
 	def test_a_1_005_user_values(self):
@@ -147,7 +147,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(user.id,1)
 		self.assertEqual(user.username,"abc")
 		self.assertEqual(user.password,"123456789")
-		print("Test a_2_5: user values")
+		print("Test a_1_5: user values")
 
 
 	def test_a_1_006_user_insert_wrong(self):
@@ -167,7 +167,7 @@ class CantiinTestCase(unittest.TestCase):
 
 		self.assertEqual(old_records_number,
 			new_records_number)
-		print("Test a_2_6: user insert with missing"+
+		print("Test a_1_6: user insert with missing"+
 		 "required parameters")
 
 
@@ -190,7 +190,7 @@ class CantiinTestCase(unittest.TestCase):
 
 		self.assertEqual(old_records_number,
 			new_records_number)
-		print("Test a_2_7: user delete mistake, non-existent"+
+		print("Test a_1_7: user delete mistake, non-existent"+
 		 "user id")
 
 
@@ -205,7 +205,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(produc["username"],"abc")
 		self.assertEqual(type(produc["username"]),str)
 
-		print("Test a_2_8: user simple")
+		print("Test a_1_8: user simple")
 
 	def test_a_1_009_user_relationship_order(self):
 		user = User.query.get(1)
@@ -215,7 +215,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(2 in orders_ids,False)
 		self.assertEqual(3 in orders_ids,False)
 		self.assertEqual(4 in orders_ids,True)
-		print("Test a_2_9:user relationship_order")
+		print("Test a_1_9:user relationship_order")
 
 
 
@@ -594,7 +594,6 @@ class CantiinTestCase(unittest.TestCase):
 		image1 = Image(seller_id=20, name=5, formatting=5)
 		image1.insert()
 		images = Image.query.all()
-
 		self.assertEqual(len(images),16)
 		print("Test a_4_1: Order insert")
 
