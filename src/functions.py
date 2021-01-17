@@ -404,35 +404,35 @@ def populate_tables():
     images = list() 
     #id, user, product, amount
     images.append(Image(seller_id="1", name="Labtop", 
-        formatting="png",stored_name="1"))
+        formatting="png"))
     images.append(Image(seller_id="2", name="Mobile", 
-        formatting="jpg",stored_name="2"))
+        formatting="jpg"))
     images.append(Image(seller_id="3", name="Lobtop", 
-        formatting="png",stored_name="3"))
+        formatting="png"))
     images.append(Image(seller_id="4", name="Mobile", 
-        formatting="jpg",stored_name="4687"))
+        formatting="jpg"))
     images.append(Image(seller_id="5", name="Keyboard", 
-        formatting="png",stored_name="4671221"))
+        formatting="png"))
     images.append(Image(seller_id="6", name="Mouse", 
-        formatting="png",stored_name="5"))
+        formatting="png"))
     images.append(Image(seller_id="1", name="USB", 
-        formatting="png",stored_name="6"))
+        formatting="png"))
     images.append(Image(seller_id="2", name="Notebook", 
-        formatting="png",stored_name="7"))
+        formatting="png"))
     images.append(Image(seller_id="3", name="Spoon", 
-        formatting="jpg",stored_name="8"))
+        formatting="jpg"))
     images.append(Image(seller_id="4", name="Fork", 
-        formatting="png",stored_name="9"))
+        formatting="png"))
     images.append(Image(seller_id="5", name="Camera", 
-        formatting="png",stored_name="10"))
+        formatting="png"))
     images.append(Image(seller_id="6", name="Radio", 
-        formatting="jpg",stored_name="11"))
+        formatting="jpg"))
     images.append(Image(seller_id="1", name="Pen", 
-        formatting="png",stored_name="12"))
+        formatting="png"))
     images.append(Image(seller_id="2", name="Back bag", 
-        formatting="jpg",stored_name="13"))
+        formatting="jpg"))
     images.append(Image(seller_id="3", name="Wireless Headphones", 
-        formatting="png",stored_name="14"))
+        formatting="png"))
 
     db.session.add_all(images)
     db.session.commit()
