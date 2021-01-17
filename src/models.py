@@ -345,9 +345,11 @@ class Image(db.Model):
 
 
 
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    def __init__(self, seller_id, name,formatting,stored_name):
+        self.seller_id = seller_id
+        self.name = name
+        self.formatting = formatting
+        self.stored_name = stored_name
     '''
     insert()
         inserts a new model into a database
