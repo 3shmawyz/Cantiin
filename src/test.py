@@ -38,6 +38,7 @@ a:models
 a_01=user
 a_02_=product
 a_03_=order
+a_04_=image
 
 
 b:validation Functions
@@ -530,6 +531,195 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test a_3_11: Order get_dict")
 
 	def test_a_3_012_order_relationship_product_delete(self):
+		p_before=len(Product.query.all())
+		#Creating the product to be deleted
+		product_del=Product(name="Spoon",price="5",
+			in_stock=True,seller_id=1)
+		product_del.insert()
+		p_del_id=product_del.id
+		p_after=len(Product.query.all())
+		self.assertEqual(p_after,p_before+1)
+
+		o_before = len(Order.query.all())
+		#Creating orders to be deleted
+		o_del_1=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_2=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_3=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_4=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_del_1.insert();o_del_2.insert();
+		o_del_3.insert();o_del_4.insert();
+		self.assertEqual(len(Order.query.all()),o_before+4)
+
+		#Making the delete action
+		product_del.delete()
+		o_after = len(Order.query.all())
+
+		#Testing values
+		self.assertEqual(len(Product.query.all()),p_before)
+		self.assertEqual(o_before,o_after)
+		self.assertEqual(len(Order.query.filter(
+			Order.product_id==p_del_id
+        ).all()),0)
+
+		print("Test a_2_12:order relationship_product_delete")
+
+
+
+
+
+
+	def test_a_4_000_order_intro(self):
+		print("")
+		print("")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("_+++++++++++++++++++ Models : 4 ) Image ++_")
+		print("_+++++++++++++++++++++++++++++++++_")
+		print("")
+		print("")
+
+
+
+
+
+	def test_a_4_001_odrer_insert(self):
+		order1 = Order(user_id=20, product_id=5, amount=5)
+		order1.insert()
+		orders = Order.query.all()
+
+		self.assertEqual(len(orders),9)
+		print("Test a_4_1: Order insert")
+
+	def test_a_4_002_odrer_insert_wrong_1(self):
+		
+		before = len(Order.query.all())
+		order1 = Order(user_id=20, product_id=5, amount=0)
+		order1.insert()
+		after = len(Order.query.all())
+		self.assertEqual(after,before)
+		print("Test a_4_2: Order insert Wrong 1: amount=0")
+
+	def test_a_4_003_odrer_insert_wrong_2(self):
+		before = len(Order.query.all())
+		try:
+			order1 = Order()
+			order1.insert()
+			self.assertEqual(True,False)
+		except:
+			self.assertEqual(True,True)
+		after = len(Order.query.all())
+
+		self.assertEqual(before,after)
+		print("Test a_4_3: Order insert Wrong 2: missing required"+
+			" parameters")
+
+
+	def test_a_4_004_order_update(self):
+		order1 = Order.query.get(1)
+		order1.amount = 2
+		order1.update()
+		order_1 = Order.query.get(1)
+
+		self.assertEqual(order_1.amount,2)
+		print("Test a_4_4: Order update")
+
+	def test_a_4_005_order_update_wrong(self):
+		before = len(Order.query.all())
+		order1 = Order.query.get(8)
+		order1.amount = 0
+		order1.update()
+		after = len(Order.query.all())
+
+		self.assertEqual(before,after+1)
+		print("Test a_4_5: Order update wrong: amount=0")
+
+
+
+	def test_a_4_006_order_delete(self):
+		before = len(Order.query.all())
+		order1 = Order.query.get(7)
+		order1.delete()
+		after = len(Order.query.all())
+
+		self.assertEqual(before,after+1)
+		print("Test a_4_6: Order delete")
+
+
+	def test_a_4_007_order_values(self):
+		order = Order.query.get(6)
+
+		self.assertEqual(order.id,6)
+		self.assertEqual(order.user_id,2)
+		self.assertEqual(order.product_id,3)
+		self.assertEqual(order.amount,5)
+		self.assertEqual(order.total_cost,0)
+		print("Test a_4_7: Order values")
+
+
+
+
+	def test_a_4_008_order_delete_wrong(self):
+		before = len(Order.query.all())
+		try:
+			#This code will not be executed
+			#There is no order with the number 700000
+			order = Product.query.get(700000)
+			order.delete()
+			self.assertEqual(True,False)
+
+		except:
+			self.assertEqual(True,True)
+		
+		after = len(Order.query.all())
+
+		self.assertEqual(before,after)
+		print("Test a_4_8: order delete mistake, non-existent"+
+		 "order id")
+
+
+
+
+	def test_a_4_009_order_simple(self):
+		order = Order.query.get(6).simple()
+		#print(produc)
+
+		self.assertEqual(order["id"],6)
+		self.assertEqual(type(order["id"]),int)
+		self.assertEqual(order["user_id"],2)
+		self.assertEqual(type(order["user_id"]),int)
+		self.assertEqual(order["product_id"],3)
+		self.assertEqual(type(order["product_id"]),int)
+		self.assertEqual(order["amount"],5)
+		self.assertEqual(type(order["amount"]),int)
+
+
+		print("Test a_4_9: Order simple")
+
+	def test_a_4_010_order_relationship_product(self):
+		order = Order.query.get(6)
+		product=order.product
+		self.assertEqual(product,Product.query.get(3))
+		print("Test a_2_10:order relationship_product")
+
+	def test_a_4_011_order_get_dict(self):
+		order = Order.query.get(6).get_dict()
+		#print(produc)
+
+		self.assertEqual(order["id"],6)
+		self.assertEqual(type(order["id"]),int)
+		self.assertEqual(order["user_id"],2)
+		self.assertEqual(type(order["user_id"]),int)
+		self.assertEqual(order["amount"],5)
+		self.assertEqual(type(order["amount"]),int)
+
+		self.assertEqual(order["product"]["id"],3)
+		self.assertEqual(order["product"]["name"],"Candy")
+		self.assertEqual(order["product"]["price"],0.5)
+		self.assertEqual(order["product"]["in_stock"],True)
+		self.assertEqual(order["product"]["seller_id"],3)
+
+		print("Test a_4_11: Order get_dict")
+
+	def test_a_4_012_order_relationship_product_delete(self):
 		p_before=len(Product.query.all())
 		#Creating the product to be deleted
 		product_del=Product(name="Spoon",price="5",
