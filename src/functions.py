@@ -405,16 +405,34 @@ def populate_tables():
     #id, user, product, amount
     images.append(Image(seller_id="1", name="Labtop", 
         formatting="png",stored_name="1"))
-    images.append(Image(seller_id="1", name="Mobile", 
-        formatting="png",stored_name="1"))
-    images.append(Image(seller_id="1", name="labtop", 
-        formatting="png",stored_name="1"))
-    images.append(Image(seller_id="1", name="labtop", 
-        formatting="png",stored_name="1"))
-    images.append(Image(seller_id="1", name="labtop", 
-        formatting="png",stored_name="1"))
-    images.append(Image(seller_id="1", name="labtop", 
-        formatting="png",stored_name="1"))
+    images.append(Image(seller_id="2", name="Mobile", 
+        formatting="jpg",stored_name="2"))
+    images.append(Image(seller_id="3", name="Lobtop", 
+        formatting="png",stored_name="3"))
+    images.append(Image(seller_id="4", name="Mobile", 
+        formatting="jpg",stored_name="4687"))
+    images.append(Image(seller_id="5", name="Keyboard", 
+        formatting="png",stored_name="4671221"))
+    images.append(Image(seller_id="6", name="Mouse", 
+        formatting="png",stored_name="5"))
+    images.append(Image(seller_id="1", name="USB", 
+        formatting="png",stored_name="6"))
+    images.append(Image(seller_id="2", name="Notebook", 
+        formatting="png",stored_name="7"))
+    images.append(Image(seller_id="3", name="Spoon", 
+        formatting="jpg",stored_name="8"))
+    images.append(Image(seller_id="4", name="Fork", 
+        formatting="png",stored_name="9"))
+    images.append(Image(seller_id="5", name="Camera", 
+        formatting="png",stored_name="10"))
+    images.append(Image(seller_id="6", name="Radio", 
+        formatting="jpg",stored_name="11"))
+    images.append(Image(seller_id="1", name="Pen", 
+        formatting="png",stored_name="12"))
+    images.append(Image(seller_id="2", name="Back bag", 
+        formatting="jpg",stored_name="13"))
+    images.append(Image(seller_id="3", name="Wireless Headphones", 
+        formatting="png",stored_name="14"))
 
     db.session.add_all(images)
     db.session.commit()
