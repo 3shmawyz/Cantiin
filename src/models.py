@@ -309,3 +309,107 @@ class Order(db.Model):
 
 
 
+
+
+
+
+
+'''
+User
+a persistent product entity, extends the base SQLAlchemy Model
+id,username,password
+
+Relationships:
+products,orders
+
+'''
+class Image(db.Model):
+    # Autoincrementing, unique primary key
+    id = Column(Integer(), primary_key=True)
+    # String username
+    username = Column(String(), unique=True, nullable=False)
+    # username could be like "fish"
+    # username has to be unique
+    # not allowing several users to have the same username
+    password =  Column(String(), unique=False, nullable=False)
+    # Password is a string
+    # Example: "12345", "abc"
+    # it doesn't have to be unique
+
+    products = db.relationship("Product",backref="seller")
+    orders = db.relationship("Order",backref="buyer")
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+    '''
+    insert()
+        inserts a new model into a database
+        the model must have a unique username
+        the model must have a unique id or null id
+
+    '''
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+    '''
+    delete()
+        deletes a new model into a database
+        the model must exist in the database
+    '''
+    def delete(self):
+        the_orders=self.orders
+        for ord in the_orders:
+            ord.delete()
+        the_products=self.products
+        for pro in the_products:
+            pro.delete()
+        db.session.delete(self)
+        db.session.commit()
+    '''
+    update()
+        updates a new model into a database
+        the model must exist in the database
+    '''
+    def update(self):
+        db.session.commit()
+
+    def __repr__(self):
+        return json.dumps(
+        {
+            'id': self.id,
+            'username': self.username
+        })
+    def simple(self):
+        return {
+            'id': self.id,
+            'username': self.username
+        }
+
+    def get_dict(self):
+        return self.simple()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
