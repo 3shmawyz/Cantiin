@@ -98,27 +98,51 @@ Youtube: Git Bash, Bash Basics</a>
 
 ## Creating virtual environment: ##
 In git bash, run these commands:
+
+<b>
+
 ```bash
 pip install virtualenv
 ```
+
+</b>
+
 Create a folder called **env** inside **src**  
 Then run these commands: 
+
+<b>
+
 ```bash
 virtualenv env --python=3.7.9
 ```
+
+</b>
+
 The previous command will create the virtual environment 
 in the folder with the version of 3.7.9
+
+<b>
+
 ```bash
 source env/Scripts/activate
 ```
+
+</b>
+
 The previous code will run the virtual environment.
 
 
 ## Installing requirements : ##
 After you have done cd into src directory, now run this command:  
+
+<b>
+
 ```bash
 pip install -r requirements.txt
 ```
+
+</b>
+
 For More info, i recommend watchng this video on Youtube:  
 <a href="https://www.youtube.com/watch?v=empqyr7vZ8o"
 target="_blank">
@@ -127,14 +151,22 @@ Youtube: Requirements.txt file for Python Projects | Install python dependencies
 
 ## Running the project (On Local Host): ##
 In git bash, run this command:
+
+<b>
+
 ```bash
 python cantiin.py
 ```
+
+</b>
+
 Now, you can in your browser, in the address bar, type this link: 
 <a href="http://127.0.0.1:5000/" target="_blank">
+
 ```url
 http://127.0.0.1:5000/
 ```
+
 </a>
 Then press Enter, Now you have it running on your browser.  
 You turn the server off by pressing: 
@@ -147,9 +179,15 @@ You turn the server off by pressing:
 ## Postman testing : ##
 To Test API Endpoints  
 In bash run this command: 
+
+<b>
+
 ```bash
-python app.py
+python cantiin.py
 ``` 
+
+</b>
+
 and then run the postman collection.  
 For info about how to run postman collections, 
 I recommend watching this Youtube video:  
@@ -164,14 +202,35 @@ Youtube: The Basics of Using Postman for API Testing</a>
 ## Unit Testing : ##
 To test the SQLAlchemy models, and the functions.  
 In bash run this command: 
+
+<b>
+
 ```bash
-python test.py
+python unit_tests.py
 ``` 
 
-
+</b>
 
 ## Running the project (For Production): ##
 In git bash, run this command:
+
+<b>
+
 ```bash
 python application.py
 ``` 
+
+</b>
+
+The best way to run the application for production is like that:
+<b> 
+
+```bash
+export FLASK_APP=app.py
+export FLASK_RUN_HOST=127.0.0.1
+export FLASK_ENV=development
+export FLASK_DEBUG=0
+flask run
+``` 
+
+</b>

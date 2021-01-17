@@ -10,7 +10,7 @@ src/test.py
 
 How to use this file?
 
-python unit_test.py
+python unit_tests.py
 
 """
 
