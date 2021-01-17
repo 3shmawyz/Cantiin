@@ -8,13 +8,22 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func 
 
 
+
+try:
+    from __init__ import *
+except:
+    from src import *
+
+
+
+"""
 try:
 	from src import SECRET
 	from src import EXPIRATION_AFTER
 	from src import db
 	from .app import *
 	from .auth import *
-	from .models import (db,Product, Order, User)
+	from .models import (db,Product, Order, User,Image)
 	from .functions import *
 except:
 	from __init__ import *
@@ -22,7 +31,7 @@ except:
 	from auth import *
 	from models import (db,Product, Order, User)
 	from functions import *
-
+"""
 
 from flask_cors import CORS
 from flask_migrate import Migrate 
@@ -586,7 +595,7 @@ class CantiinTestCase(unittest.TestCase):
 		image1.insert()
 		images = Image.query.all()
 
-		self.assertEqual(len(images),9)
+		self.assertEqual(len(images),16)
 		print("Test a_4_1: Order insert")
 
 	def test_a_4_002_odrer_insert_wrong_1(self):
