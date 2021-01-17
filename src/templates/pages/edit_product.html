@@ -183,7 +183,7 @@ function fill_fields(data,id)
 //fill_fields(data_example,5)
 
 
-get_products().then(function(value)
+get_products(in_stock=false).then(function(value)
   {fill_fields(value,id=product_id);});
 
 
