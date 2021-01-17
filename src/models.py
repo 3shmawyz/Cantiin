@@ -317,21 +317,31 @@ class Order(db.Model):
 '''
 User
 a persistent product entity, extends the base SQLAlchemy Model
-id,username,password
+id,seller_id,name,formatting,stored_name
 
-Relationships:
-products,orders
 
 '''
 class Image(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String username
-    username = Column(String(), unique=True, nullable=False)
+    seller_id = Column(Integer(),db.ForeignKey("user.id"),
+     unique=False, nullable=False)
+    #seller_id = Column(Integer(), unique=False, nullable=False)
+    # seller_id
+    # This is the id of the seller user
+    # The user who sells this product
+    # it is an integer
+    # Example: 1, 2 or 3
+    name = Column(String(), unique=True, nullable=False)
     # username could be like "fish"
     # username has to be unique
     # not allowing several users to have the same username
-    password =  Column(String(), unique=False, nullable=False)
+    formatting =  Column(String(), unique=False, nullable=False)
+    # Password is a string
+    # Example: "12345", "abc"
+    # it doesn't have to be unique
+    stored_name =  Column(String(), unique=False, nullable=False)
     # Password is a string
     # Example: "12345", "abc"
     # it doesn't have to be unique
