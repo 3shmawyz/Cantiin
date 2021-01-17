@@ -366,12 +366,6 @@ class Image(db.Model):
         the model must exist in the database
     '''
     def delete(self):
-        the_orders=self.orders
-        for ord in the_orders:
-            ord.delete()
-        the_products=self.products
-        for pro in the_products:
-            pro.delete()
         db.session.delete(self)
         db.session.commit()
     '''
