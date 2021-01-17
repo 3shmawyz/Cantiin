@@ -323,7 +323,7 @@ User
 a persistent product entity, extends the base SQLAlchemy Model
 id,seller_id,name,formatting
 
-
+The image will be stroed with it's id
 '''
 class Image(db.Model):
     # Autoincrementing, unique primary key
