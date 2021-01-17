@@ -8,4 +8,8 @@ A randomly generated text was problematic, because every time the server refresh
 secret will change, and the user will have to login again.
 
 
+### 2. No Open in a new tab
+Some buttons used to make the user open in a new tab.  
+This was a negative user experience.  
+
 
