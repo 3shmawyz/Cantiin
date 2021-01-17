@@ -401,7 +401,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 
-	def test_a_3_001_odrer_insert(self):
+	def test_a_3_001_order_insert(self):
 		order1 = Order(user_id=20, product_id=5, amount=5)
 		order1.insert()
 		orders = Order.query.all()
@@ -409,7 +409,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(len(orders),9)
 		print("Test a_3_1: Order insert")
 
-	def test_a_3_002_odrer_insert_wrong_1(self):
+	def test_a_3_002_order_insert_wrong_1(self):
 		
 		before = len(Order.query.all())
 		order1 = Order(user_id=20, product_id=5, amount=0)
@@ -418,7 +418,7 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(after,before)
 		print("Test a_3_2: Order insert Wrong 1: amount=0")
 
-	def test_a_3_003_odrer_insert_wrong_2(self):
+	def test_a_3_003_order_insert_wrong_2(self):
 		before = len(Order.query.all())
 		try:
 			order1 = Order()
@@ -577,7 +577,7 @@ class CantiinTestCase(unittest.TestCase):
 
 
 
-	def test_a_4_000_order_intro(self):
+	def test_a_4_000_image_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -590,144 +590,143 @@ class CantiinTestCase(unittest.TestCase):
 
 
 
-	def test_a_4_001_odrer_insert(self):
+	def test_a_4_001_image_insert(self):
 		image1 = Image(seller_id=20, name=5, formatting=5)
 		image1.insert()
 		images = Image.query.all()
 		self.assertEqual(len(images),16)
-		print("Test a_4_1: Order insert")
+		print("Test a_4_1: Image insert")
 
-	def test_a_4_002_odrer_insert_wrong_1(self):
-		
-		before = len(Order.query.all())
-		order1 = Order(user_id=20, product_id=5, amount=0)
-		order1.insert()
-		after = len(Order.query.all())
+	def test_a_4_002_image_insert_wrong_1(self):
+		before = len(Image.query.all())
+		image1 = Image(user_id=20, product_id=5, amount=0)
+		image1.insert()
+		after = len(Image.query.all())
 		self.assertEqual(after,before)
-		print("Test a_4_2: Order insert Wrong 1: amount=0")
+		print("Test a_4_2: Image insert Wrong 1: amount=0")
 
-	def test_a_4_003_odrer_insert_wrong_2(self):
-		before = len(Order.query.all())
+	def test_a_4_003_image_insert_wrong_2(self):
+		before = len(Image.query.all())
 		try:
-			order1 = Order()
-			order1.insert()
+			image1 = Image()
+			image1.insert()
 			self.assertEqual(True,False)
 		except:
 			self.assertEqual(True,True)
-		after = len(Order.query.all())
+		after = len(Image.query.all())
 
 		self.assertEqual(before,after)
-		print("Test a_4_3: Order insert Wrong 2: missing required"+
+		print("Test a_4_3: Image insert Wrong 2: missing required"+
 			" parameters")
 
 
-	def test_a_4_004_order_update(self):
-		order1 = Order.query.get(1)
-		order1.amount = 2
-		order1.update()
-		order_1 = Order.query.get(1)
+	def test_a_4_004_image_update(self):
+		image1 = Image.query.get(1)
+		image1.amount = 2
+		image1.update()
+		image_1 = Image.query.get(1)
 
-		self.assertEqual(order_1.amount,2)
-		print("Test a_4_4: Order update")
+		self.assertEqual(image_1.amount,2)
+		print("Test a_4_4: Image update")
 
-	def test_a_4_005_order_update_wrong(self):
-		before = len(Order.query.all())
-		order1 = Order.query.get(8)
-		order1.amount = 0
-		order1.update()
-		after = len(Order.query.all())
-
-		self.assertEqual(before,after+1)
-		print("Test a_4_5: Order update wrong: amount=0")
-
-
-
-	def test_a_4_006_order_delete(self):
-		before = len(Order.query.all())
-		order1 = Order.query.get(7)
-		order1.delete()
-		after = len(Order.query.all())
+	def test_a_4_005_image_update_wrong(self):
+		before = len(Image.query.all())
+		image1 = Image.query.get(8)
+		image1.amount = 0
+		image1.update()
+		after = len(Image.query.all())
 
 		self.assertEqual(before,after+1)
-		print("Test a_4_6: Order delete")
-
-
-	def test_a_4_007_order_values(self):
-		order = Order.query.get(6)
-
-		self.assertEqual(order.id,6)
-		self.assertEqual(order.user_id,2)
-		self.assertEqual(order.product_id,3)
-		self.assertEqual(order.amount,5)
-		self.assertEqual(order.total_cost,0)
-		print("Test a_4_7: Order values")
+		print("Test a_4_5: Image update wrong: amount=0")
 
 
 
+	def test_a_4_006_image_delete(self):
+		before = len(Image.query.all())
+		image1 = Image.query.get(7)
+		image1.delete()
+		after = len(Image.query.all())
 
-	def test_a_4_008_order_delete_wrong(self):
-		before = len(Order.query.all())
+		self.assertEqual(before,after+1)
+		print("Test a_4_6: Image delete")
+
+
+	def test_a_4_007_image_values(self):
+		image = Image.query.get(6)
+
+		self.assertEqual(image.id,6)
+		self.assertEqual(image.user_id,2)
+		self.assertEqual(image.product_id,3)
+		self.assertEqual(image.amount,5)
+		self.assertEqual(image.total_cost,0)
+		print("Test a_4_7: Image values")
+
+
+
+
+	def test_a_4_008_image_delete_wrong(self):
+		before = len(Image.query.all())
 		try:
 			#This code will not be executed
-			#There is no order with the number 700000
-			order = Product.query.get(700000)
-			order.delete()
+			#There is no image with the number 700000
+			image = Product.query.get(700000)
+			image.delete()
 			self.assertEqual(True,False)
 
 		except:
 			self.assertEqual(True,True)
 		
-		after = len(Order.query.all())
+		after = len(Image.query.all())
 
 		self.assertEqual(before,after)
-		print("Test a_4_8: order delete mistake, non-existent"+
-		 "order id")
+		print("Test a_4_8: image delete mistake, non-existent"+
+		 "image id")
 
 
 
 
-	def test_a_4_009_order_simple(self):
-		order = Order.query.get(6).simple()
+	def test_a_4_009_image_simple(self):
+		image = Image.query.get(6).simple()
 		#print(produc)
 
-		self.assertEqual(order["id"],6)
-		self.assertEqual(type(order["id"]),int)
-		self.assertEqual(order["user_id"],2)
-		self.assertEqual(type(order["user_id"]),int)
-		self.assertEqual(order["product_id"],3)
-		self.assertEqual(type(order["product_id"]),int)
-		self.assertEqual(order["amount"],5)
-		self.assertEqual(type(order["amount"]),int)
+		self.assertEqual(image["id"],6)
+		self.assertEqual(type(image["id"]),int)
+		self.assertEqual(image["user_id"],2)
+		self.assertEqual(type(image["user_id"]),int)
+		self.assertEqual(image["product_id"],3)
+		self.assertEqual(type(image["product_id"]),int)
+		self.assertEqual(image["amount"],5)
+		self.assertEqual(type(image["amount"]),int)
 
 
-		print("Test a_4_9: Order simple")
+		print("Test a_4_9: Image simple")
 
-	def test_a_4_010_order_relationship_product(self):
-		order = Order.query.get(6)
-		product=order.product
+	def test_a_4_010_image_relationship_product(self):
+		image = Image.query.get(6)
+		product=image.product
 		self.assertEqual(product,Product.query.get(3))
-		print("Test a_2_10:order relationship_product")
+		print("Test a_2_10:image relationship_product")
 
-	def test_a_4_011_order_get_dict(self):
-		order = Order.query.get(6).get_dict()
+	def test_a_4_011_image_get_dict(self):
+		image = Image.query.get(6).get_dict()
 		#print(produc)
 
-		self.assertEqual(order["id"],6)
-		self.assertEqual(type(order["id"]),int)
-		self.assertEqual(order["user_id"],2)
-		self.assertEqual(type(order["user_id"]),int)
-		self.assertEqual(order["amount"],5)
-		self.assertEqual(type(order["amount"]),int)
+		self.assertEqual(image["id"],6)
+		self.assertEqual(type(image["id"]),int)
+		self.assertEqual(image["user_id"],2)
+		self.assertEqual(type(image["user_id"]),int)
+		self.assertEqual(image["amount"],5)
+		self.assertEqual(type(image["amount"]),int)
 
-		self.assertEqual(order["product"]["id"],3)
-		self.assertEqual(order["product"]["name"],"Candy")
-		self.assertEqual(order["product"]["price"],0.5)
-		self.assertEqual(order["product"]["in_stock"],True)
-		self.assertEqual(order["product"]["seller_id"],3)
+		self.assertEqual(image["product"]["id"],3)
+		self.assertEqual(image["product"]["name"],"Candy")
+		self.assertEqual(image["product"]["price"],0.5)
+		self.assertEqual(image["product"]["in_stock"],True)
+		self.assertEqual(image["product"]["seller_id"],3)
 
-		print("Test a_4_11: Order get_dict")
+		print("Test a_4_11: Image get_dict")
 
-	def test_a_4_012_order_relationship_product_delete(self):
+	def test_a_4_012_image_relationship_product_delete(self):
 		p_before=len(Product.query.all())
 		#Creating the product to be deleted
 		product_del=Product(name="Spoon",price="5",
@@ -737,28 +736,28 @@ class CantiinTestCase(unittest.TestCase):
 		p_after=len(Product.query.all())
 		self.assertEqual(p_after,p_before+1)
 
-		o_before = len(Order.query.all())
-		#Creating orders to be deleted
-		o_del_1=Order(user_id=1,product_id=p_del_id,amount=1)
-		o_del_2=Order(user_id=1,product_id=p_del_id,amount=1)
-		o_del_3=Order(user_id=1,product_id=p_del_id,amount=1)
-		o_del_4=Order(user_id=1,product_id=p_del_id,amount=1)
+		o_before = len(Image.query.all())
+		#Creating images to be deleted
+		o_del_1=Image(user_id=1,product_id=p_del_id,amount=1)
+		o_del_2=Image(user_id=1,product_id=p_del_id,amount=1)
+		o_del_3=Image(user_id=1,product_id=p_del_id,amount=1)
+		o_del_4=Image(user_id=1,product_id=p_del_id,amount=1)
 		o_del_1.insert();o_del_2.insert();
 		o_del_3.insert();o_del_4.insert();
-		self.assertEqual(len(Order.query.all()),o_before+4)
+		self.assertEqual(len(Image.query.all()),o_before+4)
 
 		#Making the delete action
 		product_del.delete()
-		o_after = len(Order.query.all())
+		o_after = len(Image.query.all())
 
 		#Testing values
 		self.assertEqual(len(Product.query.all()),p_before)
 		self.assertEqual(o_before,o_after)
-		self.assertEqual(len(Order.query.filter(
-			Order.product_id==p_del_id
+		self.assertEqual(len(Image.query.filter(
+			Image.product_id==p_del_id
         ).all()),0)
 
-		print("Test a_2_12:order relationship_product_delete")
+		print("Test a_2_12:image relationship_product_delete")
 
 
 
