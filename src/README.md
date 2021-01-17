@@ -78,15 +78,15 @@ Youtube: How to Install Git Bash on Windows 10</a>
 
 
 
-## cd into the src directory : ##
+## cd into the project directory : ##
 1. Using normal **Windows File Expolorer** get in the 
-src directory
+project directory
 2. **Right click** any where
 3. Select the option **Git Bash Here**
 4. now **a window will open**
 
 For more information, or if you don't know how to cd into the
-src directory, I recommend watching this video on Youtube:  
+project directory, I recommend watching this video on Youtube:  
 <a href="https://www.youtube.com/watch?v=oQc-2gsjgDg"
 target="_blank">
 Youtube: Git Bash, Bash Basics</a>
@@ -107,7 +107,7 @@ pip install virtualenv
 
 </b>
 
-Create a folder called **env** inside **src**  
+Create a folder called **env** inside project directory  
 Then run these commands: 
 
 <b>
@@ -133,7 +133,7 @@ The previous code will run the virtual environment.
 
 
 ## Installing requirements : ##
-After you have done cd into src directory, now run this command:  
+After you have done cd into project directory, now run this command:  
 
 <b>
 
@@ -226,7 +226,7 @@ The best way to run the application for production is like that:
 <b> 
 
 ```bash
-export FLASK_APP=app.py
+export FLASK_APP=application.py
 export FLASK_RUN_HOST=127.0.0.1
 export FLASK_ENV=development
 export FLASK_DEBUG=0
