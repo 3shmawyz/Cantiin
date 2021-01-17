@@ -215,7 +215,10 @@ container-fluid mx-auto" style="bottom:0px;"
 
 //document.getElementById('cards_container').innerHTML="";
 
+get_products_users().then(function(value) 
+  {build_manage_product_cards(value);});
 
+/*
 
 get_products_users().then(function(value) 
   {build_products_cards(value);});
@@ -232,7 +235,7 @@ function build_products_cards(input_array){
   }
 }
 
-
+*/
 </script>
 
 
