@@ -18,3 +18,7 @@ This was a negative user experience.
 Now the frontend is refractored using Jinja.
 
 
+### 4. JavaScript refractored
+Now some JS codes have common js file, so that the same code is not written 
+again in every file.
+
