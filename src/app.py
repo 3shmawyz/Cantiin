@@ -142,6 +142,10 @@ def create_app(DOCKER=False,testing=TESTING):
 	def manage_products():
 		return render_template('pages/manage_products.html')
 
+	@app.route('/manage-imagess', methods=['GET'])
+	def manage_images():
+		return render_template('pages/manage_images.html')
+
 	@app.route('/product', methods=['GET'])
 	def product():
 		return render_template('pages/product.html')
