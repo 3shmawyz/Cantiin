@@ -130,66 +130,6 @@ container-fluid mx-auto" style="bottom:0px;"
 <script type="text/javascript">
   
 
-  /*add_element_to_list(product_name ="Labtop",
-    product_price=500, product_id = 1);
-  add_element_to_list(product_name ="CPU",
-    product_price=5, product_id = 2);
-  add_element_to_list(product_name ="Mobile",
-    product_price=50, product_id = 3);
-*/
-
-  
-
-  function add_element_to_list(
-    product_name = "Title",product_price =5, product_id = 1)
-  {
-    var d1 = document.getElementById('cards_container');
-  d1.insertAdjacentHTML('beforeend', 
-    create_list_text(product_name =product_name 
-      ,product_price =product_price, product_id =product_id ));
-  }
-
-
-  function create_list_text(product_name = "Title",
-   product_price =5, product_id = 1)
-  {
-
-    return '<div class="card mb-4" style="">'+
-'  <div class="card-body">'+
-'    <h5 class="card-title"'+ 
-'    style="font-weight: bold; '+
-      'font-size: 150%;">'+product_name+'</h5>'+
-'    <p class="card-text">Price :  <b>'+product_price+'</b></p>'+
-'    <div class="d-flex">'+
-'      <a href="edit-product?id='+product_id+
-'" target="_blank" '+
-'       class=" card_button btn btn-outline-warning" '+
-'      style="font-weight: bold;font-size: '+
-'          150%; color: black;">'+
-'        Edit'+
-'      </a>'   +   
-
-'      <a target="_blank" '+
-'       class="ml-auto card_button btn btn-outline-danger"'+ 
-'      style="font-weight: bold;font-size: 150%"'+
-'      data-toggle="modal" data-target="#exampleModal"'+
-'      onclick="delete_product('+product_id+')" '+
-'      >DELETE'+
-'      </a> '+
-'    </div>'+
-'  </div>'+
-'</div>'
-
-  }
-
-
-
-
-</script>
-
-
-
-<script type="text/javascript">
   /*Handling delete*/
   var to_be_deleted ;
   /*On clicking this button, this variable will be 
@@ -213,29 +153,18 @@ container-fluid mx-auto" style="bottom:0px;"
   }
 
 
-//document.getElementById('cards_container').innerHTML="";
+
+
+
+</script>
+
+
+
+<script type="text/javascript">
 
 get_products_users().then(function(value) 
   {build_manage_product_cards(value);});
 
-/*
-
-get_products_users().then(function(value) 
-  {build_products_cards(value);});
-function build_products_cards(input_array){
-  document.getElementById('cards_container').innerHTML="";
-  for (product_index in input_array["products"]) {
-    var product = input_array["products"][product_index];
-    //console.log( product );
-    add_element_to_list(
-      product_name = product["name"],
-      product_price =product["price"], 
-      product_id = product["id"]);
-    //console.log(product["id"]);
-  }
-}
-
-*/
 </script>
 
 
