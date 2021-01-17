@@ -391,7 +391,10 @@ class Image(db.Model):
     def simple(self):
         return {
             'id': self.id,
-            'username': self.username
+            'seller_id': self.seller_id,
+            'name': self.name,
+            'formatting': self.formatting,
+            'stored_name': self.stored_name
         }
 
     def get_dict(self):
