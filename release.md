@@ -13,3 +13,8 @@ Some buttons used to make the user open in a new tab.
 This was a negative user experience.  
 
 
+
+### 3. Fronend refractored
+Now the frontend is refractored using Jinja.
+
+
