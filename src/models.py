@@ -325,30 +325,25 @@ id,seller_id,name,formatting,stored_name
 class Image(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
-    # String username
     seller_id = Column(Integer(),db.ForeignKey("user.id"),
      unique=False, nullable=False)
-    #seller_id = Column(Integer(), unique=False, nullable=False)
-    # seller_id
     # This is the id of the seller user
     # The user who sells this product
     # it is an integer
     # Example: 1, 2 or 3
-    name = Column(String(), unique=True, nullable=False)
-    # username could be like "fish"
-    # username has to be unique
+    name = Column(String(), unique=False, nullable=False)
+    # image name could be like "fish"
+    # image name can not to be unique
     # not allowing several users to have the same username
     formatting =  Column(String(), unique=False, nullable=False)
-    # Password is a string
-    # Example: "12345", "abc"
-    # it doesn't have to be unique
-    stored_name =  Column(String(), unique=False, nullable=False)
-    # Password is a string
-    # Example: "12345", "abc"
-    # it doesn't have to be unique
+    # formattng is a string that represents the type of image
+    # There can be only 2 types: "png" , "jpg"
+    # it can not be unique
+    stored_name =  Column(String(), unique=True, nullable=False)
+    # This is the name that the image wil be stored with
+    # it has the value of current time in millisonds
 
-    products = db.relationship("Product",backref="seller")
-    orders = db.relationship("Order",backref="buyer")
+
 
     def __init__(self, username, password):
         self.username = username
