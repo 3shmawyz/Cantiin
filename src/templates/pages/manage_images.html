@@ -1,5 +1,5 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Your Products{% endblock %}
+{% block title %}Your Images{% endblock %}
 {% block content %}
 
 
@@ -27,14 +27,14 @@ container-fluid mx-auto" style="bottom:0px;"
         <h2 class="" 
         style="color:black;font-weight:
         bold;font-size: 400%;list-style: none;">
-        <b>Products</b>
+        <b>Images</b>
       </h2>
         <hr>
 
-        <a href="/add-product"><button 
+        <a href="/add-image"><button 
         class="card_button btn btn-outline-warning m-1" 
         style="font-size: 200%;
-        font-weight: bold;">Add a new Product</button>
+        font-weight: bold;">Add a new Image</button>
       </a>
 <hr>
 
@@ -56,7 +56,7 @@ container-fluid mx-auto" style="bottom:0px;"
     style="font-weight: bold; font-size: 150%;">Card title</h5>
     <p class="card-text">Price :  <b>500</b></p>
     <div class="d-flex">
-      <a href="edit-product?id=id" target="_blank" 
+      <a href="edit-image?id=id" target="_blank" 
        class=" card_button btn btn-outline-warning" 
       style="font-weight: bold;font-size: 150%; color: black;">
         Edit
@@ -66,7 +66,7 @@ container-fluid mx-auto" style="bottom:0px;"
        class="ml-auto card_button btn btn-outline-danger" 
       style="font-weight: bold;font-size: 150%"
       data-toggle="modal" data-target="#exampleModal"
-      onclick="delete_product(1)" 
+      onclick="delete_image(1)" 
       >DELETE
       </a> 
     </div>
@@ -97,22 +97,22 @@ container-fluid mx-auto" style="bottom:0px;"
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-        Delete Product</h5>
+        Delete Image</h5>
         <button type="button" class="close" data-dismiss="modal"
          aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete that product?
+        Are you sure you want to delete that image?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success mr-auto"
          data-dismiss="modal">
-       No, I will keep the product</button>
+       No, I will keep the image</button>
         <button type="button" class="btn btn-danger"
         data-dismiss="modal" onclick="delete_really()">
-        <a>Delete the product</a></button>
+        <a>Delete the image</a></button>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@ container-fluid mx-auto" style="bottom:0px;"
   var to_be_deleted ;
   /*On clicking this button, this variable will be 
   assigned a value
-  the value of the id of the product to be deleted
+  the value of the id of the image to be deleted
   it will not be delted yet
   what will trigger the deletion is the delete button 
   in thye pop up modal
