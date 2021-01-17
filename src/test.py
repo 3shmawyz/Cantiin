@@ -582,11 +582,11 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_4_001_odrer_insert(self):
-		order1 = Order(user_id=20, product_id=5, amount=5)
-		order1.insert()
-		orders = Order.query.all()
+		image1 = Image(seller_id=20, name=5, formatting=5)
+		image1.insert()
+		images = Image.query.all()
 
-		self.assertEqual(len(orders),9)
+		self.assertEqual(len(images),9)
 		print("Test a_4_1: Order insert")
 
 	def test_a_4_002_odrer_insert_wrong_1(self):
