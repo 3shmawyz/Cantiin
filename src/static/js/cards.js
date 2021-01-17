@@ -32,7 +32,7 @@ function home_product_card(input_product)
     product_name+'</h5>'+
     '<p class="card-text">Price : <b>'+
     product_price+'</b></p>'+
-    '<div class="d-flex"><a target="_blank" '+
+    '<div class="d-flex"><a '+
     'class="stretched-link ml-auto btn btn-outline-success " href="product?id='
     +product_id+'"'+ 
     'class="">'+right_arrow_svg+'</a>'+
