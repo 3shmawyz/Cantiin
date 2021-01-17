@@ -401,6 +401,24 @@ def populate_tables():
     db.session.add_all(orders)
     db.session.commit()
 
+    images = list() 
+    #id, user, product, amount
+    images.append(Image(seller_id="1", name="Labtop", 
+        formatting="png",stored_name="1"))
+    images.append(Image(seller_id="1", name="Mobile", 
+        formatting="png",stored_name="1"))
+    images.append(Image(seller_id="1", name="labtop", 
+        formatting="png",stored_name="1"))
+    images.append(Image(seller_id="1", name="labtop", 
+        formatting="png",stored_name="1"))
+    images.append(Image(seller_id="1", name="labtop", 
+        formatting="png",stored_name="1"))
+    images.append(Image(seller_id="1", name="labtop", 
+        formatting="png",stored_name="1"))
+
+    db.session.add_all(images)
+    db.session.commit()
+
 
 
 
