@@ -126,6 +126,10 @@ def create_app(DOCKER=False,testing=TESTING):
 	def add_product():
 		return render_template('pages/add_product.html')
 
+	@app.route('/add-image', methods=['GET'])
+	def add_image():
+		return render_template('pages/add_image.html')
+
 	@app.route('/cart', methods=['GET'])
 	def cart():
 		return render_template('pages/cart.html')
