@@ -383,7 +383,10 @@ class Image(db.Model):
         return json.dumps(
         {
             'id': self.id,
-            'username': self.username
+            'seller_id': self.seller_id,
+            'name': self.name,
+            'formatting': self.formatting,
+            'stored_name': self.stored_name
         })
     def simple(self):
         return {
