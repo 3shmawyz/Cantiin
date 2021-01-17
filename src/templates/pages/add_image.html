@@ -1,5 +1,5 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Add Product{% endblock %}
+{% block title %}Add Image{% endblock %}
 {% block content %}
 
 
@@ -29,7 +29,7 @@ container-fluid mx-auto" style="bottom:0px;"
         <h2 class="" 
         style="color:black;font-weight:
         bold;font-size: 400%;">
-        <b>Product Details :</b></h2>
+        <b>Image Details :</b></h2>
         <hr>
 
 
@@ -45,19 +45,19 @@ container-fluid mx-auto" style="bottom:0px;"
  <div class="form-row">
     <div class="form-group col-md-6">
       <label class="legend_of_input" for="p_name">
-        Product Name <span class="req">*</span></label>
+        Image Name <span class="req">*</span></label>
       <input  class="text_input_field pt-1 pb-1 pl-4" 
       type="text" class="form-control" id="p_name"
-      placeholder="Name of the product you want to add" 
+      placeholder="Name of the image you want to add" 
       >
     </div>
     <div class="form-group col-md-6">
       <label class="legend_of_input" for="p_price">
-        Product Price <span class="req">*</span></label>
+        Image Price <span class="req">*</span></label>
       <input  
       class="text_input_field pt-1 pb-1 pl-4" 
       type="text" class="form-control" id="p_price"
-      placeholder="Price of the product" 
+      placeholder="Price of the image" 
       >
     </div>
 
@@ -80,7 +80,7 @@ font-weight: bold;color:black;">Result:
   <button class="btn btn-success mb-4"  type="button" 
   style="" onclick="addTheProduct()"><div class="" 
   style="font-size: 200%;font-weight: bold">
-  Create Product</div></button>
+  Create Image</div></button>
 </form>
 
 
@@ -140,7 +140,7 @@ This variable is about handle response
 It tells JS where the user will be redirected after 
 he the form is filled successfully
 */
-after_success="/manage-products"
+after_success="/manage-images"
 
 
 
@@ -174,7 +174,7 @@ response_example ={
 function handleResponse(response)
 {
   if (response["success"]==true) 
-  {diplayResult("lime","Product added successfully");}
+  {diplayResult("lime","Image added successfully");}
   else{diplayResult("pink",response["description"]);}
 }
 //handleResponse(response_example);
