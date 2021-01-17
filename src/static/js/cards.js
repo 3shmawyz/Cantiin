@@ -54,8 +54,7 @@ function create_manage_product_card(input_product)
         'font-size: 150%;">'+product_name+'</h5>'+
   '    <p class="card-text">Price :  <b>'+product_price+'</b></p>'+
   '    <div class="d-flex">'+
-  '      <a href="edit-product?id='+product_id+
-  '" target="_blank" '+
+  '      <a href="edit-product?id='+product_id'"  '+
   '       class=" card_button btn btn-outline-warning" '+
   '      style="font-weight: bold;font-size: '+
   '          150%; color: black;">'+
