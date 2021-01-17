@@ -81,6 +81,9 @@ class User(db.Model):
         the_products=self.products
         for pro in the_products:
             pro.delete()
+        the_images=self.images
+        for img in the_images:
+            img.delete()
         db.session.delete(self)
         db.session.commit()
     '''
