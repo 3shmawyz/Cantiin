@@ -31,9 +31,13 @@ db_drop_and_create_all()
 
 
 '''
-Product
+User
 a persistent product entity, extends the base SQLAlchemy Model
-id,name,price,in_stock,seller_id
+id,username,password
+
+Relationships:
+products,orders
+
 '''
 class User(db.Model):
     # Autoincrementing, unique primary key
