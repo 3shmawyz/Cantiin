@@ -321,7 +321,7 @@ class Order(db.Model):
 '''
 User
 a persistent product entity, extends the base SQLAlchemy Model
-id,seller_id,name,formatting,stored_name
+id,seller_id,name,formatting
 
 
 '''
@@ -342,17 +342,13 @@ class Image(db.Model):
     # formattng is a string that represents the type of image
     # There can be only 2 types: "png" , "jpg"
     # it can not be unique
-    stored_name =  Column(String(), unique=True, nullable=False)
-    # This is the name that the image wil be stored with
-    # it has the value of current time in millisonds
 
 
 
-    def __init__(self, seller_id, name,formatting,stored_name):
+    def __init__(self, seller_id, name,formatting):
         self.seller_id = seller_id
         self.name = name
         self.formatting = formatting
-        self.stored_name = stored_name
     '''
     insert()
         inserts a new model into a database
@@ -385,16 +381,14 @@ class Image(db.Model):
             'id': self.id,
             'seller_id': self.seller_id,
             'name': self.name,
-            'formatting': self.formatting,
-            'stored_name': self.stored_name
+            'formatting': self.formatting
         })
     def simple(self):
         return {
             'id': self.id,
             'seller_id': self.seller_id,
             'name': self.name,
-            'formatting': self.formatting,
-            'stored_name': self.stored_name
+            'formatting': self.formatting
         }
 
     def get_dict(self):
