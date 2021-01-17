@@ -36,7 +36,7 @@ a persistent product entity, extends the base SQLAlchemy Model
 id,username,password
 
 Relationships:
-products,orders
+products,orders,images
 
 '''
 class User(db.Model):
@@ -54,6 +54,7 @@ class User(db.Model):
 
     products = db.relationship("Product",backref="seller")
     orders = db.relationship("Order",backref="buyer")
+    images = db.relationship("Image",backref="seller")
 
     def __init__(self, username, password):
         self.username = username
