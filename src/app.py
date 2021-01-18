@@ -1252,7 +1252,45 @@ Tests: test_01_clear_tables
 			db.session.rollback()
 			abort(500)
 
+	@app.route("/images/<int:image_id>", methods=["DELETE"])
+	@requires_auth()
+	def delete_images(payload,image_id):
+	#This endpoint will delete an existing order
+		
+		orders_query=Order.query
+		order_id_validation=validate_model_id(
+			input_id=order_id,model_query=orders_query
+			,model_name_string="order")
+		if order_id_validation["case"]==1:
+			#The order exists
+			order=order_id_validation["result"]
+		else:
+			#No order with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=order_id_validation["result"]["status"],
+				description=order_id_validation
+				["result"]["description"])
+		 
+		#Now, we have "order", this is essential
 
+		#Now we validate if the this user can delete the order
+		if int(order.user_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not delete this order, because"+
+				" you are not the one who created it")
+
+		try:
+			# Finally, deleting the order itself
+			order.delete()
+			return jsonify(
+				{"success":True,
+				"result":"order deleted successfully"})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
 
 
 
