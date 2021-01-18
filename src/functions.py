@@ -275,7 +275,7 @@ def validate_base64(
 	if type(input_string)!= str:
 		return {"case":2,"result":{"status":400, 
 			"description":input_name_string+
-			" is no a string"}}
+			" is not a string"}}
 		 
 	#Validate that input length is not less than minimum
 	if len(input_string)<minimum_length:
