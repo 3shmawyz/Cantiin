@@ -319,7 +319,7 @@ class Order(db.Model):
 
 
 '''
-User
+Image
 a persistent product entity, extends the base SQLAlchemy Model
 id,seller_id,name,formatting
 

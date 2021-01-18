@@ -266,6 +266,45 @@ def validate_float(
 
 
 
+def validate_base64(
+	input_string,input_name_string,maximum_length,minimum_length):
+	#Validate that input has a value, not None
+	if input_string == None: return {"case":3,"result":None}
+
+	#Validate that input is string
+	if type(input_string)!= str:
+		return {"case":2,"result":{"status":400, 
+			"description":input_name_string+
+			" is no a string"}}
+		 
+	#Validate that input length is not less than minimum
+	if len(input_string)<minimum_length:
+		return {"case":2,"result":{"status":422, 
+			"description":input_name_string+
+			" length can not be less than "+ str(minimum_length)+ " characters"}} 
+
+	#Validate that input length is not more than maximum
+	if len(input_string)>maximum_length:
+		return {"case":2,"result":{"status":422, 
+			"description":input_name_string+
+			" length can not be more than "+ str(maximum_length)+ " characters"}} 
+
+	validation = isBase64(input_string)
+	if validation == True:
+		return {"case":1,"result":input_string}
+	else:
+		return {"case":2,"result":{"status":422, 
+			"description":input_name_string+
+			" can not be converted to base64"}} 
+
+
+
+
+
+
+
+
+
 
 
 
