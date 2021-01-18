@@ -659,34 +659,12 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_a_4_001_image_insert(self):
+		before = len(Image.query.all())
 		image1 = Image(seller_id=20, name=5, formatting=5)
 		image1.insert()
-		images = Image.query.all()
-		self.assertEqual(len(images),16)
+		after = len(Image.query.all())
+		self.assertEqual(after,before+1)
 		print("Test a_4_1: Image insert")
-
-	def test_a_4_002_image_insert_wrong_1(self):
-		before = len(Image.query.all())
-		image1 = Image(user_id=20, product_id=5, amount=0)
-		image1.insert()
-		after = len(Image.query.all())
-		self.assertEqual(after,before)
-		print("Test a_4_2: Image insert Wrong 1: amount=0")
-
-	def test_a_4_003_image_insert_wrong_2(self):
-		before = len(Image.query.all())
-		try:
-			image1 = Image()
-			image1.insert()
-			self.assertEqual(True,False)
-		except:
-			self.assertEqual(True,True)
-		after = len(Image.query.all())
-
-		self.assertEqual(before,after)
-		print("Test a_4_3: Image insert Wrong 2: missing required"+
-			" parameters")
-
 
 	def test_a_4_004_image_update(self):
 		image1 = Image.query.get(1)
