@@ -147,6 +147,11 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(user.id,1)
 		self.assertEqual(user.username,"abc")
 		self.assertEqual(user.password,"123456789")
+		for prod in user.products:
+			self.assertEqual(type(prod.id),int)
+			self.assertEqual(type(prod.price),float)
+			self.assertEqual(type(prod.in_stock),bool)
+			self.assertEqual(type(prod.seller_id),int)
 		print("Test a_1_5: user values")
 
 
