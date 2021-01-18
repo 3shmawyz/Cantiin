@@ -660,7 +660,7 @@ class CantiinTestCase(unittest.TestCase):
 
 	def test_a_4_001_image_insert(self):
 		before = len(Image.query.all())
-		image1 = Image(seller_id=20, name=5, formatting=5)
+		image1 = Image(seller_id=1, name=5, formatting="png")
 		image1.insert()
 		after = len(Image.query.all())
 		self.assertEqual(after,before+1)
@@ -679,20 +679,18 @@ class CantiinTestCase(unittest.TestCase):
 		image1 = Image.query.get(16)
 		image1.delete()
 		after = len(Image.query.all())
-
 		self.assertEqual(before,after+1)
 		print("Test a_4_3: Image delete")
 
 
-	def test_a_4_007_image_values(self):
-		image = Image.query.get(6)
+	def test_a_4_004_image_values(self):
+		image = Image.query.get(14)
 
-		self.assertEqual(image.id,6)
-		self.assertEqual(image.user_id,2)
-		self.assertEqual(image.product_id,3)
-		self.assertEqual(image.amount,5)
-		self.assertEqual(image.total_cost,0)
-		print("Test a_4_7: Image values")
+		self.assertEqual(image.id,14)
+		self.assertEqual(image.seller_id,2)
+		self.assertEqual(image.name,"Back bag")
+		self.assertEqual(image.formatting,"jpg")
+		print("Test a_4_4: Image values")
 
 
 
