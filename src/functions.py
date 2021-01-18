@@ -34,7 +34,7 @@ except:
 
 import json
 from flask import Flask, request, jsonify, abort
-
+import base64
 # Creatng a function to print the error in an approperiate way 
 #with detailed info
 def my_error(status=404 ,description=""):
@@ -350,9 +350,13 @@ def validate_must_group(validations_list):
 
 
 # pass function will validate whther the input is base 64 or not
+# True:base64
+# False:Not base64
 def validate_base64(input_string):
-	pass
-
+	if type(input_string)!=str:
+		return false
+	for char in input_string:
+		if char not in ["a","b","c","d","e",]
 
 
 
