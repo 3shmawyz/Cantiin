@@ -355,10 +355,10 @@ def validate_must_group(validations_list):
 def isBase64(input_string):
 	if type(input_string)!=str:
 		return false
-    try:
-        return base64.b64encode(base64.b64decode(input_string)) == input_string
-    except Exception:
-        return False
+	try:
+		return base64.b64encode(base64.b64decode(input_string)) == input_string
+	except Exception:
+		return False
 
 
 

@@ -1150,7 +1150,7 @@ Tests: test_01_clear_tables
 		#Now we have seller_id
 		
 		#Create the Image
-		new_image = (seller_id=seller_id, name=name, 
+		new_image = Image(seller_id=seller_id, name=name, 
         formatting=formatting)
 		#Insert the image in the database
 		try:

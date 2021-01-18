@@ -1637,6 +1637,12 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test c_2_4_9: generate token random")
 
 
+	def test_c_2_5_001_is_base64(self):
+		my_string="abcd"
+		print(isBase64(my_string))
+		print("Test c_2_5_1: is_base64")
+
+
 
 
 
