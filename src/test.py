@@ -75,6 +75,7 @@ class CantiinTestCase(unittest.TestCase):
 	
 	def tearDown(self):
 		"""Executed after reach test"""
+		populate_tables()
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
@@ -231,6 +232,9 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(3 in orders_ids,False)
 		self.assertEqual(4 in orders_ids,True)
 		print("Test a_1_9:user relationship_order")
+
+
+
 
 
 
