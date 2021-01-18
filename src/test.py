@@ -232,6 +232,23 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(4 in orders_ids,True)
 		print("Test a_1_9:user relationship_order")
 
+	def test_a_1_010_user_delete_relationships(self):
+		user1 = User.query.get(1)
+		user1.delete()
+		users = User.query.all()
+
+		self.assertEqual(len(users),0)
+		print("Test a_1_3: user delete")
+
+
+
+
+
+
+
+
+
+
 
 
 
