@@ -674,26 +674,14 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(image_1.name,"Mouse")
 		print("Test a_4_2: Image update")
 
-	def test_a_4_005_image_update_wrong(self):
+	def test_a_4_003_image_delete(self):
 		before = len(Image.query.all())
-		image1 = Image.query.get(8)
-		image1.amount = 0
-		image1.update()
-		after = len(Image.query.all())
-
-		self.assertEqual(before,after+1)
-		print("Test a_4_5: Image update wrong: amount=0")
-
-
-
-	def test_a_4_006_image_delete(self):
-		before = len(Image.query.all())
-		image1 = Image.query.get(7)
+		image1 = Image.query.get(16)
 		image1.delete()
 		after = len(Image.query.all())
 
 		self.assertEqual(before,after+1)
-		print("Test a_4_6: Image delete")
+		print("Test a_4_3: Image delete")
 
 
 	def test_a_4_007_image_values(self):
