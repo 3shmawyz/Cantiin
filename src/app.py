@@ -1105,7 +1105,6 @@ Tests: test_01_clear_tables
 			return my_error(status=400,
 				description="request body can not be parsed to json")
 		try:
-			#user_id = body.get("user_id",None)
 			seller_id = body.get("seller_id",None)
 			name = body.get("name",None)
 			formatting = body.get("formatting",None)
@@ -1114,12 +1113,13 @@ Tests: test_01_clear_tables
 				description = "there is no request body")
 
 		#Validating inputs one by one
-		#user_id_validation = validate_must(
-		#	input=user_id,type="i",input_name_string="user_id",
-		#	minimum=0,maximum=1000)
-		amount_validation = validate_must(
-			input=amount,type="i",input_name_string="amount",
-			minimum=1,maximum=1000000000)
+
+		name_validation = validate_must(
+			input=name,type="s",input_name_string="name",
+			minimum=1,maximum=100)
+		formatting_validation = validate_must(
+			input=formatting,type="s",input_name_string="formatting",
+			minimum=1,maximum=6)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
@@ -1133,6 +1133,15 @@ Tests: test_01_clear_tables
 			# Failure: Something went wrong
 			return val_group["result"]
 		#Now the inputs user_id and amount are validated
+
+
+
+		sellers_query=User.query
+		seller_id_validation = validate_model_id(
+			input_id=seller_id,model_query=sellers_query
+			,model_name_string="seller")
+
+
 
 		#Now we will validate product_id
 		products_query=Product.query
