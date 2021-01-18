@@ -75,11 +75,6 @@ class CantiinTestCase(unittest.TestCase):
 	
 	def tearDown(self):
 		"""Executed after reach test"""
-		try:
-			db.session.close()
-			populate_tables()
-		except:
-			pass
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
