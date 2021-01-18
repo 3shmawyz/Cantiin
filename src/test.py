@@ -723,24 +723,17 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(seller,User.query.get(seller.id))
 		print("Test a_4_7:image relationship_seller")
 
-	def test_a_4_011_image_get_dict(self):
+	def test_a_4_008_image_get_dict(self):
 		image = Image.query.get(6).get_dict()
-		#print(produc)
-
 		self.assertEqual(image["id"],6)
 		self.assertEqual(type(image["id"]),int)
-		self.assertEqual(image["user_id"],2)
-		self.assertEqual(type(image["user_id"]),int)
-		self.assertEqual(image["amount"],5)
-		self.assertEqual(type(image["amount"]),int)
-
-		self.assertEqual(image["product"]["id"],3)
-		self.assertEqual(image["product"]["name"],"Candy")
-		self.assertEqual(image["product"]["price"],0.5)
-		self.assertEqual(image["product"]["in_stock"],True)
-		self.assertEqual(image["product"]["seller_id"],3)
-
-		print("Test a_4_11: Image get_dict")
+		self.assertEqual(image["seller_id"],6)
+		self.assertEqual(type(image["seller_id"]),int)
+		self.assertEqual(image["name"],"Mouse")
+		self.assertEqual(type(image["name"]),str)
+		self.assertEqual(image["formatting"],"png")
+		self.assertEqual(type(image["formatting"]),str)
+		print("Test a_4_8: Image get_dict")
 
 	def test_a_4_012_image_relationship_product_delete(self):
 		p_before=len(Product.query.all())
