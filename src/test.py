@@ -666,14 +666,13 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(after,before+1)
 		print("Test a_4_1: Image insert")
 
-	def test_a_4_004_image_update(self):
+	def test_a_4_002_image_update(self):
 		image1 = Image.query.get(1)
-		image1.amount = 2
+		image1.name = "Mouse"
 		image1.update()
 		image_1 = Image.query.get(1)
-
-		self.assertEqual(image_1.amount,2)
-		print("Test a_4_4: Image update")
+		self.assertEqual(image_1.name,"Mouse")
+		print("Test a_4_2: Image update")
 
 	def test_a_4_005_image_update_wrong(self):
 		before = len(Image.query.all())
