@@ -1135,15 +1135,14 @@ Tests: test_01_clear_tables
 		seller_id=payload["uid"]
 		#Now we have seller_id
 		
-
-		#Create the Order
-		new_order = Order(user_id=user_id, amount=amount,
-			product_id=product_id)
-		#Insert the order in the database
+		#Create the Image
+		new_image = (seller_id=seller_id, name=name, 
+        formatting=formatting)
+		#Insert the image in the database
 		try:
-			new_order.insert()
+			new_image.insert()
 			return jsonify(
-				{"success":True,"order":new_order.get_dict()})
+				{"success":True,"image":new_image.get_dict()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
