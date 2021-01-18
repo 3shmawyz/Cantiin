@@ -1203,41 +1203,34 @@ Tests: test_01_clear_tables
 				description=image_id_validation
 				["result"]["description"])
 		 
-		#Now, we have "product", this is essential
+		#Now, we have "image", this is essential
 
 		#there will be no None
-		if name == None:name=product.name
-		if price == None:price=product.price
-		if in_stock == None:in_stock=product.in_stock
+		if name == None:name=image.name
+		if formatting == None:formatting=image.formatting
 		#Now there is no None
 		#There are default values
 		#This step can not change it's place because
 		#here we need default values
-		
+
 		name_validation = validate_must(
 			input=name,type="s",input_name_string="name",
-			minimum=3,maximum=150)
-		price_validation = validate_must(
-			input=price,type="f",input_name_string="price",
-			minimum=0.1,maximum=1000000)
-		in_stock_validation = validate_must(
-			input=in_stock,type="b",input_name_string="in_stock")
-		#seller_id_validation = validate_must(
-		#	input=seller_id,type="i",input_name_string="seller_id",
-		#	minimum=1,maximum=100000000000000000)
-		#seller_id can not change
+			minimum=1,maximum=100)
+		formatting_validation = validate_must(
+			input=formatting,type="s",input_name_string="formatting",
+			minimum=1,maximum=6)
 
 		val_group=validate_must_group(
-			[name_validation,price_validation,
-			in_stock_validation])
+			[name_validation,formatting_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			name,price,in_stock,=val_group["result"]		
+			name,formatting=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
+		#Now the inputs name and formatting are validated
 
 		#Making sure that this user can change this product
 		if int(product.seller_id) != payload["uid"]:
