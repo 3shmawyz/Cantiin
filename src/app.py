@@ -1165,7 +1165,7 @@ Tests: test_01_clear_tables
 	@app.route("/images/<int:image_id>", methods=["PUT"])
 	@requires_auth()
 	def edit_images(payload,images_id):
-	#This endpoint will edit an exiting order
+	#This endpoint will edit an exiting image
 		try:
 			body = request.get_json()
 		except:
@@ -1181,26 +1181,26 @@ Tests: test_01_clear_tables
 
 		#There can not be 0 fields to change
 		#There must be at least one input field
-		if (name==None and price==None and in_stock==None):
+		if (name==None and formatting==None):
 			return my_error(status=400, 
 				description = "you must at least enter"
 				" one field to change")
 
-		products_query=Product.query
+		images_query=Image.query
 
-		product_id_validation=validate_model_id(
-			input_id=product_id,model_query=products_query
-			,model_name_string="product")
-		if product_id_validation["case"]==1:
-			#The product exists
-			product=product_id_validation["result"]
+		image_id_validation=validate_model_id(
+			input_id=image_id,model_query=images_query
+			,model_name_string="image")
+		if image_id_validation["case"]==1:
+			#The image exists
+			image=image_id_validation["result"]
 
 		else:
-			#No product with this id, can not convert to int,
+			#No image with this id, can not convert to int,
 			# or id is missing (Impossible)
 			return my_error(
-				status=product_id_validation["result"]["status"],
-				description=product_id_validation
+				status=image_id_validation["result"]["status"],
+				description=image_id_validation
 				["result"]["description"])
 		 
 		#Now, we have "product", this is essential
