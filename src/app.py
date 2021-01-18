@@ -1105,7 +1105,6 @@ Tests: test_01_clear_tables
 			return my_error(status=400,
 				description="request body can not be parsed to json")
 		try:
-			seller_id = body.get("seller_id",None)
 			name = body.get("name",None)
 			formatting = body.get("formatting",None)
 		except:
@@ -1131,48 +1130,11 @@ Tests: test_01_clear_tables
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
-		#Now the inputs user_id and amount are validated
+		#Now the inputs name and formatting are validated
 
-
-
-		sellers_query=User.query
-		seller_id_validation = validate_model_id(
-			input_id=seller_id,model_query=sellers_query
-			,model_name_string="seller")
-
-		if seller_id_validation["case"]==1:
-			#The order exists
-			seller=seller_id_validation["result"]
-		else:
-			#No order with this id, can not convert to int,
-			# or id is missing (Impossible)
-			return my_error(
-				status=seller_id_validation["result"]["status"],
-				description=seller_id_validation
-				["result"]["description"])
-
-
-
-		#Now we will validate product_id
-		products_query=Product.query
-		product_id_validation=validate_model_id(
-			input_id=product_id,model_query=products_query
-			,model_name_string="product")
-		if product_id_validation["case"]==1:
-			#The product exists
-			product=product_id_validation["result"]
-		else:
-			#No product with this id, can not convert to int,
-			# or id is missing
-			return my_error(
-				status=product_id_validation["result"]["status"],
-				description=product_id_validation
-				["result"]["description"])
-		 
-		product_id = product.id
-		#Now, we have "product_id", this is essential
-
-		user_id=payload["uid"]
+		seller_id=payload["uid"]
+		#Now we have seller_id
+		
 
 		#Create the Order
 		new_order = Order(user_id=user_id, amount=amount,
