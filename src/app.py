@@ -1099,26 +1099,13 @@ Tests: test_01_clear_tables
 	@app.route("/images", methods=["GET"])
 	@requires_auth()
 	def get_images(payload):
-	#This endpoint will return all the orders		
-
+	#This endpoint will return all the orders
 		seller_id=payload["uid"]
-
 		#Filtering by user_id
 		images = Image.query.filter(
 			Image.seller_id==seller_id).order_by("id").all()
-
 		to_return=[i.get_dict() for i in images]
 		return jsonify({"success":True,"images":to_return})
-		
-
-
-
-
-
-
-
-
-
 
 
 	@app.route("/images", methods=["POST"])
@@ -1174,6 +1161,89 @@ Tests: test_01_clear_tables
 			db.session.rollback()
 			abort(500)
 
+
+	@app.route("/images/<int:image_id>", methods=["PUT"])
+	@requires_auth()
+	def edit_images(payload,order_id):
+	#This endpoint will edit an exiting order
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			amount = body.get("amount",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+		
+		#There can not be 0 fields to change
+		#There must be at least one input field
+		if (amount==None):
+			return my_error(status=400, 
+				description = "you must at least enter"
+				" one field to change")
+
+		#Validating inputs one by one
+		amount_validation = validate_must(
+			input=amount,type="i",input_name_string="amount",
+			minimum=0,maximum=1000000000)
+
+		#Now we will validate all inputs as a group
+		if amount_validation["case"] == True:
+			# Success: they pass the conditions
+			amount=amount_validation["result"]		
+		else:
+			# Failure: Something went wrong
+			return amount_validation["result"]
+		#Now the inputs user_id and amount are validated
+
+		orders_query=Order.query
+
+		order_id_validation=validate_model_id(
+			input_id=order_id,model_query=orders_query
+			,model_name_string="order")
+		if order_id_validation["case"]==1:
+			#The order exists
+			order=order_id_validation["result"]
+
+		else:
+			#No order with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=order_id_validation["result"]["status"],
+				description=order_id_validation
+				["result"]["description"])
+		#Now, we have "order", this is essential
+
+		#Now we validate if the this user can edit the order
+		if int(order.user_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not edit this order, because"+
+				" you are not the one who created it")
+
+
+		#Finally: applying changes
+		order.amount=amount
+
+		if amount == 0:
+			try:
+				order.update()
+				return jsonify(
+					{"success":True,"result":"order"+
+					" deleted successfully"})
+			except Exception as e:
+				db.session.rollback()
+				abort(500)
+		try:
+			order.update()
+			return jsonify(
+				{"success":True,"order":order.get_dict()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
 
 
 
