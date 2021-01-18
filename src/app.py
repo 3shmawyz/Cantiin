@@ -1233,7 +1233,7 @@ Tests: test_01_clear_tables
 		#Now the inputs name and formatting are validated
 
 		#Making sure that this user can change this product
-		if int(product.seller_id) != payload["uid"]:
+		if int(image.seller_id) != payload["uid"]:
 			return my_error(
 				status=403,
 				description=
@@ -1241,14 +1241,13 @@ Tests: test_01_clear_tables
 				" you are not the one who created it")
 
 		#Finally: applying changes
-		product.name=name
-		product.price=price
-		product.in_stock=in_stock
+		image.name=name
+		image.formatting=formatting
 
 		try:
-			product.update()
+			image.update()
 			return jsonify(
-				{"success":True,"product":product.simple()})
+				{"success":True,"product":image.simple()})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
