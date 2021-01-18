@@ -1638,9 +1638,12 @@ class CantiinTestCase(unittest.TestCase):
 
 
 	def test_c_2_5_001_is_base64(self):
-		my_string="abcd"
-		print(isBase64(my_string))
-		print("Test c_2_5_1: is_base64")
+		self.assertEqual(isBase64("abcd"),True)
+		self.assertEqual(isBase64("1234"),True)
+		self.assertEqual(isBase64("123"),False) # Not 4 chars
+		self.assertEqual(isBase64("123="),True)
+		self.assertEqual(isBase64("123*"),False)
+		print("Test c_2_5_1: isBase64")
 
 
 
