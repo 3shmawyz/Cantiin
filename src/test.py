@@ -705,24 +705,17 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test a_4_5: image delete mistake, non-existent"+
 		 "image id")
 
-
-
-
-	def test_a_4_009_image_simple(self):
+	def test_a_4_006_image_simple(self):
 		image = Image.query.get(6).simple()
-		#print(produc)
-
 		self.assertEqual(image["id"],6)
 		self.assertEqual(type(image["id"]),int)
-		self.assertEqual(image["user_id"],2)
-		self.assertEqual(type(image["user_id"]),int)
-		self.assertEqual(image["product_id"],3)
-		self.assertEqual(type(image["product_id"]),int)
-		self.assertEqual(image["amount"],5)
-		self.assertEqual(type(image["amount"]),int)
-
-
-		print("Test a_4_9: Image simple")
+		self.assertEqual(image["seller_id"],6)
+		self.assertEqual(type(image["seller_id"]),int)
+		self.assertEqual(image["name"],"Mouse")
+		self.assertEqual(type(image["name"]),str)
+		self.assertEqual(image["formatting"],"png")
+		self.assertEqual(type(image["formatting"]),str)
+		print("Test a_4_6: Image simple")
 
 	def test_a_4_010_image_relationship_product(self):
 		image = Image.query.get(6)
