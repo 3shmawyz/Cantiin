@@ -1101,16 +1101,14 @@ Tests: test_01_clear_tables
 	def get_images(payload):
 	#This endpoint will return all the orders		
 
-		user_id=payload["uid"]
-
-
+		seller_id=payload["uid"]
 
 		#Filtering by user_id
-		orders = Order.query.filter(
-			Order.user_id==user_id).order_by("id").all()
+		images = Image.query.filter(
+			Image.seller_id==seller_id).order_by("id").all()
 
-		to_return=[o.get_dict() for o in orders]
-		return jsonify({"success":True,"orders":to_return})
+		to_return=[i.get_dict() for i in images]
+		return jsonify({"success":True,"images":to_return})
 		
 
 
