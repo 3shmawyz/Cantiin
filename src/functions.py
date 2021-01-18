@@ -352,13 +352,13 @@ def validate_must_group(validations_list):
 # pass function will validate whther the input is base 64 or not
 # True:base64
 # False:Not base64
-def validate_base64(input_string):
+def isBase64(input_string):
 	if type(input_string)!=str:
 		return false
-	for char in input_string:
-		if char not in ["a","b","c","d","e",]
-
-
+    try:
+        return base64.b64encode(base64.b64decode(input_string)) == input_string
+    except Exception:
+        return False
 
 
 
