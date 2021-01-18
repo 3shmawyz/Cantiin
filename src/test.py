@@ -654,10 +654,6 @@ class CantiinTestCase(unittest.TestCase):
 		print("")
 		print("")
 
-
-
-
-
 	def test_a_4_001_image_insert(self):
 		before = len(Image.query.all())
 		image1 = Image(seller_id=1, name=5, formatting="png")
@@ -735,38 +731,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(type(image["formatting"]),str)
 		print("Test a_4_8: Image get_dict")
 
-	def test_a_4_012_image_relationship_product_delete(self):
-		p_before=len(Product.query.all())
-		#Creating the product to be deleted
-		product_del=Product(name="Spoon",price="5",
-			in_stock=True,seller_id=1)
-		product_del.insert()
-		p_del_id=product_del.id
-		p_after=len(Product.query.all())
-		self.assertEqual(p_after,p_before+1)
-
-		o_before = len(Image.query.all())
-		#Creating images to be deleted
-		o_del_1=Image(user_id=1,product_id=p_del_id,amount=1)
-		o_del_2=Image(user_id=1,product_id=p_del_id,amount=1)
-		o_del_3=Image(user_id=1,product_id=p_del_id,amount=1)
-		o_del_4=Image(user_id=1,product_id=p_del_id,amount=1)
-		o_del_1.insert();o_del_2.insert();
-		o_del_3.insert();o_del_4.insert();
-		self.assertEqual(len(Image.query.all()),o_before+4)
-
-		#Making the delete action
-		product_del.delete()
-		o_after = len(Image.query.all())
-
-		#Testing values
-		self.assertEqual(len(Product.query.all()),p_before)
-		self.assertEqual(o_before,o_after)
-		self.assertEqual(len(Image.query.filter(
-			Image.product_id==p_del_id
-        ).all()),0)
-
-		print("Test a_2_12:image relationship_product_delete")
 
 
 
@@ -787,7 +751,6 @@ class CantiinTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_1_1: validate_model_id: Product 1")
 
-
 	def test_b_01_002_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=6,
@@ -797,7 +760,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(6),
 			validation["result"])
 		print("Test b_1_2: validate_model_id: Product 6")
-
 
 	def test_b_01_003_validate_model_id(self):
 		all_products = Product.query
@@ -809,7 +771,6 @@ class CantiinTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_1_3: validate_model_id: Product 5.5")
 
-
 	def test_b_01_004_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id="3",
@@ -819,7 +780,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(3),
 			validation["result"])
 		print("Test b_1_4: validate_model_id: Product '3'")
-
 
 	def test_b_01_005_validate_model_id(self):
 		all_products = Product.query
@@ -834,7 +794,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_1_5: validate_model_id: Product i")
 
-
 	def test_b_01_006_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=0,
@@ -848,7 +807,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_1_6: validate_model_id: Product 0")
 
-
 	def test_b_01_007_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=-1,
@@ -860,7 +818,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation["result"]["status"])
 		print("Test b_1_7: validate_model_id: Product -1")
-
 
 	def test_b_01_008_validate_model_id(self):
 		all_products = Product.query
@@ -874,7 +831,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_1_8: validate_model_id: Product 20")
 
-
 	def test_b_01_009_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=None,
@@ -884,7 +840,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual({'status': 400, 'description': 'product is missing'},
 			validation["result"])
 		print("Test b_1_9: validate_model_id: Product None")
-
 
 	def test_b_01_010_validate_model_id(self):
 		all_orders = Order.query
@@ -917,7 +872,6 @@ class CantiinTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_2_1: validate_string: 'to validate'")
 
-
 	def test_b_02_002_validate_string(self):
 		to_validate = 1
 		validation = validate_string(
@@ -927,7 +881,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual("1",
 			validation["result"])
 		print("Test b_2_2: validate_string: '1'")
-
 
 	def test_b_02_003_validate_string(self):
 		to_validate = "More Than 3"
@@ -941,7 +894,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_2_3: validate_string:"+
 			" More than max length")
-
 
 	def test_b_02_004_validate_string(self):
 		to_validate = None
