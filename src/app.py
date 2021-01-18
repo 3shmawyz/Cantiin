@@ -1098,6 +1098,7 @@ Tests: test_01_clear_tables
 	@requires_auth()
 	def post_images(payload):
 	#This endpoint will add a new product
+	#The data will be sent in 
 		try:
 			body = request.get_json()
 		except:
@@ -1105,8 +1106,9 @@ Tests: test_01_clear_tables
 				description="request body can not be parsed to json")
 		try:
 			#user_id = body.get("user_id",None)
-			product_id = body.get("product_id",None)
-			amount = body.get("amount",None)
+			seller_id = body.get("seller_id",None)
+			name = body.get("name",None)
+			formatting = body.get("formatting",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
