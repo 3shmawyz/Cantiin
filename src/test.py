@@ -682,35 +682,27 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(before,after+1)
 		print("Test a_4_3: Image delete")
 
-
 	def test_a_4_004_image_values(self):
 		image = Image.query.get(14)
-
 		self.assertEqual(image.id,14)
 		self.assertEqual(image.seller_id,2)
 		self.assertEqual(image.name,"Back bag")
 		self.assertEqual(image.formatting,"jpg")
 		print("Test a_4_4: Image values")
 
-
-
-
-	def test_a_4_008_image_delete_wrong(self):
+	def test_a_4_005_image_delete_wrong(self):
 		before = len(Image.query.all())
 		try:
 			#This code will not be executed
 			#There is no image with the number 700000
-			image = Product.query.get(700000)
+			image = Image.query.get(700000)
 			image.delete()
 			self.assertEqual(True,False)
-
 		except:
 			self.assertEqual(True,True)
-		
 		after = len(Image.query.all())
-
 		self.assertEqual(before,after)
-		print("Test a_4_8: image delete mistake, non-existent"+
+		print("Test a_4_5: image delete mistake, non-existent"+
 		 "image id")
 
 
