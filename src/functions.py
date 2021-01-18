@@ -349,6 +349,14 @@ def validate_must_group(validations_list):
 
 
 
+# pass function will validate whther the input is base 64 or not
+def validate_base64(input_string):
+	pass
+
+
+
+
+
 
 
 
@@ -476,4 +484,8 @@ def question_search(input_text):
 		Question.question.ilike(search_query)).all()
 	to_return = [question.format() for question in all_questions]
 	return to_return
+
+
+
+
 
