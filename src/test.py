@@ -157,6 +157,11 @@ class CantiinTestCase(unittest.TestCase):
 			self.assertEqual(type(order.user_id),int)
 			self.assertEqual(type(order.product_id),int)
 			self.assertEqual(type(order.amount),int)
+		for image in user.images:
+			self.assertEqual(type(image.id),int)
+			self.assertEqual(type(image.seller_id),int)
+			self.assertEqual(type(image.name),str)
+			self.assertEqual(type(image.formatting),str)
 		print("Test a_1_5: user values")
 
 
