@@ -1225,6 +1225,13 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(validation,{"case":2,"result":
 			{"description":"b64 length can not be more than 4 characters"
 			,"status":422}})
+		
+		validation = validate_base64(input_string="a",
+			input_name_string="b64",maximum_length=4,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 length can not be less than 3 characters"
+			,"status":422}})
 		print("Test b_6_1: validate_base64: None")
 
 
