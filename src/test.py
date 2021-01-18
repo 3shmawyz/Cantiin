@@ -1244,6 +1244,13 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(validation,{"case":2,"result":
 			{"description":"b64 can not be converted to base64"
 			,"status":422}})
+		
+		validation = validate_base64(input_string="abc*",
+			input_name_string="b64",maximum_length=8,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 can not be converted to base64"
+			,"status":422}})
 		print("Test b_6_1: validate_base64: None")
 
 
