@@ -1088,11 +1088,40 @@ Tests: test_01_clear_tables
 	"""
 	 Image endpoints
 
-		1) Post image
-		2) get user images
-		2) update image
+		1) get images (Of the user)
+		2) Post image
+		3) update image
+		4) delete image
 
 	"""
+
+
+	@app.route("/images", methods=["GET"])
+	@requires_auth()
+	def get_images(payload):
+	#This endpoint will return all the orders		
+
+		user_id=payload["uid"]
+
+
+
+		#Filtering by user_id
+		orders = Order.query.filter(
+			Order.user_id==user_id).order_by("id").all()
+
+		to_return=[o.get_dict() for o in orders]
+		return jsonify({"success":True,"orders":to_return})
+		
+
+
+
+
+
+
+
+
+
+
 
 	@app.route("/images", methods=["POST"])
 	@requires_auth()
