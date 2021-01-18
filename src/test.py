@@ -1207,6 +1207,14 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test b_5_8: validate_float: None")
 
 
+	def test_b_6_001_validate_base64(self):
+		validation = validate_base64(input_string=None,
+			input_name_string="input",maximum_length=4,
+			minimum_length=0)
+		self.assertEqual(validation,{"case":3,"result":None})
+		print("Test b_6_1: validate_base64: None")
+
+
 
 
 
