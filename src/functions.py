@@ -315,6 +315,8 @@ type:
 	- "i" : Integer
 	- "f" : Float
 	- "b" : Boolean
+	- "b64" : base64
+
 """
 def validate__must(input,type,
 	input_name_string,maximum=0,minimum=0):

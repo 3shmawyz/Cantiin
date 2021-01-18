@@ -1371,9 +1371,15 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual("my_data is missing"
 			,validation["result"]["description"])
 		self.assertEqual(400
-			,validation["result"]["status"])
-		
+			,validation["result"]["status"])	
 		print("Test b_6_12: validate__must wrong input: None str")
+
+	def test_b_6_013_validate__must(self):
+		validation = validate__must(input="abcde",type="b64",
+			input_name_string="b64",maximum=1000,minimum=-5)
+		self.assertEqual(validation  ,{"case":False,"result":{"description":
+		"b64 can not be converted to base64","status":422}})
+		print("Test b_6_12: validate__must wrong input: wrong base64")
 
 
 	def test_c_1_001_generate_jwt(self):
