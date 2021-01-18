@@ -233,12 +233,45 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test a_1_9:user relationship_order")
 
 	def test_a_1_010_user_delete_relationships(self):
-		user1 = User.query.get(1)
-		user1.delete()
-		users = User.query.all()
+		#measuring lengths beofre actions
+		users_before = len(User.query.all())
+		products_before = len(Product.query.all())
+		orders_before = len(Order.query.all())
+		images_before = len(Image.query.all())
 
-		self.assertEqual(len(users),0)
-		print("Test a_1_3: user delete")
+		#adding a new user
+		usr_to_del = User(username="aklmnopq",password="123456789")
+		db.session.add(usr_to_del)
+		db.session.commit()
+		self.assertEqual(len(User.query.all()),users_before+1)
+
+		#adding a new product
+		prod_to_del = Product(name="Labtopppp", 
+			price=3000, seller_id=usr_to_del.id)
+		db.session.add(prod_to_del)
+		db.session.commit()
+		self.assertEqual(len(Product.query.all()),products_before+1)
+
+		#adding a new order
+		ordr_to_del = Order(user_id=usr_to_del.id, product_id=1, amount=1)
+		db.session.add(ordr_to_del)
+		db.session.commit()
+		self.assertEqual(len(Order.query.all()),orders_before+1)
+
+		#adding a new image
+		img_to_del = Image(seller_id=usr_to_del.id, name="Labtopfgfgfg", 
+			formatting="png")
+		db.session.add(img_to_del)
+		db.session.commit()
+		self.assertEqual(len(Image.query.all()),images_before+1)
+
+		usr_to_del.delete()
+		self.assertEqual(len(User.query.all()),users_before)
+		self.assertEqual(len(Product.query.all()),products_before)
+		self.assertEqual(len(Order.query.all()),orders_before)
+		self.assertEqual(len(Image.query.all()),images_before)
+
+		print("Test a_1_10: user delete relationships")
 
 
 
