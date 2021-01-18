@@ -1379,7 +1379,13 @@ class CantiinTestCase(unittest.TestCase):
 			input_name_string="b64",maximum=1000,minimum=-5)
 		self.assertEqual(validation  ,{"case":False,"result":{"description":
 		"b64 can not be converted to base64","status":422}})
-		print("Test b_6_12: validate__must wrong input: wrong base64")
+		print("Test b_6_13: validate__must wrong input: wrong base64")
+
+	def test_b_6_014_validate__must(self):
+		validation = validate__must(input="abcd/+/=",type="b64",
+			input_name_string="b64",maximum=1000,minimum=-5)
+		self.assertEqual(validation  ,{"case":True,"result":"abcd/+/="})
+		print("Test b_6_14: validate__must input: correct base64")
 
 
 	def test_c_1_001_generate_jwt(self):
