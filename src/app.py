@@ -1126,6 +1126,306 @@ Tests: test_01_clear_tables
 
 
 
+	"""
+	 Image endpoints
+	"""
+	
+
+
+	@app.route("/images", methods=["GET"])
+	@requires_auth()
+	def get_orders(payload):
+	#This endpoint will return all the images
+
+		user_id=payload["uid"]
+
+		"""user_id_validation = validate_must(
+			input=user_id,type="i",input_name_string="user_id",
+			minimum=1,maximum=1000000000000000000000)
+
+		#Now we will validate the user_id input
+		if user_id_validation["case"] == True:
+			# Success: value is integer
+			user_id=user_id_validation["result"]		
+		else:
+			# Failure: Can't convert to integer or None
+			return user_id_validation["result"]
+
+		#Now: There is only one possibility
+			#1) type(user_id) = int
+			#input now must have been converted to integer"""
+
+
+		#Filtering by user_id
+		orders = Order.query.filter(
+			Order.user_id==user_id).order_by("id").all()
+
+		to_return=[o.get_dict() for o in orders]
+		return jsonify({"success":True,"orders":to_return})
+		
+
+
+	@app.route("/orders", methods=["POST"])
+	@requires_auth()
+	def post_orders(payload):
+	#This endpoint will add a new product
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			#user_id = body.get("user_id",None)
+			product_id = body.get("product_id",None)
+			amount = body.get("amount",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+
+		#Validating inputs one by one
+		#user_id_validation = validate_must(
+		#	input=user_id,type="i",input_name_string="user_id",
+		#	minimum=0,maximum=1000)
+		amount_validation = validate_must(
+			input=amount,type="i",input_name_string="amount",
+			minimum=1,maximum=1000000000)
+
+		#Validating inputs a group
+		val_group=validate_must_group(
+			[amount_validation])
+
+		#Now we will validate all inputs as a group
+		if val_group["case"] == True:
+			# Success: they pass the conditions
+			amount=val_group["result"][0]		
+		else:
+			# Failure: Something went wrong
+			return val_group["result"]
+		#Now the inputs user_id and amount are validated
+
+		#Now we will validate product_id
+		products_query=Product.query
+		product_id_validation=validate_model_id(
+			input_id=product_id,model_query=products_query
+			,model_name_string="product")
+		if product_id_validation["case"]==1:
+			#The product exists
+			product=product_id_validation["result"]
+		else:
+			#No product with this id, can not convert to int,
+			# or id is missing
+			return my_error(
+				status=product_id_validation["result"]["status"],
+				description=product_id_validation
+				["result"]["description"])
+		 
+		product_id = product.id
+		#Now, we have "product_id", this is essential
+
+		user_id=payload["uid"]
+
+		#Create the Order
+		new_order = Order(user_id=user_id, amount=amount,
+			product_id=product_id)
+		#Insert the order in the database
+		try:
+			new_order.insert()
+			return jsonify(
+				{"success":True,"order":new_order.get_dict()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+		
+
+
+	@app.route("/orders/<int:order_id>", methods=["PUT"])
+	@requires_auth()
+	def edit_orders(payload,order_id):
+	#This endpoint will edit an exiting order
+		try:
+			body = request.get_json()
+		except:
+			return my_error(status=400,
+				description="request body can not be parsed to json")
+		try:
+			amount = body.get("amount",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")
+		
+		#There can not be 0 fields to change
+		#There must be at least one input field
+		if (amount==None):
+			return my_error(status=400, 
+				description = "you must at least enter"
+				" one field to change")
+
+		#Validating inputs one by one
+		amount_validation = validate_must(
+			input=amount,type="i",input_name_string="amount",
+			minimum=0,maximum=1000000000)
+
+		#Now we will validate all inputs as a group
+		if amount_validation["case"] == True:
+			# Success: they pass the conditions
+			amount=amount_validation["result"]		
+		else:
+			# Failure: Something went wrong
+			return amount_validation["result"]
+		#Now the inputs user_id and amount are validated
+
+		orders_query=Order.query
+
+		order_id_validation=validate_model_id(
+			input_id=order_id,model_query=orders_query
+			,model_name_string="order")
+		if order_id_validation["case"]==1:
+			#The order exists
+			order=order_id_validation["result"]
+
+		else:
+			#No order with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=order_id_validation["result"]["status"],
+				description=order_id_validation
+				["result"]["description"])
+		#Now, we have "order", this is essential
+
+		#Now we validate if the this user can edit the order
+		if int(order.user_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not edit this order, because"+
+				" you are not the one who created it")
+
+
+		#Finally: applying changes
+		order.amount=amount
+
+		if amount == 0:
+			try:
+				order.update()
+				return jsonify(
+					{"success":True,"result":"order"+
+					" deleted successfully"})
+			except Exception as e:
+				db.session.rollback()
+				abort(500)
+		try:
+			order.update()
+			return jsonify(
+				{"success":True,"order":order.get_dict()})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+		
+
+	@app.route("/orders/<int:order_id>", methods=["DELETE"])
+	@requires_auth()
+	def delete_orders(payload,order_id):
+	#This endpoint will delete an existing order
+		
+		orders_query=Order.query
+		order_id_validation=validate_model_id(
+			input_id=order_id,model_query=orders_query
+			,model_name_string="order")
+		if order_id_validation["case"]==1:
+			#The order exists
+			order=order_id_validation["result"]
+		else:
+			#No order with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=order_id_validation["result"]["status"],
+				description=order_id_validation
+				["result"]["description"])
+		 
+		#Now, we have "order", this is essential
+
+		#Now we validate if the this user can delete the order
+		if int(order.user_id) != payload["uid"]:
+			return my_error(
+				status=403,
+				description=
+				"you can not delete this order, because"+
+				" you are not the one who created it")
+
+		try:
+			# Finally, deleting the order itself
+			order.delete()
+			return jsonify(
+				{"success":True,
+				"result":"order deleted successfully"})
+		except Exception as e:
+			db.session.rollback()
+			abort(500)
+
+
+	@app.route("/test_cookies", methods=["DELETE"])
+	def test_cookies_delete():
+		test_only()
+		cookies = request.cookies
+		r=jsonify({"success":True})
+		for co in cookies:
+			r.set_cookie(co,value="",expires=-50)
+		return r
+
+
+
+	@app.route("/test_cookies", methods=["POST"])
+	def test_cookies():
+		test_only()
+	#This endpoint is for testing cookies
+		#res = Flask.make_response(,rv=)
+		#r = Response(
+		#	response=json.dumps({"fail":True,"id":1}),status=302)
+		"""r = app.response_class(
+			response=json.dumps({"fail":True,"id":1}),
+		status=200,mimetype='application/json')
+		#r=Flask.make_response(r,rv=dict)
+		r.set_cookie('HOnly', value='HTTPOnly Cookie',
+			httponly=True, samesite='Lax')
+		r.set_cookie('NotHOnly', value='Not HTTPOnly Cookie',
+			httponly=False, samesite='Lax')
+		#res.body()"""
+		r = jsonify(
+					{"success":True,
+					"result":"setting cookie successfully"})
+		#out.set_cookie('cantiin_user', 'my_value')
+		r.set_cookie('HOnly', value='HTTPOnly Cookieee',
+			httponly=True, samesite='Lax')
+		r.set_cookie('NotHOnly', value='Not HTTPOnly Cookieee',
+			httponly=False, samesite='Lax')
+		return r,200
+
+
+	@app.route("/test_cookies", methods=["GET"])
+	def test_cookies_get():
+		test_only()
+		return jsonify({"success":True,"cookies":request.cookies})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
