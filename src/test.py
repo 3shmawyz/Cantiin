@@ -717,11 +717,11 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(type(image["formatting"]),str)
 		print("Test a_4_6: Image simple")
 
-	def test_a_4_010_image_relationship_product(self):
+	def test_a_4_007_image_relationship_seller(self):
 		image = Image.query.get(6)
-		product=image.product
-		self.assertEqual(product,Product.query.get(3))
-		print("Test a_2_10:image relationship_product")
+		seller=image.seller
+		self.assertEqual(seller,User.query.get(seller.id))
+		print("Test a_4_7:image relationship_seller")
 
 	def test_a_4_011_image_get_dict(self):
 		image = Image.query.get(6).get_dict()
