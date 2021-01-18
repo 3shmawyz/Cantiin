@@ -335,6 +335,10 @@ def validate__must(input,type,
 	elif type == "b":
 		validation = validate_boolean(input_boolean=input
 			,input_name_string=input_name_string)
+	elif type == "b64":
+		validation = validate_base64(
+			input_string=input,input_name_string=input_name_string,
+			maximum_length=maximum,minimum_length=minimum)
 	else:
 		raise Exception("validate_must: type is"+str(type)
 			+ "and it can not be like this, it should be: "+
