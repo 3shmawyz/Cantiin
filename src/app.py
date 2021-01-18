@@ -1113,7 +1113,6 @@ Tests: test_01_clear_tables
 				description = "there is no request body")
 
 		#Validating inputs one by one
-
 		name_validation = validate_must(
 			input=name,type="s",input_name_string="name",
 			minimum=1,maximum=100)
@@ -1123,7 +1122,7 @@ Tests: test_01_clear_tables
 
 		#Validating inputs a group
 		val_group=validate_must_group(
-			[amount_validation])
+			[name_validation,formatting_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
@@ -1140,6 +1139,17 @@ Tests: test_01_clear_tables
 		seller_id_validation = validate_model_id(
 			input_id=seller_id,model_query=sellers_query
 			,model_name_string="seller")
+
+		if seller_id_validation["case"]==1:
+			#The order exists
+			seller=seller_id_validation["result"]
+		else:
+			#No order with this id, can not convert to int,
+			# or id is missing (Impossible)
+			return my_error(
+				status=seller_id_validation["result"]["status"],
+				description=seller_id_validation
+				["result"]["description"])
 
 
 
