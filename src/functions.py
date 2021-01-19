@@ -304,13 +304,12 @@ def validate_base64(
 			"description":input_name_string+
 			" can not be converted to base64"}} 
 
-
-
 def validate_formatting(input_formatting):
 	validation = validate_string(input_formatting,"formatting",minimum_length=4,
 	max_length=MAX_IMAGE_LETTERS)
 	if validation["case"] != 1:
 		return validation
+	input_formatting = validation["result"]
 	if input_formatting not in ALLOWED_IMAGE_FORMATS:
 		return {"case":2,"result":{"status":422, 
 			"description":str(input_formatting)+" is not allowed image format"}} 
@@ -355,6 +354,8 @@ def validate__must(input,type,
 		validation = validate_base64(
 			input_string=input,input_name_string=input_name_string,
 			maximum_length=maximum,minimum_length=minimum)
+	elif type == "frmt":
+		validation = validate_formatting(input_formatting=input)
 	else:
 		raise Exception("validate_must: type is"+str(type)
 			+ "and it can not be like this, it should be: "+
