@@ -1266,6 +1266,10 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(validation,{"case":2,"result":
 			{"description":"minimum formatting length is 2 letters",
 			"status":422}})
+		validation = validate_formatting(input_formatting="abc")
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"abc is not allowed image format",
+			"status":422}})
 		print("Test b_7_1: validate_formatting:")
 
 
