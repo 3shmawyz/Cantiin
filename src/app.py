@@ -1121,7 +1121,7 @@ Tests: test_01_clear_tables
 	@app.route("/images", methods=["POST"])
 	@requires_auth()
 	def post_images(payload):
-	#This endpoint will add a new product
+	#This endpoint will add a new image
 	#The data will be sent in 
 		try:
 			body = request.get_json()
@@ -1254,12 +1254,12 @@ Tests: test_01_clear_tables
 			return val_group["result"]
 		#Now the inputs name and formatting are validated
 
-		#Making sure that this user can change this product
+		#Making sure that this user can change this image
 		if int(image.seller_id) != payload["uid"]:
 			return my_error(
 				status=403,
 				description=
-				"you can not change this product, because"+
+				"you can not change this image, because"+
 				" you are not the one who created it")
 
 		#Finally: applying changes

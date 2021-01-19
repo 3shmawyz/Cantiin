@@ -4148,7 +4148,7 @@
 							"response": []
 						},
 						{
-							"name": "edit_images:fail:wrong order_id",
+							"name": "edit_images:fail:wrong image_id",
 							"event": [
 								{
 									"listen": "test",
@@ -4195,19 +4195,22 @@
 							"response": []
 						},
 						{
-							"name": "edit_images:success:amount is 0",
+							"name": "edit_images:fail:unauthorized user",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"  pm.response.to.have.status(200);\r",
+											"pm.test(\"Status code is 403\", function () {\r",
+											"  pm.response.to.have.status(403);\r",
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.result).to.eql(\"order deleted successfully\");\r",
-											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"  pm.expect(responseJson.message).to.eql(\"forbidden\");\r",
+											"  pm.expect(responseJson.error).to.eql(403);\r",
+											"  pm.expect(responseJson.description).to.eql(\r",
+											"      \"you can not change this image, because you are not the one who created it\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
 											"});"
 										],
 										"type": "text/javascript"
@@ -4219,7 +4222,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"amount\":0\r\n}",
+									"raw": "{\r\n    \"img\":\"abcd\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4227,13 +4230,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders/9",
+									"raw": "{{host}}/images/14",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
-										"9"
+										"images",
+										"14"
 									]
 								}
 							},
