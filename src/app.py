@@ -1135,8 +1135,7 @@ Tests: test_01_clear_tables
 			input=name,type="s",input_name_string="name",
 			minimum=1,maximum=100)
 		formatting_validation = validate_must(
-			input=formatting,type="s",input_name_string="formatting",
-			minimum=1,maximum=6)
+			input=formatting,type="frmt",input_name_string="formatting")
 		img_validation = validate_must(
 			input=img,type="b64",input_name_string="img",
 			minimum=4,maximum=MAX_IMAGE_LETTERS)
@@ -1156,7 +1155,7 @@ Tests: test_01_clear_tables
 
 		seller_id=payload["uid"]
 		#Now we have seller_id
-		
+		img = b64ToImg(b64String=img,formatting=formatting)
 		#Create the Image
 		new_image = Image(seller_id=seller_id, name=name, 
         formatting=formatting)
@@ -1227,8 +1226,7 @@ Tests: test_01_clear_tables
 			input=name,type="s",input_name_string="name",
 			minimum=1,maximum=100)
 		formatting_validation = validate_must(
-			input=formatting,type="s",input_name_string="formatting",
-			minimum=1,maximum=6)
+			input=formatting,type="frmt",input_name_string="formatting")
 		img_validation = validate_must(
 			input=img,type="b64",input_name_string="img",
 			minimum=4,maximum=MAX_IMAGE_LETTERS)
@@ -1256,7 +1254,7 @@ Tests: test_01_clear_tables
 		#Finally: applying changes
 		image.name=name
 		image.formatting=formatting
-
+		img = b64ToImg(b64String=img,formatting=formatting)
 		try:
 			image.update()
 			return jsonify(
