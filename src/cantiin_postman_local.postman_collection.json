@@ -1,5 +1,6 @@
 {
 	"info": {
+		"_postman_id": "f35b7508-4b26-4bd1-816e-e585655dbdb4",
 		"name": "cantiin_postman_local",
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3879,6 +3880,52 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"name\":\"Labtop\",\r\n    \"formatting\":\"abc\",\r\n    \"img\":\"abcdefgh\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/images",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"images"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post_images: fail:img not b64",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"img can not be converted to base64\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Labtop\",\r\n    \"formatting\":\"png\",\r\n    \"img\":\"abcdefg\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
