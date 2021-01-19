@@ -415,8 +415,8 @@ def isBase64(input_string):
 
 
 
-def b64ToImg(b64String,type):
-	pass
+def b64ToImg(b64String,formatting):
+	return "data:image/"+formatting+";base64,"+b64String
 
 
 
