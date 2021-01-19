@@ -32,6 +32,12 @@ except:
 	from src import *
 
 
+
+ALLOWED_IMAGE_FORMATS=["png","jpg"]
+
+
+
+
 import json
 from flask import Flask, request, jsonify, abort
 import base64
@@ -299,13 +305,11 @@ def validate_base64(
 
 
 
-
-
-def validate_formatting(input_formatting,allowed_formats):
-	if input_formatting not in allowed_formats:
-		return {"success":False,"result":my_error(status=400,description=
-			str(input_formatting)+" is not allowed image format")}
-	return {"success":True,"result":input_formatting}
+def validate_formatting(input_formatting):
+	if input_formatting not in ALLOWED_IMAGE_FORMATS:
+		return {"case":2,"result":{"status":422, 
+			"description":str(input_formatting)+" is not allowed image format"}} 
+	return {"case":1,"result":input_formatting}
 
 
 
@@ -320,6 +324,7 @@ type:
 	- "f" : Float
 	- "b" : Boolean
 	- "b64" : base64
+	- "frmt": Image Formatting
 
 """
 def validate__must(input,type,

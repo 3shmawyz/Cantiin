@@ -28,7 +28,6 @@ if "SECRET" in os.environ:
 
 
 MAX_IMAGE_LETTERS=250000
-ALLOWED_IMAGE_FORMATS=["png","jpg"]
 
 
 """
