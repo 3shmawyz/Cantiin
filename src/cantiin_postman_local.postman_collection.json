@@ -4322,7 +4322,7 @@
 							"response": []
 						},
 						{
-							"name": "edit_orders:fail:can not change Copy",
+							"name": "edit_images:fail:forbidden",
 							"event": [
 								{
 									"listen": "test",
@@ -4334,7 +4334,7 @@
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
 											"  pm.expect(responseJson.description).to.eql(\r",
-											"      \"you can not delete this order, because you are not the one who created it\");\r",
+											"      \"you can not delete this image, because you are not the one who created it\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
 											"  pm.expect(responseJson.message).to.eql(\"forbidden\");\r",
 											"});"
@@ -4356,13 +4356,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders/3",
+									"raw": "{{host}}/images/1",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
-										"3"
+										"images",
+										"1"
 									]
 								}
 							},
