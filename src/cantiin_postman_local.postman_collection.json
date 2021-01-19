@@ -4248,7 +4248,7 @@
 					"name": "delete_images",
 					"item": [
 						{
-							"name": "delete_orders:successful",
+							"name": "delete_images:successful",
 							"event": [
 								{
 									"listen": "test",
@@ -4259,7 +4259,7 @@
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.result).to.eql(\"order deleted successfully\");\r",
+											"  pm.expect(responseJson.result).to.eql(\"image deleted successfully\");\r",
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});"
 										],
@@ -4271,13 +4271,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/orders/7",
+									"raw": "{{host}}/images/16",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
-										"7"
+										"images",
+										"16"
 									]
 								}
 							},

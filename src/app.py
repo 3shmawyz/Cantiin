@@ -1280,7 +1280,7 @@ Tests: test_01_clear_tables
 	def delete_images(payload,image_id):
 	#This endpoint will delete an existing image
 		
-		images_query=Order.query
+		images_query=Image.query
 		image_id_validation=validate_model_id(
 			input_id=image_id,model_query=images_query
 			,model_name_string="image")
