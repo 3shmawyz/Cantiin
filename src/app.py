@@ -1182,7 +1182,7 @@ Tests: test_01_clear_tables
 
 	@app.route("/images/<int:image_id>", methods=["PUT"])
 	@requires_auth()
-	def edit_images(payload,images_id):
+	def edit_images(payload,image_id):
 	#This endpoint will edit an exiting image
 		try:
 			body = request.get_json()

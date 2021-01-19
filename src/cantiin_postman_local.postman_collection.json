@@ -1,6 +1,5 @@
 {
 	"info": {
-		"_postman_id": "f35b7508-4b26-4bd1-816e-e585655dbdb4",
 		"name": "cantiin_postman_local",
 		"description": "A collection to test cantiin api endpoints on the local server.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3950,7 +3949,7 @@
 					"name": "edit_images",
 					"item": [
 						{
-							"name": "edit_orders:success",
+							"name": "edit_images:success",
 							"event": [
 								{
 									"listen": "test",
@@ -3964,25 +3963,18 @@
 											"  pm.expect(responseJson.success).to.eql(true);\r",
 											"});\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"    order = responseJson[\"order\"]\r",
-											"        pm.expect(typeof(order[\"id\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"amount\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"user_id\"])).to.eql(typeof(1));\r",
-											"        pm.expect(typeof(order[\"total_cost\"])).to.eql(typeof(1.0));\r",
-											"\r",
-											"\r",
-											"        pm.expect(order[\"id\"]).to.eql(9);\r",
-											"        pm.expect(order[\"total_cost\"]).to.eql(600.0);\r",
-											"        pm.expect(order[\"user_id\"]).to.eql(1);\r",
-											"        pm.expect(order[\"amount\"]).to.eql(4);\r",
-											"\r",
-											"\r",
-											"        var product = order[\"product\"];\r",
-											"        pm.expect(product[\"id\"]).to.eql(4);\r",
-											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
-											"        pm.expect(product[\"name\"]).to.eql(\"Table\");\r",
-											"        pm.expect(product[\"price\"]).to.eql(150.0);\r",
-											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
+											"    image = responseJson[\"image\"]\r",
+											"        pm.expect(typeof(image[\"formatting\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(image[\"seller_id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(image[\"name\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(image[\"id\"])).to.eql(typeof(1));\r",
+											"      \r",
+											"        pm.expect((image[\"formatting\"])).to.eql((\"png\"));\r",
+											"        pm.expect((image[\"seller_id\"])).to.eql((3));\r",
+											"        pm.expect((image[\"name\"])).to.eql((\"Labtopp\"));\r",
+											"        pm.expect((image[\"id\"])).to.eql((9));\r",
+											"        \r",
+											"        pm.expect(responseJson[\"img\"]).to.eql(\"data:image/png;base64,abcdefgh\");\r",
 											"});"
 										],
 										"type": "text/javascript"
@@ -3994,7 +3986,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"amount\":4\r\n}",
+									"raw": "{\r\n    \"name\":\"Labtopp\",\r\n    \"formatting\":\"png\",\r\n    \"img\":\"abcdefgh\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4002,12 +3994,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders/9",
+									"raw": "{{host}}/images/9",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
+										"images",
 										"9"
 									]
 								}
