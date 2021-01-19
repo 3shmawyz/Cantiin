@@ -1200,7 +1200,7 @@ Tests: test_01_clear_tables
 
 		#There can not be 0 fields to change
 		#There must be at least one input field
-		if (name==None and formatting==None):
+		if (name==None and formatting==None and img==None):
 			return my_error(status=400, 
 				description = "you must at least enter"
 				" one field to change")
@@ -1243,12 +1243,12 @@ Tests: test_01_clear_tables
 			minimum=4,maximum=MAX_IMAGE_LETTERS)
 
 		val_group=validate_must_group(
-			[name_validation,formatting_validation])
+			[name_validation,formatting_validation,img_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			name,formatting=val_group["result"]		
+			name,formatting,img=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
