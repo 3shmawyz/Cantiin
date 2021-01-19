@@ -3668,7 +3668,7 @@
 							"response": []
 						},
 						{
-							"name": "post_orders: fail:missing product_id",
+							"name": "post_images: fail:missing name",
 							"event": [
 								{
 									"listen": "test",
@@ -3679,7 +3679,7 @@
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"product is missing\");\r",
+											"  pm.expect(responseJson.description).to.eql(\"name is missing\");\r",
 											"  pm.expect(responseJson.error).to.eql(400);\r",
 											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
@@ -3694,7 +3694,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"amount\":2\r\n}",
+									"raw": "{\r\n    \"formatting\":\"png\",\r\n    \"img\":\"abcdefgh\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3702,19 +3702,19 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders",
+									"raw": "{{host}}/images",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders"
+										"images"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "post_orders: fail:missing amount",
+							"name": "post_orders: fail:missing formatting",
 							"event": [
 								{
 									"listen": "test",
@@ -3725,7 +3725,7 @@
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"amount is missing\");\r",
+											"  pm.expect(responseJson.description).to.eql(\"formatting is missing\");\r",
 											"  pm.expect(responseJson.error).to.eql(400);\r",
 											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
@@ -3740,7 +3740,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product_id\":4\r\n}",
+									"raw": "{\r\n    \"name\":\"Labtop\",\r\n    \"img\":\"abcdefgh\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3748,12 +3748,58 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders",
+									"raw": "{{host}}/images",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders"
+										"images"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post_orders: fail:missing formatting Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"img is missing\");\r",
+											"  pm.expect(responseJson.error).to.eql(400);\r",
+											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Labtop\",\r\n    \"formatting\":\"png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/images",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"images"
 									]
 								}
 							},
