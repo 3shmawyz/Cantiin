@@ -27,7 +27,6 @@ if "SECRET" in os.environ:
 
 
 
-MAX_IMAGE_LETTERS=250000
 
 
 """
