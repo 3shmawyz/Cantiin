@@ -3804,6 +3804,52 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "post_images: fail:short name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"minimum name length is 1 letters\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"\",\r\n    \"formatting\":\"png\",\r\n    \"img\":\"abcdefgh\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/images",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"images"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
