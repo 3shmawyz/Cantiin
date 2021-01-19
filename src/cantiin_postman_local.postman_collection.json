@@ -3509,7 +3509,651 @@
 			]
 		},
 		{
-			"name": "6)cookies",
+			"name": "6)images",
+			"item": [
+				{
+					"name": "get_images",
+					"item": [
+						{
+							"name": "login_users:success Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"output as expected\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson.success).to.eql(true);\r",
+											"    \r",
+											"    pm.expect(responseJson.result).to.eql(\"logged in successfully\");\r",
+											"    pm.expect(responseJson.user_id).to.eql(3);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"klmn\",\r\n    \"password\":\"fde123987byt\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_images: success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"Success is True\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"    responseJson[\"images\"].forEach(function (image, index) {\r",
+											"        pm.expect(typeof(image[\"id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(image[\"formatting\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(image[\"name\"])).to.eql(typeof(\"txt\"));\r",
+											"        pm.expect(typeof(image[\"seller_id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(image[\"seller_id\"]).to.eql(3);\r",
+											"    });\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/images",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"images"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "post_images",
+					"item": [
+						{
+							"name": "post_orders: success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"Success is True\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"    order = responseJson[\"order\"]\r",
+											"        pm.expect(typeof(order[\"id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(order[\"amount\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(order[\"user_id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(order[\"total_cost\"])).to.eql(typeof(1.0));\r",
+											"\r",
+											"\r",
+											"        pm.expect(order[\"id\"]).to.eql(9);\r",
+											"        pm.expect(order[\"total_cost\"]).to.eql(300.0);\r",
+											"        pm.expect(order[\"user_id\"]).to.eql(1);\r",
+											"        pm.expect(order[\"amount\"]).to.eql(2);\r",
+											"\r",
+											"\r",
+											"        var product = order[\"product\"];\r",
+											"        pm.expect(product[\"id\"]).to.eql(4);\r",
+											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
+											"        pm.expect(product[\"name\"]).to.eql(\"Table\");\r",
+											"        pm.expect(product[\"price\"]).to.eql(150.0);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\":4,\r\n    \"amount\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post_orders: fail:missing product_id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"product is missing\");\r",
+											"  pm.expect(responseJson.error).to.eql(400);\r",
+											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post_orders: fail:missing amount",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"amount is missing\");\r",
+											"  pm.expect(responseJson.error).to.eql(400);\r",
+											"  pm.expect(responseJson.message).to.eql(\"bad request\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "edit_images",
+					"item": [
+						{
+							"name": "edit_orders:success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"Success is True\", () => {\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"    order = responseJson[\"order\"]\r",
+											"        pm.expect(typeof(order[\"id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(order[\"amount\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(order[\"user_id\"])).to.eql(typeof(1));\r",
+											"        pm.expect(typeof(order[\"total_cost\"])).to.eql(typeof(1.0));\r",
+											"\r",
+											"\r",
+											"        pm.expect(order[\"id\"]).to.eql(9);\r",
+											"        pm.expect(order[\"total_cost\"]).to.eql(600.0);\r",
+											"        pm.expect(order[\"user_id\"]).to.eql(1);\r",
+											"        pm.expect(order[\"amount\"]).to.eql(4);\r",
+											"\r",
+											"\r",
+											"        var product = order[\"product\"];\r",
+											"        pm.expect(product[\"id\"]).to.eql(4);\r",
+											"        pm.expect(product[\"in_stock\"]).to.eql(false);\r",
+											"        pm.expect(product[\"name\"]).to.eql(\"Table\");\r",
+											"        pm.expect(product[\"price\"]).to.eql(150.0);\r",
+											"        pm.expect(product[\"seller_id\"]).to.eql(1);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit_orders:fail:wrong order_id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"there is no order with this id\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/500",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"500"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit_orders:fail:wrong amount",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"amount can not be more than 1000000000\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":100000000000000000000000000000000000000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/500",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"500"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit_orders:success:amount is 0",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.result).to.eql(\"order deleted successfully\");\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit_orders:fail:can not change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 403\", function () {\r",
+											"  pm.response.to.have.status(403);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\r",
+											"      \"you can not edit this order, because you are not the one who created it\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"  pm.expect(responseJson.message).to.eql(\"forbidden\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/8",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete_images",
+					"item": [
+						{
+							"name": "delete_orders:successful",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.result).to.eql(\"order deleted successfully\");\r",
+											"  pm.expect(responseJson.success).to.eql(true);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders/7",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_orders:fail:wrong id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(422);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\"there is no order with this id\");\r",
+											"  pm.expect(responseJson.error).to.eql(422);\r",
+											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders/9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit_orders:fail:can not change Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 403\", function () {\r",
+											"  pm.response.to.have.status(403);\r",
+											"});\r",
+											"const responseJson = pm.response.json();\r",
+											"pm.test(\"output as expected\", () => {\r",
+											"  pm.expect(responseJson.description).to.eql(\r",
+											"      \"you can not delete this order, because you are not the one who created it\");\r",
+											"  pm.expect(responseJson.success).to.eql(false);\r",
+											"  pm.expect(responseJson.message).to.eql(\"forbidden\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/3",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "7)cookies",
 			"item": [
 				{
 					"name": "post cookies",
