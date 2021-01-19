@@ -1715,6 +1715,11 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(isBase64("123*"),False)
 		print("Test c_2_5_1: isBase64")
 
+	def test_c_2_6_001_b64_to_image(self):
+		self.assertEqual(b64ToImg("abcd","png"),"data:image/png;base64,abcd")
+		self.assertEqual(b64ToImg("1234","jpg"),"data:image/jpg;base64,1234")
+		print("Test c_2_5_1: isBase64")
+
 
 
 
