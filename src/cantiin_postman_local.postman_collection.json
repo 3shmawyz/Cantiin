@@ -4101,7 +4101,7 @@
 							"response": []
 						},
 						{
-							"name": "edit_images:fail:wrong order_id",
+							"name": "edit_images:fail:wrong formatting",
 							"event": [
 								{
 									"listen": "test",
@@ -4148,18 +4148,18 @@
 							"response": []
 						},
 						{
-							"name": "edit_images:fail:wrong amount",
+							"name": "edit_images:fail:wrong order_id",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 400\", function () {\r",
+											"pm.test(\"Status code is 422\", function () {\r",
 											"  pm.response.to.have.status(422);\r",
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"amount can not be more than 1000000000\");\r",
+											"  pm.expect(responseJson.description).to.eql(\"there is no image with this id\");\r",
 											"  pm.expect(responseJson.error).to.eql(422);\r",
 											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
@@ -4174,7 +4174,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"amount\":100000000000000000000000000000000000000000\r\n}",
+									"raw": "{\r\n    \"formatting\":\"png\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4182,12 +4182,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders/500",
+									"raw": "{{host}}/images/500",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
+										"images",
 										"500"
 									]
 								}
