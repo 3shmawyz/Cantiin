@@ -431,13 +431,26 @@ def isBase64(input_string):
 
 
 
-
+"""
+Inputs:
+	- b64String: This is a string that has been validated to be b64
+	- formatting: "png" ot "jpg" or a value in the ALLOWED_IMAGE_FORMATS list
+"""
 def b64ToImg(b64String,formatting):
 	return "data:image/"+formatting+";base64,"+b64String
 
 
+"""
+We wil see how the frontend handles this first
+
+Inputs:
+	- imgString: a string that has been validated to 
+
+
+
 def imgToB64(imgString):
 	return "data:image/"+formatting+";base64,"+b64String
+"""
 
 
 
