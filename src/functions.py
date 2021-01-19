@@ -301,7 +301,11 @@ def validate_base64(
 
 
 
-
+def validate_formatting(input_formatting,allowed_formats):
+	if input_formatting not in allowed_formats:
+		return {"success":False,"result":my_error(status=400,description=
+			str(input_formatting)+" is not allowed image format")}
+	return {"success":True,"result":input_formatting}
 
 
 
@@ -390,6 +394,9 @@ def validate_must_group(validations_list):
 		else: 
 			return {"case":False,"result":val["result"]}
 	return {"case":True,"result":to_return}  
+
+
+
 
 
 
