@@ -436,6 +436,10 @@ def b64ToImg(b64String,formatting):
 	return "data:image/"+formatting+";base64,"+b64String
 
 
+def imgToB64(imgString):
+	return "data:image/"+formatting+";base64,"+b64String
+
+
 
 
 def db_drop_and_create_all():
