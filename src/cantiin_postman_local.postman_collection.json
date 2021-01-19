@@ -4284,7 +4284,7 @@
 							"response": []
 						},
 						{
-							"name": "delete_orders:fail:wrong id",
+							"name": "delete_images:fail:wrong id",
 							"event": [
 								{
 									"listen": "test",
@@ -4295,7 +4295,7 @@
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"there is no order with this id\");\r",
+											"  pm.expect(responseJson.description).to.eql(\"there is no image with this id\");\r",
 											"  pm.expect(responseJson.error).to.eql(422);\r",
 											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
@@ -4309,13 +4309,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/orders/9",
+									"raw": "{{host}}/images/16",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
-										"9"
+										"images",
+										"16"
 									]
 								}
 							},
