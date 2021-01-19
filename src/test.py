@@ -1405,6 +1405,10 @@ class CantiinTestCase(unittest.TestCase):
 		validation = validate__must(input="png",type="frmt",
 			input_name_string="formatting")
 		self.assertEqual(validation  ,{"case":True,"result":"png"})
+		validation = validate__must(input="abc",type="frmt",
+			input_name_string="formatting")
+		self.assertEqual(validation  ,{"case":False,"result":
+			{"description":"abc is not allowed image format","status":422}})
 		print("Test b_6_14: validate__must input: correct base64")
 
 
