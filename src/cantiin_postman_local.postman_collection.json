@@ -4107,12 +4107,12 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 400\", function () {\r",
+											"pm.test(\"Status code is 422\", function () {\r",
 											"  pm.response.to.have.status(422);\r",
 											"});\r",
 											"const responseJson = pm.response.json();\r",
 											"pm.test(\"output as expected\", () => {\r",
-											"  pm.expect(responseJson.description).to.eql(\"there is no order with this id\");\r",
+											"  pm.expect(responseJson.description).to.eql(\"abc is not allowed image format\");\r",
 											"  pm.expect(responseJson.error).to.eql(422);\r",
 											"  pm.expect(responseJson.message).to.eql(\"unprocessible\");\r",
 											"  pm.expect(responseJson.success).to.eql(false);\r",
@@ -4127,7 +4127,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"amount\":4\r\n}",
+									"raw": "{\r\n    \"formatting\":\"abc\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4135,13 +4135,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/orders/500",
+									"raw": "{{host}}/images/9",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"orders",
-										"500"
+										"images",
+										"9"
 									]
 								}
 							},
