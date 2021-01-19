@@ -1165,7 +1165,7 @@ Tests: test_01_clear_tables
 		try:
 			new_image.insert()
 			return jsonify(
-				{"success":True,"image":new_image.get_dict()})
+				{"success":True,"image":new_image.get_dict(),"img":img})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
@@ -1183,6 +1183,7 @@ Tests: test_01_clear_tables
 		try:
 			name = body.get("name",None)
 			formatting = body.get("formatting",None)
+			img = body.get("img",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
@@ -1217,6 +1218,7 @@ Tests: test_01_clear_tables
 		#there will be no None
 		if name == None:name=image.name
 		if formatting == None:formatting=image.formatting
+		if img 	==None : img =""
 		#Now there is no None
 		#There are default values
 		#This step can not change it's place because
@@ -1228,6 +1230,9 @@ Tests: test_01_clear_tables
 		formatting_validation = validate_must(
 			input=formatting,type="s",input_name_string="formatting",
 			minimum=1,maximum=6)
+		img_validation = validate_must(
+			input=img,type="b64",input_name_string="img",
+			minimum=4,maximum=MAX_IMAGE_LETTERS)
 
 		val_group=validate_must_group(
 			[name_validation,formatting_validation])
@@ -1256,7 +1261,7 @@ Tests: test_01_clear_tables
 		try:
 			image.update()
 			return jsonify(
-				{"success":True,"product":image.simple()})
+				{"success":True,"image":image.simple(),"img":img})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
