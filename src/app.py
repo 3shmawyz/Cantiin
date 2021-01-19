@@ -26,6 +26,11 @@ if "SECRET" in os.environ:
 	SECRET = os.environ["SECRET"]
 
 
+
+MAX_IMAGE_LETTERS=250000
+
+
+
 """
 try:
 	from .auth import *
@@ -1121,6 +1126,7 @@ Tests: test_01_clear_tables
 		try:
 			name = body.get("name",None)
 			formatting = body.get("formatting",None)
+			img = body.get("img",None)
 		except:
 			return my_error(status=400, 
 				description = "there is no request body")
@@ -1132,15 +1138,18 @@ Tests: test_01_clear_tables
 		formatting_validation = validate_must(
 			input=formatting,type="s",input_name_string="formatting",
 			minimum=1,maximum=6)
+		img_validation = validate_must(
+			input=img,type="b64",input_name_string="img",
+			minimum=4,maximum=MAX_IMAGE_LETTERS)
 
 		#Validating inputs a group
 		val_group=validate_must_group(
-			[name_validation,formatting_validation])
+			[name_validation,formatting_validation,img_validation])
 
 		#Now we will validate all inputs as a group
 		if val_group["case"] == True:
 			# Success: they pass the conditions
-			name,formatting=val_group["result"]		
+			name,formatting,img=val_group["result"]		
 		else:
 			# Failure: Something went wrong
 			return val_group["result"]
