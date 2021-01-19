@@ -1401,6 +1401,14 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(validation  ,{"case":True,"result":"abcd/+/="})
 		print("Test b_6_14: validate__must input: correct base64")
 
+	def test_b_6_015_validate__must(self):
+		validation = validate__must(input="png",type="frmt",
+			input_name_string="formatting")
+		self.assertEqual(validation  ,{"case":True,"result":"png"})
+		print("Test b_6_14: validate__must input: correct base64")
+
+
+
 
 	def test_c_1_001_generate_jwt(self):
 		payload = {"data":"test"}
