@@ -1112,6 +1112,12 @@ Tests: test_01_clear_tables
 		return jsonify({"success":True,"images":to_return})
 
 
+
+	"""
+	img: is the b64 string value of the image
+		Example: "abcd", "abcde==="
+	formatting:string "png", "jpg" or any of the allowed formatting types
+	"""
 	@app.route("/images", methods=["POST"])
 	@requires_auth()
 	def post_images(payload):
@@ -1168,6 +1174,11 @@ Tests: test_01_clear_tables
 			db.session.rollback()
 			abort(500)
 
+	"""
+	img: is the b64 string value of the image
+		Example: "abcd", "abcde==="
+	formatting:string "png", "jpg" or any of the allowed formatting types
+	"""
 
 	@app.route("/images/<int:image_id>", methods=["PUT"])
 	@requires_auth()
