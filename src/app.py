@@ -26,6 +26,7 @@ if "SECRET" in os.environ:
 	SECRET = os.environ["SECRET"]
 
 
+MAX_IMAGE_LETTERS=250000
 
 
 

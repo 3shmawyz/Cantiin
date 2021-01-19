@@ -34,7 +34,6 @@ except:
 
 
 ALLOWED_IMAGE_FORMATS=["png","jpg"]
-MAX_IMAGE_LETTERS=250000
 
 
 
@@ -305,8 +304,8 @@ def validate_base64(
 			" can not be converted to base64"}} 
 
 def validate_formatting(input_formatting):
-	validation = validate_string(input_formatting,"formatting",minimum_length=4,
-	max_length=MAX_IMAGE_LETTERS)
+	validation = validate_string(input_formatting,"formatting",minimum_length=2,
+	max_length=20)
 	if validation["case"] != 1:
 		return validation
 	input_formatting = validation["result"]

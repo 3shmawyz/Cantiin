@@ -1259,6 +1259,12 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test b_6_1: validate_base64: None")
 
 
+	def test_b_7_001_validate_formatting(self):		
+		validation = validate_formatting(input_formatting="png")
+		self.assertEqual(validation,{"case":1,"result":"png"})
+		print("Test b_7_1: validate_formatting:")
+
+
 
 
 
