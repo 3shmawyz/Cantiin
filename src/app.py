@@ -1108,7 +1108,7 @@ Tests: test_01_clear_tables
 		#Filtering by user_id
 		images = Image.query.filter(
 			Image.seller_id==seller_id).order_by("id").all()
-		to_return=[i.get_dict() for i in images]
+		to_return=[i.simple() for i in images]
 		return jsonify({"success":True,"images":to_return})
 
 
@@ -1169,7 +1169,7 @@ Tests: test_01_clear_tables
 		try:
 			new_image.insert()
 			return jsonify(
-				{"success":True,"image":new_image.get_dict(),"img":img})
+				{"success":True,"image":new_image.simple(),"img":img})
 		except Exception as e:
 			db.session.rollback()
 			abort(500)
