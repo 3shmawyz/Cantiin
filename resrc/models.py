@@ -45,6 +45,20 @@ class MyModel():
 	#def __repr__(self): 
 	#	return "Form(%s)" % (', '.join(map(repr, self.args)),)
 
+	def deep(self):
+		toReturn = {}
+		for key in self.__dict__:
+			if key[0] == '_':
+				continue
+			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
+				try:
+					toReturn[key]=self.__dict__[key].simple()
+				except Exception as e:
+					continue
+			else:
+				toReturn[key] = self.__dict__[key]
+		return toReturn
+
 	def simple(self):
 		# Prepare to delete all the keys starting with "_"
 		toReturn = {}
