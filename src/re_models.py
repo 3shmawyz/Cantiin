@@ -18,7 +18,8 @@ class NotReceived():
 class MyModel():
     def __init__(self, input_dict):
         for key in input_dict:
-            setattr(self,"key",input_dict[key])  
+            if type(input_dict[key]) != NotReceived:
+                setattr(self,"key",input_dict[key])  
 
    def insert(self):
         db.session.add(self)
