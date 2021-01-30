@@ -33,10 +33,10 @@ class MyModel():
 		db_session.add(self)
 		db_session.commit()
 
-	def update(self,input_dict):
-		for key in input_dict:
-			if type(input_dict[key]) != NotReceived:
-				setattr(self,key,input_dict[key])  
+	def update(self,**kwargs):
+		for key in kwargs:
+			if type(kwargs[key]) != NotReceived:
+				setattr(self,key,kwargs[key])  
 		db_session.commit()
 
 	def delete(self):
