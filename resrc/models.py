@@ -42,22 +42,6 @@ class MyModel():
 	def delete(self):
 		db_session.delete(self)
 		db_session.commit()
-	#def __repr__(self): 
-	#	return "Form(%s)" % (', '.join(map(repr, self.args)),)
-
-	def deep(self):
-		toReturn = {}
-		for key in self.__dict__:
-			if key[0] == '_':
-				continue
-			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
-				try:
-					toReturn[key]=self.__dict__[key].simple()
-				except Exception as e:
-					continue
-			else:
-				toReturn[key] = self.__dict__[key]
-		return toReturn
 
 	def simple(self):
 		# Prepare to delete all the keys starting with "_"
@@ -72,6 +56,20 @@ class MyModel():
 
 	def __repr__(self):
 		return json.dumps(self.simple())
+
+	def deep(self):
+		toReturn = {}
+		for key in self.__dict__:
+			if key[0] == '_':
+				continue
+			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
+				try:
+					toReturn[key]=self.__dict__[key].simple()
+				except Exception as e:
+					continue
+			else:
+				toReturn[key] = self.__dict__[key]
+		return toReturn
 
 
 
@@ -109,23 +107,6 @@ class User(Base,MyModel):
 						uselist=True,
 						cascade='delete,all'))
 	
-	"""def simple(self):
-		return {
-			'id': self.id,
-			'username': self.username
-		}"""
-
-	def get_dict(self):
-		return self.simple()
-
-
-
-
-
-
-
-
-
 
 '''
 Product
@@ -161,34 +142,11 @@ class Product(Base, MyModel):
 	# The user who sells this product
 	# it is an integer
 	# Example: 1, 2 or 3
-	def __init__(self,input_dict):
-		MyModel.__init__(self,input_dict)
 	
 	orders = relationship("Order",backref=backref('product',
 						uselist=True,
 						cascade='delete,all'))
 
-
-	def __repr__(self):
-		return json.dumps(
-		{
-			'id': self.id,
-			'name': self.name,
-			'price': self.price,
-			'in_stock': self.in_stock,
-			'seller_id': self.seller_id
-		})
-	def simple(self):
-		return {
-			'id': self.id,
-			'name': self.name,
-			'price': self.price,
-			'in_stock': self.in_stock,
-			'seller_id': self.seller_id
-		}
-
-	def get_dict(self):
-		return self.simple()
 
 
 
@@ -216,44 +174,6 @@ class Order(Base, MyModel):
 	# amount is an integer
 	# Example: 5, 6, 50
 	total_cost = 0.0
-	def __init__(self,input_dict):
-		MyModel.__init__(self,input_dict)
-
-	def __repr__(self):
-		return json.dumps(
-		{#id, user_id, product_id, amount
-
-			'id': self.id,
-			'user_id': self.user_id,
-			'product_id': self.product_id,
-			'amount': self.amount,
-			"total_cost":float(self.product_id)*float(self.amount)
-		})
-	def simple(self):
-		return {#id, user_id, product_id, amount
-			'id': self.id,
-			'user_id': self.user_id,
-			'amount': self.amount,
-			"product_id":self.product_id
-		}
- 
-
-	def get_dict(self):
-		return {#id, user_id, product_id, amount
-			'id': self.id,
-			'user_id': self.user_id,
-			'amount': self.amount,
-			"product":self.product.get_dict(),
-			"total_cost":self.product.price*float(self.amount)
-		}
- 
-
-
-
-
-
-
-
 
 
 
@@ -282,39 +202,20 @@ class Image(Base, MyModel):
 	# formattng is a string that represents the type of image
 	# There can be only 2 types: "png" , "jpg"
 	# it can not be unique
-	def __init__(self,input_dict):
-		MyModel.__init__(self,input_dict)
 
 
-	def __repr__(self):
-		return json.dumps(
-		{
-			'id': self.id,
-			'seller_id': self.seller_id,
-			'name': self.name,
-			'formatting': self.formatting
-		})
-	def simple(self):
-		return {
-			'id': self.id,
-			'seller_id': self.seller_id,
-			'name': self.name,
-			'formatting': self.formatting
-		}
 
-	def get_dict(self):
-		return self.simple()
+
+
+
+
+
+
 
 
 
 def init_db():
-
-
-
 	Base.query = db_session.query_property()
-
-
-
 	Base.metadata.drop_all(bind=engine)
 	Base.metadata.create_all(bind=engine)
 init_db()
