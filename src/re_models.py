@@ -16,7 +16,14 @@ class MyModel():
         for key in input_dict:
             setattr(self,"key",input_dict[key])  
 
+   def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
+    def update(self,input_dict):
+        for key in input_dict:
+            setattr(self,"key",input_dict[key])  
+        db.session.commit()
 
 
 
