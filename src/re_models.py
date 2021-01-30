@@ -12,6 +12,14 @@ except:
 
 
 
+class MyModel(object):
+    def __init__(self, input_dict):
+        for key in input_dict:
+            setattr(self,"key",input_dict[key])  
+
+
+
+
 
 '''
 User
