@@ -8,16 +8,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 
 
-
-engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-										 #autoflush=False,
-										 bind=engine))
-
-
-#from __init__ import (engine, Base, db_session)
 Base = declarative_base()
-Base.query = db_session.query_property()
 
 class NotReceived():
 	pass
@@ -53,7 +44,7 @@ Relationships:
 products,orders,images
 
 '''
-class User(Base):
+class User(Base, MyModel):
 	__tablename__="user"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -106,7 +97,7 @@ Product
 a persistent product entity, extends the base SQLAlchemy Model
 id,name,price,in_stock,seller_id
 '''
-class Product(Base):
+class Product(Base, MyModel):
 	__tablename__="product"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -169,7 +160,7 @@ class Product(Base):
 Order:
 id, user_id, product_id, amount
 """
-class Order(Base):
+class Order(Base, MyModel):
 	__tablename__="order"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -234,7 +225,7 @@ id,seller_id,name,formatting
 
 The image will be stroed with it's id
 '''
-class Image(Base):
+class Image(Base, MyModel):
 	__tablename__="image"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -275,7 +266,19 @@ class Image(Base):
 
 
 
+def init_db():
 
 
-#Base.metadata.drop_all(bind=engine)
-Base.metadata.create_all(bind=engine)
+	engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
+	db_session = scoped_session(sessionmaker(autocommit=False,
+											 #autoflush=False,
+											 bind=engine))
+
+	Base.query = db_session.query_property()
+
+
+
+	#Base.metadata.drop_all(bind=engine)
+	Base.metadata.create_all(bind=engine)
+init_db()
+
