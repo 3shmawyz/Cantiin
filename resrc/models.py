@@ -23,12 +23,11 @@ class NotReceived():
 class MyModel():
 	#def __init__(self):
 	#	pass
-	def __init__(self, input_dict):
-		#print(input_dict)
-		for key in input_dict:
-			if type(input_dict[key]) != NotReceived:
-				setattr(self,key,input_dict[key])  
-		#print(getattr(self))
+	def __init__(self, **kwargs):
+		for key in kwargs:
+			if type(kwargs[key]) != NotReceived:
+				setattr(self,key,kwargs[key])  
+	
 	def insert(self):
 		print(self)
 		db_session.add(self)
@@ -330,7 +329,7 @@ class Child(MyModel):
 	x = 1
 
 
-child = Child({"y":5})
+child = Child(y=5)
 
 print(vars(child))
 print((Child.__dict__))
