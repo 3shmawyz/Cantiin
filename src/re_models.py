@@ -3,16 +3,15 @@ from sqlalchemy import Column, String, Integer, Float, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 import json
 
-Base = declarative_base()
 
 try:
-    from __init__ import *
+    from __init__ import db
 except:
-    from src import *
+    from src import db
 
 
 
-class MyModel(object):
+class MyModel():
     def __init__(self, input_dict):
         for key in input_dict:
             setattr(self,"key",input_dict[key])  
@@ -30,7 +29,7 @@ Relationships:
 products,orders,images
 
 '''
-class User(Base):
+class User(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String username
@@ -114,7 +113,7 @@ Product
 a persistent product entity, extends the base SQLAlchemy Model
 id,name,price,in_stock,seller_id
 '''
-class Product(Base):
+class Product(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
@@ -208,7 +207,7 @@ class Product(Base):
 Order:
 id, user_id, product_id, amount
 """
-class Order(Base):
+class Order(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
