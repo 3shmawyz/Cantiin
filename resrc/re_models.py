@@ -1,16 +1,13 @@
 import os
-from sqlalchemy import Column, String, Integer, Float, Boolean
+from sqlalchemy import Column, String, Integer, Float, Boolean, ForeignKey, func
 from sqlalchemy.ext.declarative import declarative_base
 import json
-
-
-
-
-
-
+from sqlalchemy.orm import backref, relationship, scoped_session, sessionmaker
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
+
+
+
+
 
 engine = create_engine('sqlite:///database.sqlite3', convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
@@ -56,7 +53,7 @@ Relationships:
 products,orders,images
 
 '''
-class User(db.Model):
+class User(Base):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String username
@@ -69,9 +66,9 @@ class User(db.Model):
     # Example: "12345", "abc"
     # it doesn't have to be unique
 
-    products = db.relationship("Product",backref="seller")
-    orders = db.relationship("Order",backref="buyer")
-    images = db.relationship("Image",backref="seller")
+    products = relationship("Product",backref="seller")
+    orders = relationship("Order",backref="buyer")
+    images = relationship("Image",backref="seller")
 
     def __init__(self, username, password):
         self.username = username
@@ -140,7 +137,7 @@ Product
 a persistent product entity, extends the base SQLAlchemy Model
 id,name,price,in_stock,seller_id
 '''
-class Product(db.Model):
+class Product(Base):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
@@ -160,7 +157,7 @@ class Product(db.Model):
     # it represents whether this product is for sale or not
     # True = For sale, can be displayed to customers
     # False = now for sale, can not be displayed to customers
-    seller_id = Column(Integer(),db.ForeignKey("user.id"),
+    seller_id = Column(Integer(),ForeignKey("user.id"),
      unique=False, nullable=False)
     #seller_id = Column(Integer(), unique=False, nullable=False)
     # seller_id
@@ -169,7 +166,7 @@ class Product(db.Model):
     # it is an integer
     # Example: 1, 2 or 3
     
-    orders = db.relationship("Order",backref="product")
+    orders = relationship("Order",backref="product")
 
     def __init__(self,  
         price, name, seller_id,in_stock=True):
@@ -234,17 +231,17 @@ class Product(db.Model):
 Order:
 id, user_id, product_id, amount
 """
-class Order(db.Model):
+class Order(Base):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
     # String name
-    user_id =Column(Integer(),db.ForeignKey("user.id"),
+    user_id =Column(Integer(),ForeignKey("user.id"),
      unique=False, nullable=False)
     # user_id
     # This is the id of the user who ordered the products
     # it is an integer
     # Example: 1, 2 or 3
-    product_id  = Column(Integer,db.ForeignKey("product.id"))
+    product_id  = Column(Integer,ForeignKey("product.id"))
     # product_id is an integer 
     # it refers to the product.id in the products table
     # Example: 1, 2 , 3
@@ -345,7 +342,7 @@ The image will be stroed with it's id
 class Image(Base):
     # Autoincrementing, unique primary key
     id = Column(Integer(), primary_key=True)
-    seller_id = Column(Integer(),db.ForeignKey("user.id"),
+    seller_id = Column(Integer(),ForeignKey("user.id"),
      unique=False, nullable=False)
     # This is the id of the seller user
     # The user who sells this product
