@@ -16,7 +16,10 @@ class NotReceived():
 
 
 class MyModel():
+	#def __init__(self):
+	#	pass
 	def __init__(self, input_dict):
+		print(input_dict)
 		for key in input_dict:
 			if type(input_dict[key]) != NotReceived:
 				setattr(self,"key",input_dict[key])  
@@ -34,6 +37,8 @@ class MyModel():
 	def delete(self):
 		db_session.delete(self)
 		db_session.commit()
+	def abc():
+		print("abc")
 
 '''
 User
@@ -67,6 +72,9 @@ class User(Base, MyModel):
 	images = relationship("Image",backref=backref('seller',
                         uselist=True,
                         cascade='delete,all'))
+	
+	def __init__(self,input_dict):
+		MyModel.__init__(self,input_dict)
 
 	def __repr__(self):
 		return json.dumps(
@@ -126,6 +134,8 @@ class Product(Base, MyModel):
 	# The user who sells this product
 	# it is an integer
 	# Example: 1, 2 or 3
+	def __init__(self,input_dict):
+		MyModel.__init__(self,input_dict)
 	
 	orders = relationship("Order",backref=backref('product',
                         uselist=True,
@@ -179,6 +189,8 @@ class Order(Base, MyModel):
 	# amount is an integer
 	# Example: 5, 6, 50
 	total_cost = 0.0
+	def __init__(self,input_dict):
+		MyModel.__init__(self,input_dict)
 
 	def __repr__(self):
 		return json.dumps(
@@ -243,6 +255,8 @@ class Image(Base, MyModel):
 	# formattng is a string that represents the type of image
 	# There can be only 2 types: "png" , "jpg"
 	# it can not be unique
+	def __init__(self,input_dict):
+		MyModel.__init__(self,input_dict)
 
 
 	def __repr__(self):
@@ -282,3 +296,7 @@ def init_db():
 	Base.metadata.create_all(bind=engine)
 init_db()
 
+User.abc()
+user = User({"username":123})
+#user.create({"username":123})
+#print(user)
