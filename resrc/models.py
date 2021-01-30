@@ -44,14 +44,20 @@ class MyModel():
 		db_session.commit()
 	#def __repr__(self): 
 	#	return "Form(%s)" % (', '.join(map(repr, self.args)),)
-	def __repr__(self):
+
+	def simple(self):
 		# Prepare to delete all the keys starting with "_"
 		toReturn = {}
 		for key in self.__dict__:
 			if key[0] == '_':
 				continue
+			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
+				continue
 			toReturn[key] = self.__dict__[key]
-		return json.dumps(toReturn)
+		return toReturn
+
+	def __repr__(self):
+		return json.dumps(self.simple())
 
 
 
@@ -89,11 +95,11 @@ class User(Base,MyModel):
 						uselist=True,
 						cascade='delete,all'))
 	
-	def simple(self):
+	"""def simple(self):
 		return {
 			'id': self.id,
 			'username': self.username
-		}
+		}"""
 
 	def get_dict(self):
 		return self.simple()
@@ -299,8 +305,11 @@ def init_db():
 	Base.metadata.create_all(bind=engine)
 init_db()
 
-user = User(username = "abc", password = "123")
+user = User(username = "abc", password = "123", id = 123)
 print(user)
+print(user.__dict__)
+print(type(user.__dict__["password"]))
+
 #user.insert()
 #user.create({"username":123})
 #print(user)
