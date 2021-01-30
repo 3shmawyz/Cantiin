@@ -34,13 +34,13 @@ class MyModel():
                 setattr(self,"key",input_dict[key])  
 
    def insert(self):
-        db.session.add(self)
-        db.session.commit()
+        db_session.add(self)
+        db_session.commit()
 
     def update(self,input_dict):
         for key in input_dict:
             setattr(self,"key",input_dict[key])  
-        db.session.commit()
+        db_session.commit()
 
 
 
@@ -69,44 +69,6 @@ class User(Base):
     products = relationship("Product",backref="seller")
     orders = relationship("Order",backref="buyer")
     images = relationship("Image",backref="seller")
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-    '''
-    insert()
-        inserts a new model into a database
-        the model must have a unique username
-        the model must have a unique id or null id
-
-    '''
-    def insert(self):
-        db.session.add(self)
-        db.session.commit()
-    '''
-    delete()
-        deletes a new model into a database
-        the model must exist in the database
-    '''
-    def delete(self):
-        the_orders=self.orders
-        for ord in the_orders:
-            ord.delete()
-        the_products=self.products
-        for pro in the_products:
-            pro.delete()
-        the_images=self.images
-        for img in the_images:
-            img.delete()
-        db.session.delete(self)
-        db.session.commit()
-    '''
-    update()
-        updates a new model into a database
-        the model must exist in the database
-    '''
-    def update(self):
-        db.session.commit()
 
     def __repr__(self):
         return json.dumps(
@@ -168,40 +130,6 @@ class Product(Base):
     
     orders = relationship("Order",backref="product")
 
-    def __init__(self,  
-        price, name, seller_id,in_stock=True):
-        self.name = name
-        self.price = price
-        self.in_stock = in_stock
-        self.seller_id = seller_id
-    '''
-    insert()
-        inserts a new model into a database
-        the model must have a unique name
-        the model must have a unique id or null id
-
-    '''
-    def insert(self):
-        db.session.add(self)
-        db.session.commit()
-    '''
-    delete()
-        deletes a new model into a database
-        the model must exist in the database
-    '''
-    def delete(self):
-        the_orders=self.orders
-        for ord in the_orders:
-            ord.delete()
-        db.session.delete(self)
-        db.session.commit()
-    '''
-    update()
-        updates a new model into a database
-        the model must exist in the database
-    '''
-    def update(self):
-        db.session.commit()
 
     def __repr__(self):
         return json.dumps(
@@ -249,50 +177,6 @@ class Order(Base):
     # amount is an integer
     # Example: 5, 6, 50
     total_cost = 0.0
-    def __init__(self, user_id, product_id, amount):
-        self.user_id = user_id
-        self.product_id = product_id
-        self.amount = amount
-        self.total_cost= float(amount) * float(Product.query.get(
-            product_id).price)
-
-    '''
-    insert()
-        inserts a new model into a database
-        the model must have a unique name
-        the model must have a unique id or null id
-
-    '''
-    def insert(self):
-        if self.amount == 0 : 
-            return
-        db.session.add(self)
-        db.session.commit()
-
-    '''
-    delete()
-        deletes a new model into a database
-        the model must exist in the database
-        EXAMPLE
-            drink = Drink(title=req_title, recipe=req_recipe)
-            drink.delete()
-    '''
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
-    '''
-    update()
-        updates a new model into a database
-        the model must exist in the database
-
-    '''
-    def update(self):
-        if self.amount == 0 : 
-            db.session.rollback()
-            self.delete()
-            return
-        db.session.commit()
 
     def __repr__(self):
         return json.dumps(
@@ -357,37 +241,6 @@ class Image(Base):
     # There can be only 2 types: "png" , "jpg"
     # it can not be unique
 
-
-
-    def __init__(self, seller_id, name,formatting):
-        self.seller_id = seller_id
-        self.name = name
-        self.formatting = formatting
-    '''
-    insert()
-        inserts a new model into a database
-        the model must have a unique username
-        the model must have a unique id or null id
-
-    '''
-    def insert(self):
-        db.session.add(self)
-        db.session.commit()
-    '''
-    delete()
-        deletes a new model into a database
-        the model must exist in the database
-    '''
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-    '''
-    update()
-        updates a new model into a database
-        the model must exist in the database
-    '''
-    def update(self):
-        db.session.commit()
 
     def __repr__(self):
         return json.dumps(
