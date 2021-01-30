@@ -69,9 +69,15 @@ class User(Base):
 	# Example: "12345", "abc"
 	# it doesn't have to be unique
 
-	products = relationship("Product",backref="seller")
-	orders = relationship("Order",backref="buyer")
-	images = relationship("Image",backref="seller")
+	products = relationship("Product",backref=backref('seller',
+                        uselist=True,
+                        cascade='delete,all'))
+	orders = relationship("Order",backref=backref('buyer',
+                        uselist=True,
+                        cascade='delete,all'))
+	images = relationship("Image",backref=backref('seller',
+                        uselist=True,
+                        cascade='delete,all'))
 
 	def __repr__(self):
 		return json.dumps(
@@ -131,7 +137,9 @@ class Product(Base):
 	# it is an integer
 	# Example: 1, 2 or 3
 	
-	orders = relationship("Order",backref="product")
+	orders = relationship("Order",backref=backref('product',
+                        uselist=True,
+                        cascade='delete,all'))
 
 
 	def __repr__(self):
