@@ -1,25 +1,10 @@
 import os
 from sqlalchemy import Column, String, Integer, Float, Boolean, ForeignKey, func
-from sqlalchemy.ext.declarative import declarative_base
 import json
 from sqlalchemy.orm import backref, relationship, scoped_session, sessionmaker
-from sqlalchemy import create_engine
 
 
-
-
-
-engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-										 #autoflush=False,
-										 bind=engine))
-Base = declarative_base()
-Base.query = db_session.query_property()
-
-
-
-
-
+from __init__ import (engine, Base, db_session)
 
 
 class NotReceived():
@@ -57,6 +42,7 @@ products,orders,images
 
 '''
 class User(Base):
+	__tablename__="users"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
 	# String username
@@ -109,6 +95,7 @@ a persistent product entity, extends the base SQLAlchemy Model
 id,name,price,in_stock,seller_id
 '''
 class Product(Base):
+	__tablename__="products"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
 	# String name
@@ -171,6 +158,7 @@ Order:
 id, user_id, product_id, amount
 """
 class Order(Base):
+	__tablename__="orders"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
 	# String name
@@ -235,6 +223,7 @@ id,seller_id,name,formatting
 The image will be stroed with it's id
 '''
 class Image(Base):
+	__tablename__="images"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
 	seller_id = Column(Integer(),ForeignKey("user.id"),
@@ -274,5 +263,4 @@ class Image(Base):
 
 
 
-#Base.metadata.drop_all(bind=engine)
-Base.metadata.create_all(bind=engine)
+
