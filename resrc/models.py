@@ -9,6 +9,11 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 
 Base = declarative_base()
+engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
+db_session = scoped_session(sessionmaker(autocommit=False,
+										 #autoflush=False,
+										 bind=engine))
+
 
 class NotReceived():
 	pass
@@ -19,26 +24,42 @@ class MyModel():
 	#def __init__(self):
 	#	pass
 	def __init__(self, input_dict):
-		print(input_dict)
+		#print(input_dict)
 		for key in input_dict:
 			if type(input_dict[key]) != NotReceived:
-				setattr(self,"key",input_dict[key])  
-
+				setattr(self,key,input_dict[key])  
+		#print(getattr(self))
 	def insert(self):
+		print(self)
 		db_session.add(self)
 		db_session.commit()
 
 	def update(self,input_dict):
 		for key in input_dict:
 			if type(input_dict[key]) != NotReceived:
-				setattr(self,"key",input_dict[key])  
+				setattr(self,key,input_dict[key])  
 		db_session.commit()
 
 	def delete(self):
 		db_session.delete(self)
 		db_session.commit()
-	def abc():
-		print("abc")
+	#def __repr__(self): 
+	#	return "Form(%s)" % (', '.join(map(repr, self.args)),)
+	def __repr__(self):
+		"""attributes_list = dir(self)
+		toReturn = {}
+		for attr in attributes_list:
+			if attr[0] == "_":
+				continue
+			print(attr)
+			try:
+				str(getattr(self,attr))
+			except:
+				continue
+			toReturn[attr] = getattr(self,attr)"""
+		return json.dumps(self.__dict__)
+
+
 
 '''
 User
@@ -49,7 +70,8 @@ Relationships:
 products,orders,images
 
 '''
-class User(Base, MyModel):
+class User(Base,MyModel):
+	#__metaclass__=MyModel
 	__tablename__="user"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -64,24 +86,18 @@ class User(Base, MyModel):
 	# it doesn't have to be unique
 
 	products = relationship("Product",backref=backref('seller',
-                        uselist=True,
-                        cascade='delete,all'))
+						uselist=True,
+						cascade='delete,all'))
 	orders = relationship("Order",backref=backref('buyer',
-                        uselist=True,
-                        cascade='delete,all'))
+						uselist=True,
+						cascade='delete,all'))
 	images = relationship("Image",backref=backref('seller',
-                        uselist=True,
-                        cascade='delete,all'))
+						uselist=True,
+						cascade='delete,all'))
 	
 	def __init__(self,input_dict):
 		MyModel.__init__(self,input_dict)
 
-	def __repr__(self):
-		return json.dumps(
-		{
-			'id': self.id,
-			'username': self.username
-		})
 	def simple(self):
 		return {
 			'id': self.id,
@@ -138,8 +154,8 @@ class Product(Base, MyModel):
 		MyModel.__init__(self,input_dict)
 	
 	orders = relationship("Order",backref=backref('product',
-                        uselist=True,
-                        cascade='delete,all'))
+						uselist=True,
+						cascade='delete,all'))
 
 
 	def __repr__(self):
@@ -283,20 +299,40 @@ class Image(Base, MyModel):
 def init_db():
 
 
-	engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
-	db_session = scoped_session(sessionmaker(autocommit=False,
-											 #autoflush=False,
-											 bind=engine))
 
 	Base.query = db_session.query_property()
 
 
 
-	#Base.metadata.drop_all(bind=engine)
+	Base.metadata.drop_all(bind=engine)
 	Base.metadata.create_all(bind=engine)
 init_db()
 
-User.abc()
-user = User({"username":123})
+#user = User({"username":123})
+#print(user)
+#user.insert()
 #user.create({"username":123})
 #print(user)
+#print(dir(user))
+
+
+
+
+
+
+
+
+class Parent():
+	def __init__(self):
+		print(self.x)
+
+class Child(MyModel):
+	x = 1
+
+
+child = Child({"y":5})
+
+print(vars(child))
+print((Child.__dict__))
+
+
