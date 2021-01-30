@@ -45,18 +45,13 @@ class MyModel():
 	#def __repr__(self): 
 	#	return "Form(%s)" % (', '.join(map(repr, self.args)),)
 	def __repr__(self):
-		"""attributes_list = dir(self)
+		# Prepare to delete all the keys starting with "_"
 		toReturn = {}
-		for attr in attributes_list:
-			if attr[0] == "_":
+		for key in self.__dict__:
+			if key[0] == '_':
 				continue
-			print(attr)
-			try:
-				str(getattr(self,attr))
-			except:
-				continue
-			toReturn[attr] = getattr(self,attr)"""
-		return json.dumps(self.__dict__)
+			toReturn[key] = self.__dict__[key]
+		return json.dumps(toReturn)
 
 
 
@@ -94,9 +89,6 @@ class User(Base,MyModel):
 						uselist=True,
 						cascade='delete,all'))
 	
-	def __init__(self,input_dict):
-		MyModel.__init__(self,input_dict)
-
 	def simple(self):
 		return {
 			'id': self.id,
@@ -307,8 +299,8 @@ def init_db():
 	Base.metadata.create_all(bind=engine)
 init_db()
 
-#user = User({"username":123})
-#print(user)
+user = User(username = "abc", password = "123")
+print(user)
 #user.insert()
 #user.create({"username":123})
 #print(user)
@@ -320,18 +312,5 @@ init_db()
 
 
 
-
-class Parent():
-	def __init__(self):
-		print(self.x)
-
-class Child(MyModel):
-	x = 1
-
-
-child = Child(y=5)
-
-print(vars(child))
-print((Child.__dict__))
 
 
