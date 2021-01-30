@@ -10,6 +10,10 @@ except:
     from src import db
 
 
+class NotReceived():
+    pass
+        
+
 
 class MyModel():
     def __init__(self, input_dict):
