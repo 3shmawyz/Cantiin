@@ -86,10 +86,16 @@ def validate_key(the_object,key:str,
 	return True
 
 
+
 def get_dict(the_object,id:bool=False,
 	unsupported:bool = False, 
 	dangerous:bool=False):
-	pass
+	keys_list = dir(the_object)
+	toReturn = {}
+	for key in keys_list:
+		if validate_key(the_object,key,id,unsupported,dangerous):
+			toReturn[key] = getattr(the_object,key)
+	return toReturn
 
 
 
