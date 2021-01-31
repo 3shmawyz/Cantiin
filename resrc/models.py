@@ -96,9 +96,7 @@ class MyModel():
 		# If some thing was not received, the field will not be updated
 		# id can not be updated
 		for key in kwargs:
-			if (type(kwargs[key]) != NotReceived or 
-				key =="id" or 
-				type(kwargs[key]) not in SUPPORTED_TYPES):
+			if validate_key(kwargs,key,restricted=True) == True:
 				setattr(self,key,kwargs[key])  
 		db_session.commit()
 
