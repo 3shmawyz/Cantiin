@@ -47,8 +47,8 @@ validate_key
 		- pass unsupported data types, not in SUPPORTED_TYPES list
 		- True: let it pass
 		- False: do not let it pass (Default)
-	- restricted : bool: default = False
-		- pass restricted keys, in SUPPORTED_TYPES list
+	- dangerous : bool: default = False
+		- pass dangerous keys, in SUPPORTED_TYPES list
 		- True: let it pass
 		- False: do not let it pass (Default)
 - Function:
@@ -57,8 +57,11 @@ validate_key
 	- True: let ths pass
 	- False: do not let this key pass
 """
-def validate_key(the_dict:dict,key:str,id:bool=False,
-	unsupported:bool = False, restricted:bool=False):
+def validate_key(the_dict:dict,key:str,
+	
+	id:bool=False,
+	unsupported:bool = False, 
+	dangerous:bool=False):
 	# Validating fields startng with "_"
 	if key[0] == "_":
 		return False
@@ -71,59 +74,64 @@ def validate_key(the_dict:dict,key:str,id:bool=False,
 	# Validating supported types
 	if ((type(kwargs[key])not in SUPPORTED_TYPES) and (unsupported==False)):
 		return False
-	# validating restricted fields
-	if ((str(kwargs[key]) in RESTRICTED_FIELDS) and (restricted==False)):
+	# validating dangerous fields
+	if ((str(kwargs[key]) in RESTRICTED_FIELDS) and (dangerous==False)):
 		return False
 	return True
 
 class MyModel():
-	#def __init__(self):
-	#	pass
+	# For creating the model
 	def __init__(self, **kwargs):
 		#restrcted = True, we may need to enter the password
 		for key in kwargs:
-			if validate_key(kwargs,key,restricted=True) == True:
-				setattr(self,key,kwargs[key])    
-	
+			if validate_key(kwargs,key,dangerous=True) == True:
+				setattr(self,key,kwargs[key])
+	# For inserting the model in the db
 	def insert(self):
 		print(self)
 		db_session.add(self)
 		db_session.commit()
 
+	# For updating the model
 	def update(self,**kwargs):
 		#restrcted = True, we may need to update the password
 		for key in kwargs:
-			if validate_key(kwargs,key,restricted=True) == True:
+			if validate_key(kwargs,key,dangerous=True) == True:
 				setattr(self,key,kwargs[key])  
 		db_session.commit()
-
+	# For deleting the model from the db
 	def delete(self):
 		db_session.delete(self)
 		db_session.commit()
-
+	# getting the attributes of the model, inculding id, but not dangerous fields
 	def simple(self):
 		# Prepare to delete all the keys starting with "_", or key == "id"
 		toReturn = {}
 		for key in self.__dict__:
-			if validate_key(self.__dict__,key) == True:
+			if validate_key(self.__dict__,key, id=True) == True:
 				toReturn[key] = self.__dict__[key]
 		return toReturn
-
+	# For printng the model
 	def __repr__(self):
 		return json.dumps(self.simple())
-
+	# For getting the model and the forigen keys of the model
 	def deep(self):
 		toReturn = {}
 		for key in self.__dict__:
-			if key[0] == '_' :
+			if validate_key(self.__dict__,key,id=True,unsupported=True) == False:
 				continue
-			if type(self.__dict__[key]) not in SUPPORTED_TYPES:
-				try:
-					toReturn[key]=self.__dict__[key].simple()
-				except Exception as e:
-					continue
-			else:
+			#Now key is normal, id or unsupported 
+			if validate_key(self.dict,key,id=True) == True:
+				# Here key is normal or id, not unsupported
 				toReturn[key] = self.__dict__[key]
+				continue
+			# Now key is only unsupported type
+			try:
+				# If it has this funstion, then it is a column n the table
+				toReturn[key]=self.__dict__[key].simple()
+			except Exception as e:
+				# Then it is not a column in the table
+				continue
 		return toReturn
 
 
