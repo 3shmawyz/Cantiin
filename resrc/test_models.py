@@ -30,11 +30,20 @@ class modelsTestCase(unittest.TestCase):
 	def test_a_1_1_1_validate_key(self):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
 		"nr":NotReceived}
-		validated = [validate_key(the_dict,"id"),validate_key(the_dict,"password"),
-		validate_key(the_dict,"username"),validate_key(the_dict,"bool1"),
-		validate_key(the_dict,"bool2"),validate_key(the_dict,"nr")]
+		validated = []
+		for key in the_dict:
+			validated.append(validate_key(the_dict,key))
 		self.assertEqual([False,False,True,True,True,False],validated)
 		print("Test a_1_1_1 : validate_key: success")
+
+	def test_a_1_1_2_validate_key(self):
+		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
+		"nr":NotReceived}
+		validated = []
+		for key in the_dict:
+			validated.append(validate_key(the_dict,key,id=True))
+		self.assertEqual([True,False,True,True,True,False],validated)
+		print("Test a_1_1_2 : validate_key: success")
 
 
 
