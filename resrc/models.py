@@ -93,7 +93,12 @@ def validate_key(the_object,key:str,
 def get_dict(the_object,id:bool=False,
 	unsupported:bool = False, 
 	dangerous:bool=False):
-	keys_list = dir(the_object)
+	keys_list=[]
+	if type(the_object)==dict:
+		for key in the_object:
+			keys_list.append(key)
+	else:
+		keys_list = dir(the_object)
 	toReturn = {}
 	for key in keys_list:
 		if validate_key(the_object,key,id,unsupported,dangerous):
