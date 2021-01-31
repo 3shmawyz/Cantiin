@@ -117,14 +117,13 @@ class modelsTestCase(unittest.TestCase):
 	def test_a_1_2_3_MyModel(self):
 		user = User(username = "abc",password=NotReceived())
 		self.assertEqual(user.simple(),{"username":"abc"})
-		#MyModel(abc="123")
 		print("Test a_1_2_3 : MyModel: success")
 
-	"""def test_a_1_2_9_MyModel(self):
-		user = User(username = "abc",password=NotReceived())
-		self.assertEqual(user.username,"abc")
-		print(user.password)
-		print("Test a_1_2_9 : MyModel: success")"""
+	def test_a_1_2_4_MyModel(self):
+		user = User(username = "abc",password="456")
+		self.assertEqual(user.simple(),{"username":"abc"})
+		self.assertEqual(user.password,"456")
+		print("Test a_1_2_9 : MyModel: success")
 
 
 
