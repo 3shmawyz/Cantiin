@@ -25,7 +25,7 @@ class MyModel():
 	#	pass
 	def __init__(self, **kwargs):
 		for key in kwargs:
-			if type(kwargs[key]) != NotReceived:
+			if type(kwargs[key]) != NotReceived or key =="id":
 				setattr(self,key,kwargs[key])  
 	
 	def insert(self):
@@ -35,7 +35,7 @@ class MyModel():
 
 	def update(self,**kwargs):
 		for key in kwargs:
-			if type(kwargs[key]) != NotReceived:
+			if type(kwargs[key]) != NotReceived or key == "id":
 				setattr(self,key,kwargs[key])  
 		db_session.commit()
 
@@ -47,7 +47,7 @@ class MyModel():
 		# Prepare to delete all the keys starting with "_"
 		toReturn = {}
 		for key in self.__dict__:
-			if key[0] == '_':
+			if ((key[0] == '_') or (key == "id")):
 				continue
 			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
 				continue
