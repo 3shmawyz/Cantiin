@@ -122,7 +122,7 @@ class modelsTestCase(unittest.TestCase):
 		print("Test 0a_1_1_8 : validate_key: with object")
 
 
-	def test_0a_1_2_1_validate_key(self):
+	def test_0a_1_2_1_get_dict(self):
 		user = User(username = "abc", password = "pass")
 		class tst(object):
 			def __init__(self):
@@ -137,12 +137,20 @@ class modelsTestCase(unittest.TestCase):
 		validation_obj = tst()
 		the_dict = get_dict(validation_obj)
 		self.assertEqual(the_dict,{"username":"tryu","bool1":True,"bool2":False})
-
 		the_dict = get_dict(validation_obj, id=True,dangerous=True)
 		self.assertEqual(the_dict,{"username":"tryu","bool1":True,"bool2":False,
 			"paSSword":"abc","Id":41})
-		#self.assertEqual([False,False,True,True,True,False,False,False],validated)
-		print("Test 0a_1_2_1 : validate_key: with object")
+		print("Test 0a_1_2_1 : get_dict: with object")
+
+	def test_0a_1_2_2_get_dict(self):
+		db_drop_and_create_all()
+		user = User(username = "abc", password = "pass")
+		the_dict = get_dict(user, id=True,dangerous=True)
+		user.insert()
+		the_dict = get_dict(user, id=True,dangerous=True)
+		self.assertEqual(the_dict,{"username":"abc","password":"pass","id":1})
+		db_drop_and_create_all()
+		print("Test 0a_1_2_2 : get_dict: with object")
 
 
 

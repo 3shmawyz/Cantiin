@@ -111,7 +111,7 @@ class MyModel():
 				setattr(self,key,kwargs[key])
 	# For inserting the model in the db
 	def insert(self):
-		print(self)
+		#print(self)
 		db.session.add(self)
 		db.session.commit()
 
