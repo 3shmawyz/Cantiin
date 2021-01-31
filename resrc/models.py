@@ -15,11 +15,45 @@ db_session = scoped_session(sessionmaker(autocommit=False,
 										 bind=engine))
 
 
+
+"""
+NotReceived
+This class is used when the dada is not received
+By default, it will have the value of None
+None != Not received
+"""
 class NotReceived():
 	pass
 		
 
-def validate_key(the_dict:dict,key:str,id:bool=False):
+
+"""
+validate_key
+
+- Inputs:
+	- the_dict:dict
+		- The dictonary of the data to be validated
+		- Example:
+			- {"id":5,"name":"abc"}
+	- key: str:
+		- the key of the dict that contains the data
+		- Example:
+			- "id"
+	- id: bool : default = False
+		- Should we pass the id or not
+		- True: let the id pass
+		- False: do not le the id pass
+	- unsupported : bool: default = False
+		- pass unsupportd data types, not in SUPPORTED_TYPES list
+		- True: let it pass
+		- False: do not let it pass
+- Function:
+	- telling us whether we should let this key pass or not
+- Output: 
+	- True: let ths pass
+	- False: do not let this key pass
+"""
+def validate_key(the_dict:dict,key:str,id:bool=False,unsupported:bool = False):
 	if (type(kwargs[key]) == NotReceived 
 		or type(kwargs[key]) not in SUPPORTED_TYPES
 		or key[0]=="_"):
