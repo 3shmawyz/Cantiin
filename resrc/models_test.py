@@ -1,6 +1,6 @@
 import unittest
 from models import (NotReceived, validate_key, MyModel, User, Product, Order, Image,
-	populate_tables, db_drop_and_create_all)
+	populate_tables, db_drop_and_create_all,get_dict)
 from app import create_app
 from models import db
 
@@ -101,7 +101,6 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual([False,False,True,True,True,False,False,False],validated)
 		print("Test 0a_1_1_7 : validate_key: success")
 
-
 	def test_0a_1_1_8_validate_key(self):
 		user = User(username = "abc", password = "pass")
 		class tst(object):
@@ -121,6 +120,29 @@ class modelsTestCase(unittest.TestCase):
 			validated.append(validate_key(validation_obj,key, unsupported=False))
 		self.assertEqual([False,False,True,True,True,False,False,False],validated)
 		print("Test 0a_1_1_8 : validate_key: with object")
+
+
+	def test_0a_1_2_1_validate_key(self):
+		user = User(username = "abc", password = "pass")
+		class tst(object):
+			def __init__(self):
+				self.Id = 41
+				self.paSSword = "abc"
+				self.username = "tryu"
+				self.bool1 = True
+				self.bool2 = False
+				self.nr = NotReceived()
+				self.unsupported1 = {}
+				self.unsupported2 = user
+		validation_obj = tst()
+		the_dict = get_dict(validation_obj)
+		self.assertEqual(the_dict,{"username":"tryu","bool1":True,"bool2":False})
+
+		the_dict = get_dict(validation_obj, id=True,dangerous=True)
+		self.assertEqual(the_dict,{"username":"tryu","bool1":True,"bool2":False,
+			"paSSword":"abc","Id":41})
+		#self.assertEqual([False,False,True,True,True,False,False,False],validated)
+		print("Test 0a_1_2_1 : validate_key: with object")
 
 
 
