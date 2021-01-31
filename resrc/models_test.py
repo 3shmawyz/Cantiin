@@ -116,9 +116,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_2_3_MyModel(self):
 		user = User(username = "abc",password=NotReceived())
-		
-		self.assertEqual(user.username,"abc")
-		print(user.__dict__)
+		self.assertEqual(user.simple(),{"username":"abc"})
 		#MyModel(abc="123")
 		print("Test a_1_2_3 : MyModel: success")
 
