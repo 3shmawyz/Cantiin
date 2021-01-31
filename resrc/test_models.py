@@ -66,11 +66,20 @@ class modelsTestCase(unittest.TestCase):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
 		"nr":NotReceived, "unsupported":{}}
 		validated = []
-		#print({}.simple())
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True, unsupported=True))
 		self.assertEqual([False,True,True,True,True,False,False],validated)
 		print("Test a_1_1_5 : validate_key: success")
+
+	def test_a_1_1_6_validate_key(self):
+		user = User(username = "abc", password = "pass")
+		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
+		"nr":NotReceived, "unsupported1":{}, "unsupported2":user}
+		validated = []
+		for key in the_dict:
+			validated.append(validate_key(the_dict,key,dangerous = True, unsupported=True))
+		self.assertEqual([False,True,True,True,True,False,False,True],validated)
+		print("Test a_1_1_6 : validate_key: success")
 
 
 

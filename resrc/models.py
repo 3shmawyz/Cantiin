@@ -130,7 +130,7 @@ class MyModel():
 				# Here key is normal or id, not unsupported
 				toReturn[key] = self.__dict__[key]
 				continue
-			# If it has this funstion, then it is a column n the table
+			# If it has this function, then it is a column in the table
 			toReturn[key]=self.__dict__[key].simple()
 		return toReturn
 
