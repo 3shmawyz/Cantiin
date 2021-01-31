@@ -29,10 +29,11 @@ class NotReceived():
 validate_key
 
 - Inputs:
-	- the_object
-		- The Object of the data to be validated
+	- the_object: dict or object
+		- The Object, or the dict of the data to be validated
 		- Example:
-			- user_to_insert
+			- user_to_insert (as an object)
+			- {"id":1,"username":"abc","password":"pass"}
 	- key: str:
 		- the key of the dict that contains the data
 		- Example:
@@ -51,7 +52,7 @@ validate_key
 		- True: let it pass
 		- False: do not let it pass (Default)
 - Function:
-	- telling us whether we should let this key pass or not
+	- telling us whether we should let this key of this object or dict pass or not
 - Output: 
 	- True: let ths pass
 	- False: do not let this key pass
@@ -89,7 +90,35 @@ def validate_key(the_object,key:str,
 	return True
 
 
+"""
+get_dict
 
+- Inputs:
+	- the_object: dict or object
+		- The Object, or the dict of the data to be validated
+		- Example:
+			- user_to_insert (as an object)
+			- {"id":1,"username":"abc","password":"pass"}
+	- id: bool : default = False
+		- Should we pass the id or not
+		- True: let the id pass
+		- False: do not le the id pass (Default)
+	- unsupported : bool: default = False
+		- pass unsupported data types, not in SUPPORTED_TYPES list
+		- If the type was unsupported, it must have the simple function
+		- True: let it pass
+		- False: do not let it pass (Default)
+	- dangerous : bool: default = False
+		- pass dangerous keys, in SUPPORTED_TYPES list
+		- True: let it pass
+		- False: do not let it pass (Default)
+- Function:
+	- convert the object or the dict to a validated dict of fileds
+	- The fuelds will be validated, and you will get the clean fields 
+		and their values only
+- Output: 
+	- dict clean
+"""
 def get_dict(the_object,id:bool=False,
 	unsupported:bool = False, 
 	dangerous:bool=False):

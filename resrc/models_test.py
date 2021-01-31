@@ -162,7 +162,6 @@ class modelsTestCase(unittest.TestCase):
 		
 		validated = get_dict(the_dict)
 		self.assertEqual(validated,{"username":"tryu","bool1":True,"bool2":False})
-
 		print("Test 0a_1_2_3 : get_dict: with dict")
 
 
