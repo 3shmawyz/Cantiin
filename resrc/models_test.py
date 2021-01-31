@@ -123,7 +123,7 @@ class modelsTestCase(unittest.TestCase):
 		user = User(username = "abc",password="456")
 		self.assertEqual(user.simple(),{"username":"abc"})
 		self.assertEqual(user.password,"456")
-		print("Test a_1_2_9 : MyModel: success")
+		print("Test a_1_2_4 : MyModel: success")
 
 
 

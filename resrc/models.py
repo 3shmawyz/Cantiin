@@ -6,13 +6,18 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+from __init__ import db
+
 SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]
-Base = declarative_base()
-engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-										 #autoflush=False,
-										 bind=engine))
+
+
+
+#Base = declarative_base()
+#engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
+#db_session = scoped_session(sessionmaker(autocommit=False,
+#										 #autoflush=False,
+#										 bind=engine))
 
 
 
@@ -96,8 +101,8 @@ class MyModel():
 	# For inserting the model in the db
 	def insert(self):
 		print(self)
-		db_session.add(self)
-		db_session.commit()
+		db.session.add(self)
+		db.session.commit()
 
 	# For updating the model
 	def update(self,**kwargs):
@@ -105,11 +110,11 @@ class MyModel():
 		for key in kwargs:
 			if validate_key(kwargs,key,dangerous=True) == True:
 				setattr(self,key,kwargs[key])  
-		db_session.commit()
+		db.session.commit()
 	# For deleting the model from the db
 	def delete(self):
-		db_session.delete(self)
-		db_session.commit()
+		db.session.delete(self)
+		db.session.commit()
 	# getting the attributes of the model, inculding id, but not dangerous fields
 	def simple(self):
 		# Prepare to delete all the keys starting with "_", or key == "id"
@@ -147,7 +152,7 @@ Relationships:
 products,orders,images
 
 '''
-class User(Base,MyModel):
+class User(db.Model,MyModel):
 	#__metaclass__=MyModel
 	__tablename__="user"
 	# Autoincrementing, unique primary key
@@ -181,7 +186,7 @@ Product
 a persistent product entity, extends the base SQLAlchemy Model
 id,name,price,in_stock,seller_id
 '''
-class Product(Base, MyModel):
+class Product(db.Model, MyModel):
 	__tablename__="product"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -225,7 +230,7 @@ class Product(Base, MyModel):
 Order:
 id, user_id, product_id, amount
 """
-class Order(Base, MyModel):
+class Order(db.Model, MyModel):
 	__tablename__="order"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -256,7 +261,7 @@ id,seller_id,name,formatting
 
 The image will be stroed with it's id
 '''
-class Image(Base, MyModel):
+class Image(db.Model, MyModel):
 	__tablename__="image"
 	# Autoincrementing, unique primary key
 	id = Column(Integer(), primary_key=True)
@@ -289,7 +294,7 @@ class Image(Base, MyModel):
 
 
 def init_db():
-	Base.query = db_session.query_property()
+	Base.query = db.session.query_property()
 	Base.metadata.drop_all(bind=engine)
 	Base.metadata.create_all(bind=engine)
 #init_db()
