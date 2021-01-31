@@ -216,6 +216,8 @@ class Product(Base, MyModel):
 						uselist=True,
 						cascade='delete,all'))
 
+	def __init__(self,**kwargs):
+		MyModel.__init__(self,**kwargs)
 
 
 
@@ -244,6 +246,8 @@ class Order(Base, MyModel):
 	# Example: 5, 6, 50
 	total_cost = 0.0
 
+	def __init__(self,**kwargs):
+		MyModel.__init__(self,**kwargs)
 
 
 '''
@@ -272,6 +276,8 @@ class Image(Base, MyModel):
 	# There can be only 2 types: "png" , "jpg"
 	# it can not be unique
 
+	def __init__(self,**kwargs):
+		MyModel.__init__(self,**kwargs)
 
 
 
