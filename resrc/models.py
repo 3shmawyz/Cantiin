@@ -59,13 +59,21 @@ validate_key
 """
 def validate_key(the_dict:dict,key:str,id:bool=False,
 	unsupported:bool = False, restricted:bool=False):
-	if (type(kwargs[key]) == NotReceived 
-		or type(kwargs[key]) not in SUPPORTED_TYPES
-		or key[0]=="_"):
-		return false
-	if id == False:
-		if key.lower() == "id":
-			return False
+	# Validating fields startng with "_"
+	if key[0] == "_":
+		return False
+	# Validating NotReceived
+	if type(kwargs[key]) == Type(NotReceived):
+		return False
+	# Validating id
+	if key.lower() == "id" and id == False:
+		return False
+	# Validating supported types
+	if ((type(kwargs[key])not in SUPPORTED_TYPES) and (unsupported==False)):
+		return False
+	# validating restricted fields
+	if ((str(kwargs[key]) in RESTRICTED_FIELDS) and (restricted==False)):
+		return False
 	return True
 
 class MyModel():
