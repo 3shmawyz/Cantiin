@@ -79,6 +79,8 @@ def validate_key(the_dict:dict,key:str,
 			return True
 		except Exception as e:
 			return False
+	if type(the_dict[key]) not in SUPPORTED_TYPES:
+		return False
 	# validating dangerous fields
 	if ((key.lower() in RESTRICTED_FIELDS) and (dangerous==False)):
 		return False
