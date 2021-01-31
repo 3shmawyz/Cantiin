@@ -282,12 +282,12 @@ def init_db():
 	Base.metadata.drop_all(bind=engine)
 	Base.metadata.create_all(bind=engine)
 init_db()
-
+"""
 user = User(username = "abc", password = "123", id = 123)
 print(user)
 print(user.__dict__)
 print(type(user.__dict__["password"]))
-
+"""
 #user.insert()
 #user.create({"username":123})
 #print(user)
