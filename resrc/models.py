@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-
+SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 
 Base = declarative_base()
 engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
@@ -19,6 +19,15 @@ class NotReceived():
 	pass
 		
 
+def validate_key(the_dict:dict,key:str,id:bool=False):
+	if (type(kwargs[key]) == NotReceived 
+		or type(kwargs[key]) not in SUPPORTED_TYPES
+		or key[0]=="_"):
+		return false
+	if id == False:
+		if key.lower() == "id":
+			return False
+	return True
 
 class MyModel():
 	#def __init__(self):
@@ -26,7 +35,9 @@ class MyModel():
 	def __init__(self, **kwargs):
 		# If something was not received, or key == id, the field will not be created
 		for key in kwargs:
-			if type(kwargs[key]) != NotReceived or key =="id":
+			if (type(kwargs[key]) != NotReceived or 
+				key =="id" or 
+				type(kwargs[key]) not in SUPPORTED_TYPES):
 				setattr(self,key,kwargs[key])  
 	
 	def insert(self):
@@ -38,7 +49,9 @@ class MyModel():
 		# If some thing was not received, the field will not be updated
 		# id can not be updated
 		for key in kwargs:
-			if type(kwargs[key]) != NotReceived or key == "id":
+			if (type(kwargs[key]) != NotReceived or 
+				key =="id" or 
+				type(kwargs[key]) not in SUPPORTED_TYPES):
 				setattr(self,key,kwargs[key])  
 		db_session.commit()
 
@@ -52,7 +65,7 @@ class MyModel():
 		for key in self.__dict__:
 			if key[0] == '_':
 				continue
-			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
+			if type(self.__dict__[key]) not in SUPPORTED_TYPES:
 				continue
 			toReturn[key] = self.__dict__[key]
 		return toReturn
@@ -65,7 +78,7 @@ class MyModel():
 		for key in self.__dict__:
 			if key[0] == '_' :
 				continue
-			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
+			if type(self.__dict__[key]) not in SUPPORTED_TYPES:
 				try:
 					toReturn[key]=self.__dict__[key].simple()
 				except Exception as e:
