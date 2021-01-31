@@ -24,6 +24,7 @@ class MyModel():
 	#def __init__(self):
 	#	pass
 	def __init__(self, **kwargs):
+		# If something was not received, or key == id, the field will not be created
 		for key in kwargs:
 			if type(kwargs[key]) != NotReceived or key =="id":
 				setattr(self,key,kwargs[key])  
@@ -34,6 +35,8 @@ class MyModel():
 		db_session.commit()
 
 	def update(self,**kwargs):
+		# If some thing was not received, the field will not be updated
+		# id can not be updated
 		for key in kwargs:
 			if type(kwargs[key]) != NotReceived or key == "id":
 				setattr(self,key,kwargs[key])  
@@ -44,10 +47,10 @@ class MyModel():
 		db_session.commit()
 
 	def simple(self):
-		# Prepare to delete all the keys starting with "_"
+		# Prepare to delete all the keys starting with "_", or key == "id"
 		toReturn = {}
 		for key in self.__dict__:
-			if ((key[0] == '_') or (key == "id")):
+			if key[0] == '_':
 				continue
 			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
 				continue
@@ -60,7 +63,7 @@ class MyModel():
 	def deep(self):
 		toReturn = {}
 		for key in self.__dict__:
-			if key[0] == '_':
+			if key[0] == '_' :
 				continue
 			if type(self.__dict__[key]) not in [int,str,float,bool, type(None)]:
 				try:
