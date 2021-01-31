@@ -45,6 +45,7 @@ validate_key
 		- False: do not le the id pass (Default)
 	- unsupported : bool: default = False
 		- pass unsupported data types, not in SUPPORTED_TYPES list
+		- If the type was unsupported, it must have the simple function
 		- True: let it pass
 		- False: do not let it pass (Default)
 	- dangerous : bool: default = False
@@ -72,8 +73,12 @@ def validate_key(the_dict:dict,key:str,
 	if key.lower() == "id" and id == False:
 		return False
 	# Validating supported types
-	if ((type(the_dict[key])not in SUPPORTED_TYPES) and (unsupported==False)):
-		return False
+	if ((type(the_dict[key])not in SUPPORTED_TYPES) and (unsupported==True)):
+		try:
+			the_dict[key].simple()
+			return True
+		except Exception as e:
+			return False
 	# validating dangerous fields
 	if ((key.lower() in RESTRICTED_FIELDS) and (dangerous==False)):
 		return False
@@ -125,13 +130,8 @@ class MyModel():
 				# Here key is normal or id, not unsupported
 				toReturn[key] = self.__dict__[key]
 				continue
-			# Now key is only unsupported type
-			try:
-				# If it has this funstion, then it is a column n the table
-				toReturn[key]=self.__dict__[key].simple()
-			except Exception as e:
-				# Then it is not a column in the table
-				continue
+			# If it has this funstion, then it is a column n the table
+			toReturn[key]=self.__dict__[key].simple()
 		return toReturn
 
 
