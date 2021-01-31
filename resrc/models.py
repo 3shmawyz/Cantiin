@@ -102,6 +102,9 @@ def get_dict(the_object,id:bool=False,
 	toReturn = {}
 	for key in keys_list:
 		if validate_key(the_object,key,id,unsupported,dangerous):
+			if type(the_object)==dict:
+				toReturn[key] = the_object[key]
+				continue
 			toReturn[key] = getattr(the_object,key)
 	return toReturn
 

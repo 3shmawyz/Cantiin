@@ -152,6 +152,19 @@ class modelsTestCase(unittest.TestCase):
 		db_drop_and_create_all()
 		print("Test 0a_1_2_2 : get_dict: with object")
 
+	def test_0a_1_2_3_get_dict(self):
+		user = User(username = "abc", password = "pass")
+		the_dict = {"Id":41,"paSSword":"abc","username":"tryu","bool1":True,"bool2":False,
+		"nr":NotReceived(),"unsupported1":{},"unsupported2":user}
+		validated = get_dict(the_dict, id=True,dangerous=True)
+		self.assertEqual(validated,{"username":"tryu","bool1":True,"bool2":False,
+			"paSSword":"abc","Id":41})
+		
+		validated = get_dict(the_dict)
+		self.assertEqual(validated,{"username":"tryu","bool1":True,"bool2":False})
+
+		print("Test 0a_1_2_3 : get_dict: with dict")
+
 
 
 
