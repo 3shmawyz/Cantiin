@@ -80,12 +80,10 @@ class MyModel():
 	#def __init__(self):
 	#	pass
 	def __init__(self, **kwargs):
-		# If something was not received, or key == id, the field will not be created
+		#restrcted = True, we may need to enter the password
 		for key in kwargs:
-			if (type(kwargs[key]) != NotReceived or 
-				key =="id" or 
-				type(kwargs[key]) not in SUPPORTED_TYPES):
-				setattr(self,key,kwargs[key])  
+			if validate_key(kwargs,key,restricted=True) == True:
+				setattr(self,key,kwargs[key])    
 	
 	def insert(self):
 		print(self)
@@ -93,8 +91,7 @@ class MyModel():
 		db_session.commit()
 
 	def update(self,**kwargs):
-		# If some thing was not received, the field will not be updated
-		# id can not be updated
+		#restrcted = True, we may need to update the password
 		for key in kwargs:
 			if validate_key(kwargs,key,restricted=True) == True:
 				setattr(self,key,kwargs[key])  
@@ -108,11 +105,8 @@ class MyModel():
 		# Prepare to delete all the keys starting with "_", or key == "id"
 		toReturn = {}
 		for key in self.__dict__:
-			if key[0] == '_':
-				continue
-			if type(self.__dict__[key]) not in SUPPORTED_TYPES:
-				continue
-			toReturn[key] = self.__dict__[key]
+			if validate_key(self.__dict__,key) == True:
+				toReturn[key] = self.__dict__[key]
 		return toReturn
 
 	def __repr__(self):
