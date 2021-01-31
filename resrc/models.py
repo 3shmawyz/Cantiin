@@ -142,10 +142,10 @@ def get_dict(the_object,id:bool=False,
 class MyModel():
 	# For creating the model
 	def __init__(self, **kwargs):
-		#restrcted = True, we may need to enter the password
-		for key in kwargs:
-			if validate_key(kwargs,key,dangerous=True) == True:
-				setattr(self,key,kwargs[key])
+		#dangerous = True, we may need to enter the password
+		validated_kwargs = get_dict(kwargs,dangerous=True)
+		for key in validated_kwargs:
+			setattr(self,key,validated_kwargs[key])
 	# For inserting the model in the db
 	def insert(self):
 		#print(self)
@@ -155,9 +155,9 @@ class MyModel():
 	# For updating the model
 	def update(self,**kwargs):
 		#restrcted = True, we may need to update the password
-		for key in kwargs:
-			if validate_key(kwargs,key,dangerous=True) == True:
-				setattr(self,key,kwargs[key])  
+		validated_kwargs = get_dict(kwargs,dangerous=True)
+		for key in validated_kwargs:
+			setattr(self,key,validated_kwargs[key])  
 		db.session.commit()
 	# For deleting the model from the db
 	def delete(self):
@@ -166,10 +166,10 @@ class MyModel():
 	# getting the attributes of the model, inculding id, but not dangerous fields
 	def simple(self):
 		# Prepare to delete all the keys starting with "_", or key == "id"
+		validated_kwargs = get_dict(kwargs, id=True)
 		toReturn = {}
-		for key in self.__dict__:
-			if validate_key(self.__dict__,key, id=True) == True:
-				toReturn[key] = self.__dict__[key]
+		for key in validated_kwargs:
+			toReturn[key] = validated_kwargs[key]
 		return toReturn
 	# For printng the model
 	def __repr__(self):
@@ -178,16 +178,14 @@ class MyModel():
 	# For getting the model and the forigen keys of the model
 	def deep(self):
 		toReturn = {}
-		for key in self.__dict__:
-			if validate_key(self.__dict__,key,id=True,unsupported=True) == False:
-				continue
-			#Now key is normal, id or unsupported 
+		validated_kwargs = get_dict(kwargs, id=True,,unsupported=True)
+		for key in validated_kwargs:
 			if validate_key(self.dict,key,id=True) == True:
 				# Here key is normal or id, not unsupported
-				toReturn[key] = self.__dict__[key]
+				toReturn[key] = validated_kwargs[key]
 				continue
 			# If it has this function, then it is a column in the table
-			toReturn[key]=self.__dict__[key].simple()
+			toReturn[key]=validated_kwargs[key].simple()
 		return toReturn
 
 

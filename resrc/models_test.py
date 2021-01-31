@@ -192,18 +192,12 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(user.simple(),{"username":"abc"})
 		print("Test 0a_1_2_3 : MyModel: success")
 
-	"""def test_0a_1_2_4_MyModel(self):
+	def test_0a_1_2_4_MyModel(self):
 		user = User(username = "abc",password="456")
-		print(user.__dict__)
 		db.session.add(user)
-		print(user.__dict__)
 		db.session.commit()
-		print(user.__dict__)
-		print(dir(user))
-		print(type(dir(user)))
-		print(vars(user))
 		self.assertEqual(user.password,"456")
-		print("Test 0a_1_2_4 : MyModel: success")"""
+		print("Test 0a_1_2_4 : MyModel: success")
 
 
 
@@ -378,7 +372,7 @@ class modelsTestCase(unittest.TestCase):
 			price=3000, seller_id=6)
 		print(prod_to_del.simple())
 		print(usr_to_del.simple())
-		#db.session.add(prod_to_del)
+		db.session.add(prod_to_del)
 		print(usr_to_del.simple())
 		
 
