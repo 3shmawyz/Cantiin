@@ -1,6 +1,7 @@
 import unittest
 from models import (NotReceived, validate_key, MyModel, User, Product, Order, Image,
 	populate_tables, db_drop_and_create_all)
+from app import create_app
 
 
 
@@ -10,6 +11,8 @@ class modelsTestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
 	def setUp(self):
+		#db_drop_and_create_all()
+		create_app()
 		# create and configure the app
 		#self.app = create_app(testing=True) #Flask(__name__)
 		#self.client = self.app.test_client

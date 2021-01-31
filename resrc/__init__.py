@@ -3,10 +3,10 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-db = SQLAlchemy()
+"""db = SQLAlchemy()
 app = Flask("Cantiin")
 SQLALCHEMY_DATABASE_URI = "sqlite:///databases/test.sqlite"
-SQLALCHEMY_TRACK_MODIFICATIONS= False
+SQLALCHEMY_TRACK_MODIFICATIONS= False"""
 
 
 #from models import User, Product, Order, Image
