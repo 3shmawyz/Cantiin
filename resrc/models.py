@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 SUPPORTED_TYPES = [int,str,float,bool,type(None)]
-
+RESTRICTED_FIELDS=["password"]
 Base = declarative_base()
 engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
@@ -42,18 +42,23 @@ validate_key
 	- id: bool : default = False
 		- Should we pass the id or not
 		- True: let the id pass
-		- False: do not le the id pass
+		- False: do not le the id pass (Default)
 	- unsupported : bool: default = False
-		- pass unsupportd data types, not in SUPPORTED_TYPES list
+		- pass unsupported data types, not in SUPPORTED_TYPES list
 		- True: let it pass
-		- False: do not let it pass
+		- False: do not let it pass (Default)
+	- restricted : bool: default = False
+		- pass restricted keys, in SUPPORTED_TYPES list
+		- True: let it pass
+		- False: do not let it pass (Default)
 - Function:
 	- telling us whether we should let this key pass or not
 - Output: 
 	- True: let ths pass
 	- False: do not let this key pass
 """
-def validate_key(the_dict:dict,key:str,id:bool=False,unsupported:bool = False):
+def validate_key(the_dict:dict,key:str,id:bool=False,
+	unsupported:bool = False, restricted:bool=False):
 	if (type(kwargs[key]) == NotReceived 
 		or type(kwargs[key]) not in SUPPORTED_TYPES
 		or key[0]=="_"):
