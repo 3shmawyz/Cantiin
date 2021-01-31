@@ -60,7 +60,10 @@ def validate_key(the_object,key:str,
 	id:bool=False,
 	unsupported:bool = False, 
 	dangerous:bool=False):
-	the_attribute = getattr(the_object, key)
+	if type(the_object) == dict:
+		the_attribute = the_object[key]
+	else:
+		the_attribute = getattr(the_object, key)
 	
 	# Validating fields startng with "_"
 	if key[0] == "_":

@@ -102,6 +102,27 @@ class modelsTestCase(unittest.TestCase):
 		print("Test 0a_1_1_7 : validate_key: success")
 
 
+	def test_0a_1_1_8_validate_key(self):
+		user = User(username = "abc", password = "pass")
+		class tst(object):
+			def __init__(self):
+				self.Id = 41
+				self.paSSword = "abc"
+				self.username = "tryu"
+				self.bool1 = True
+				self.bool2 = False
+				self.nr = NotReceived()
+				self.unsupported1 = {}
+				self.unsupported2 = user
+		validation_obj = tst()
+		validated = []
+		for key in ["Id","paSSword","username","bool1","bool2","nr","unsupported1",
+				"unsupported2"]:
+			validated.append(validate_key(validation_obj,key, unsupported=False))
+		self.assertEqual([False,False,True,True,True,False,False,False],validated)
+		print("Test 0a_1_1_8 : validate_key: with object")
+
+
 
 
 
@@ -129,7 +150,7 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(user.simple(),{"username":"abc"})
 		print("Test 0a_1_2_3 : MyModel: success")
 
-	def test_0a_1_2_4_MyModel(self):
+	"""def test_0a_1_2_4_MyModel(self):
 		user = User(username = "abc",password="456")
 		print(user.__dict__)
 		db.session.add(user)
@@ -140,7 +161,7 @@ class modelsTestCase(unittest.TestCase):
 		print(type(dir(user)))
 		print(vars(user))
 		self.assertEqual(user.password,"456")
-		print("Test 0a_1_2_4 : MyModel: success")
+		print("Test 0a_1_2_4 : MyModel: success")"""
 
 
 
