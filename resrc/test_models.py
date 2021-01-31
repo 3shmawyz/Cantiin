@@ -107,6 +107,13 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(user.password,"456")
 		print("Test a_1_2_1 : MyModel: success")
 
+	def test_a_1_2_2_MyModel(self):
+		try:
+			user = User(username = "abc",password="456", bla=789)
+		except Exception as e:
+			self.assertEqual(str(e),"'bla' is an invalid keyword argument for User")
+		print("Test a_1_2_2 : MyModel: success")
+
 
 
 
