@@ -86,7 +86,6 @@ class CantiinTestCase(unittest.TestCase):
 	def test_002_drop_all_create_all(self):
 		db_drop_and_create_all()
 		products = Product.query.all()
-
 		self.assertEqual(len(products),0)
 		print("Test 2: db_drop_and_create_all")
 

@@ -29,10 +29,10 @@ class NotReceived():
 validate_key
 
 - Inputs:
-	- the_dict:dict
-		- The dictonary of the data to be validated
+	- the_object
+		- The Object of the data to be validated
 		- Example:
-			- {"id":5,"name":"abc"}
+			- user_to_insert
 	- key: str:
 		- the key of the dict that contains the data
 		- Example:
@@ -56,33 +56,42 @@ validate_key
 	- True: let ths pass
 	- False: do not let this key pass
 """
-def validate_key(the_dict:dict,key:str,
-	
+def validate_key(the_object,key:str,
 	id:bool=False,
 	unsupported:bool = False, 
 	dangerous:bool=False):
+	the_attribute = getattr(the_object, key)
+	
 	# Validating fields startng with "_"
 	if key[0] == "_":
 		return False
 	# Validating NotReceived
-	if type(the_dict[key]) == type(NotReceived):
+	if type(the_attribute) == type(NotReceived):
 		return False
 	# Validating id
 	if key.lower() == "id" and id == False:
 		return False
 	# Validating supported types
-	if ((type(the_dict[key])not in SUPPORTED_TYPES) and (unsupported==True)):
+	if ((type(the_attribute)not in SUPPORTED_TYPES) and (unsupported==True)):
 		try:
-			the_dict[key].simple()
+			the_attribute.simple()
 			return True
 		except Exception as e:
 			return False
-	if type(the_dict[key]) not in SUPPORTED_TYPES:
+	if type(the_attribute) not in SUPPORTED_TYPES:
 		return False
 	# validating dangerous fields
 	if ((key.lower() in RESTRICTED_FIELDS) and (dangerous==False)):
 		return False
 	return True
+
+
+def get_dict(the_object,id:bool=False,
+	unsupported:bool = False, 
+	dangerous:bool=False):
+	pass
+
+
 
 class MyModel():
 	# For creating the model
@@ -118,6 +127,7 @@ class MyModel():
 		return toReturn
 	# For printng the model
 	def __repr__(self):
+		print("rpr")
 		return json.dumps(self.simple())
 	# For getting the model and the forigen keys of the model
 	def deep(self):
@@ -160,15 +170,18 @@ class User(db.Model,MyModel):
 	# Example: "12345", "abc"
 	# it doesn't have to be unique
 
-	products = relationship("Product",backref=backref('seller',
-						uselist=True,
-						cascade='delete,all'))
-	orders = relationship("Order",backref=backref('buyer',
-						uselist=True,
-						cascade='delete,all'))
-	images = relationship("Image",backref=backref('seller',
-						uselist=True,
-						cascade='delete,all'))
+	products = relationship("Product",backref=backref('seller'#,
+						#uselist=True,
+						#cascade='delete,all'
+						))
+	orders = relationship("Order",backref=backref('buyer'#,
+						#uselist=True,
+						#cascade='delete,all'
+						))
+	images = relationship("Image",backref=backref('seller'#,
+						#uselist=True,
+						#cascade='delete,all'
+						))
 
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
@@ -210,11 +223,16 @@ class Product(db.Model, MyModel):
 	# Example: 1, 2 or 3
 	
 	orders = relationship("Order",backref=backref('product',
-						uselist=True,
+						#uselist=True,
 						cascade='delete,all'))
 
 	def __init__(self,**kwargs):
-		MyModel.__init__(self,**kwargs)
+		print("product self init")
+		self.name = kwargs["name"]
+		self.price = kwargs["price"]
+		self.in_stock = True
+		self.seller_id = kwargs["seller_id"]
+		#MyModel.__init__(self,**kwargs)
 
 
 

@@ -131,7 +131,14 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_0a_1_2_4_MyModel(self):
 		user = User(username = "abc",password="456")
-		self.assertEqual(user.simple(),{"username":"abc"})
+		print(user.__dict__)
+		db.session.add(user)
+		print(user.__dict__)
+		db.session.commit()
+		print(user.__dict__)
+		print(dir(user))
+		print(type(dir(user)))
+		print(vars(user))
 		self.assertEqual(user.password,"456")
 		print("Test 0a_1_2_4 : MyModel: success")
 
@@ -150,7 +157,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	def test_a_1_000_user_intro(self):
+	"""def test_a_1_000_user_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -296,15 +303,46 @@ class modelsTestCase(unittest.TestCase):
 
 		#adding a new user
 		usr_to_del = User(username="aklmnopq",password="123456789")
+		print(usr_to_del.simple())
+		print("1")
 		db.session.add(usr_to_del)
 		db.session.commit()
 		self.assertEqual(len(User.query.all()),users_before+1)
-
+		print(usr_to_del.simple())
+		print("2")
 		#adding a new product
 		prod_to_del = Product(name="Labtopppp", 
-			price=3000, seller_id=usr_to_del.id)
-		db.session.add(prod_to_del)
+			price=3000, seller_id=6)
+		print(prod_to_del.simple())
+		print(usr_to_del.simple())
+		#db.session.add(prod_to_del)
+		print(usr_to_del.simple())
+		
+
+
+
+
+		print(usr_to_del.__dict__)
+		print("3")
 		db.session.commit()
+		print(usr_to_del.__dict__)
+		
+		
+
+
+
+
+		print(prod_to_del.simple())
+		print(usr_to_del.simple())
+		#print(usr_to_del.__dict__)
+
+		#print(usr_to_del.id)
+		#print(usr_to_del.username)
+		#print(usr_to_del.password)
+		print(str(usr_to_del))
+		print(usr_to_del.simple())
+		print("4")
+
 		self.assertEqual(len(Product.query.all()),products_before+1)
 
 		#adding a new order
@@ -312,21 +350,25 @@ class modelsTestCase(unittest.TestCase):
 		db.session.add(ordr_to_del)
 		db.session.commit()
 		self.assertEqual(len(Order.query.all()),orders_before+1)
+		print(usr_to_del.simple())
 
 		#adding a new image
 		img_to_del = Image(seller_id=usr_to_del.id, name="Labtopfgfgfg", 
 			formatting="png")
 		db.session.add(img_to_del)
 		db.session.commit()
-		self.assertEqual(len(Image.query.all()),images_before+1)
+		print(usr_to_del.simple())
 
+		self.assertEqual(len(Image.query.all()),images_before+1)
+		#print(usr_to_del.deep())
+		print(usr_to_del.simple())
 		usr_to_del.delete()
 		self.assertEqual(len(User.query.all()),users_before)
 		self.assertEqual(len(Product.query.all()),products_before)
 		self.assertEqual(len(Order.query.all()),orders_before)
 		self.assertEqual(len(Image.query.all()),images_before)
 
-		print("Test a_1_10: user delete relationships")
+		print("Test a_1_10: user delete relationships")"""
 
 
 
@@ -353,7 +395,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	def test_a_2_000_product_intro(self):
+	"""def test_a_2_000_product_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -784,7 +826,7 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(type(image["name"]),str)
 		self.assertEqual(image["formatting"],"png")
 		self.assertEqual(type(image["formatting"]),str)
-		print("Test a_4_8: Image get_dict")
+		print("Test a_4_8: Image get_dict")"""
 
 
 

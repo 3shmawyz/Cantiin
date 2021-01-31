@@ -5,6 +5,7 @@ import os
 from models import db
 from models import (NotReceived, User, Product, Order, 
 	Image, db_drop_and_create_all, populate_tables) 
+from flask_cors import CORS
 
 
 
@@ -23,12 +24,6 @@ def create_app():
 
 	app.config.from_object(config)
 
-	SECRET_KEY=secrets.token_urlsafe(5000)
-	basedir = os.path.abspath(os.path.dirname(__file__))
-	DEBUG = True
-	SQLALCHEMY_TRACK_MODIFICATIONS= False
-
-
 
 	#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases/test.sqlite'
 	db.app = app
@@ -38,3 +33,15 @@ def create_app():
 	#    db.create_all()
 	db.create_all()
 	#return app
+
+	CORS(app,resources={r"*":{"origins":"*"}})
+	@app.after_request
+	def after_request(response):
+		response.headers.add("Access-Control-allow-Origin","*")
+		response.headers.add("Access-Control-allow-Headers",
+			"Content-Type,Autorization,true")
+		response.headers.add("Access-Control-allow-Methods",
+			"GET,PUT,POST,DELETE,OPTIONS")
+		db.session.rollback()
+		#print("roll back", flush=True)
+		return response
