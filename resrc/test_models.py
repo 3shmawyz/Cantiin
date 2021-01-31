@@ -28,7 +28,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_1_1_validate_key(self):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived}
+		"nr":NotReceived()}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key))
@@ -37,7 +37,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_1_2_validate_key(self):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived}
+		"nr":NotReceived()}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,id=True))
@@ -46,7 +46,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_1_3_validate_key(self):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived}
+		"nr":NotReceived()}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True))
@@ -55,7 +55,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_1_4_validate_key(self):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived}
+		"nr":NotReceived()}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True))
@@ -64,7 +64,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_1_5_validate_key(self):
 		the_dict = {"iD":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived, "unsupported":{}}
+		"nr":NotReceived(), "unsupported":{}}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True, unsupported=True))
@@ -74,7 +74,7 @@ class modelsTestCase(unittest.TestCase):
 	def test_a_1_1_6_validate_key(self):
 		user = User(username = "abc", password = "pass")
 		the_dict = {"ID":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived, "unsupported1":{}, "unsupported2":user}
+		"nr":NotReceived(), "unsupported1":{}, "unsupported2":user}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True, unsupported=True))
@@ -84,7 +84,7 @@ class modelsTestCase(unittest.TestCase):
 	def test_a_1_1_7_validate_key(self):
 		user = User(username = "abc", password = "pass")
 		the_dict = {"Id":41,"paSSword":"abc","username":"tryu","bool1":True,"bool2":False,
-		"nr":NotReceived, "unsupported1":{}, "unsupported2":user}
+		"nr":NotReceived(), "unsupported1":{}, "unsupported2":user}
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key, unsupported=False))
@@ -113,6 +113,20 @@ class modelsTestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),"'bla' is an invalid keyword argument for User")
 		print("Test a_1_2_2 : MyModel: success")
+
+	def test_a_1_2_3_MyModel(self):
+		user = User(username = "abc",password=NotReceived())
+		
+		self.assertEqual(user.username,"abc")
+		print(user.__dict__)
+		#MyModel(abc="123")
+		print("Test a_1_2_3 : MyModel: success")
+
+	"""def test_a_1_2_9_MyModel(self):
+		user = User(username = "abc",password=NotReceived())
+		self.assertEqual(user.username,"abc")
+		print(user.password)
+		print("Test a_1_2_9 : MyModel: success")"""
 
 
 

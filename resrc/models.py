@@ -89,6 +89,7 @@ def validate_key(the_dict:dict,key:str,
 class MyModel():
 	# For creating the model
 	def __init__(self, **kwargs):
+		print("MyModel init")
 		#restrcted = True, we may need to enter the password
 		for key in kwargs:
 			if validate_key(kwargs,key,dangerous=True) == True:
@@ -171,6 +172,9 @@ class User(Base,MyModel):
 	images = relationship("Image",backref=backref('seller',
 						uselist=True,
 						cascade='delete,all'))
+
+	def __init__(self,**kwargs):
+		MyModel.__init__(self,**kwargs)
 	
 
 '''
