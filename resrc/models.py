@@ -66,16 +66,16 @@ def validate_key(the_dict:dict,key:str,
 	if key[0] == "_":
 		return False
 	# Validating NotReceived
-	if type(kwargs[key]) == Type(NotReceived):
+	if type(the_dict[key]) == type(NotReceived):
 		return False
 	# Validating id
 	if key.lower() == "id" and id == False:
 		return False
 	# Validating supported types
-	if ((type(kwargs[key])not in SUPPORTED_TYPES) and (unsupported==False)):
+	if ((type(the_dict[key])not in SUPPORTED_TYPES) and (unsupported==False)):
 		return False
 	# validating dangerous fields
-	if ((str(kwargs[key]) in RESTRICTED_FIELDS) and (dangerous==False)):
+	if ((key.lower() in RESTRICTED_FIELDS) and (dangerous==False)):
 		return False
 	return True
 
@@ -281,7 +281,7 @@ def init_db():
 	Base.query = db_session.query_property()
 	Base.metadata.drop_all(bind=engine)
 	Base.metadata.create_all(bind=engine)
-init_db()
+#init_db()
 """
 user = User(username = "abc", password = "123", id = 123)
 print(user)

@@ -1,6 +1,7 @@
 
+import unittest
 
-
+from models import NotReceived, validate_key, MyModel, User, Product, Order, Image, init_db
 
 
 unittest.TestLoader.sortTestMethodsUsing = None
@@ -26,6 +27,14 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
 
+	def test_a_1_1_1_validate_key(self):
+		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
+		"nr":NotReceived}
+		validated = [validate_key(the_dict,"id"),validate_key(the_dict,"password"),
+		validate_key(the_dict,"username"),validate_key(the_dict,"bool1"),
+		validate_key(the_dict,"bool2"),validate_key(the_dict,"nr")]
+		self.assertEqual([False,False,True,True,True,False],validated)
+		print("Test a_1_1_1 : validate_key: success")
 
 
 
