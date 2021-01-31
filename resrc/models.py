@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from __init__ import db
+from __init__ import db,SQLALCHEMY_DATABASE_URI
 
 SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]

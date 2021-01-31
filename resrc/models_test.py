@@ -1,5 +1,6 @@
 import unittest
-from models import NotReceived, validate_key, MyModel, User, Product, Order, Image, init_db
+from models import (NotReceived, validate_key, MyModel, User, Product, Order, Image,
+	populate_tables, db_drop_and_create_all)
 
 
 
@@ -25,6 +26,11 @@ class modelsTestCase(unittest.TestCase):
 	def test_001_test(self):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
+
+
+	def test_002_test():
+		db_drop_and_create_all()
+
 
 	def test_a_1_1_1_validate_key(self):
 		the_dict = {"id":41,"password":"abc","username":"tryu","bool1":True,"bool2":False,
