@@ -12,15 +12,6 @@ SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]
 
 
-
-#Base = declarative_base()
-#engine = create_engine('sqlite:///databases/test.sqlite', convert_unicode=True)
-#db_session = scoped_session(sessionmaker(autocommit=False,
-#										 #autoflush=False,
-#										 bind=engine))
-
-
-
 """
 NotReceived
 This class is used when the dada is not received
@@ -288,15 +279,6 @@ class Image(db.Model, MyModel):
 
 
 
-
-
-
-
-
-def init_db():
-	Base.query = db.session.query_property()
-	Base.metadata.drop_all(bind=engine)
-	Base.metadata.create_all(bind=engine)
 #init_db()
 """
 user = User(username = "abc", password = "123", id = 123)
@@ -312,7 +294,90 @@ print(type(user.__dict__["password"]))
 
 
 
+def db_drop_and_create_all():
+    db.drop_all()
+    db.create_all()
 
+
+
+def populate_tables():
+    db_drop_and_create_all()
+    users = list()
+    users.append(User(username="abc",password="123456789"))
+    users.append(User(username="abcde",password="456abcderrrt"))
+    users.append(User(username="klmn",password="fde123987byt"))
+    users.append(User(username="rtb",password="uytkltyopi889"))
+    users.append(User(username="cool",password="freezererer"))
+    users.append(User(username="water",password="TankTankTank"))
+    db.session.add_all(users)
+    db.session.commit()
+
+
+    products = list()
+    products.append(Product(
+        name="Labtop", price=300, seller_id="1"))
+    products.append(Product(
+        name="Mobile", price=100, seller_id="2", in_stock=False))
+    products.append(Product(
+        name="Candy", price=.5, seller_id="3", in_stock=True))
+    products.append(Product(
+        name="Table", price=150, seller_id="1", in_stock=False))
+    products.append(Product(
+        name="Keyboard", price=5, seller_id="2", in_stock=True))
+    products.append(Product(
+        name="Mouse", price=4, seller_id="1", in_stock=True))
+    db.session.add_all(products)
+    db.session.commit()
+
+    orders = list() 
+    #id, user, product, amount
+    orders.append(Order(user_id="1", product_id=1, amount=1))
+    orders.append(Order(user_id="2", product_id=1, amount=4))
+    orders.append(Order(user_id="3", product_id=2, amount=3))
+    orders.append(Order(user_id="1", product_id=1, amount=2))
+    orders.append(Order(user_id="2", product_id=2, amount=1))
+    orders.append(Order(user_id="2", product_id=3, amount=5))
+    orders.append(Order(user_id="1", product_id=4, amount=20))
+    orders.append(Order(user_id="3", product_id=5, amount=4))
+
+    db.session.add_all(orders)
+    db.session.commit()
+
+    images = list() 
+    #id, user, product, amount
+    images.append(Image(seller_id="1", name="Labtop", 
+        formatting="png"))
+    images.append(Image(seller_id="2", name="Mobile", 
+        formatting="jpg"))
+    images.append(Image(seller_id="3", name="Lobtop", 
+        formatting="png"))
+    images.append(Image(seller_id="4", name="Mobile", 
+        formatting="jpg"))
+    images.append(Image(seller_id="5", name="Keyboard", 
+        formatting="png"))
+    images.append(Image(seller_id="6", name="Mouse", 
+        formatting="png"))
+    images.append(Image(seller_id="1", name="USB", 
+        formatting="png"))
+    images.append(Image(seller_id="2", name="Notebook", 
+        formatting="png"))
+    images.append(Image(seller_id="3", name="Spoon", 
+        formatting="jpg"))
+    images.append(Image(seller_id="4", name="Fork", 
+        formatting="png"))
+    images.append(Image(seller_id="5", name="Camera", 
+        formatting="png"))
+    images.append(Image(seller_id="6", name="Radio", 
+        formatting="jpg"))
+    images.append(Image(seller_id="1", name="Pen", 
+        formatting="png"))
+    images.append(Image(seller_id="2", name="Back bag", 
+        formatting="jpg"))
+    images.append(Image(seller_id="3", name="Wireless Headphones", 
+        formatting="png"))
+
+    db.session.add_all(images)
+    db.session.commit()
 
 
 
