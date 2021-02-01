@@ -334,8 +334,15 @@ class Order(db.Model, MyModel):
 			MyModel.insert(self)
 		db.session.rollback()
 
-		#def update(self):
-		#	pass
+		def update(self, **kwargs):
+			try:
+				if kwargs["amount"]>0:
+					MyModel.update(self,**kwargs)
+				else:
+					MoModel.delete(self)
+			except Exception as e:
+				db.session.rollback()
+
 
 '''
 Image
