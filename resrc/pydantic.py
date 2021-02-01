@@ -9,6 +9,7 @@ class UserUpdate(BaseModel):
 	name:str = NotReceived()
 	password:str = NotReceived()
 
+
 class ProductPost(object):
 	name:str
 	price:float
@@ -19,7 +20,13 @@ class ProductPost(object):
 	price:float = NotReceived()
 	in_stock:bool=NotReceived()
 	seller_id:int = NotReceived()
+
+class OrderPost(object):
+	user_id:int
+	product_id:int
+	amount:int
 		
+	
 
 """
 external_data = {

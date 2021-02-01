@@ -318,7 +318,7 @@ class Order(db.Model, MyModel):
 	# This is the id of the user who ordered the products
 	# it is an integer
 	# Example: 1, 2 or 3
-	product_id  = db.Column(Integer,ForeignKey("product.id"))
+	product_id  = db.Column(Integer(),ForeignKey("product.id"))
 	# product_id is an integer 
 	# it refers to the product.id in the products table
 	# Example: 1, 2 , 3
