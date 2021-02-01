@@ -274,8 +274,10 @@ class modelsTestCase(unittest.TestCase):
 		user_to_del = User(username = "abc",password="456")
 		user_to_del.insert()
 		prod = Product(name="789",price=123,seller_id=1)
+		#print(type(user_to_del.metadata))
 		prod.insert()
-		print(user_to_del.deep())
+		#print(type(user_to_del)==User)
+		#print(user_to_del.deep())
 		keys = dir(user_to_del)
 		#for key in keys:
 		#	print(key+" : "+ str(type(getattr(user_to_del,key))))

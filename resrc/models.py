@@ -6,15 +6,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 from flask_sqlalchemy import SQLAlchemy
-
+import types
 #from __init__ import db,SQLALCHEMY_DATABASE_URI
 
 SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]
 db = SQLAlchemy()
-
-UNSUPPORTED_PASSED = ["products","orders","images","seller","buyer","product"]
-
 
 """
 NotReceived
@@ -79,11 +76,12 @@ def validate_key(the_object,key:str,
 		return False
 	# Validating supported types
 	if ((type(the_attribute)not in SUPPORTED_TYPES) and (unsupported==True)):
-		if type(the_attribute) in [User,Product,Image,Order]:
-			return True
-		if ((key in UNSUPPORTED_PASSED) and (type(the_attribute)==list)):
-			return True
-		return False
+		if type(the_attribute) == types.MethodType:
+			#print("This is a function")
+			return False
+		if key in ["metadata","query"]:
+			return False
+		return True
 	if type(the_attribute) not in SUPPORTED_TYPES:
 		return False
 	# validating dangerous fields
@@ -181,14 +179,17 @@ class MyModel():
 	def deep(self):
 		toReturn = {}
 		validated_self = get_dict(self, id=True,unsupported=True)
+		print(validated_self)
 		for key in validated_self:
+			print(key)
 			if validate_key(self,key,id=True) == True:
 				# Here key is normal or id, not unsupported
 				toReturn[key] = validated_self[key]
 				continue
 			# If it has this function, then it is a column in the table
+			print(key)
 			try:
-				toReturn[key] = validated_self.simple()
+				toReturn[key] = validated_self[key].simple()
 			except Exception as e:
 				toReturn[key] = []
 				children_list = validated_self[key]
