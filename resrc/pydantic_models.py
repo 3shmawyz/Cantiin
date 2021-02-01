@@ -27,19 +27,17 @@ class UserPost(BaseModel):
 			raise ValueError('passwords do not match')
 		return v
 
-"""
-There should be no UserUpdate
+
 
 class UserUpdate(BaseModel):
-	username:str = NotReceived()
-	password:str = NotReceived()
-	password2:str = 
+	password1:str
+	password2:str
 
 	@validator('password2')
 	def passwords_match(cls, v, values, **kwargs):
 		if 'password1' in values and v != values['password1']:
 			raise ValueError('passwords do not match')
-		return v"""
+		return v
 
 
 

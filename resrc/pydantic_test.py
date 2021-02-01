@@ -5,7 +5,8 @@ from pydantic_models import (UserPost, UserUpdate, ProductPost,
 #from app import create_app
 #from models import db
 import json
-from models import NotReceived
+from models import NotReceived, Product, populate_tables
+from app import create_app
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
@@ -14,7 +15,7 @@ class pydanticTestCase(unittest.TestCase):
 
 	def setUp(self):
 		#db_drop_and_create_all()
-		#create_app()
+		create_app()
 		# create and configure the app
 		#self.app = create_app(testing=True) #Flask(__name__)
 		#self.client = self.app.test_client
@@ -33,13 +34,26 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test 1:Hello, Tests!")
 
 
-	def test_001_01_1_UserPost(self):
+
+	def test_a_1_0_validate_model_id(self):
+		populate_tables()
+		print("Test b_1_0: validate_model_id Populate")
+
+
+
+
+
+
+
+
+
+	"""def test_b_001_01_1_UserPost(self):
 		toValidate = {"username":123,"password":789}
 		user = UserPost(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
-		print("Test 1_1_1:UserPost Successful")
+		print("Test b_1_1_1:UserPost Successful")
 
-	def test_001_01_2_UserPost(self):
+	def test_b_001_01_2_UserPost(self):
 		toValidate = {}
 		try:
 			user = UserPost(**toValidate)
@@ -49,9 +63,9 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "field required","type": "value_error.missing"},{"loc": [
 				"password"],"msg": "field required","type": "value_error.missing"}])
-		print("Test 1_1_2:UserPost:Fail:all missing required")
+		print("Test b_1_1_2:UserPost:Fail:all missing required")
 
-	def test_001_01_3_UserPost(self):
+	def test_b_001_01_3_UserPost(self):
 		toValidate = {"password":{},"username":{}}
 		try:
 			user = UserPost(**toValidate)
@@ -61,18 +75,18 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 			"msg": "str type expected","type": "type_error.str"},{"loc": [
 	  		"password"],"msg": "str type expected","type": "type_error.str"}])
-		print("Test 1_1_3:UserPost:Fail:username required")
+		print("Test b_1_1_3:UserPost:Fail:username required")
 
 
 
 
 
 
-	def test_001_02_1_UserUpdate(self):
+	def test_b_001_02_1_UserUpdate(self):
 		toValidate = {"username":123,"password":789}
 		user = UserUpdate(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
-		print("Test 1_2_1:UserUpdate Successful")
+		print("Test b_1_2_1:UserUpdate Successful")
 
 	def test_001_02_2_UserUpdate(self):
 		toValidate = {"username":123}
@@ -80,16 +94,16 @@ class pydanticTestCase(unittest.TestCase):
 		self.assertEqual(user.username,"123")
 		self.assertEqual(type(user.password),NotReceived)
 		#self.assertEqual(user.dict(),{"username":"123","password":NotReceived()})
-		print("Test 1_2_2:UserUpdate Successful Missing field")
+		print("Test b_1_2_2:UserUpdate Successful Missing field")
 
-	def test_001_02_3_UserUpdate(self):
+	def test_b_001_02_3_UserUpdate(self):
 		toValidate = {}
 		user = UserUpdate(**toValidate)
 		self.assertEqual(type(user.username),NotReceived)
 		self.assertEqual(type(user.password),NotReceived)
-		print("Test 1_2_3:UserUpdate Successful: all Missing fields")
+		print("Test b_1_2_3:UserUpdate Successful: all Missing fields")
 
-	def test_001_02_4_UserUpdate(self):
+	def test_b_001_02_4_UserUpdate(self):
 		toValidate = {"password":{},"username":{}}
 		try:
 			user = UserUpdate(**toValidate)
@@ -99,7 +113,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 			"msg": "str type expected","type": "type_error.str"},{"loc": [
 	  		"password"],"msg": "str type expected","type": "type_error.str"}])
-		print("Test 1_2_4:UserUpdate:Fail:username required")
+		print("Test b_1_2_4:UserUpdate:Fail:username required")
 
 
 
@@ -119,13 +133,13 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	def test_002_01_1_ProductPost(self):
+	def test_b_002_01_1_ProductPost(self):
 		toValidate = {"username":123,"password":789}
 		user = ProductPost(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
-		print("Test 2_1_1:ProductPost Successful")
+		print("Test b_2_1_1:ProductPost Successful")
 
-	def test_002_01_2_ProductPost(self):
+	def test_b_002_01_2_ProductPost(self):
 		toValidate = {}
 		try:
 			user = ProductPost(**toValidate)
@@ -135,9 +149,9 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "field required","type": "value_error.missing"},{"loc": [
 				"password"],"msg": "field required","type": "value_error.missing"}])
-		print("Test 2_1_2:ProductPost:Fail:all missing required")
+		print("Test b_2_1_2:ProductPost:Fail:all missing required")
 
-	def test_002_01_3_ProductPost(self):
+	def test_b_002_01_3_ProductPost(self):
 		toValidate = {"password":{},"username":{}}
 		try:
 			user = ProductPost(**toValidate)
@@ -147,7 +161,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 			"msg": "str type expected","type": "type_error.str"},{"loc": [
 	  		"password"],"msg": "str type expected","type": "type_error.str"}])
-		print("Test 2_1_3:ProductPost:Fail:username required")
+		print("Test b_2_1_3:ProductPost:Fail:username required")
 
 
 
@@ -157,28 +171,28 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	def test_002_02_1_ProductUpdate(self):
+	def test_b_002_02_1_ProductUpdate(self):
 		toValidate = {"username":123,"password":789}
 		user = ProductUpdate(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
-		print("Test 2_2_1:ProductUpdate Successful")
+		print("Test b_2_2_1:ProductUpdate Successful")
 
-	def test_002_02_2_ProductUpdate(self):
+	def test_b_002_02_2_ProductUpdate(self):
 		toValidate = {"username":123}
 		user = ProductUpdate(**toValidate)
 		self.assertEqual(user.username,"123")
 		self.assertEqual(type(user.password),NotReceived)
 		#self.assertEqual(user.dict(),{"username":"123","password":NotReceived()})
-		print("Test 2_2_2:ProductUpdate Successful Missing field")
+		print("Test b_2_2_2:ProductUpdate Successful Missing field")
 
-	def test_002_02_3_ProductUpdate(self):
+	def test_b_002_02_3_ProductUpdate(self):
 		toValidate = {}
 		user = ProductUpdate(**toValidate)
 		self.assertEqual(type(user.username),NotReceived)
 		self.assertEqual(type(user.password),NotReceived)
-		print("Test 2_2_2:ProductUpdate Successful: all Missing fields")
+		print("Test b_2_2_2:ProductUpdate Successful: all Missing fields")
 
-	def test_002_02_4_ProductUpdate(self):
+	def test_b_002_02_4_ProductUpdate(self):
 		toValidate = {"password":{},"username":{}}
 		try:
 			user = ProductUpdate(**toValidate)
@@ -188,7 +202,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 			"msg": "str type expected","type": "type_error.str"},{"loc": [
 	  		"password"],"msg": "str type expected","type": "type_error.str"}])
-		print("Test 2_2_3:ProductUpdate:Fail:username required")
+		print("Test b_2_2_4:ProductUpdate:Fail:username required")"""
 
 
 
