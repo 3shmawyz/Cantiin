@@ -149,7 +149,6 @@ class MyModel():
 	# For inserting the model in the db
 	def insert(self):
 		#print(self)
-		
 		db.session.add(self)
 		db.session.commit()
 
@@ -204,29 +203,45 @@ class User(db.Model,MyModel):
 	#__metaclass__=MyModel
 	__tablename__="user"
 	# Autoincrementing, unique primary key
-	id = Column(Integer(), primary_key=True)
+	id = db.Column(Integer(), primary_key=True)
 	# String username
-	username = Column(String(), unique=True, nullable=False)
+	username = db.Column(String(), unique=True, nullable=False)
 	# username could be like "fish"
 	# username has to be unique
 	# not allowing several users to have the same username
-	password =  Column(String(), unique=False, nullable=False)
+	password =  db.Column(String(), unique=False, nullable=False)
 	# Password is a string
 	# Example: "12345", "abc"
 	# it doesn't have to be unique
+	
 
-	products = relationship("Product",backref=backref('seller'#,
+
+	orders = db.relationship("Order",cascade="all, delete-orphan",
+		passive_deletes=False,backref="product")
+
+	"""products = db.relationship("Product",backref=backref('seller',
 						#uselist=True,
 						#cascade='delete,all'
-						))
-	orders = relationship("Order",backref=backref('buyer'#,
+						))"""
+	
+
+	orders = db.relationship("Order",cascade="all, delete-orphan",
+		passive_deletes=False,backref="product")
+
+	"""orders = db.relationship("Order",backref=backref('buyer',
+						#selist=True,
+						#cascade='delete,all'
+						))"""
+	
+
+
+	orders = db.relationship("Order",cascade="all, delete-orphan",
+		passive_deletes=False,backref="product")
+
+	"""images = db.relationship("Image",backref=backref('seller',
 						#uselist=True,
 						#cascade='delete,all'
-						))
-	images = relationship("Image",backref=backref('seller'#,
-						#uselist=True,
-						#cascade='delete,all'
-						))
+						))"""
 
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
@@ -240,25 +255,25 @@ id,name,price,in_stock,seller_id
 class Product(db.Model, MyModel):
 	__tablename__="product"
 	# Autoincrementing, unique primary key
-	id = Column(Integer(), primary_key=True)
+	id = db.Column(Integer(), primary_key=True)
 	# String name
-	name = Column(String(), unique=False, nullable=False)
+	name = db.Column(String(), unique=False, nullable=False)
 	# name could be like "Labtop"
 	# name dowsn't have to be unique
 	# allowing several users to sell the same product
-	price =  Column(Float(), unique=False, nullable=False)
+	price =  db.Column(Float(), unique=False, nullable=False)
 	# Price is a float
 	# Example: 5.0, 6.0 , 50.0, 0.5
 	# It should be float, allowing things with low
 	# price to be sold
-	in_stock =  Column(Boolean(), unique=False, 
+	in_stock =  db.Column(Boolean(), unique=False, 
 		nullable=False, default=True)
 	# in_stock is a boolean
 	# Example: True, False
 	# it represents whether this product is for sale or not
 	# True = For sale, can be displayed to customers
 	# False = now for sale, can not be displayed to customers
-	seller_id = Column(Integer(),ForeignKey("user.id"),
+	seller_id = db.Column(Integer(),ForeignKey("user.id"),
 	 unique=False, nullable=False)
 	#seller_id = Column(Integer(), unique=False, nullable=False)
 	# seller_id
@@ -266,18 +281,23 @@ class Product(db.Model, MyModel):
 	# The user who sells this product
 	# it is an integer
 	# Example: 1, 2 or 3
-	
-	orders = relationship("Order",backref=backref('product',
-						#uselist=True,
-						cascade='delete,all'))
+	orders = db.relationship("Order",cascade="all, delete-orphan",
+		passive_deletes=False,backref="product")
 
-	def __init__(self,**kwargs):
-		print("product self init")
-		self.name = kwargs["name"]
-		self.price = kwargs["price"]
-		self.in_stock = True
-		self.seller_id = kwargs["seller_id"]
-		#MyModel.__init__(self,**kwargs)
+	
+	"""orders = db.relationship("Order",backref=backref('product',
+						#uselist=True,
+						#cascade='all,delete-orphan'
+						cascade="all, delete",			
+						),passive_deletes=False)"""
+
+	#def __init__(self,**kwargs):
+	#	print("product self init")
+	#	self.name = kwargs["name"]
+	#	self.price = kwargs["price"]
+	#	self.in_stock = True
+	#	self.seller_id = kwargs["seller_id"]
+	#	#MyModel.__init__(self,**kwargs)
 
 
 
@@ -289,23 +309,22 @@ id, user_id, product_id, amount
 class Order(db.Model, MyModel):
 	__tablename__="order"
 	# Autoincrementing, unique primary key
-	id = Column(Integer(), primary_key=True)
+	id = db.Column(Integer(), primary_key=True)
 	# String name
-	user_id =Column(Integer(),ForeignKey("user.id"),
+	user_id =db.Column(Integer(),ForeignKey("user.id"),
 	 unique=False, nullable=False)
 	# user_id
 	# This is the id of the user who ordered the products
 	# it is an integer
 	# Example: 1, 2 or 3
-	product_id  = Column(Integer,ForeignKey("product.id"))
+	product_id  = db.Column(Integer,ForeignKey("product.id"))
 	# product_id is an integer 
 	# it refers to the product.id in the products table
 	# Example: 1, 2 , 3
-	amount =  Column(Integer(), unique=False, nullable=False)
+	amount =  db.Column(Integer(), unique=False, nullable=False)
 	# amount is an integer
 	# Example: 5, 6, 50
-	total_cost = 0.0
-
+	#product = relationship("Product", back_populates="orders")
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
 
@@ -320,18 +339,18 @@ The image will be stroed with it's id
 class Image(db.Model, MyModel):
 	__tablename__="image"
 	# Autoincrementing, unique primary key
-	id = Column(Integer(), primary_key=True)
-	seller_id = Column(Integer(),ForeignKey("user.id"),
+	id = db.Column(Integer(), primary_key=True)
+	seller_id = db.Column(Integer(),ForeignKey("user.id"),
 	 unique=False, nullable=False)
 	# This is the id of the seller user
 	# The user who sells this product
 	# it is an integer
 	# Example: 1, 2 or 3
-	name = Column(String(), unique=False, nullable=False)
+	name = db.Column(String(), unique=False, nullable=False)
 	# image name could be like "fish"
 	# image name can not to be unique
 	# not allowing several users to have the same username
-	formatting =  Column(String(), unique=False, nullable=False)
+	formatting =  db.Column(String(), unique=False, nullable=False)
 	# formattng is a string that represents the type of image
 	# There can be only 2 types: "png" , "jpg"
 	# it can not be unique
@@ -367,83 +386,83 @@ def db_drop_and_create_all():
 
 
 def populate_tables():
-    db_drop_and_create_all()
-    users = list()
-    users.append(User(username="abc",password="123456789"))
-    users.append(User(username="abcde",password="456abcderrrt"))
-    users.append(User(username="klmn",password="fde123987byt"))
-    users.append(User(username="rtb",password="uytkltyopi889"))
-    users.append(User(username="cool",password="freezererer"))
-    users.append(User(username="water",password="TankTankTank"))
-    db.session.add_all(users)
-    db.session.commit()
+	db_drop_and_create_all()
+	users = list()
+	users.append(User(username="abc",password="123456789"))
+	users.append(User(username="abcde",password="456abcderrrt"))
+	users.append(User(username="klmn",password="fde123987byt"))
+	users.append(User(username="rtb",password="uytkltyopi889"))
+	users.append(User(username="cool",password="freezererer"))
+	users.append(User(username="water",password="TankTankTank"))
+	db.session.add_all(users)
+	db.session.commit()
 
 
-    products = list()
-    products.append(Product(
-        name="Labtop", price=300, seller_id="1"))
-    products.append(Product(
-        name="Mobile", price=100, seller_id="2", in_stock=False))
-    products.append(Product(
-        name="Candy", price=.5, seller_id="3", in_stock=True))
-    products.append(Product(
-        name="Table", price=150, seller_id="1", in_stock=False))
-    products.append(Product(
-        name="Keyboard", price=5, seller_id="2", in_stock=True))
-    products.append(Product(
-        name="Mouse", price=4, seller_id="1", in_stock=True))
-    db.session.add_all(products)
-    db.session.commit()
+	products = list()
+	products.append(Product(
+		name="Labtop", price=300, seller_id="1"))
+	products.append(Product(
+		name="Mobile", price=100, seller_id="2", in_stock=False))
+	products.append(Product(
+		name="Candy", price=.5, seller_id="3", in_stock=True))
+	products.append(Product(
+		name="Table", price=150, seller_id="1", in_stock=False))
+	products.append(Product(
+		name="Keyboard", price=5, seller_id="2", in_stock=True))
+	products.append(Product(
+		name="Mouse", price=4, seller_id="1", in_stock=True))
+	db.session.add_all(products)
+	db.session.commit()
 
-    orders = list() 
-    #id, user, product, amount
-    orders.append(Order(user_id="1", product_id=1, amount=1))
-    orders.append(Order(user_id="2", product_id=1, amount=4))
-    orders.append(Order(user_id="3", product_id=2, amount=3))
-    orders.append(Order(user_id="1", product_id=1, amount=2))
-    orders.append(Order(user_id="2", product_id=2, amount=1))
-    orders.append(Order(user_id="2", product_id=3, amount=5))
-    orders.append(Order(user_id="1", product_id=4, amount=20))
-    orders.append(Order(user_id="3", product_id=5, amount=4))
+	orders = list() 
+	#id, user, product, amount
+	orders.append(Order(user_id="1", product_id=1, amount=1))
+	orders.append(Order(user_id="2", product_id=1, amount=4))
+	orders.append(Order(user_id="3", product_id=2, amount=3))
+	orders.append(Order(user_id="1", product_id=1, amount=2))
+	orders.append(Order(user_id="2", product_id=2, amount=1))
+	orders.append(Order(user_id="2", product_id=3, amount=5))
+	orders.append(Order(user_id="1", product_id=4, amount=20))
+	orders.append(Order(user_id="3", product_id=5, amount=4))
 
-    db.session.add_all(orders)
-    db.session.commit()
+	db.session.add_all(orders)
+	db.session.commit()
 
-    images = list() 
-    #id, user, product, amount
-    images.append(Image(seller_id="1", name="Labtop", 
-        formatting="png"))
-    images.append(Image(seller_id="2", name="Mobile", 
-        formatting="jpg"))
-    images.append(Image(seller_id="3", name="Lobtop", 
-        formatting="png"))
-    images.append(Image(seller_id="4", name="Mobile", 
-        formatting="jpg"))
-    images.append(Image(seller_id="5", name="Keyboard", 
-        formatting="png"))
-    images.append(Image(seller_id="6", name="Mouse", 
-        formatting="png"))
-    images.append(Image(seller_id="1", name="USB", 
-        formatting="png"))
-    images.append(Image(seller_id="2", name="Notebook", 
-        formatting="png"))
-    images.append(Image(seller_id="3", name="Spoon", 
-        formatting="jpg"))
-    images.append(Image(seller_id="4", name="Fork", 
-        formatting="png"))
-    images.append(Image(seller_id="5", name="Camera", 
-        formatting="png"))
-    images.append(Image(seller_id="6", name="Radio", 
-        formatting="jpg"))
-    images.append(Image(seller_id="1", name="Pen", 
-        formatting="png"))
-    images.append(Image(seller_id="2", name="Back bag", 
-        formatting="jpg"))
-    images.append(Image(seller_id="3", name="Wireless Headphones", 
-        formatting="png"))
+	images = list() 
+	#id, user, product, amount
+	images.append(Image(seller_id="1", name="Labtop", 
+		formatting="png"))
+	images.append(Image(seller_id="2", name="Mobile", 
+		formatting="jpg"))
+	images.append(Image(seller_id="3", name="Lobtop", 
+		formatting="png"))
+	images.append(Image(seller_id="4", name="Mobile", 
+		formatting="jpg"))
+	images.append(Image(seller_id="5", name="Keyboard", 
+		formatting="png"))
+	images.append(Image(seller_id="6", name="Mouse", 
+		formatting="png"))
+	images.append(Image(seller_id="1", name="USB", 
+		formatting="png"))
+	images.append(Image(seller_id="2", name="Notebook", 
+		formatting="png"))
+	images.append(Image(seller_id="3", name="Spoon", 
+		formatting="jpg"))
+	images.append(Image(seller_id="4", name="Fork", 
+		formatting="png"))
+	images.append(Image(seller_id="5", name="Camera", 
+		formatting="png"))
+	images.append(Image(seller_id="6", name="Radio", 
+		formatting="jpg"))
+	images.append(Image(seller_id="1", name="Pen", 
+		formatting="png"))
+	images.append(Image(seller_id="2", name="Back bag", 
+		formatting="jpg"))
+	images.append(Image(seller_id="3", name="Wireless Headphones", 
+		formatting="png"))
 
-    db.session.add_all(images)
-    db.session.commit()
+	db.session.add_all(images)
+	db.session.commit()
 
 
 
