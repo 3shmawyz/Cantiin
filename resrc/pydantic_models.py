@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel, ValidationError, validator, constr
+from pydantic import BaseModel, ValidationError, validator, constr, conint, confloat
 from models import NotReceived
 
 
@@ -66,14 +66,32 @@ def validate_string_length_pydantic(the_string:str,minimum:int,maximum:int):
 	if len(the_string)>maximum:
 		raise ValueError("maximum length of this text is "+ str(maximum))
 
+# General
+id_con = conint(gt=0)
 
 
+# User
+username_con = constr(strip_whitespace=True, min_length=3,max_length=40)
+password_con = constr(strip_whitespace=True, min_length=5,max_length=100)
+
+#Product Name
+product_name_con = constr(strip_whitespace=True, min_length=3,max_length=100)
+# Product_price_con = 
+
+
+# Order
+amount_con = conint(gt=-1, lt=100)
+
+#Image
+image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
+formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
+image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=10000)
 
 
 class UserPost(BaseModel):
-	username:constr(strip_whitespace=True, min_length=3,max_length=40)
-	password1:constr(strip_whitespace=True, min_length=5,max_length=100)
-	password2:constr(strip_whitespace=True, min_length=5,max_length=100)
+	username : username_con
+	password1 : password_con
+	password2 : password_con
 
 	@validator('username')
 	def name_cant_contain_space(cls, value):
@@ -95,8 +113,8 @@ class UserPost(BaseModel):
 
 
 class UserUpdate(BaseModel):
-	password1:constr(strip_whitespace=True, min_length=5,max_length=100)
-	password2:constr(strip_whitespace=True, min_length=5,max_length=100)
+	password1 : password_con
+	password2 : password_con
 	
 	@validator('password1')
 	def passwords_length(cls, value):
@@ -120,10 +138,10 @@ class UserUpdate(BaseModel):
 
 
 class ProductPost(BaseModel):
-	name:constr(strip_whitespace=True, min_length=3,max_length=70)
-	price:float
-	in_stock:bool=True
-	seller_id:int#PositiveInt
+	name : product_name_con
+	price : float
+	in_stock : bool=True
+	seller_id : id_con
 
 	"""@validator
 	def name_length(cls,value):
@@ -138,38 +156,43 @@ class ProductPost(BaseModel):
 
 
 class ProductPost(BaseModel):
-	name:constr(strip_whitespace=True, min_length=3,max_length=70) = NotReceived()
-	price:float = NotReceived()
-	in_stock:bool=NotReceived()
-	seller_id:int = NotReceived()
+	name : product_name_con = NotReceived()
+	price : float = NotReceived()
+	in_stock : bool=NotReceived()
+	seller_id : id_con = NotReceived()
 
 
 class OrderPost(BaseModel):
-	user_id:int
-	product_id:int
-	amount:int
+	user_id : id_con
+	product_id : id_con
+	amount : amount_con
 class OrderUpdate(BaseModel):
-	user_id:int = NotReceived()
-	product_id:int = NotReceived()
-	amount:int = NotReceived()
+	user_id : id_con = NotReceived()
+	product_id : id_con = NotReceived()
+	amount : amount_con = NotReceived()
 
 
 class ImagePost(BaseModel):
-	seller_id:int
-	name:constr(strip_whitespace=True, min_length=3,max_length=200)
-	formatting:constr(strip_whitespace=True, min_length=2,max_length=15)
-	image_b64:constr(strip_whitespace=True, min_length=4,max_length=10000)
-		
+	seller_id : id_con
+	name :  image_name_con
+	formatting : formatting_con
+	image_b64 : image_b64_con 
+
 class ImageUpdate(BaseModel):
-	seller_id:int = NotReceived()
-	name:constr(strip_whitespace=True, min_length=3,max_length=200)=NotReceived()
-	formatting:constr(strip_whitespace=True, min_length=2,max_length=15)=NotReceived()
-	image_b64:constr(strip_whitespace=True, min_length=4,max_length=10000)=NotReceived()
+	seller_id : id_con
+	name : image_name_con
+	formatting : formatting_con
+	image_b64 : image_b64_con
+		
+
+
+
+the_tst=constr(strip_whitespace=True, min_length=1,max_length=5)
 		
 
 
 class TestHere(BaseModel):
-	tst:constr(strip_whitespace=True, min_length=1,max_length=5)
+	tst:the_tst
 
 """
 external_data = {
