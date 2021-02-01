@@ -30,6 +30,13 @@ def validate_model_id(model,id:int):
 
 
 
+def validate_model_id_pydantic(model,model_name:str,id:int):
+	if validate_model_id(model,id) == True:
+		pass
+	else:
+		raise Exception("There is no "+ model_name + " with this id: " +str(id))
+
+
 
 class UserPost(BaseModel):
 	username:str
