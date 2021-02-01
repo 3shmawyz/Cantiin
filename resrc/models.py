@@ -79,9 +79,11 @@ def validate_key(the_object,key:str,
 		return False
 	# Validating supported types
 	if ((type(the_attribute)not in SUPPORTED_TYPES) and (unsupported==True)):
-		if key not in UNSUPPORTED_PASSED:
-			return False
-		return True
+		if type(the_attribute) in [User,Product,Image,Order]:
+			return True
+		if ((key in UNSUPPORTED_PASSED) and (type(the_attribute)==list)):
+			return True
+		return False
 	if type(the_attribute) not in SUPPORTED_TYPES:
 		return False
 	# validating dangerous fields
@@ -185,10 +187,13 @@ class MyModel():
 				toReturn[key] = validated_self[key]
 				continue
 			# If it has this function, then it is a column in the table
-			toReturn[key] = []
-			children_list = validated_self[key]
-			for child in children_list:
-				toReturn[key].append(child.simple())
+			try:
+				toReturn[key] = validated_self.simple()
+			except Exception as e:
+				toReturn[key] = []
+				children_list = validated_self[key]
+				for child in children_list:
+					toReturn[key].append(child.simple())
 		return toReturn
 
 
