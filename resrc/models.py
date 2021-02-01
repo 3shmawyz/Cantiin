@@ -216,32 +216,12 @@ class User(db.Model,MyModel):
 	
 
 
+	products = db.relationship("Product",cascade="all, delete-orphan",
+		passive_deletes=False,backref="seller")
 	orders = db.relationship("Order",cascade="all, delete-orphan",
-		passive_deletes=False,backref="product")
-
-	"""products = db.relationship("Product",backref=backref('seller',
-						#uselist=True,
-						#cascade='delete,all'
-						))"""
-	
-
-	orders = db.relationship("Order",cascade="all, delete-orphan",
-		passive_deletes=False,backref="product")
-
-	"""orders = db.relationship("Order",backref=backref('buyer',
-						#selist=True,
-						#cascade='delete,all'
-						))"""
-	
-
-
-	orders = db.relationship("Order",cascade="all, delete-orphan",
-		passive_deletes=False,backref="product")
-
-	"""images = db.relationship("Image",backref=backref('seller',
-						#uselist=True,
-						#cascade='delete,all'
-						))"""
+		passive_deletes=False,backref="buyer")
+	images = db.relationship("Image",cascade="all, delete-orphan",
+		passive_deletes=False,backref="seller")
 
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
