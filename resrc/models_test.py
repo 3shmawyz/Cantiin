@@ -217,8 +217,7 @@ class modelsTestCase(unittest.TestCase):
 
 		prod_to_del1 = Product(name = "abc",price=456,seller_id=user_to_del.id)
 		prod_to_del2 = Product(name = "abcdef",price=4567,seller_id=user_to_del.id)
-		db.session.add(prod_to_del1)
-		db.session.add(prod_to_del2)
+		db.session.add_all([prod_to_del1,prod_to_del2])
 		db.session.commit()
 		self.assertEqual(len(Product.query.all()),2)
 		
@@ -228,13 +227,20 @@ class modelsTestCase(unittest.TestCase):
 			user_id = user_to_del.id,product_id=prod_to_del2.id,amount=3)
 		order_to_del3 = Order(
 			user_id = user_to_del.id,product_id=prod_to_del2.id,amount=5)
-		db.session.add(order_to_del1)
-		db.session.add(order_to_del2)
-		db.session.add(order_to_del3)
+		db.session.add_all([order_to_del1,order_to_del2,order_to_del3])
 		db.session.commit()
 		self.assertEqual(len(Order.query.all()),3)
 
+		img_to_delete1=Image(seller_id=1,name="abc",formatting = "png")
+		img_to_delete2=Image(seller_id=1,name="abce",formatting = "jpg")
+		db.session.add_all([img_to_delete1,img_to_delete2])
+		db.session.commit()
+		self.assertEqual(len(Image.query.all()),2)
+
 		# Trying to delete
+		
+		img_to_delete2.delete()
+		self.assertEqual(len(Image.query.all()),1)
 		order_to_del3.delete()
 		self.assertEqual(len(Order.query.all()),2)
 		prod_to_del2.delete()
