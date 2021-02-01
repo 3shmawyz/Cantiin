@@ -247,11 +247,26 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(len(Order.query.all()),1)
 		self.assertEqual(len(Product.query.all()),1)
 		user_to_del.delete()
+		self.assertEqual(len(Image.query.all()),0)
 		self.assertEqual(len(Order.query.all()),0)
 		self.assertEqual(len(Product.query.all()),0)
 		self.assertEqual(len(User.query.all()),0)
 
 		print("Test 0a_1_3_1 : MyModel: relationships")
+
+
+	def test_0a_1_4_1_MyModel(self):
+		# Testing update
+		# Creating the user
+		user_to_del = User(username = "abc",password="456")
+		user_to_del.insert()
+		user_dict = get_dict(user_to_del,id=True,dangerous=True)
+		self.assertEqual(user_dict,{"id":1,"username":"abc","password":"456"})
+		user_to_del.update(id=14,username="478",password = "prt")
+		user_dict = get_dict(user_to_del,id=True,dangerous=True)
+		self.assertEqual(user_dict,{"id":1,"username":"478","password":"prt"})
+		user_to_del.delete()
+		print("Test 0a_1_4_1 : MyModel: update")
 
 
 
