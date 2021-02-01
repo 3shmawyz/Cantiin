@@ -38,6 +38,12 @@ class ImagePost(BaseModel):
 	formatting:str
 	image_b64:str
 		
+class ImageUpdate(BaseModel):
+	seller_id:int = NotReceived()
+	name:str = NotReceived()
+	formatting:str = NotReceived()
+	image_b64:str = NotReceived()
+		
 	
 
 """
