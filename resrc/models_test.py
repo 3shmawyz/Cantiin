@@ -490,6 +490,19 @@ class modelsTestCase(unittest.TestCase):
 
 
 
+	def test_a_1_011_user_deep(self):
+		#measuring lengths beofre actions
+		usr = User.query.get(6)
+		self.assertEqual(usr.deep(),
+			{'id': 6, 'images': [{'formatting': 'png', 
+			'id': 6, 'name': 'Mouse', 'seller_id': 6}, 
+			{'formatting': 'jpg', 'id': 12, 'name': 'Radio', 
+			'seller_id': 6}], 'orders': [], 'products': [], 
+			'username': 'water'})
+		print("Test a_1_11: user deep")
+
+
+
 
 
 
@@ -867,7 +880,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	"""def test_a_4_000_image_intro(self):
+	def test_a_4_000_image_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -940,6 +953,9 @@ class modelsTestCase(unittest.TestCase):
 		seller=image.seller
 		self.assertEqual(seller,User.query.get(seller.id))
 		print("Test a_4_7:image relationship_seller")
+
+	"""
+	get dict is deprecated
 
 	def test_a_4_008_image_get_dict(self):
 		image = Image.query.get(6).get_dict()
