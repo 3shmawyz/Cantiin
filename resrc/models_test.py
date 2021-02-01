@@ -624,7 +624,7 @@ class modelsTestCase(unittest.TestCase):
 	def test_a_2_008_get_in_stock_products(self):
 		products = get_in_stock_products()
 		for product in products:
-			self.assertEqual(product.in_stock,True)
+			self.assertEqual(product["in_stock"],True)
 		print("Test a_2_8:get in stock products")
 
 
