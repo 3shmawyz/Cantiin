@@ -86,15 +86,10 @@ class pydanticTestCase(unittest.TestCase):
 
 	def test_001_02_3_UserUpdate(self):
 		toValidate = {}
-		try:
-			user = UserUpdate(**toValidate)
-			self.assertEqual(True,False)
-		except Exception as e:
-			#print(str(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "field required","type": "value_error.missing"},{"loc": [
-				"password"],"msg": "field required","type": "value_error.missing"}])
-		print("Test 1_2_2:UserUpdate:Fail:all missing required")
+		user = UserUpdate(**toValidate)
+		self.assertEqual(type(user.username),NotReceived)
+		self.assertEqual(type(user.password),NotReceived)
+		print("Test 1_2_2:UserUpdate Successful: all Missing fields")
 
 	def test_001_02_4_UserUpdate(self):
 		toValidate = {"password":{},"username":{}}
