@@ -1,13 +1,46 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError, validator
 from models import NotReceived
+
+
+
+def validate_model_id(model,id):
+	try:
+		model.query.get(id)
+		return True
+	except Exception as e:
+		return False
+
+
+
+
+
 
 class UserPost(BaseModel):
 	username:str
-	password:str
+	password1:str
+	password2:str
+	
+	@validator('password2')
+	def passwords_match(cls, v, values, **kwargs):
+		if 'password1' in values and v != values['password1']:
+			raise ValueError('passwords do not match')
+		return v
+
+"""
+There should be no UserUpdate
+
 class UserUpdate(BaseModel):
 	username:str = NotReceived()
 	password:str = NotReceived()
+	password2:str = 
+
+	@validator('password2')
+	def passwords_match(cls, v, values, **kwargs):
+		if 'password1' in values and v != values['password1']:
+			raise ValueError('passwords do not match')
+		return v"""
+
 
 
 class ProductPost(BaseModel):
@@ -15,6 +48,9 @@ class ProductPost(BaseModel):
 	price:float
 	in_stock:bool=True
 	seller_id:int
+
+
+
 class ProductPost(BaseModel):
 	name:str = NotReceived()
 	price:float = NotReceived()
