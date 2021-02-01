@@ -1,7 +1,7 @@
 import unittest
 from pydantic_models import (UserPost, UserUpdate, ProductPost, 
 	ProductPost, OrderPost, OrderUpdate,
-	ImagePost, ImageUpdate, validate_model_id)
+	ImagePost, ImageUpdate, validate_model_id,validate_model_id_pydantic)
 #from app import create_app
 #from models import db
 import json
@@ -43,15 +43,37 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test b_1_0: validate_model_id Populate")
 
 	def test_a_1_1_validate_model_id(self):
+		# Model exists
 		self.assertEqual(validate_model_id(Product,1),True)
+		# Model does not exist
 		self.assertEqual(validate_model_id(Product,10000000000),False)
 		try:
-			self.assertEqual(validate_model_id(123,10000000000),False)
+			# model is not model
+			validate_model_id(123,10000000000)
+			self.assertEqual(True,False)
 		except Exception as e:
 			self.assertEqual(str(e),"validate_model_id:expected the type "+
 				"of SQLAlchemy, but found the type of <class 'int'> instead")
-			print(str(e))
 		print("Test b_1_1: validate_model_id success")
+
+
+	def test_a_1_2_validate_model_id_pydantic(self):
+		# Model exists: nOo errors raised
+		validate_model_id_pydantic(Product,1)
+		try:
+			# Model does not exist
+			self.assertEqual(validate_model_id_pydantic(Product,10000000000),False)
+			self.assertEqual(True,False)
+		except Exception as e:
+			self.assertEqual(str(e),"There is no Product with this id: 10000000000")
+		try:
+			# model is not model
+			validate_model_id(123,10000000000)
+			self.assertEqual(True,False)
+		except Exception as e:
+			self.assertEqual(str(e),"validate_model_id:expected the type "+
+				"of SQLAlchemy, but found the type of <class 'int'> instead")
+		print("Test b_1_2: validate_model_id success")
 
 
 

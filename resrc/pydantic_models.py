@@ -23,7 +23,7 @@ def validate_model_id(model,id:int):
 			return False
 		return True
 	except:
-		raise Exception("validate_model_id:expected the type of SQLAlchemy, but found "+
+		raise ValueError("validate_model_id:expected the type of SQLAlchemy, but found "+
 			"the type of "+str(type(model))+" instead")
 
 
@@ -33,20 +33,18 @@ def validate_model_id(model,id:int):
 validate_model_id_pydantic
 - Inputs:
 	- model: the SQLAlchemy model
-	- model_name: string of the name of the model
 	- id: the int of the id
 - Function:
 	- raise correct error if the model does not exist
 - Output:
 	- No output, only error are raised
 """
-def validate_model_id_pydantic(model,model_name:str,id:int):
+def validate_model_id_pydantic(model,id:int):
+	model_name = model.__name__
 	if validate_model_id(model,id) == True:
 		pass
 	else:
-		raise Exception("There is no "+ model_name + " with this id: " +str(id))
-
-
+		raise ValueError("There is no "+ model_name + " with this id: " +str(id))
 
 class UserPost(BaseModel):
 	username:str
