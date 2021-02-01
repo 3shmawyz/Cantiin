@@ -137,6 +137,19 @@ class pydanticTestCase(unittest.TestCase):
 				"type": "value_error"}])
 		print("Test b_1_1_4:UserPost:Fail:username contains spaces, short password")
 
+	def test_b_001_01_5_UserPost(self):
+		# password mismatch
+		toValidate = {"username":"MyName","password1":"1234445678",
+		"password2":"12345678"}
+		try:
+			user = UserPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["password2"],
+				"msg": "passwords do not match","type": "value_error"}])
+		print("Test b_1_1_5:UserPost:Fail:password mismatch")
+
 
 
 
