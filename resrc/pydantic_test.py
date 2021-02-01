@@ -113,10 +113,29 @@ class pydanticTestCase(unittest.TestCase):
 			#print(str(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "str type expected","type": "type_error.str"},{"loc": [
-	  			"password1"],"msg": "str type expected","type": "type_error.str"
-  				},{"loc": ["password2"],"msg": "str type expected",
-  				"type": "type_error.str"}])
-		print("Test b_1_1_3:UserPost:Fail:username required")
+				"password1"],"msg": "str type expected","type": "type_error.str"
+				},{"loc": ["password2"],"msg": "str type expected",
+				"type": "type_error.str"}])
+		print("Test b_1_1_3:UserPost:Fail:not string")
+
+
+	def test_b_001_01_4_UserPost(self):
+		# username contains spaces
+		# password mismatch
+		# passwords lebgth less than 8
+		# Note, did not notice password mismatch, 
+		# because password 1 did not pass the validation
+		toValidate = {"username":"My Name","password1":"123","password2":"789"}
+		try:
+			user = UserPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "username should not contain a space","type": "value_error"
+				},{"loc": ["password1"],"msg": "minimum password length is 8 characters",
+				"type": "value_error"}])
+		print("Test b_1_1_4:UserPost:Fail:username contains spaces, short password")
 
 
 
