@@ -308,7 +308,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	"""def test_a_1_000_user_intro(self):
+	def test_a_1_000_user_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -443,9 +443,9 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(2 in orders_ids,False)
 		self.assertEqual(3 in orders_ids,False)
 		self.assertEqual(4 in orders_ids,True)
-		print("Test a_1_9:user relationship_order")"""
+		print("Test a_1_9:user relationship_order")
 
-	"""def test_a_1_010_user_delete_relationships(self):
+	def test_a_1_010_user_delete_relationships(self):
 		#measuring lengths beofre actions
 		users_before = len(User.query.all())
 		products_before = len(Product.query.all())
@@ -459,7 +459,7 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(len(User.query.all()),users_before+1)
 		#adding a new product
 		prod_to_del = Product(name="Labtopppp", 
-			price=3000, seller_id=6)
+			price=3000, seller_id=7)
 		db.session.add(prod_to_del)
 		db.session.commit()
 
@@ -480,14 +480,13 @@ class modelsTestCase(unittest.TestCase):
 
 		self.assertEqual(len(Image.query.all()),images_before+1)
 		#print(usr_to_del.deep())
-		print(usr_to_del.simple())
 		usr_to_del.delete()
 		self.assertEqual(len(User.query.all()),users_before)
 		self.assertEqual(len(Product.query.all()),products_before)
 		self.assertEqual(len(Order.query.all()),orders_before)
 		self.assertEqual(len(Image.query.all()),images_before)
 
-		print("Test a_1_10: user delete relationships")"""
+		print("Test a_1_10: user delete relationships")
 
 
 
