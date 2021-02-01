@@ -21,6 +21,7 @@ class ProductPost(BaseModel):
 	in_stock:bool=NotReceived()
 	seller_id:int = NotReceived()
 
+
 class OrderPost(BaseModel):
 	user_id:int
 	product_id:int
@@ -30,6 +31,13 @@ class OrderUpdate(BaseModel):
 	product_id:int = NotReceived()
 	amount:int = NotReceived()
 
+
+class ImagePost(BaseModel):
+	seller_id:int
+	name:str
+	formatting:str
+	image_b64:str
+		
 	
 
 """
