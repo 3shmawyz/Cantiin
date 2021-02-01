@@ -54,9 +54,15 @@ class UserPost(BaseModel):
 	@validator('username')
 	def name_cant_contain_space(cls, v):
 		if ' ' in v:
-			raise ValueError('can not contain a space')
+			raise ValueError('username should not contain a space')
 		return v
 	
+	@validator('password1')
+	def passwords_length(cls, value):
+		if len(value)<8:
+			raise ValueError('minimum password length is 8 characters')
+		return value
+
 	@validator('password2')
 	def passwords_match(cls, v, values, **kwargs):
 		if 'password1' in values and v != values['password1']:

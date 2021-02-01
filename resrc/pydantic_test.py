@@ -84,10 +84,10 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	def test_b_001_01_1_UserPost(self):
-		toValidate = {"username":123,"password1":789,"password2":"789"}
+		toValidate = {"username":123,"password1":7890123456,"password2":"7890123456"}
 		user = UserPost(**toValidate)
-		self.assertEqual(user.dict(),{"username":"123","password1":"789",
-			"password2":"789"})
+		self.assertEqual(user.dict(),{"username":"123","password1":"7890123456",
+			"password2":"7890123456"})
 		print("Test b_1_1_1:UserPost Successful")
 
 	def test_b_001_01_2_UserPost(self):
