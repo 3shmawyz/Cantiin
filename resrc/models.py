@@ -7,6 +7,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 from flask_sqlalchemy import SQLAlchemy
 import types
+from sqlalchemy.orm.collections import InstrumentedList
+
 #from __init__ import db,SQLALCHEMY_DATABASE_URI
 
 SUPPORTED_TYPES = [int,str,float,bool,type(None)]
@@ -78,16 +80,14 @@ def validate_key(the_object,key:str,
 		return False
 	# Validating supported types
 	if ((type(the_attribute)not in SUPPORTED_TYPES) and (unsupported==True)):
-		print( key +" : unsupported")
 		if type(the_attribute) == types.MethodType:
-			print("This is a function")
 			return False
 		if key in ["metadata","query"]:
-			print("this is metadata or query")
 			return False
-		if ((type(the_attribute) != list) and (type(type(the_attribute))!= DefaultMeta)):
+		if type(type(the_attribute)) == DefaultMeta:
 			return True
-		print("This passed")
+		if ((type(the_attribute) == InstrumentedList)):
+			return True
 		return False
 	if type(the_attribute) not in SUPPORTED_TYPES:
 		return False
@@ -186,15 +186,12 @@ class MyModel():
 	def deep(self):
 		toReturn = {}
 		validated_self = get_dict(self, id=True,unsupported=True)
-		print(validated_self)
 		for key in validated_self:
-			print(key)
 			if validate_key(self,key,id=True) == True:
 				# Here key is normal or id, not unsupported
 				toReturn[key] = validated_self[key]
 				continue
 			# If it has this function, then it is a column in the table
-			print(key)
 			try:
 				toReturn[key] = validated_self[key].simple()
 			except Exception as e:
