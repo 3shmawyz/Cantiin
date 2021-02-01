@@ -76,7 +76,7 @@ password_con = constr(strip_whitespace=True, min_length=5,max_length=100)
 
 #Product Name
 product_name_con = constr(strip_whitespace=True, min_length=3,max_length=100)
-# Product_price_con = 
+Product_price_con = confloat(ge=.1, le=1 000 000)
 
 
 # Order
@@ -139,14 +139,8 @@ class UserUpdate(BaseModel):
 
 class ProductPost(BaseModel):
 	name : product_name_con
-	price : float
+	price : pricecon
 	in_stock : bool=True
-	seller_id : id_con
-
-	"""@validator
-	def name_length(cls,value):
-		if length:
-			pass"""
 
 	@validator("price")
 	def positive_price(cls,value):
@@ -155,34 +149,29 @@ class ProductPost(BaseModel):
 
 
 
-class ProductPost(BaseModel):
+class ProductUpdate(BaseModel):
 	name : product_name_con = NotReceived()
 	price : float = NotReceived()
 	in_stock : bool=NotReceived()
-	seller_id : id_con = NotReceived()
 
 
 class OrderPost(BaseModel):
-	user_id : id_con
 	product_id : id_con
 	amount : amount_con
 class OrderUpdate(BaseModel):
-	user_id : id_con = NotReceived()
 	product_id : id_con = NotReceived()
 	amount : amount_con = NotReceived()
 
 
 class ImagePost(BaseModel):
-	seller_id : id_con
 	name :  image_name_con
 	formatting : formatting_con
 	image_b64 : image_b64_con 
 
 class ImageUpdate(BaseModel):
-	seller_id : id_con
-	name : image_name_con
-	formatting : formatting_con
-	image_b64 : image_b64_con
+	name : image_name_con = NotReceived()
+	formatting : formatting_con = NotReceived()
+	image_b64 : image_b64_con = NotReceived()
 		
 
 
