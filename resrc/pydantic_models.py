@@ -29,7 +29,17 @@ def validate_model_id(model,id:int):
 
 
 
-
+"""
+validate_model_id_pydantic
+- Inputs:
+	- model: the SQLAlchemy model
+	- model_name: string of the name of the model
+	- id: the int of the id
+- Function:
+	- raise correct error if the model does not exist
+- Output:
+	- No output, only error are raised
+"""
 def validate_model_id_pydantic(model,model_name:str,id:int):
 	if validate_model_id(model,id) == True:
 		pass
