@@ -329,8 +329,8 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_1_002_user_update(self):
 		user1 = User.query.get(1)
-		user1.name = "modified"
-		user1.update()
+		#user1.name = "modified"
+		user1.update(name="modified")
 		user_1 = User.query.get(1)
 
 		self.assertEqual(user_1.name,"modified")
@@ -537,8 +537,8 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_2_002_product_update(self):
 		product1 = Product.query.get(1)
-		product1.name = "modified"
-		product1.update()
+		#product1.name = "modified"
+		product1.update(name="modified")
 		product_1 = Product.query.get(1)
 
 		self.assertEqual(product_1.name,"modified")
@@ -722,26 +722,23 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_3_004_order_update(self):
 		order1 = Order.query.get(1)
-		order1.amount = 2
-		order1.update()
+		order1.update(amount = 2)
 		order_1 = Order.query.get(1)
 
 		self.assertEqual(order_1.amount,2)
 		print("Test a_3_4: Order update")
 
-	"""
 	
-	This is the function of pydantic
-	This will not be done on the level of SQLAlchemy
+	#This is the function of pydantic
+	#This will not be done on the level of SQLAlchemy
 	def test_a_3_005_order_update_wrong(self):
 		before = len(Order.query.all())
-		order1 = Order.query.get(8)
-		order1.amount = 0
-		order1.update()
+		order1 = Order.query.get(8)		
+		order1.update(amount=0)
 		after = len(Order.query.all())
 
 		self.assertEqual(before,after+1)
-		print("Test a_3_5: Order update wrong: amount=0")"""
+		print("Test a_3_5: Order update wrong: amount=0")
 
 
 
@@ -889,8 +886,8 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_4_002_image_update(self):
 		image1 = Image.query.get(1)
-		image1.name = "Mouse"
-		image1.update()
+		#image1.name = "Mouse"
+		image1.update(name="Mouse")
 		image_1 = Image.query.get(1)
 		self.assertEqual(image_1.name,"Mouse")
 		print("Test a_4_2: Image update")

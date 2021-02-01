@@ -334,14 +334,10 @@ class Order(db.Model, MyModel):
 			MyModel.insert(self)
 		db.session.rollback()
 
-		def update(self, **kwargs):
-			try:
-				if kwargs["amount"]>0:
-					MyModel.update(self,**kwargs)
-				else:
-					MoModel.delete(self)
-			except Exception as e:
-				db.session.rollback()
+	def update(self, **kwargs):
+		MyModel.update(self,**kwargs)
+		if self.amount<= 0:
+			self.delete()
 
 
 '''
@@ -389,8 +385,6 @@ print(type(user.__dict__["password"]))
 #user.create({"username":123})
 #print(user)
 #print(dir(user))
-
-
 
 
 def db_drop_and_create_all():
