@@ -276,22 +276,14 @@ class modelsTestCase(unittest.TestCase):
 		user_to_del = User(username = "abc",password="456")
 		user_to_del.insert()
 		prod = Product(name="789",price=123,seller_id=1)
-		#print(type(type(prod)))
-		#print(type(type(user_to_del))==db.Model)
-		#print(type(user_to_del.metadata))
 		prod.insert()
-		#print(type(type(prod)))
-		#print(type(user_to_del)==User)
 		self.assertEqual(user_to_del.deep(),
 			{'id': 1, 'images': [], 'orders': [], 'products': 
 			[{'id': 1, 'in_stock': True, 'name': '789', 'price': 123.0,
 			 'seller_id': 1}], 'username': 'abc'})
-		#print(user_to_del.deep())
-		#keys = dir(user_to_del)
-		#for key in keys:
-		#	print(key+" : "+ str(type(getattr(user_to_del,key))))
-		#print((user_to_del.metadata))
-		#print(dir([]))
+		self.assertEqual(prod.deep(),{'id': 1, 'in_stock': True, 
+			'name': '789', 'orders': [], 'price': 123.0, 'seller': 
+			{'id': 1, 'username': 'abc'}, 'seller_id': 1})
 		print("Test 0a_1_4_1 : MyModel: deep")
 
 
