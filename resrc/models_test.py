@@ -215,7 +215,6 @@ class modelsTestCase(unittest.TestCase):
 		db.session.commit()
 		self.assertEqual(len(User.query.all()),1)
 
-		print(user_to_del.simple())
 		prod_to_del1 = Product(name = "abc",price=456,seller_id=user_to_del.id)
 		prod_to_del2 = Product(name = "abcdef",price=4567,seller_id=user_to_del.id)
 		db.session.add(prod_to_del1)
@@ -223,8 +222,6 @@ class modelsTestCase(unittest.TestCase):
 		db.session.commit()
 		self.assertEqual(len(Product.query.all()),2)
 		
-		print(prod_to_del1.simple())
-		print(prod_to_del2.simple())
 		order_to_del1 = Order(
 			user_id = user_to_del.id,product_id=prod_to_del1.id,amount=1)
 		order_to_del2 = Order(
@@ -236,14 +233,17 @@ class modelsTestCase(unittest.TestCase):
 		db.session.add(order_to_del3)
 		db.session.commit()
 		self.assertEqual(len(Order.query.all()),3)
-		print(order_to_del1.simple())
-		print(order_to_del2.simple())
-		print(order_to_del3.simple())
 
 		# Trying to delete
 		order_to_del3.delete()
+		self.assertEqual(len(Order.query.all()),2)
 		prod_to_del2.delete()
+		self.assertEqual(len(Order.query.all()),1)
+		self.assertEqual(len(Product.query.all()),1)
 		user_to_del.delete()
+		self.assertEqual(len(Order.query.all()),0)
+		self.assertEqual(len(Product.query.all()),0)
+		self.assertEqual(len(User.query.all()),0)
 
 		print("Test 0a_1_3_1 : MyModel: relationships")
 
