@@ -329,6 +329,13 @@ class Order(db.Model, MyModel):
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
 
+	def insert(self):
+		if self.amount>0:
+			MyModel.insert(self)
+		db.session.rollback()
+
+		#def update(self):
+		#	pass
 
 '''
 Image

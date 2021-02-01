@@ -673,7 +673,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	"""def test_a_3_000_order_intro(self):
+	def test_a_3_000_order_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -694,6 +694,8 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(len(orders),9)
 		print("Test a_3_1: Order insert")
 
+	
+	#amount = 0 is the function of pydantic
 	def test_a_3_002_order_insert_wrong_1(self):
 		
 		before = len(Order.query.all())
@@ -727,6 +729,10 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(order_1.amount,2)
 		print("Test a_3_4: Order update")
 
+	"""
+	
+	This is the function of pydantic
+	This will not be done on the level of SQLAlchemy
 	def test_a_3_005_order_update_wrong(self):
 		before = len(Order.query.all())
 		order1 = Order.query.get(8)
@@ -735,7 +741,7 @@ class modelsTestCase(unittest.TestCase):
 		after = len(Order.query.all())
 
 		self.assertEqual(before,after+1)
-		print("Test a_3_5: Order update wrong: amount=0")
+		print("Test a_3_5: Order update wrong: amount=0")"""
 
 
 
@@ -756,7 +762,6 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(order.user_id,2)
 		self.assertEqual(order.product_id,3)
 		self.assertEqual(order.amount,5)
-		self.assertEqual(order.total_cost,0)
 		print("Test a_3_7: Order values")
 
 
@@ -803,7 +808,10 @@ class modelsTestCase(unittest.TestCase):
 		order = Order.query.get(6)
 		product=order.product
 		self.assertEqual(product,Product.query.get(3))
-		print("Test a_2_10:order relationship_product")
+		print("Test a_3_10:order relationship_product")
+
+	"""
+	In the update there is no attribute called get_dict
 
 	def test_a_3_011_order_get_dict(self):
 		order = Order.query.get(6).get_dict()
@@ -822,7 +830,7 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(order["product"]["in_stock"],True)
 		self.assertEqual(order["product"]["seller_id"],3)
 
-		print("Test a_3_11: Order get_dict")
+		print("Test a_3_11: Order get_dict")"""
 
 	def test_a_3_012_order_relationship_product_delete(self):
 		p_before=len(Product.query.all())
@@ -855,14 +863,14 @@ class modelsTestCase(unittest.TestCase):
 			Order.product_id==p_del_id
         ).all()),0)
 
-		print("Test a_2_12:order relationship_product_delete")
+		print("Test a_3_12:order relationship_product_delete")
 
 
 
 
 
 
-	def test_a_4_000_image_intro(self):
+	"""def test_a_4_000_image_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
