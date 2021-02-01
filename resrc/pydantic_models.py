@@ -46,6 +46,10 @@ def validate_model_id_pydantic(model,id:int):
 	else:
 		raise ValueError("There is no "+ model_name + " with this id: " +str(id))
 
+
+
+
+
 class UserPost(BaseModel):
 	username:str
 	password1:str
@@ -56,6 +60,23 @@ class UserPost(BaseModel):
 		if ' ' in value:
 			raise ValueError('username should not contain a space')
 		return value
+
+	@validator('password1')
+	def passwords_length(cls, value):
+		if len(value)<8:
+			raise ValueError('minimum password length is 8 characters')
+		return value
+
+	@validator('password2')
+	def passwords_match(cls, value, values, **kwargs):
+		if 'password1' in values and value != values['password1']:
+			raise ValueError('passwords do not match')
+		return value
+
+
+class UserUpdate(BaseModel):
+	password1:str
+	password2:str
 	
 	@validator('password1')
 	def passwords_length(cls, value):
@@ -71,15 +92,10 @@ class UserPost(BaseModel):
 
 
 
-class UserUpdate(BaseModel):
-	password1:str
-	password2:str
 
-	@validator('password2')
-	def passwords_match(cls, value, values, **kwargs):
-		if 'password1' in values and value != values['password1']:
-			raise ValueError('passwords do not match')
-		return value
+
+
+
 
 
 

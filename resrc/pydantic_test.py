@@ -145,7 +145,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			print(str(e.json()))
+			#print(str(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["password2"],
 				"msg": "passwords do not match","type": "value_error"}])
 		print("Test b_1_1_5:UserPost:Fail:password mismatch")
