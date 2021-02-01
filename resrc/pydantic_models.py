@@ -49,6 +49,12 @@ def validate_model_id_pydantic(model,id:int):
 
 
 
+def validate_string_length_pydantic(the_string:str,minimum:int,maximum:int):
+	if len(the_string)<minimum:
+		raise ValueError("minimum length of this text is "+ str(minimum))
+	if len(the_string)>maximum:
+		raise ValueError("maximum length of this text is "+ str(maximum))
+
 
 
 
@@ -107,6 +113,16 @@ class ProductPost(BaseModel):
 	price:float
 	in_stock:bool=True
 	seller_id:int
+
+	@validator
+	def name_length(cls,value):
+		if length:
+			pass
+
+	@validator("price")
+	def positive_price(cls,value):
+		if value<0.01:
+			raise ValueError("minimum price is 0.01")
 
 
 

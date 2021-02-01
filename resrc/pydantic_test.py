@@ -216,7 +216,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{
 				"loc": ["password1"],"msg": "minimum password length is 8 characters",
 				"type": "value_error"}])
-		print("Test b_1_2_4:UserUpdate:Fail:username contains spaces, short password")
+		print("Test b_1_2_4:UserUpdate:Fail:short password")
 
 	def test_b_001_02_5_UserUpdate(self):
 		# password mismatch
