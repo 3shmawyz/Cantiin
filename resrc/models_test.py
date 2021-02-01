@@ -488,8 +488,6 @@ class modelsTestCase(unittest.TestCase):
 
 		print("Test a_1_10: user delete relationships")
 
-
-
 	def test_a_1_011_user_deep(self):
 		#measuring lengths beofre actions
 		usr = User.query.get(6)
@@ -672,6 +670,15 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(3 in orders_ids,False)
 		self.assertEqual(4 in orders_ids,True)
 		print("Test a_2_10:product relationship_order")
+
+	def test_a_2_011_product_deep(self):
+		#measuring lengths beofre actions
+		self.assertEqual(Product.query.get(3).deep(),
+			{'id': 3, 'in_stock': True, 'name': 'Candy', 
+			'orders': [{'amount': 5, 'id': 6, 'product_id': 3, 
+			'user_id': 2}], 'price': 0.5, 'seller': {'id': 3, 
+			'username': 'klmn'}, 'seller_id': 3})
+		print("Test a_1_11: product deep")
 
 
 
