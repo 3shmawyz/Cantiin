@@ -678,7 +678,7 @@ class modelsTestCase(unittest.TestCase):
 			'orders': [{'amount': 5, 'id': 6, 'product_id': 3, 
 			'user_id': 2}], 'price': 0.5, 'seller': {'id': 3, 
 			'username': 'klmn'}, 'seller_id': 3})
-		print("Test a_1_11: product deep")
+		print("Test a_2_11: product deep")
 
 
 
@@ -882,9 +882,15 @@ class modelsTestCase(unittest.TestCase):
 
 		print("Test a_3_12:order relationship_product_delete")
 
+	def test_a_3_013_order_deep(self):
+		self.assertEqual(Order.query.get(1).deep(),
+			{'amount': 2, 'buyer': {'id': 1, 'username': 'abc'}, 
+			'id': 1, 'product': {'id': 1, 'in_stock': True, 
+			'name': 'Labtop', 'price': 300.0, 'seller_id': 1}, 
+			'product_id': 1, 'user_id': 1}
+			)
 
-
-
+		print("Test a_3_13: order deep")
 
 
 	def test_a_4_000_image_intro(self):
