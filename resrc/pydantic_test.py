@@ -1,7 +1,7 @@
 import unittest
 from pydantic_models import (UserPost, UserUpdate, ProductPost, 
 	ProductPost, OrderPost, OrderUpdate,
-	ImagePost, ImageUpdate, validate_model_id,validate_model_id_pydantic)
+	ImagePost, ImageUpdate, validate_model_id,validate_model_id_pydantic,TestHere)
 #from app import create_app
 #from models import db
 import json
@@ -388,7 +388,15 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
+	def test_b_002_02_4_ProductUpdate(self):
+		toValidate = {"tst":"000000000000000000000000000000"}
+		try:
+			data = TestHere(**toValidate)
+			print(data)
+		except Exception as e:
+			print(str(e.json()))
 
+		print(data.dict())
 
 
 
