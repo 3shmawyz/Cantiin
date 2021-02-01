@@ -50,6 +50,9 @@ def validate_model_id_pydantic(model,id:int):
 
 
 
+
+
+
 class UserPost(BaseModel):
 	username:str
 	password1:str

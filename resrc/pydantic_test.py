@@ -139,7 +139,7 @@ class pydanticTestCase(unittest.TestCase):
 
 	def test_b_001_01_5_UserPost(self):
 		# password mismatch
-		toValidate = {"username":"MyName","password1":"1234445678",
+		toValidate = {"username":"MyName","password1":"123456789999999000000000",
 		"password2":"12345678"}
 		try:
 			user = UserPost(**toValidate)
@@ -149,6 +149,16 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{"loc": ["password2"],
 				"msg": "passwords do not match","type": "value_error"}])
 		print("Test b_1_1_5:UserPost:Fail:password mismatch")
+
+	def test_b_001_01_6_UserPost(self):
+		# adding unknown attribute
+		# This attribute will not be returned
+		toValidate = {"username":"MyName","password1":"12345678",
+		"password2":"12345678", "unknown":"abc"}
+		user = UserPost(**toValidate)
+		self.assertEqual(user.dict(),{"username":"MyName","password1":"12345678",
+		"password2":"12345678"})
+		print("Test b_1_1_6:UserPost:Added unknown value:Cleaned")
 
 
 
