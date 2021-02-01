@@ -1,5 +1,5 @@
 import unittest
-from pydantic import (UserPost, UserUpdate, ProductPost, ProductPost, OrderPost, OrderUpdate,
+from pydantic_models import (UserPost, UserUpdate, ProductPost, ProductPost, OrderPost, OrderUpdate,
 	ImagePost, ImageUpdate)
 #from app import create_app
 #from models import db
@@ -31,7 +31,11 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test 1:Hello, Tests!")
 
 
-
+	def test_001_01_1_UserPost(self):
+		toValidate = {"username":123,"password":789}
+		user = UserPost(**toValidate)
+		self.assertEqual(user.dict(),{"username":"123","password":"789"})
+		print("Test 1_1_1:UserPost")
 
 
 
