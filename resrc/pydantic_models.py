@@ -4,7 +4,20 @@ from models import NotReceived
 
 
 
-def validate_model_id(model,id):
+"""
+validate_model_id
+- Inputs:
+	- model: the SQLAlchemy model
+	- id: the int of the id
+- Function:
+	- Make sure that this model exists
+	- raise error if it was not an integer
+- Output:
+	- True: This model exists
+	- False: This model does not exist
+"""
+
+def validate_model_id(model,id:int):
 	try:
 		if model.query.get(id) == None:
 			return False
