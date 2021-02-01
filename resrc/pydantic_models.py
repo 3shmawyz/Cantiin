@@ -50,6 +50,12 @@ class UserPost(BaseModel):
 	username:str
 	password1:str
 	password2:str
+
+	@validator('username')
+	def name_cant_contain_space(cls, v):
+		if ' ' in v:
+			raise ValueError('can not contain a space')
+		return v
 	
 	@validator('password2')
 	def passwords_match(cls, v, values, **kwargs):
