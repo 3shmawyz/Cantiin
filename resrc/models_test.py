@@ -1,6 +1,6 @@
 import unittest
 from models import (NotReceived, validate_key, MyModel, User, Product, Order, Image,
-	populate_tables, db_drop_and_create_all,get_dict)
+	populate_tables, db_drop_and_create_all,get_dict, get_in_stock_products)
 from app import create_app
 from models import db
 
@@ -513,7 +513,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	"""def test_a_2_000_product_intro(self):
+	def test_a_2_000_product_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -584,6 +584,8 @@ class modelsTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except:
 			self.assertEqual(True,True)
+		
+		#db.session.rollback()
 		
 		products = Product.query.all()
 		new_records_number = len(products)
@@ -671,7 +673,7 @@ class modelsTestCase(unittest.TestCase):
 
 
 
-	def test_a_3_000_order_intro(self):
+	"""def test_a_3_000_order_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")

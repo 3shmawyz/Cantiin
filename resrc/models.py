@@ -156,20 +156,28 @@ class MyModel():
 	# For inserting the model in the db
 	def insert(self):
 		#print(self)
-		db.session.add(self)
-		db.session.commit()
-
+		try:
+			db.session.add(self)
+			db.session.commit()
+		except:
+			db.session.rollback()
 	# For updating the model
 	def update(self,**kwargs):
-		#restrcted = True, we may need to update the password
-		validated_kwargs = get_dict(kwargs,dangerous=True)
-		for key in validated_kwargs:
-			setattr(self,key,validated_kwargs[key])  
-		db.session.commit()
+		try:
+			#restrcted = True, we may need to update the password
+			validated_kwargs = get_dict(kwargs,dangerous=True)
+			for key in validated_kwargs:
+				setattr(self,key,validated_kwargs[key])  
+			db.session.commit()
+		except:
+			db.session.rollback()
 	# For deleting the model from the db
 	def delete(self):
-		db.session.delete(self)
-		db.session.commit()
+		try:
+			db.session.delete(self)
+			db.session.commit()
+		except:
+			db.session.rollback()
 	# getting the attributes of the model, inculding id, but not dangerous fields
 	def simple(self):
 		# Prepare to delete all the keys starting with "_", or key == "id"
@@ -457,6 +465,14 @@ def populate_tables():
 	db.session.add_all(images)
 	db.session.commit()
 
+
+
+
+
+
+def get_in_stock_products():
+    return Product.query.filter(Product.in_stock==True
+        ).order_by(Product.id).all()
 
 
 
