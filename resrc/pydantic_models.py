@@ -6,10 +6,12 @@ from models import NotReceived
 
 def validate_model_id(model,id):
 	try:
-		model.query.get(id)
+		if model.query.get(id) == None:
+			return False
 		return True
-	except Exception as e:
-		return False
+	except:
+		raise Exception("validate_model_id:expected the type of SQLAlchemy, but found "+
+			"the type of "+str(type(model))+" instead")
 
 
 

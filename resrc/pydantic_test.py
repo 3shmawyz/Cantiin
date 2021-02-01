@@ -1,12 +1,15 @@
 import unittest
 from pydantic_models import (UserPost, UserUpdate, ProductPost, 
 	ProductPost, OrderPost, OrderUpdate,
-	ImagePost, ImageUpdate)
+	ImagePost, ImageUpdate, validate_model_id)
 #from app import create_app
 #from models import db
 import json
 from models import NotReceived, Product, populate_tables
 from app import create_app
+
+from pydantic import ValidationError
+
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
@@ -38,6 +41,17 @@ class pydanticTestCase(unittest.TestCase):
 	def test_a_1_0_validate_model_id(self):
 		populate_tables()
 		print("Test b_1_0: validate_model_id Populate")
+
+	def test_a_1_1_validate_model_id(self):
+		self.assertEqual(validate_model_id(Product,1),True)
+		self.assertEqual(validate_model_id(Product,10000000000),False)
+		try:
+			self.assertEqual(validate_model_id(123,10000000000),False)
+		except Exception as e:
+			self.assertEqual(str(e),"validate_model_id:expected the type "+
+				"of SQLAlchemy, but found the type of <class 'int'> instead")
+			print(str(e))
+		print("Test b_1_1: validate_model_id success")
 
 
 
