@@ -165,6 +165,108 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
+
+
+	def test_b_001_02_1_UserUpdate(self):
+		toValidate = {"username":123,"password1":7890123456,"password2":"7890123456"}
+		user = UserUpdate(**toValidate)
+		self.assertEqual(user.dict(),{"username":"123","password1":"7890123456",
+			"password2":"7890123456"})
+		print("Test b_1_2_1:UserUpdate Successful")
+
+	def test_b_001_02_2_UserUpdate(self):
+		toValidate = {}
+		try:
+			user = UserUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "field required","type": "value_error.missing"},
+				{"loc": ["password1"],"msg": "field required","type": "value_error.missing"
+				},{"loc": ["password2"],"msg": "field required","type": "value_error.missing"
+				}])
+		print("Test b_1_2_2:UserUpdate:Fail:all missing required")
+
+	def test_b_001_02_3_UserUpdate(self):
+		toValidate = {"password1":{},"username":{},"password2":{}}
+		try:
+			user = UserUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "str type expected","type": "type_error.str"},{"loc": [
+				"password1"],"msg": "str type expected","type": "type_error.str"
+				},{"loc": ["password2"],"msg": "str type expected",
+				"type": "type_error.str"}])
+		print("Test b_1_2_3:UserUpdate:Fail:not string")
+
+
+	def test_b_001_02_4_UserUpdate(self):
+		# username contains spaces
+		# password mismatch
+		# passwords lebgth less than 8
+		# Note, did not notice password mismatch, 
+		# because password 1 did not pass the validation
+		toValidate = {"username":"My Name","password1":"123","password2":"789"}
+		try:
+			user = UserUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "username should not contain a space","type": "value_error"
+				},{"loc": ["password1"],"msg": "minimum password length is 8 characters",
+				"type": "value_error"}])
+		print("Test b_1_2_4:UserUpdate:Fail:username contains spaces, short password")
+
+	def test_b_001_02_5_UserUpdate(self):
+		# password mismatch
+		toValidate = {"username":"MyName","password1":"123456789999999000000000",
+		"password2":"12345678"}
+		try:
+			user = UserUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["password2"],
+				"msg": "passwords do not match","type": "value_error"}])
+		print("Test b_1_2_5:UserUpdate:Fail:password mismatch")
+
+	def test_b_001_02_6_UserUpdate(self):
+		# adding unknown attribute
+		# This attribute will not be returned
+		toValidate = {"username":"MyName","password1":"12345678",
+		"password2":"12345678", "unknown":"abc"}
+		user = UserUpdate(**toValidate)
+		self.assertEqual(user.dict(),{"username":"MyName","password1":"12345678",
+		"password2":"12345678"})
+		print("Test b_1_2_6:UserUpdate:Added unknown value:Cleaned")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	"""def test_b_001_02_1_UserUpdate(self):
 		toValidate = {"username":123,"password":789}
 		user = UserUpdate(**toValidate)
