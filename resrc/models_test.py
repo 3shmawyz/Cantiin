@@ -188,11 +188,21 @@ class modelsTestCase(unittest.TestCase):
 		print("Test 0a_1_2_2 : MyModel: success")
 
 	def test_0a_1_2_3_MyModel(self):
-		user = User(username = "abc",password=NotReceived())
-		self.assertEqual(user.simple(),{"username":"abc"})
+		db_drop_and_create_all()
+		user = User(username = "abc",password="abc")
+		self.assertEqual(user.simple(),{"username":"abc","id":None})
+		user.insert()
+		self.assertEqual(user.simple(),{"username":"abc","id":1})
+		db_drop_and_create_all()
 		print("Test 0a_1_2_3 : MyModel: success")
 
 	def test_0a_1_2_4_MyModel(self):
+		#Trying to add the user with id, and seeing how the d will be neglected
+		user = User(username = "abc",password="abc",id=1000000000000000)
+		self.assertEqual(user.simple(),{"username":"abc","id":None})
+		print("Test 0a_1_2_3 : MyModel: success")
+
+	def test_0a_1_2_5_MyModel(self):
 		user = User(username = "abc",password="456")
 		db.session.add(user)
 		db.session.commit()

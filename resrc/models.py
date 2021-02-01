@@ -143,12 +143,13 @@ class MyModel():
 	# For creating the model
 	def __init__(self, **kwargs):
 		#dangerous = True, we may need to enter the password
-		validated_kwargs = get_dict(kwargs,dangerous=True)
+		validated_kwargs = get_dict(kwargs,dangerous=True,id=False)
 		for key in validated_kwargs:
 			setattr(self,key,validated_kwargs[key])
 	# For inserting the model in the db
 	def insert(self):
 		#print(self)
+		
 		db.session.add(self)
 		db.session.commit()
 
@@ -166,7 +167,7 @@ class MyModel():
 	# getting the attributes of the model, inculding id, but not dangerous fields
 	def simple(self):
 		# Prepare to delete all the keys starting with "_", or key == "id"
-		validated_kwargs = get_dict(kwargs, id=True)
+		validated_kwargs = get_dict(self, id=True)
 		toReturn = {}
 		for key in validated_kwargs:
 			toReturn[key] = validated_kwargs[key]
@@ -178,7 +179,7 @@ class MyModel():
 	# For getting the model and the forigen keys of the model
 	def deep(self):
 		toReturn = {}
-		validated_kwargs = get_dict(kwargs, id=True,,unsupported=True)
+		validated_kwargs = get_dict(kwargs, id=True,unsupported=True)
 		for key in validated_kwargs:
 			if validate_key(self.dict,key,id=True) == True:
 				# Here key is normal or id, not unsupported
@@ -359,8 +360,9 @@ print(type(user.__dict__["password"]))
 
 
 def db_drop_and_create_all():
-    db.drop_all()
-    db.create_all()
+	db.session.close()
+	db.drop_all()
+	db.create_all()
 
 
 
