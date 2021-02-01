@@ -889,7 +889,6 @@ class modelsTestCase(unittest.TestCase):
 			'name': 'Labtop', 'price': 300.0, 'seller_id': 1}, 
 			'product_id': 1, 'user_id': 1}
 			)
-
 		print("Test a_3_13: order deep")
 
 
@@ -966,6 +965,12 @@ class modelsTestCase(unittest.TestCase):
 		seller=image.seller
 		self.assertEqual(seller,User.query.get(seller.id))
 		print("Test a_4_7:image relationship_seller")
+
+	def test_a_4_008_image_deep(self):
+		self.assertEqual(Image.query.get(1).deep(),
+			{'formatting': 'png', 'id': 1, 'name': 'Mouse', 
+			'seller': {'id': 1, 'username': 'abc'}, 'seller_id': 1})
+		print("Test a_4_08: image deep")
 
 	"""
 	get dict is deprecated
