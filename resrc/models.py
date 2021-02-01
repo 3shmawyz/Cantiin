@@ -13,6 +13,8 @@ SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]
 db = SQLAlchemy()
 
+UNSUPPORTED_PASSED = ["products","orders","images","seller","buyer","product"]
+
 
 """
 NotReceived
@@ -77,11 +79,9 @@ def validate_key(the_object,key:str,
 		return False
 	# Validating supported types
 	if ((type(the_attribute)not in SUPPORTED_TYPES) and (unsupported==True)):
-		try:
-			the_attribute.simple()
-			return True
-		except Exception as e:
+		if key not in UNSUPPORTED_PASSED:
 			return False
+		return True
 	if type(the_attribute) not in SUPPORTED_TYPES:
 		return False
 	# validating dangerous fields
@@ -166,10 +166,10 @@ class MyModel():
 	# getting the attributes of the model, inculding id, but not dangerous fields
 	def simple(self):
 		# Prepare to delete all the keys starting with "_", or key == "id"
-		validated_kwargs = get_dict(self, id=True)
+		validated_self = get_dict(self, id=True)
 		toReturn = {}
-		for key in validated_kwargs:
-			toReturn[key] = validated_kwargs[key]
+		for key in validated_self:
+			toReturn[key] = validated_self[key]
 		return toReturn
 	# For printng the model
 	def __repr__(self):
@@ -178,14 +178,17 @@ class MyModel():
 	# For getting the model and the forigen keys of the model
 	def deep(self):
 		toReturn = {}
-		validated_kwargs = get_dict(kwargs, id=True,unsupported=True)
-		for key in validated_kwargs:
-			if validate_key(self.dict,key,id=True) == True:
+		validated_self = get_dict(self, id=True,unsupported=True)
+		for key in validated_self:
+			if validate_key(self,key,id=True) == True:
 				# Here key is normal or id, not unsupported
-				toReturn[key] = validated_kwargs[key]
+				toReturn[key] = validated_self[key]
 				continue
 			# If it has this function, then it is a column in the table
-			toReturn[key]=validated_kwargs[key].simple()
+			toReturn[key] = []
+			children_list = validated_self[key]
+			for child in children_list:
+				toReturn[key].append(child.simple())
 		return toReturn
 
 
