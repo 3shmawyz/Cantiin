@@ -26,7 +26,7 @@ class pydanticTestCase(unittest.TestCase):
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
-	def test_001_test(self):
+	def test_000001_test(self):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
 
@@ -38,17 +38,28 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test 1_1_1:UserPost Successful")
 
 	def test_001_01_2_UserPost(self):
-		toValidate = {"password":789}
+		toValidate = {}
 		try:
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(type(e.json()))
 			#print(str(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "field required","type": "value_error.missing"}])
-		#self.assertEqual(user.dict(),{"username":"123","password":"789"})
-		print("Test 1_1_1:UserPost:Fail:username required")
+				"msg": "field required","type": "value_error.missing"},{"loc": [
+				"password"],"msg": "field required","type": "value_error.missing"}])
+		print("Test 1_1_2:UserPost:Fail:all missing required")
+
+	def test_001_01_3_UserPost(self):
+		toValidate = {"password":{},"username":{}}
+		try:
+			user = UserPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+			"msg": "str type expected","type": "type_error.str"},{"loc": [
+	  		"password"],"msg": "str type expected","type": "type_error.str"}])
+		print("Test 1_1_3:UserPost:Fail:username required")
 
 
 
