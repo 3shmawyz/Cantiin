@@ -3,7 +3,7 @@ from pydantic_models import (UserPost, UserUpdate, ProductPost, ProductPost, Ord
 	ImagePost, ImageUpdate)
 #from app import create_app
 #from models import db
-
+import json
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
@@ -35,7 +35,20 @@ class pydanticTestCase(unittest.TestCase):
 		toValidate = {"username":123,"password":789}
 		user = UserPost(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
-		print("Test 1_1_1:UserPost")
+		print("Test 1_1_1:UserPost Successful")
+
+	def test_001_01_2_UserPost(self):
+		toValidate = {"password":789}
+		try:
+			user = UserPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(type(e.json()))
+			#print(str(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "field required","type": "value_error.missing"}])
+		#self.assertEqual(user.dict(),{"username":"123","password":"789"})
+		print("Test 1_1_1:UserPost:Fail:username required")
 
 
 
