@@ -3,10 +3,10 @@ from pydantic import BaseModel
 from models import NotReceived
 
 class UserPost(BaseModel):
-	name:str
+	username:str
 	password:str
 class UserUpdate(BaseModel):
-	name:str = NotReceived()
+	username:str = NotReceived()
 	password:str = NotReceived()
 
 
