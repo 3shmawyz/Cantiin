@@ -13,6 +13,8 @@ SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]
 db = SQLAlchemy()
 
+from flask_sqlalchemy.model import DefaultMeta
+
 """
 NotReceived
 This class is used when the dada is not received
@@ -76,12 +78,17 @@ def validate_key(the_object,key:str,
 		return False
 	# Validating supported types
 	if ((type(the_attribute)not in SUPPORTED_TYPES) and (unsupported==True)):
+		print( key +" : unsupported")
 		if type(the_attribute) == types.MethodType:
-			#print("This is a function")
+			print("This is a function")
 			return False
 		if key in ["metadata","query"]:
+			print("this is metadata or query")
 			return False
-		return True
+		if ((type(the_attribute) != list) and (type(type(the_attribute))!= DefaultMeta)):
+			return True
+		print("This passed")
+		return False
 	if type(the_attribute) not in SUPPORTED_TYPES:
 		return False
 	# validating dangerous fields

@@ -78,6 +78,7 @@ class modelsTestCase(unittest.TestCase):
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True, unsupported=True))
+		print(validated)
 		self.assertEqual([False,True,True,True,True,False,False],validated)
 		print("Test 0a_1_1_5 : validate_key: success")
 
@@ -88,6 +89,7 @@ class modelsTestCase(unittest.TestCase):
 		validated = []
 		for key in the_dict:
 			validated.append(validate_key(the_dict,key,dangerous = True, unsupported=True))
+		print(validated)
 		self.assertEqual([False,True,True,True,True,False,False,True],validated)
 		print("Test 0a_1_1_6 : validate_key: success")
 
@@ -274,10 +276,13 @@ class modelsTestCase(unittest.TestCase):
 		user_to_del = User(username = "abc",password="456")
 		user_to_del.insert()
 		prod = Product(name="789",price=123,seller_id=1)
+		print(type(type(prod)))
+		print(type(type(user_to_del))==db.Model)
 		#print(type(user_to_del.metadata))
 		prod.insert()
+		print(type(type(prod)))
 		#print(type(user_to_del)==User)
-		#print(user_to_del.deep())
+		print(user_to_del.deep())
 		keys = dir(user_to_del)
 		#for key in keys:
 		#	print(key+" : "+ str(type(getattr(user_to_del,key))))
