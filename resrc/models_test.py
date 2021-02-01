@@ -243,6 +243,7 @@ class modelsTestCase(unittest.TestCase):
 		# Trying to delete
 		order_to_del3.delete()
 		prod_to_del2.delete()
+		user_to_del.delete()
 
 		print("Test 0a_1_3_1 : MyModel: relationships")
 
