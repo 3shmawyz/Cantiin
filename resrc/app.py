@@ -8,7 +8,6 @@ from models import (NotReceived, User, Product, Order,
 from flask_cors import CORS
 
 
-
 class config:
 	#SECRET_KEY=os.urandom(32)
 	SECRET_KEY=secrets.token_urlsafe(5000)

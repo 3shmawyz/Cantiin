@@ -8,7 +8,7 @@ import os
 import string
 import secrets
 from flask import (Flask, 
-	request, abort, jsonify, Response,render_template)
+	request, abort, jsonify, Response,render_template, make_response)
 from flask_cors import CORS
 from flask_migrate import Migrate 
 from flask_sqlalchemy import SQLAlchemy
@@ -16,10 +16,14 @@ from random import shuffle
 import json
 from random import shuffle
 
+
+
+
 try:
 	from __init__ import *
 except:
 	from src import *
+
 
 
 if "SECRET" in os.environ:
@@ -119,7 +123,11 @@ def create_app(DOCKER=False,testing=TESTING):
 
 
 
-
+	@app.route('/r', methods=['GET'])
+	def raised():
+		#raise Exception(jsonify({"success":True}),200)
+		abort(make_response(jsonify({"sucess":True}),200))
+		return jsonify({"success":False})
 
 
 	@app.route('/', methods=['GET'])
