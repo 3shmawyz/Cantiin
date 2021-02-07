@@ -1,3 +1,4 @@
+var {assert} = require("chai")
 describe("test", ()=>
 {
 	describe("test1",()=>{

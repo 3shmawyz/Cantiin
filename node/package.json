@@ -9,11 +9,13 @@
   "author": "Omar Magdy",
   "license": "MIT",
   "dependencies": {
-    "chai": "^4.3.0",
-    "mocha": "^8.2.1",
     "mysql2": "^2.2.5",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.0",
+    "mocha": "^8.2.1"
   }
 }
