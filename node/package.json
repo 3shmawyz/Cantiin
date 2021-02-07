@@ -9,6 +9,7 @@
   "author": "Omar Magdy",
   "license": "MIT",
   "dependencies": {
+    "chai": "^4.3.0",
     "mysql2": "^2.2.5",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
