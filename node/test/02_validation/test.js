@@ -1,7 +1,10 @@
-var {assert} = require("chai")
-var {Schema} = require("validate")
-
-
+//var {assert} = require("chai")
+//var validate = require("validate")
+//var Schema = validate.Schema
+import Schema from 'validate'
+/*
+import Schema from 'validate'
+*/
 const user = new Schema({
 	username: 
 	{
@@ -14,12 +17,12 @@ const user = new Schema({
 		{
 			name: 
 			{
-	  			type: String
+	  			type: String,
 	  			required: true
 			},
 			animal: 
 			{
-	  			type: String
+	  			type: String,
 	  			enum: ['cat', 'dog', 'cow']
 			}
   		}
@@ -35,7 +38,7 @@ const user = new Schema({
 		{
 			type: String,
 			required: true
-		}
+		},
 		zip: 
 		{
 	  		type: String,
@@ -46,19 +49,16 @@ const user = new Schema({
 })
 
 
-
-describe("test", ()=>
+/*
+describe("validate", ()=>
 {
-	describe("test1",()=>{
+	afterEach(function(done) {
+       console.log("____________________")
+    });
+
+	describe("test0",()=>{
 		assert.equal(1, 1);
-		console.log("tst1")
-	})
-	describe("test3",()=>{
-		assert.equal(3, 3);
-		console.log("tst3")
-	})
-	describe("test2",()=>{
-		assert.equal(2, 2);
-		console.log("tst2")
+		console.log("test0:Testing Validate")
 	})
 })
+*/

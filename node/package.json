@@ -15,7 +15,8 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0",
-    "validate": "^5.1.0"
+    "validate": "^5.1.0",
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
     "chai": "^4.3.0",
