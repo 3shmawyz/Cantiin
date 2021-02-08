@@ -393,10 +393,10 @@ class pydanticTestCase(unittest.TestCase):
 		try:
 			data = TestHere(**toValidate)
 			print(data)
+			print(data.dict())
 		except Exception as e:
 			print(str(e.json()))
 
-		print(data.dict())
 
 
 

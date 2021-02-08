@@ -76,7 +76,7 @@ password_con = constr(strip_whitespace=True, min_length=5,max_length=100)
 
 #Product Name
 product_name_con = constr(strip_whitespace=True, min_length=3,max_length=100)
-Product_price_con = confloat(ge=.1, le=1 000 000)
+product_price_con = confloat(ge=.1, le=1000000)
 
 
 # Order
@@ -139,7 +139,7 @@ class UserUpdate(BaseModel):
 
 class ProductPost(BaseModel):
 	name : product_name_con
-	price : pricecon
+	price : product_price_con
 	in_stock : bool=True
 
 	@validator("price")
@@ -151,8 +151,8 @@ class ProductPost(BaseModel):
 
 class ProductUpdate(BaseModel):
 	name : product_name_con = NotReceived()
-	price : float = NotReceived()
-	in_stock : bool=NotReceived()
+	price : product_price_con = NotReceived()
+	in_stock : bool = NotReceived()
 
 
 class OrderPost(BaseModel):
