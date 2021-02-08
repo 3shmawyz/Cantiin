@@ -1,5 +1,6 @@
 from typing import List, Optional
-from pydantic import BaseModel, ValidationError, validator, constr, conint, confloat
+from pydantic import (BaseModel, 
+	ValidationError, validator, constr, conint, confloat)
 from models import NotReceived
 
 
@@ -23,7 +24,8 @@ def validate_model_id(model,id:int):
 			return False
 		return True
 	except:
-		raise ValueError("validate_model_id:expected the type of SQLAlchemy, but found "+
+		raise ValueError("validate_model_id:expected the "+
+			"type of SQLAlchemy, but found "+
 			"the type of "+str(type(model))+" instead")
 
 
@@ -44,7 +46,8 @@ def validate_model_id_pydantic(model,id:int):
 	if validate_model_id(model,id) == True:
 		pass
 	else:
-		raise ValueError("There is no "+ model_name + " with this id: " +str(id))
+		raise ValueError("There is no "+ model_name +
+		 " with this id: " +str(id))
 
 
 
@@ -60,11 +63,14 @@ validate_string_length_pydantic
 - Output:
 	- No output, only error are raised
 """
-def validate_string_length_pydantic(the_string:str,minimum:int,maximum:int):
+def validate_string_length_pydantic(the_string:str,
+	minimum:int,maximum:int):
 	if len(the_string)<minimum:
-		raise ValueError("minimum length of this text is "+ str(minimum))
+		raise ValueError("minimum length of this text is "+ 
+			str(minimum))
 	if len(the_string)>maximum:
-		raise ValueError("maximum length of this text is "+ str(maximum))
+		raise ValueError("maximum length of this text is "+ 
+			str(maximum))
 
 # General
 id_con = conint(gt=0)
@@ -72,7 +78,7 @@ id_con = conint(gt=0)
 
 # User
 username_con = constr(strip_whitespace=True, min_length=3,max_length=40)
-password_con = constr(strip_whitespace=True, min_length=5,max_length=100)
+password_con = constr(strip_whitespace=False, min_length=5,max_length=100)
 
 #Product Name
 product_name_con = constr(strip_whitespace=True, min_length=3,max_length=100)
@@ -99,12 +105,6 @@ class UserPost(BaseModel):
 			raise ValueError('username should not contain a space')
 		return value
 
-	@validator('password1')
-	def passwords_length(cls, value):
-		if len(value)<8:
-			raise ValueError('minimum password length is 8 characters')
-		return value
-
 	@validator('password2')
 	def passwords_match(cls, value, values, **kwargs):
 		if 'password1' in values and value != values['password1']:
@@ -115,12 +115,6 @@ class UserPost(BaseModel):
 class UserUpdate(BaseModel):
 	password1 : password_con
 	password2 : password_con
-	
-	@validator('password1')
-	def passwords_length(cls, value):
-		if len(value)<8:
-			raise ValueError('minimum password length is 8 characters')
-		return value
 
 	@validator('password2')
 	def passwords_match(cls, value, values, **kwargs):

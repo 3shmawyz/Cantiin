@@ -158,7 +158,8 @@ class pydanticTestCase(unittest.TestCase):
 	def test_b_001_01_6_UserPost(self):
 		# adding unknown attribute
 		# This attribute will not be returned
-		toValidate = {"username":"MyName","password1":"12345678",
+		# Testing White spaces
+		toValidate = {"username":" MyName ","password1":"12345678",
 		"password2":"12345678", "unknown":"abc"}
 		user = UserPost(**toValidate)
 		self.assertEqual(user.dict(),{"username":"MyName","password1":"12345678",
