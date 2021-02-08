@@ -11,6 +11,7 @@
   "author": "Omar Magdy",
   "license": "MIT",
   "dependencies": {
+    "ajv": "^7.0.4",
     "mysql2": "^2.2.5",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
