@@ -130,11 +130,16 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			# print(str(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "username should not contain a space","type": "value_error"
-				},{"loc": ["password1"],"msg": "minimum password length is 8 characters",
-				"type": "value_error"}])
+				"msg": "username should not contain a space",
+				"type": "value_error"},{"loc": ["password1"],
+				"msg": "ensure this value has at least 5 characters",
+				"type": "value_error.any_str.min_length","ctx": {
+				"limit_value": 5}},{"loc": ["password2"],
+				"msg": "ensure this value has at least 5 characters",
+				"type": "value_error.any_str.min_length","ctx": {
+				"limit_value": 5}}])
 		print("Test b_1_1_4:UserPost:Fail:username contains spaces, short password")
 
 	def test_b_001_01_5_UserPost(self):
@@ -213,9 +218,13 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(str(e.json()))
-			self.assertEqual(json.loads(e.json()),[{
-				"loc": ["password1"],"msg": "minimum password length is 8 characters",
-				"type": "value_error"}])
+			self.assertEqual(json.loads(e.json()),[{"loc": ["password1"
+				],"msg": "ensure this value has at least 5 characters",
+				"type": "value_error.any_str.min_length",
+				"ctx": {"limit_value": 5}},{"loc": ["password2"],
+				"msg": "ensure this value has at least 5 characters",
+				"type": "value_error.any_str.min_length",
+				"ctx": {"limit_value": 5}}])
 		print("Test b_1_2_4:UserUpdate:Fail:short password")
 
 	def test_b_001_02_5_UserUpdate(self):
@@ -227,8 +236,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(str(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["password2"],
-				"msg": "passwords do not match","type": "value_error"}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['password2'], 'msg': 'passwords do not match', 'type': 'value_error'}])
 		print("Test b_1_2_5:UserUpdate:Fail:password mismatch")
 
 	def test_b_001_02_6_UserUpdate(self):
@@ -392,11 +400,12 @@ class pydanticTestCase(unittest.TestCase):
 		toValidate = {"tst":"000000000000000000000000000000"}
 		try:
 			data = TestHere(**toValidate)
-			print(data)
-			print(data.dict())
+			#print(data)
+			#print(data.dict())
 		except Exception as e:
-			print(str(e.json()))
-
+			#print(str(e.json()))
+			pass
+		print("Test")
 
 
 
