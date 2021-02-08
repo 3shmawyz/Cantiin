@@ -4,7 +4,9 @@
   "description": "MIT ECommerce wbsite\u001b[D\u001b[D\u001b[D\u001b[D\u001b[De\u001b[C\u001b[D\u001b[2~bsite",
   "main": "app.js",
   "scripts": {
-    "test": "mocha 'test/**/*.js'"
+    "test0": "mocha 'test/00_mocha/test.js'",
+    "test1": "mocha 'test/01_chai/test.js'",
+    "test2": "mocha 'test/02_validation/test.js'"
   },
   "author": "Omar Magdy",
   "license": "MIT",
