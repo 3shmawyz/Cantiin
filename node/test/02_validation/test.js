@@ -1,12 +1,14 @@
 //var {assert} = require("chai")
 //var validate = require("validate")
-//var Schema = validate.Schema
+//var Schema = validate.Schema.default
 //import Schema from 'validate'
 /*
 import Schema from 'validate'
 */
 
+
 /*
+
 const user = new Schema({
 	username: 
 	{
@@ -49,8 +51,8 @@ const user = new Schema({
 		}
   	}
 })
-*/
 
+*/
 /*
 describe("validate", ()=>
 {
@@ -67,7 +69,7 @@ describe("validate", ()=>
 
 
 
-var Validator = require('validatorjs');
+//var Validator = require('validatorjs');
 
 /*
 
@@ -97,7 +99,7 @@ console.log("Hello")
 */
 
 
-
+/*
 
 let input = { name: '', email: '' };
 let rules = { name : 'required', email : 'required' };
@@ -123,4 +125,102 @@ input = {name:1,email:"abc"}
 let validation1 = new Validator(input, rules);
 console.log(validation1)
 
+*/
 
+/*
+
+var Ajv = require("ajv")
+let ajv = new Ajv.default({ allErrors: true });
+var product_schema = {
+  properties: {
+    name: {type: "string"},
+    seller_id: {type: "number", maximum: 3},
+    in_stock: {type: "boolean", maximum: 3}
+  },
+}
+
+var validate = ajv.compile(product_schema)
+
+test({foo: "abc", bar: 2})
+//test({foo: 2, bar: 4})
+
+function test(data) {
+  var valid = validate(data)
+  console.log(validate)
+  console.log(valid)
+  console.log(validate)
+  console.log(typeof(valid))
+  if (valid) console.log("Valid!")
+  else console.log("Invalid: " + ajv.errorsText(validate.errors))
+}
+
+
+
+*/
+
+
+
+/*
+const { Sequelize, Model, DataTypes } = require('sequelize');
+const sequelize = new Sequelize('postgresql::memory:');
+
+class User extends Model {}
+User.init({
+  username: DataTypes.STRING,
+  birthday: DataTypes.DATE
+}, { sequelize, modelName: 'user' });
+
+
+
+(async () => {
+  await sequelize.sync();
+  const jane = await User.create({
+    "username": 'janedoe',
+    "birthday": new Date(1980, 6, 20)
+  });
+  console.log(jane.toJSON());
+})();
+*/
+
+
+
+
+
+
+
+
+
+/*
+
+const {check, validationResult} = require('express-validator');
+
+var validateUser = [
+  check('name')
+    .trim()
+    .escape()
+    .not()
+    .isEmpty()
+    .withMessage('User name can not be empty!')
+    .bail()
+    .isLength({min: 3})
+    .withMessage('Minimum 3 characters required!')
+    .bail(),
+  check('email')
+    .trim()
+    .normalizeEmail()
+    .not()
+    .isEmpty()
+    .withMessage('Invalid email address!')
+    .bail(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res.status(422).json({errors: errors.array()});
+    next();
+  },
+];
+
+
+
+
+*/
