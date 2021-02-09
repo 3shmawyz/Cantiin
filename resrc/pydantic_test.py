@@ -1,6 +1,6 @@
 import unittest
 from pydantic_models import (UserPost, UserUpdate, ProductPost, 
-	ProductPost, OrderPost, OrderUpdate,
+	ProductUpdate, OrderPost, OrderUpdate,
 	ImagePost, ImageUpdate, validate_model_id,validate_model_id_pydantic,TestHere)
 #from app import create_app
 #from models import db
@@ -322,7 +322,7 @@ class pydanticTestCase(unittest.TestCase):
 	def test_b_002_01_4_ProductPost(self):
 		# Short product name
 		# Very cheap price
-		toValidate = {"name":"    a  ","price":.01,"in_stock":True}
+		toValidate = {"name":"    a  ","price":.01, "in_stock":True}
 		try:
 			product = ProductPost(**toValidate)
 			self.assertEqual(True,False)
@@ -366,10 +366,10 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	"""def test_b_002_02_1_ProductUpdate(self):
-		toValidate = {"username":123,"password":789}
+	def test_b_002_02_1_ProductUpdate(self):
+		toValidate = {"name":"    123  ","price":789,"in_stock":True}
 		user = ProductUpdate(**toValidate)
-		self.assertEqual(user.dict(),{"username":"123","password":"789"})
+		self.assertEqual(user.dict(),{"name":"123","price":789,"in_stock":True})
 		print("Test b_2_2_1:ProductUpdate Successful")
 
 	def test_b_002_02_2_ProductUpdate(self):
@@ -410,7 +410,7 @@ class pydanticTestCase(unittest.TestCase):
 		except Exception as e:
 			#print(json.loads(e.json()))
 			pass
-		print("Test")"""
+		print("Test")
 
 
 

@@ -164,14 +164,12 @@ class ProductUpdate(BaseModel):
 	
 	@validator('in_stock')
 	def passwords_match(cls, value, values, **kwargs):
-		print(values)
 		if type(values['name']) != NotReceived:
 			return value
 		if type(values['price']) != NotReceived:
 			return value
-		if type(values['in_stock']) != NotReceived:
+		if type(value) != NotReceived:
 			return value
-
 		raise ValueError('You must at least enter one value to change')
 
 
