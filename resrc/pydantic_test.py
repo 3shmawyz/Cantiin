@@ -13,12 +13,19 @@ from pydantic import ValidationError
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
+
+# Creating the app
+create_app()
+
+# Populating
+populate_tables()
+
 class pydanticTestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
 	def setUp(self):
 		#db_drop_and_create_all()
-		create_app()
+
 		# create and configure the app
 		#self.app = create_app(testing=True) #Flask(__name__)
 		#self.client = self.app.test_client
@@ -274,7 +281,7 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	
-	def test_b_002_01_1_ProductPost(self):
+	"""def test_b_002_01_1_ProductPost(self):
 		toValidate = {"username":123,"password":789}
 		user = ProductPost(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
@@ -356,7 +363,7 @@ class pydanticTestCase(unittest.TestCase):
 		except Exception as e:
 			#print(str(e.json()))
 			pass
-		print("Test")
+		print("Test")"""
 
 
 
