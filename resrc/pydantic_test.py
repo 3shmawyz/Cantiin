@@ -504,22 +504,21 @@ class pydanticTestCase(unittest.TestCase):
 				'value_error.missing'}])
 		print("Test b_3_1_2:OrderPost:Fail:all missing required")
 
-	"""def test_b_003_01_3_OrderPost(self):
-		toValidate = {"password1":{},"username":{},"password2":{}}
+	def test_b_003_01_3_OrderPost(self):
+		toValidate = {"product_id":{},"amount":{}}
 		try:
 			user = OrderPost(**toValidate)
-			self.assertEqual(True,False)
+			self.assertEqual()
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "str type expected","type": "type_error.str"},{"loc": [
-				"password1"],"msg": "str type expected","type": "type_error.str"
-				},{"loc": ["password2"],"msg": "str type expected",
-				"type": "type_error.str"}])
-		print("Test b_3_1_3:OrderPost:Fail:not string")
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'],
+			'msg': 'value is not a valid integer', 'type': 
+			'type_error.integer'}, {'loc': ['amount'], 'msg': 
+			'value is not a valid integer', 'type': 'type_error.integer'}])
+		print("Test b_3_1_3:OrderPost:Fail:wrong data types")
 
 
-	def test_b_003_01_4_OrderPost(self):
+	"""def test_b_003_01_4_OrderPost(self):
 		# username contains spaces
 		# password mismatch
 		# passwords lebgth less than 8

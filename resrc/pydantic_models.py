@@ -116,9 +116,7 @@ class UserPost(BaseModel):
 	def name_cant_contain_space(cls, value):
 		# Validating that username does not have any spaces
 		if ' ' in value:
-			raise ValueError('username should not contain a space')
-		return value
-		
+			raise ValueError('username should not contain a space')		
 		#Validate that this username is unique
 		all_users=User.query.all()
 		all_names=[str(u.username) for u in all_users]
