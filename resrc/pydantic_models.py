@@ -171,7 +171,7 @@ class ProductUpdate(BaseModel):
 		if type(self.in_stock) != NotReceived:
 			return 
 		raise ValueError(json.dumps([{"loc": ["in_stock"], 
-			"msg": "You must at least enter one value to change", 
+			"msg": "you must at least enter one value to change", 
 			"type": "value_error"}]))
 	"""def ProductUpdate(**kwargs):
 	toReturn = ProductUpdatee(**kwargs)
@@ -202,8 +202,11 @@ class OrderPost(BaseModel):
 		validate_model_id_pydantic(Product, value)
 		product_in_stock = Product.query.get(value).in_stock
 		if not product_in_stock:
-			raise ValueError('this product is not in stock')
+			raise ValueError('this product is not in stock, '+
+				'so it can not be ordered')
 		return value
+
+
 class OrderUpdate(BaseModel):
 	product_id : id_con = NotReceived()
 	amount : amount_con = NotReceived()

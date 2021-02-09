@@ -394,7 +394,7 @@ class pydanticTestCase(unittest.TestCase):
 			#print(str(e))
 			self.assertEqual(json.loads(str(e)),[{'loc': 
 				['in_stock'], 'msg': 
-				'You must at least enter one value to change', 
+				'you must at least enter one value to change', 
 				'type': 'value_error'}])
 		print("Test b_2_2_3:ProductUpdate:Fail:all missing required")
 
@@ -544,19 +544,25 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 'msg': 'there is no Product with this id: 50000000', 'type': 'value_error'}, {'loc': ['amount'], 'msg': 'ensure this value is less than 1000', 'type': 'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'there is no Product with this id: 50000000', 'type': 
+				'value_error'}, {'loc': ['amount'], 'msg': 
+				'ensure this value is less than 1000', 'type': 
+				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
 		print("Test b_3_1_5:OrderPost:Fail:password mismatch")
 
-	"""def test_b_003_01_6_OrderPost(self):
-		# adding unknown attribute
-		# This attribute will not be returned
-		# Testing White spaces
-		toValidate = {"username":" MyName ","password1":"12345678",
-		"password2":"12345678", "unknown":"abc"}
-		order = OrderPost(**toValidate)
-		self.assertEqual(order.dict(),{"username":"MyName","password1":"12345678",
-		"password2":"12345678"})
-		print("Test b_3_1_6:OrderPost:Added unknown value:Cleaned")"""
+	def test_b_003_01_6_OrderPost(self):
+		# a product that is not in stock
+		toValidate = {"product_id":"2","amount":"10"}
+		try:
+			order = OrderPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+			'msg': 'this product is not in stock, so it can not be ordered', 
+			'type': 'value_error'}])
+		print("Test b_3_1_6:OrderPost:Added unknown value:Cleaned")
 
 
 
