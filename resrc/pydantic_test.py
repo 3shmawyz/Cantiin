@@ -288,16 +288,16 @@ class pydanticTestCase(unittest.TestCase):
 	
 	def test_b_002_01_1_ProductPost(self):
 		toValidate = {"name":123,"price":789,"in_stock":True}
-		user = ProductPost(**toValidate)
-		#print(user.dict())
-		self.assertEqual(user.dict(),{'name': '123', 
+		product = ProductPost(**toValidate)
+		#print(product.dict())
+		self.assertEqual(product.dict(),{'name': '123', 
 			'price': 789.0, 'in_stock': True})
 		print("Test b_2_1_1:ProductPost Successful")
 
 	def test_b_002_01_2_ProductPost(self):
 		toValidate = {}
 		try:
-			user = ProductPost(**toValidate)
+			product = ProductPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			# print(json.loads(e.json()))
@@ -308,15 +308,20 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test b_2_1_2:ProductPost:Fail:all missing required")
 
 	def test_b_002_01_3_ProductPost(self):
-		toValidate = {"password":{},"username":{}}
+		# Wrong data types
+		toValidate = {"name":{},"price":{},"in_stock":{}}
 		try:
-			user = ProductPost(**toValidate)
+			product = ProductPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-			"msg": "str type expected","type": "type_error.str"},{"loc": [
-			"password"],"msg": "str type expected","type": "type_error.str"}])
+			self.assertEqual(json.loads(e.json()),[{'loc': 
+				['name'], 'msg': 'str type expected', 'type': 
+				'type_error.str'}, {'loc': ['price'], 'msg': 
+				'value is not a valid float', 'type': 
+				'type_error.float'}, {'loc': ['in_stock'], 'msg': 
+				'value could not be parsed to a boolean', 'type': 
+				'type_error.bool'}])
 		print("Test b_2_1_3:ProductPost:Fail:username required")
 
 
