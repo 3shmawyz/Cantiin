@@ -377,14 +377,101 @@ class pydanticTestCase(unittest.TestCase):
 		# successful test: Not received
 		toValidate = {"name":123}
 		product = ProductUpdate(**toValidate)
-		print((product.dict()))
+		#print((product.dict()))
 		self.assertEqual(product.name,"123")
 		self.assertEqual(type(product.price),NotReceived)
 		self.assertEqual(type(product.in_stock),NotReceived)
 		#self.assertEqual(product.dict(),{"username":"123","password":NotReceived()})
-		print("Test b_2_2_2:ProductUpdate Successful Missing field")
+		print("Test b_2_2_2:ProductUpdate Successful Missing fields")
 
-	def test_b_002_02_3_ProductUpdate(self):
+
+
+
+
+
+
+
+	def test_b_002_01_2_ProductUpdate(self):
+		toValidate = {}
+		try:
+			product = ProductUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			# print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'field required', 'type': 'value_error.missing'}, 
+				{'loc': ['price'], 'msg': 'field required', 'type': 
+				'value_error.missing'}])
+		print("Test b_2_1_2:ProductUpdate:Fail:all missing required")
+
+	def test_b_002_01_3_ProductUpdate(self):
+		# Wrong data types
+		toValidate = {"name":{},"price":{},"in_stock":{}}
+		try:
+			product = ProductUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': 
+				['name'], 'msg': 'str type expected', 'type': 
+				'type_error.str'}, {'loc': ['price'], 'msg': 
+				'value is not a valid float', 'type': 
+				'type_error.float'}, {'loc': ['in_stock'], 'msg': 
+				'value could not be parsed to a boolean', 'type': 
+				'type_error.bool'}])
+		print("Test b_2_1_3:ProductUpdate:Fail: Wrong data types")
+
+	def test_b_002_01_4_ProductUpdate(self):
+		# Short product name
+		# Very cheap price
+		toValidate = {"name":"    a  ","price":.01, "in_stock":True}
+		try:
+			product = ProductUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at least 3 characters', 
+				'type': 'value_error.any_str.min_length', 'ctx': 
+				{'limit_value': 3}}, {'loc': ['price'], 'msg': 
+				'ensure this value is greater than or equal to 0.1', 
+				'type': 'value_error.number.not_ge', 'ctx': 
+				{'limit_value': 0.1}}])
+		print("Test b_2_1_4:ProductUpdate:Fail:short name, cheap price")
+
+	def test_b_002_01_5_ProductUpdate(self):
+		# long product name
+		# Very expensive price
+		toValidate = {"name":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+
+		"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+
+		"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+		"price":1000000000000000000000000000000000000000,"in_stock":True}
+		try:
+			product = ProductUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at most 100 characters', 
+				'type': 'value_error.any_str.max_length', 'ctx': 
+				{'limit_value': 100}}, {'loc': ['price'], 'msg': 
+				'ensure this value is less than or equal to 1000000', 
+				'type': 'value_error.number.not_le', 'ctx': 
+				{'limit_value': 1000000}}])
+		print("Test b_2_1_5:ProductUpdate:Fail:long name, expensive price")
+
+
+
+
+
+
+
+
+
+
+
+
+	"""def test_b_002_02_3_ProductUpdate(self):
 		toValidate = {}
 		product = ProductUpdate(**toValidate)
 		self.assertEqual(type(product.username),NotReceived)
@@ -414,7 +501,7 @@ class pydanticTestCase(unittest.TestCase):
 		except Exception as e:
 			#print(json.loads(e.json()))
 			pass
-		print("Test")
+		print("Test")"""
 
 
 
