@@ -337,6 +337,27 @@ class pydanticTestCase(unittest.TestCase):
 				{'limit_value': 0.1}}])
 		print("Test b_2_1_4:ProductPost:Fail:short name, cheap price")
 
+	def test_b_002_01_5_ProductPost(self):
+		# long product name
+		# Very expensive price
+		toValidate = {"name":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+
+		"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+
+		"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+		"price":1000000000000000000000000000000000000000,"in_stock":True}
+		try:
+			product = ProductPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at most 100 characters', 
+				'type': 'value_error.any_str.max_length', 'ctx': 
+				{'limit_value': 100}}, {'loc': ['price'], 'msg': 
+				'ensure this value is less than or equal to 1000000', 
+				'type': 'value_error.number.not_le', 'ctx': 
+				{'limit_value': 1000000}}])
+		print("Test b_2_1_5:ProductPost:Fail:long name, expensive price")
+
 
 
 
