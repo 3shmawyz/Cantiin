@@ -103,11 +103,13 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "field required","type": "value_error.missing"},
-				{"loc": ["password1"],"msg": "field required","type": "value_error.missing"
-				},{"loc": ["password2"],"msg": "field required","type": "value_error.missing"
+				{"loc": ["password1"],"msg": "field required",
+				"type": "value_error.missing"
+				},{"loc": ["password2"],"msg": "field required",
+				"type": "value_error.missing"
 				}])
 		print("Test b_1_1_2:UserPost:Fail:all missing required")
 
@@ -117,7 +119,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "str type expected","type": "type_error.str"},{"loc": [
 				"password1"],"msg": "str type expected","type": "type_error.str"
@@ -137,7 +139,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			# print(str(e.json()))
+			# print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "username should not contain a space",
 				"type": "value_error"},{"loc": ["password1"],
@@ -151,15 +153,18 @@ class pydanticTestCase(unittest.TestCase):
 
 	def test_b_001_01_5_UserPost(self):
 		# password mismatch
-		toValidate = {"username":"MyName","password1":"123456789999999000000000",
+		# Username already exists
+		toValidate = {"username":"abc","password1":"123456789999999000000000",
 		"password2":"12345678"}
 		try:
 			user = UserPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["password2"],
-				"msg": "passwords do not match","type": "value_error"}])
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{
+				'loc': ['username'], 'msg': 'this username already exists', 
+				'type': 'value_error'}, {'loc': ['password2'], 'msg': 
+				'passwords do not match', 'type': 'value_error'}])
 		print("Test b_1_1_5:UserPost:Fail:password mismatch")
 
 	def test_b_001_01_6_UserPost(self):
@@ -193,7 +198,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[
 				{"loc": ["password1"],"msg": "field required","type": "value_error.missing"
 				},{"loc": ["password2"],"msg": "field required","type": "value_error.missing"
@@ -206,7 +211,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": [
 				"password1"],"msg": "str type expected","type": "type_error.str"
 				},{"loc": ["password2"],"msg": "str type expected",
@@ -225,7 +230,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["password1"
 				],"msg": "ensure this value has at least 5 characters",
 				"type": "value_error.any_str.min_length",
@@ -243,7 +248,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = UserUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{'loc': ['password2'], 'msg': 'passwords do not match', 'type': 'value_error'}])
 		print("Test b_1_2_5:UserUpdate:Fail:password mismatch")
 
@@ -293,7 +298,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = ProductPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 				"msg": "field required","type": "value_error.missing"},{"loc": [
 				"password"],"msg": "field required","type": "value_error.missing"}])
@@ -305,7 +310,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = ProductPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 			"msg": "str type expected","type": "type_error.str"},{"loc": [
 			"password"],"msg": "str type expected","type": "type_error.str"}])
@@ -346,7 +351,7 @@ class pydanticTestCase(unittest.TestCase):
 			user = ProductUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
 			"msg": "str type expected","type": "type_error.str"},{"loc": [
 			"password"],"msg": "str type expected","type": "type_error.str"}])
@@ -361,7 +366,7 @@ class pydanticTestCase(unittest.TestCase):
 			#print(data)
 			#print(data.dict())
 		except Exception as e:
-			#print(str(e.json()))
+			#print(json.loads(e.json()))
 			pass
 		print("Test")"""
 
