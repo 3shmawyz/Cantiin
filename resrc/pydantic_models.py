@@ -162,18 +162,6 @@ class ProductUpdate(BaseModel):
 	price : product_price_con = NotReceived()
 	in_stock : bool = NotReceived()
 	
-	"""@validator('in_stock')
-	def at_least_one(cls, value, values, **kwargs):
-		#print("Hellooooo")
-		#print(values)
-		if (values['name']) != None:
-			return value
-		if (values['price']) != None:
-			return value
-		if (value) != None:
-			return value
-		raise ValueError('You must at least enter one value to change')"""
-	
 	def __init__(self, **kwargs):
 		BaseModel.__init__(self, **kwargs)
 		#print(self.dict())
@@ -209,6 +197,12 @@ class ProductUpdate(BaseModel):
 class OrderPost(BaseModel):
 	product_id : id_con
 	amount : amount_con
+	
+	@validator('product_id')
+	def passwords_match(cls, value):
+		validate_model_id_pydantic(Product, value)
+
+
 class OrderUpdate(BaseModel):
 	product_id : id_con = NotReceived()
 	amount : amount_con = NotReceived()
