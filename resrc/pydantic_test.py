@@ -286,10 +286,12 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	
-	"""def test_b_002_01_1_ProductPost(self):
-		toValidate = {"username":123,"password":789}
+	def test_b_002_01_1_ProductPost(self):
+		toValidate = {"name":123,"price":789,"in_stock":True}
 		user = ProductPost(**toValidate)
-		self.assertEqual(user.dict(),{"username":"123","password":"789"})
+		#print(user.dict())
+		self.assertEqual(user.dict(),{'name': '123', 
+			'price': 789.0, 'in_stock': True})
 		print("Test b_2_1_1:ProductPost Successful")
 
 	def test_b_002_01_2_ProductPost(self):
@@ -324,7 +326,7 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	def test_b_002_02_1_ProductUpdate(self):
+	"""def test_b_002_02_1_ProductUpdate(self):
 		toValidate = {"username":123,"password":789}
 		user = ProductUpdate(**toValidate)
 		self.assertEqual(user.dict(),{"username":"123","password":"789"})
