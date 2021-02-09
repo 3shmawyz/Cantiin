@@ -484,30 +484,27 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	def test_b_003_01_1_OrderPost(self):
-		toValidate = {"product_id":3,"amount":5}
+		toValidate = {"product_id":"  3   ","amount":"   5 "}
 		order = OrderPost(**toValidate)
 		#print(order.dict())
 		self.assertEqual(order.dict(),
 			{'product_id': 3, 'amount': 5})
 		print("Test b_3_1_1:OrderPost Successful")
 
-	"""def test_b_003_01_2_OrderPost(self):
+	def test_b_003_01_2_OrderPost(self):
 		toValidate = {}
 		try:
 			user = OrderPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "field required","type": "value_error.missing"},
-				{"loc": ["password1"],"msg": "field required",
-				"type": "value_error.missing"
-				},{"loc": ["password2"],"msg": "field required",
-				"type": "value_error.missing"
-				}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'field required', 'type': 'value_error.missing'}, 
+				{'loc': ['amount'], 'msg': 'field required', 'type': 
+				'value_error.missing'}])
 		print("Test b_3_1_2:OrderPost:Fail:all missing required")
 
-	def test_b_003_01_3_OrderPost(self):
+	"""def test_b_003_01_3_OrderPost(self):
 		toValidate = {"password1":{},"username":{},"password2":{}}
 		try:
 			user = OrderPost(**toValidate)
