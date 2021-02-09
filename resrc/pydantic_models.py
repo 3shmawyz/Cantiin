@@ -142,17 +142,30 @@ class ProductPost(BaseModel):
 	price : product_price_con
 	in_stock : bool=True
 
-	@validator("price")
-	def positive_price(cls,value):
-		if value<0.01:
-			raise ValueError("minimum price is 0.01")
-
-
 
 class ProductUpdate(BaseModel):
 	name : product_name_con = NotReceived()
 	price : product_price_con = NotReceived()
 	in_stock : bool = NotReceived()
+	
+	@validator('in_stock')
+	def passwords_match(cls, value, values, **kwargs):
+		print(values)
+		if type(values['name']) != NotReceived:
+			return value
+		if type(values['price']) != NotReceived:
+			return value
+		if type(values['in_stock']) != NotReceived:
+			return value
+
+		raise ValueError('You must at least enter one value to change')
+
+
+
+
+
+
+
 
 
 class OrderPost(BaseModel):
