@@ -1,7 +1,7 @@
 from typing import List, Optional
 from pydantic import (BaseModel, 
 	ValidationError, validator, constr, conint, confloat)
-from models import NotReceived, User
+from models import NotReceived, User, Product
 import json
 
 
@@ -117,6 +117,7 @@ class UserPost(BaseModel):
 		# Validating that username does not have any spaces
 		if ' ' in value:
 			raise ValueError('username should not contain a space')
+		return value
 		
 		#Validate that this username is unique
 		all_users=User.query.all()
@@ -204,7 +205,7 @@ class OrderPost(BaseModel):
 		product_in_stock = Product.query.get(value).in_stock
 		if not product_in_stock:
 			raise ValueError('this product is not in stock')
-
+		return value
 class OrderUpdate(BaseModel):
 	product_id : id_con = NotReceived()
 	amount : amount_con = NotReceived()

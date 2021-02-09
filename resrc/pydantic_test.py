@@ -484,10 +484,11 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	def test_b_003_01_1_OrderPost(self):
-		toValidate = {"product_id"3:,"amount":5}
-		user = OrderPost(**toValidate)
-		self.assertEqual(user.dict(),{"username":"123","password1":"7890123456",
-			"password2":"7890123456"})
+		toValidate = {"product_id":3,"amount":5}
+		order = OrderPost(**toValidate)
+		#print(order.dict())
+		self.assertEqual(order.dict(),
+			{'product_id': 3, 'amount': 5})
 		print("Test b_3_1_1:OrderPost Successful")
 
 	"""def test_b_003_01_2_OrderPost(self):
