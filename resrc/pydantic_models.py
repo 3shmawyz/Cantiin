@@ -162,7 +162,7 @@ class ProductUpdate(BaseModel):
 	price : product_price_con = NotReceived()
 	in_stock : bool = NotReceived()
 	
-	@validator('in_stock')
+	"""@validator('in_stock')
 	def at_least_one(cls, value, values, **kwargs):
 		#print("Hellooooo")
 		#print(values)
@@ -172,7 +172,7 @@ class ProductUpdate(BaseModel):
 			return value
 		if (value) != None:
 			return value
-		raise ValueError('You must at least enter one value to change')
+		raise ValueError('You must at least enter one value to change')"""
 	
 	def __init__(self, **kwargs):
 		BaseModel.__init__(self, **kwargs)
@@ -183,7 +183,9 @@ class ProductUpdate(BaseModel):
 			return 
 		if type(self.in_stock) != NotReceived:
 			return 
-		raise ValueError(json.dumps([{"loc": ["in_stock"], "msg": "You must at least enter one value to change", "type": "value_error"}]))
+		raise ValueError(json.dumps([{"loc": ["in_stock"], 
+			"msg": "You must at least enter one value to change", 
+			"type": "value_error"}]))
 	"""def ProductUpdate(**kwargs):
 	toReturn = ProductUpdatee(**kwargs)
 	if type(toReturn.name) != NotReceived:

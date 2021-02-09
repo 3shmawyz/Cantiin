@@ -388,7 +388,7 @@ class pydanticTestCase(unittest.TestCase):
 		toValidate = {}
 		try:
 			product = ProductUpdate(**toValidate)
-			print(product.dict())
+			#print(product.dict())
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(str(e))
@@ -405,7 +405,6 @@ class pydanticTestCase(unittest.TestCase):
 			product = ProductUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			print(type(e))
 			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{'loc': 
 				['name'], 'msg': 'str type expected', 'type': 
