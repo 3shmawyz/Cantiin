@@ -207,6 +207,10 @@ class OrderUpdate(BaseModel):
 	product_id : id_con = NotReceived()
 	amount : amount_con = NotReceived()
 
+	@validator('product_id')
+	def passwords_match(cls, value):
+		validate_model_id_pydantic(Product, value)
+
 
 class ImagePost(BaseModel):
 	name :  image_name_con

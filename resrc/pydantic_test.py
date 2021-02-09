@@ -465,24 +465,165 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	"""def test_b_002_02_3_ProductUpdate(self):
-		toValidate = {}
-		product = ProductUpdate(**toValidate)
-		self.assertEqual(type(product.username),NotReceived)
-		self.assertEqual(type(product.password),NotReceived)
-		print("Test b_2_2_2:ProductUpdate Successful: all Missing fields")
 
-	def test_b_002_02_4_ProductUpdate(self):
-		toValidate = {"password":{},"username":{}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	def test_b_003_01_1_OrderPost(self):
+		toValidate = {"username":123,"password1":7890123456,"password2":"7890123456"}
+		user = OrderPost(**toValidate)
+		self.assertEqual(user.dict(),{"username":"123","password1":"7890123456",
+			"password2":"7890123456"})
+		print("Test b_3_1_1:OrderPost Successful")
+
+	"""def test_b_003_01_2_OrderPost(self):
+		toValidate = {}
 		try:
-			product = ProductUpdate(**toValidate)
+			user = OrderPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-			"msg": "str type expected","type": "type_error.str"},{"loc": [
-			"password"],"msg": "str type expected","type": "type_error.str"}])
-		print("Test b_2_2_4:ProductUpdate:Fail:username required")"""
+				"msg": "field required","type": "value_error.missing"},
+				{"loc": ["password1"],"msg": "field required",
+				"type": "value_error.missing"
+				},{"loc": ["password2"],"msg": "field required",
+				"type": "value_error.missing"
+				}])
+		print("Test b_3_1_2:OrderPost:Fail:all missing required")
+
+	def test_b_003_01_3_OrderPost(self):
+		toValidate = {"password1":{},"username":{},"password2":{}}
+		try:
+			user = OrderPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "str type expected","type": "type_error.str"},{"loc": [
+				"password1"],"msg": "str type expected","type": "type_error.str"
+				},{"loc": ["password2"],"msg": "str type expected",
+				"type": "type_error.str"}])
+		print("Test b_3_1_3:OrderPost:Fail:not string")
+
+
+	def test_b_003_01_4_OrderPost(self):
+		# username contains spaces
+		# password mismatch
+		# passwords lebgth less than 8
+		# Note, did not notice password mismatch, 
+		# because password 1 did not pass the validation
+		toValidate = {"username":"My Name","password1":"123","password2":"789"}
+		try:
+			user = OrderPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			# print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
+				"msg": "username should not contain a space",
+				"type": "value_error"},{"loc": ["password1"],
+				"msg": "ensure this value has at least 5 characters",
+				"type": "value_error.any_str.min_length","ctx": {
+				"limit_value": 5}},{"loc": ["password2"],
+				"msg": "ensure this value has at least 5 characters",
+				"type": "value_error.any_str.min_length","ctx": {
+				"limit_value": 5}}])
+		print("Test b_3_1_4:OrderPost:Fail:username contains spaces, short password")
+
+	def test_b_003_01_5_OrderPost(self):
+		# password mismatch
+		# Username already exists
+		toValidate = {"username":"abc","password1":"123456789999999000000000",
+		"password2":"12345678"}
+		try:
+			user = OrderPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{
+				'loc': ['username'], 'msg': 'this username already exists', 
+				'type': 'value_error'}, {'loc': ['password2'], 'msg': 
+				'passwords do not match', 'type': 'value_error'}])
+		print("Test b_3_1_5:OrderPost:Fail:password mismatch")
+
+	def test_b_003_01_6_OrderPost(self):
+		# adding unknown attribute
+		# This attribute will not be returned
+		# Testing White spaces
+		toValidate = {"username":" MyName ","password1":"12345678",
+		"password2":"12345678", "unknown":"abc"}
+		user = OrderPost(**toValidate)
+		self.assertEqual(user.dict(),{"username":"MyName","password1":"12345678",
+		"password2":"12345678"})
+		print("Test b_3_1_6:OrderPost:Added unknown value:Cleaned")"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -499,24 +640,6 @@ class pydanticTestCase(unittest.TestCase):
 			print(json.loads(e.json()))
 			pass
 		print("Test")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
