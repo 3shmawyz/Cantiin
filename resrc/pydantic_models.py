@@ -2,7 +2,7 @@ from typing import List, Optional
 from pydantic import (BaseModel, 
 	ValidationError, validator, constr, conint, confloat)
 from models import NotReceived, User
-
+import json
 
 
 
@@ -163,14 +163,38 @@ class ProductUpdate(BaseModel):
 	in_stock : bool = NotReceived()
 	
 	@validator('in_stock')
-	def passwords_match(cls, value, values, **kwargs):
-		if type(values['name']) != NotReceived:
+	def at_least_one(cls, value, values, **kwargs):
+		#print("Hellooooo")
+		#print(values)
+		if (values['name']) != None:
 			return value
-		if type(values['price']) != NotReceived:
+		if (values['price']) != None:
 			return value
-		if type(value) != NotReceived:
+		if (value) != None:
 			return value
 		raise ValueError('You must at least enter one value to change')
+	
+	def __init__(self, **kwargs):
+		BaseModel.__init__(self, **kwargs)
+		#print(self.dict())
+		if type(self.name) != NotReceived:
+			return 
+		if type(self.price) != NotReceived:
+			return 
+		if type(self.in_stock) != NotReceived:
+			return 
+		raise ValueError(json.dumps([{"loc": ["in_stock"], "msg": "You must at least enter one value to change", "type": "value_error"}]))
+	"""def ProductUpdate(**kwargs):
+	toReturn = ProductUpdatee(**kwargs)
+	if type(toReturn.name) != NotReceived:
+		return toReturn
+	if type(toReturn.price) != NotReceived:
+		return toReturn
+	if type(toReturn.in_stock) != NotReceived:
+		return toReturn
+	raise ValueError('You must at least enter one value to change')"""
+
+
 
 
 
@@ -206,8 +230,14 @@ the_tst=constr(strip_whitespace=True, min_length=1,max_length=5)
 
 
 class TestHere(BaseModel):
-	tst:the_tst
+  a: str = None
+  b: str = None
 
+  @validator('b')
+  def check_a_or_b(cls, v, values):
+    if 'a' not in values and not b:
+      raise ValueError('either a or b is required')
+    return b
 """
 external_data = {
 	'id': '123',
