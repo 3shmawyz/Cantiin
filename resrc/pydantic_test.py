@@ -67,7 +67,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(validate_model_id_pydantic(Product,10000000000),False)
 			self.assertEqual(True,False)
 		except Exception as e:
-			self.assertEqual(str(e),"There is no Product with this id: 10000000000")
+			self.assertEqual(str(e),"there is no Product with this id: 10000000000")
 		try:
 			# model is not model
 			validate_model_id(123,10000000000)
@@ -534,23 +534,20 @@ class pydanticTestCase(unittest.TestCase):
 				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
 		print("Test b_3_1_4:OrderPost:Fail:id less than 0, amount less than 0")
 
-	"""def test_b_003_01_5_OrderPost(self):
-		# password mismatch
-		# Username already exists
-		toValidate = {"username":"abc","password1":"123456789999999000000000",
-		"password2":"12345678"}
+	def test_b_003_01_5_OrderPost(self):
+		# non existent product id
+		# very big amount
+		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
+
 		try:
 			order = OrderPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{
-				'loc': ['username'], 'msg': 'this username already exists', 
-				'type': 'value_error'}, {'loc': ['password2'], 'msg': 
-				'passwords do not match', 'type': 'value_error'}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 'msg': 'there is no Product with this id: 50000000', 'type': 'value_error'}, {'loc': ['amount'], 'msg': 'ensure this value is less than 1000', 'type': 'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
 		print("Test b_3_1_5:OrderPost:Fail:password mismatch")
 
-	def test_b_003_01_6_OrderPost(self):
+	"""def test_b_003_01_6_OrderPost(self):
 		# adding unknown attribute
 		# This attribute will not be returned
 		# Testing White spaces

@@ -80,7 +80,7 @@ def validate_model_id_pydantic(model,id:int):
 	if validate_model_id(model,id) == True:
 		pass
 	else:
-		raise ValueError("There is no "+ model_name +
+		raise ValueError("there is no "+ model_name +
 		 " with this id: " +str(id))
 
 
