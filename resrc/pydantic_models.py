@@ -4,6 +4,41 @@ from pydantic import (BaseModel,
 from models import NotReceived, User
 
 
+
+
+
+
+
+
+# General
+id_con = conint(gt=0)
+
+
+# User
+username_con = constr(strip_whitespace=True, min_length=3,max_length=40)
+password_con = constr(strip_whitespace=False, min_length=5,max_length=100)
+
+#Product Name
+product_name_con = constr(strip_whitespace=True, min_length=3,max_length=100)
+product_price_con = confloat(ge=.1, le=1000000)
+
+
+# Order
+amount_con = conint(gt=-1, lt=100)
+
+#Image
+image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
+formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
+image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=10000)
+
+
+
+
+
+
+
+
+
 """
 validate_model_id
 - Inputs:
@@ -70,27 +105,6 @@ def validate_string_length_pydantic(the_string:str,
 	if len(the_string)>maximum:
 		raise ValueError("maximum length of this text is "+ 
 			str(maximum))
-
-# General
-id_con = conint(gt=0)
-
-
-# User
-username_con = constr(strip_whitespace=True, min_length=3,max_length=40)
-password_con = constr(strip_whitespace=False, min_length=5,max_length=100)
-
-#Product Name
-product_name_con = constr(strip_whitespace=True, min_length=3,max_length=100)
-product_price_con = confloat(ge=.1, le=1000000)
-
-
-# Order
-amount_con = conint(gt=-1, lt=100)
-
-#Image
-image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
-formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
-image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=10000)
 
 
 class UserPost(BaseModel):

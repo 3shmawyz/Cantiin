@@ -14,12 +14,6 @@ from pydantic import ValidationError
 unittest.TestLoader.sortTestMethodsUsing = None
 
 
-# Creating the app
-create_app()
-
-# Populating
-populate_tables()
-
 class pydanticTestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
@@ -40,14 +34,15 @@ class pydanticTestCase(unittest.TestCase):
 
 	#Note: Tests are run alphapetically
 	def test_000001_test(self):
+		# Creating the app
+		create_app()
+
+		# Populating
+		populate_tables()
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
 
 
-
-	def test_a_1_0_validate_model_id(self):
-		populate_tables()
-		print("Test a_1_0: validate_model_id Populate")
 
 	def test_a_1_1_validate_model_id(self):
 		# Model exists
@@ -287,7 +282,7 @@ class pydanticTestCase(unittest.TestCase):
 
 	
 	def test_b_002_01_1_ProductPost(self):
-		toValidate = {"name":123,"price":789,"in_stock":True}
+		toValidate = {"name":"    123  ","price":789,"in_stock":True}
 		product = ProductPost(**toValidate)
 		#print(product.dict())
 		self.assertEqual(product.dict(),{'name': '123', 
@@ -322,7 +317,25 @@ class pydanticTestCase(unittest.TestCase):
 				'type_error.float'}, {'loc': ['in_stock'], 'msg': 
 				'value could not be parsed to a boolean', 'type': 
 				'type_error.bool'}])
-		print("Test b_2_1_3:ProductPost:Fail:username required")
+		print("Test b_2_1_3:ProductPost:Fail: Wrong data types")
+
+	def test_b_002_01_4_ProductPost(self):
+		# Short product name
+		# Very cheap price
+		toValidate = {"name":"    a  ","price":.01,"in_stock":True}
+		try:
+			product = ProductPost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at least 3 characters', 
+				'type': 'value_error.any_str.min_length', 'ctx': 
+				{'limit_value': 3}}, {'loc': ['price'], 'msg': 
+				'ensure this value is greater than or equal to 0.1', 
+				'type': 'value_error.number.not_ge', 'ctx': 
+				{'limit_value': 0.1}}])
+		print("Test b_2_1_4:ProductPost:Fail:short name, cheap price")
 
 
 
