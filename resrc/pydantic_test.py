@@ -300,10 +300,11 @@ class pydanticTestCase(unittest.TestCase):
 			user = ProductPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "field required","type": "value_error.missing"},{"loc": [
-				"password"],"msg": "field required","type": "value_error.missing"}])
+			# print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'field required', 'type': 'value_error.missing'}, 
+				{'loc': ['price'], 'msg': 'field required', 'type': 
+				'value_error.missing'}])
 		print("Test b_2_1_2:ProductPost:Fail:all missing required")
 
 	def test_b_002_01_3_ProductPost(self):
