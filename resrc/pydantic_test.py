@@ -475,14 +475,6 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-
-
-
-
-
-
-
-
 	def test_b_003_01_1_OrderPost(self):
 		toValidate = {"product_id":"  3   ","amount":"   5 "}
 		order = OrderPost(**toValidate)
@@ -563,6 +555,31 @@ class pydanticTestCase(unittest.TestCase):
 			'msg': 'this product is not in stock, so it can not be ordered', 
 			'type': 'value_error'}])
 		print("Test b_3_1_6:OrderPost:Added unknown value:Cleaned")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
