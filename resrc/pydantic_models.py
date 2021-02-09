@@ -201,7 +201,9 @@ class OrderPost(BaseModel):
 	@validator('product_id')
 	def passwords_match(cls, value):
 		validate_model_id_pydantic(Product, value)
-
+		product_in_stock = Product.query.get(value).in_stock
+		if not product_in_stock:
+			raise ValueError('this product is not in stock')
 
 class OrderUpdate(BaseModel):
 	product_id : id_con = NotReceived()
