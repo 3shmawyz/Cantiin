@@ -24,7 +24,7 @@ product_price_con = confloat(ge=.1, le=1000000)
 
 
 # Order
-amount_con = conint(gt=-1, lt=100)
+amount_con = conint(gt=-1, lt=1000)
 
 #Image
 image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)

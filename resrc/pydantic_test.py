@@ -494,7 +494,7 @@ class pydanticTestCase(unittest.TestCase):
 	def test_b_003_01_2_OrderPost(self):
 		toValidate = {}
 		try:
-			user = OrderPost(**toValidate)
+			order = OrderPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
@@ -507,7 +507,7 @@ class pydanticTestCase(unittest.TestCase):
 	def test_b_003_01_3_OrderPost(self):
 		toValidate = {"product_id":{},"amount":{}}
 		try:
-			user = OrderPost(**toValidate)
+			order = OrderPost(**toValidate)
 			self.assertEqual()
 		except Exception as e:
 			#print(json.loads(e.json()))
@@ -518,36 +518,29 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test b_3_1_3:OrderPost:Fail:wrong data types")
 
 
-	"""def test_b_003_01_4_OrderPost(self):
-		# username contains spaces
-		# password mismatch
-		# passwords lebgth less than 8
-		# Note, did not notice password mismatch, 
-		# because password 1 did not pass the validation
-		toValidate = {"username":"My Name","password1":"123","password2":"789"}
+	def test_b_003_01_4_OrderPost(self):
+		# product_id less than 0
+		# amount less than 0
+		toValidate = {"product_id":"-1","amount":"-1"}
 		try:
-			user = OrderPost(**toValidate)
+			order = OrderPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			# print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{"loc": ["username"],
-				"msg": "username should not contain a space",
-				"type": "value_error"},{"loc": ["password1"],
-				"msg": "ensure this value has at least 5 characters",
-				"type": "value_error.any_str.min_length","ctx": {
-				"limit_value": 5}},{"loc": ["password2"],
-				"msg": "ensure this value has at least 5 characters",
-				"type": "value_error.any_str.min_length","ctx": {
-				"limit_value": 5}}])
-		print("Test b_3_1_4:OrderPost:Fail:username contains spaces, short password")
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'ensure this value is greater than 0', 'type': 
+				'value_error.number.not_gt', 'ctx': {'limit_value': 0}}, 
+				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
+				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
+		print("Test b_3_1_4:OrderPost:Fail:id less than 0, amount less than 0")
 
-	def test_b_003_01_5_OrderPost(self):
+	"""def test_b_003_01_5_OrderPost(self):
 		# password mismatch
 		# Username already exists
 		toValidate = {"username":"abc","password1":"123456789999999000000000",
 		"password2":"12345678"}
 		try:
-			user = OrderPost(**toValidate)
+			order = OrderPost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
@@ -563,8 +556,8 @@ class pydanticTestCase(unittest.TestCase):
 		# Testing White spaces
 		toValidate = {"username":" MyName ","password1":"12345678",
 		"password2":"12345678", "unknown":"abc"}
-		user = OrderPost(**toValidate)
-		self.assertEqual(user.dict(),{"username":"MyName","password1":"12345678",
+		order = OrderPost(**toValidate)
+		self.assertEqual(order.dict(),{"username":"MyName","password1":"12345678",
 		"password2":"12345678"})
 		print("Test b_3_1_6:OrderPost:Added unknown value:Cleaned")"""
 
