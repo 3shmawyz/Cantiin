@@ -1,8 +1,7 @@
 from typing import List, Optional
 from pydantic import (BaseModel, 
 	ValidationError, validator, constr, conint, confloat)
-from models import NotReceived
-
+from models import NotReceived, User
 
 
 """
@@ -101,8 +100,15 @@ class UserPost(BaseModel):
 
 	@validator('username')
 	def name_cant_contain_space(cls, value):
+		# Validating that username does not have any spaces
 		if ' ' in value:
 			raise ValueError('username should not contain a space')
+		
+		#Validate that this username is unique
+		all_users=User.query.all()
+		all_names=[str(u.username) for u in all_users]
+		if value in all_names:
+			raise ValueError('this username already exists')
 		return value
 
 	@validator('password2')
