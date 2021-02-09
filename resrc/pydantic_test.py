@@ -367,30 +367,34 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	def test_b_002_02_1_ProductUpdate(self):
+		# successful test
 		toValidate = {"name":"    123  ","price":789,"in_stock":True}
-		user = ProductUpdate(**toValidate)
-		self.assertEqual(user.dict(),{"name":"123","price":789,"in_stock":True})
+		product = ProductUpdate(**toValidate)
+		self.assertEqual(product.dict(),{"name":"123","price":789,"in_stock":True})
 		print("Test b_2_2_1:ProductUpdate Successful")
 
 	def test_b_002_02_2_ProductUpdate(self):
-		toValidate = {"username":123}
-		user = ProductUpdate(**toValidate)
-		self.assertEqual(user.username,"123")
-		self.assertEqual(type(user.password),NotReceived)
-		#self.assertEqual(user.dict(),{"username":"123","password":NotReceived()})
+		# successful test: Not received
+		toValidate = {"name":123}
+		product = ProductUpdate(**toValidate)
+		print((product.dict()))
+		self.assertEqual(product.name,"123")
+		self.assertEqual(type(product.price),NotReceived)
+		self.assertEqual(type(product.in_stock),NotReceived)
+		#self.assertEqual(product.dict(),{"username":"123","password":NotReceived()})
 		print("Test b_2_2_2:ProductUpdate Successful Missing field")
 
 	def test_b_002_02_3_ProductUpdate(self):
 		toValidate = {}
-		user = ProductUpdate(**toValidate)
-		self.assertEqual(type(user.username),NotReceived)
-		self.assertEqual(type(user.password),NotReceived)
+		product = ProductUpdate(**toValidate)
+		self.assertEqual(type(product.username),NotReceived)
+		self.assertEqual(type(product.password),NotReceived)
 		print("Test b_2_2_2:ProductUpdate Successful: all Missing fields")
 
 	def test_b_002_02_4_ProductUpdate(self):
 		toValidate = {"password":{},"username":{}}
 		try:
-			user = ProductUpdate(**toValidate)
+			product = ProductUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
