@@ -751,20 +751,15 @@ class pydanticTestCase(unittest.TestCase):
 	def test_b_004_01_6_ImagePost(self):
 		# image can not be converted to b64
 		toValidate = {"name":"abc","formatting":"png", 
-		"image_b64":"**&$*)())("}
+		"image_b64":"bbbbb"}
 
 		try:
 			img = ImagePost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 'msg': 
-				'ensure this value has at most 200 characters', 'type': 
-				'value_error.any_str.max_length', 'ctx': {'limit_value': 
-				200}}, {'loc': ['image_b64'], 'msg': 
-				'ensure this value has at most 250000 characters', 'type': 
-				'value_error.any_str.max_length', 'ctx': 
-				{'limit_value': 250000}}])
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['image_b64'], 
+				'msg': 'this image is not base64', 'type': 'value_error'}])
 		print("Test b_4_1_6:ImagePost:Can not be converted to base64")
 
 
@@ -797,19 +792,19 @@ class pydanticTestCase(unittest.TestCase):
 			{'name': 'abc', 'formatting': 'png', 'image_b64': '1111'})
 		print("Test b_4_2_1:ImageUpdate Successful")
 
-	"""def test_b_004_02_2_ImageUpdate(self):
+	def test_b_004_02_2_ImageUpdate(self):
 		toValidate = {}
 		try:
 			img = ImageUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
-			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[ 
-				{'loc': ['amount'], 'msg': 'field required', 'type': 
-				'value_error.missing'}])
+			#print(json.loads(str(e)))
+			self.assertEqual(json.loads(str(e)),[{'loc': ['image_b64'], 
+				'msg': 'you must at least enter one value to change', 
+				'type': 'value_error'}])
 		print("Test b_4_2_2:ImageUpdate:Fail:all missing required")
 
-	def test_b_004_02_3_ImageUpdate(self):
+	"""def test_b_004_02_3_ImageUpdate(self):
 		toValidate = {"amount":{}}
 		try:
 			img = ImageUpdate(**toValidate)
@@ -885,40 +880,6 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-
-
-
-
-
-	def test_test_001_01_string_to_b64(self):
-		message = "Python is fun"
-		print(message)
-		#Python is fun
-		message_bytes = message.encode('ascii')
-		print(message_bytes)
-		#b'Python is fun'
-		base64_bytes = base64.b64encode(message_bytes)
-		print(base64_bytes)
-		#b'UHl0aG9uIGlzIGZ1bg=='
-		base64_message = base64_bytes.decode('ascii')
-		print(base64_message)
-		#UHl0aG9uIGlzIGZ1bg==
-		print("test_test_001_01_string_and_bytes_and_b64")
-
-	def test_test_001_02_b64_to_string(self):
-		base64_message = 'UHl0aG9uIGlzIGZ1bg=='
-		print(base64_message)
-		#
-		base64_bytes = base64_message.encode('ascii')
-		print(base64_bytes)
-		#
-		message_bytes = base64.b64decode(base64_bytes)
-		print(message_bytes)
-		#
-		message = message_bytes.decode('ascii')
-		print(message)
-		#
-		print("test_test_001_01_string_and_bytes_and_b64")
 
 
 
