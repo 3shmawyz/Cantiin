@@ -747,19 +747,6 @@ class pydanticTestCase(unittest.TestCase):
 				{'limit_value': 250000}}])
 		print("Test b_4_1_5:ImagePost:long image and name ")
 
-	"""def test_b_004_01_6_ImagePost(self):
-		# a product that is not in stock
-		toValidate = {"product_id":"2","amount":"10"}
-		try:
-			img = ImagePost(**toValidate)
-			self.assertEqual(True,False)
-		except Exception as e:
-			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
-			'msg': 'this product is not in stock, so it can not be imged', 
-			'type': 'value_error'}])
-		print("Test b_4_1_6:ImagePost:a product that is not in stock")"""
-
 
 
 

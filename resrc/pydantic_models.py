@@ -238,10 +238,31 @@ class ImagePost(BaseModel):
 
 
 
-class ImageUpdate(BaseModel):
+class Image_Update(BaseModel):
 	name : image_name_con = NotReceived()
 	formatting : formatting_con = NotReceived()
 	image_b64 : image_b64_con = NotReceived()
+
+	@validator('image_b64')
+	def b64_is_b64(cls, value):
+		try:
+			base64.b64decode(value)
+		except:
+			raise ValueError('this image is not base64')
+		return value
+
+def ImageUpdate(**kwargs):
+	img = Image_Update(**kwargs)
+	if type(img.name) !=NotReceived :
+		return img
+	if type(img.formatting) !=NotReceived :
+		return img
+	if type(img.image_b64) !=NotReceived :
+		return img
+	raise ValueError(json.dumps([{"loc": ["image_b64"], 
+		"msg": "you must at least enter one value to change", 
+		"type": "value_error"}]))
+	
 	
 		
 
