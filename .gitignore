@@ -21,6 +21,10 @@ __pycache__/*
 */node_modules/*
 */assets
 */assets/*
+deprecated/node/node_modules
+deprecated/node/node_modules/*
+
+
 
 # OS generated files #
 ######################
