@@ -619,11 +619,11 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[ 
 				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
 				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
-		print("Test b_3_2_4:OrderUpdate:Fail:id less than 0, amount less than 0")
+		print("Test b_3_2_4:OrderUpdate:Fail:amount less than 0")
 
-	"""def test_b_003_02_5_OrderUpdate(self):
-		# non existent product id
+	def test_b_003_02_5_OrderUpdate(self):
 		# very big amount
+		# product id is additional, and it will not be returned
 		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
 
 		try:
@@ -631,12 +631,10 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
-				'msg': 'there is no Product with this id: 50000000', 'type': 
-				'value_error'}, {'loc': ['amount'], 'msg': 
+			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
 				'ensure this value is less than 1000', 'type': 
 				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
-		print("Test b_3_2_5:OrderUpdate:non existent product id, big amount")"""
+		print("Test b_3_2_5:OrderUpdate:non existent product id, big amount")
 
 
 
