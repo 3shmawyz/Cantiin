@@ -718,32 +718,36 @@ class pydanticTestCase(unittest.TestCase):
 				'msg': 'ensure this value has at least 3 characters', 
 				'type': 'value_error.any_str.min_length', 'ctx': 
 				{'limit_value': 3}}, {'loc': ['formatting'], 'msg': 
-				"this format gif is not in the list of accpted formats"+
+				"this format \"gif\" is not in the list of accpted formats"+
 				" ['png', 'jpg']", 'type': 'value_error'}, {'loc': 
 				['image_b64'], 'msg': 
 				'ensure this value has at least 4 characters', 
 				'type': 'value_error.any_str.min_length', 'ctx': 
 				{'limit_value': 4}}])
-		print("Test b_4_1_4:ImagePost:Fail:id less than 0, amount less than 0")
+		print("Test b_4_1_4:ImagePost:Fail:short name and image, "+
+			"rejected formatting")
 
-	"""def test_b_004_01_5_ImagePost(self):
-		# non existent product id
-		# very big amount
-		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
+	def test_b_004_01_5_ImagePost(self):
+		# long name
+		# long image
+		toValidate = {"name":"a"*201,"formatting":"png", 
+		"image_b64":"a"*250001}
 
 		try:
 			img = ImagePost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
-				'msg': 'there is no Product with this id: 50000000', 'type': 
-				'value_error'}, {'loc': ['amount'], 'msg': 
-				'ensure this value is less than 1000', 'type': 
-				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
-		print("Test b_4_1_5:ImagePost:non existent product id, big amount")
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 'msg': 
+				'ensure this value has at most 200 characters', 'type': 
+				'value_error.any_str.max_length', 'ctx': {'limit_value': 
+				200}}, {'loc': ['image_b64'], 'msg': 
+				'ensure this value has at most 250000 characters', 'type': 
+				'value_error.any_str.max_length', 'ctx': 
+				{'limit_value': 250000}}])
+		print("Test b_4_1_5:ImagePost:long image and name ")
 
-	def test_b_004_01_6_ImagePost(self):
+	"""def test_b_004_01_6_ImagePost(self):
 		# a product that is not in stock
 		toValidate = {"product_id":"2","amount":"10"}
 		try:

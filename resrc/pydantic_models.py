@@ -29,7 +29,7 @@ amount_con = conint(gt=-1, lt=1000)
 #Image
 image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
 formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
-image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=10000)
+image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=250000)
 
 
 # accepted frmats of images
@@ -223,7 +223,7 @@ class ImagePost(BaseModel):
 	@validator('formatting')
 	def formatting_in_range(cls, value):
 		if value not in IMAGE_ACCEPTED_FROMATS:
-			raise ValueError('this format '+str(value)+" is not in the list of "+
+			raise ValueError('this format "'+str(value)+'" is not in the list of '+
 				"accpted formats "+ str(IMAGE_ACCEPTED_FROMATS))
 		return value
 
