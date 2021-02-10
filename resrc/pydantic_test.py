@@ -704,23 +704,29 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test b_4_1_3:ImagePost:Fail:wrong data types")
 
 
-	"""def test_b_004_01_4_ImagePost(self):
-		# product_id less than 0
-		# amount less than 0
-		toValidate = {"product_id":"-1","amount":"-1"}
+	def test_b_004_01_4_ImagePost(self):
+		# short name
+		# non existent formatting
+		# short image
+		toValidate = {"name":"a","formatting":"gif", "image_b64":""}
 		try:
 			img = ImagePost(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
-				'msg': 'ensure this value is greater than 0', 'type': 
-				'value_error.number.not_gt', 'ctx': {'limit_value': 0}}, 
-				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
-				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at least 3 characters', 
+				'type': 'value_error.any_str.min_length', 'ctx': 
+				{'limit_value': 3}}, {'loc': ['formatting'], 'msg': 
+				"this format gif is not in the list of accpted formats"+
+				" ['png', 'jpg']", 'type': 'value_error'}, {'loc': 
+				['image_b64'], 'msg': 
+				'ensure this value has at least 4 characters', 
+				'type': 'value_error.any_str.min_length', 'ctx': 
+				{'limit_value': 4}}])
 		print("Test b_4_1_4:ImagePost:Fail:id less than 0, amount less than 0")
 
-	def test_b_004_01_5_ImagePost(self):
+	"""def test_b_004_01_5_ImagePost(self):
 		# non existent product id
 		# very big amount
 		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
