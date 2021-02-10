@@ -10,6 +10,7 @@ from app import create_app
 
 from pydantic import ValidationError
 
+import base64
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
@@ -747,6 +748,25 @@ class pydanticTestCase(unittest.TestCase):
 				{'limit_value': 250000}}])
 		print("Test b_4_1_5:ImagePost:long image and name ")
 
+	def test_b_004_01_6_ImagePost(self):
+		# image can not be converted to b64
+		toValidate = {"name":"abc","formatting":"png", 
+		"image_b64":"**&$*)())("}
+
+		try:
+			img = ImagePost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 'msg': 
+				'ensure this value has at most 200 characters', 'type': 
+				'value_error.any_str.max_length', 'ctx': {'limit_value': 
+				200}}, {'loc': ['image_b64'], 'msg': 
+				'ensure this value has at most 250000 characters', 'type': 
+				'value_error.any_str.max_length', 'ctx': 
+				{'limit_value': 250000}}])
+		print("Test b_4_1_6:ImagePost:Can not be converted to base64")
+
 
 
 
@@ -846,28 +866,6 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	def test_here(self):
 		#n = '0'*8
 		#print(n)
@@ -883,6 +881,55 @@ class pydanticTestCase(unittest.TestCase):
 			print(json.loads(e.json()))
 			pass
 		print("Test")
+
+
+
+
+
+
+
+
+
+	def test_test_001_01_string_and_bytes_and_b64(self):
+		message = "Python is fun"
+		print(message)
+		#Python is fun
+		message_bytes = message.encode('ascii')
+		print(message_bytes)
+		#b'Python is fun'
+		base64_bytes = base64.b64encode(message_bytes)
+		print(base64_bytes)
+		#b'UHl0aG9uIGlzIGZ1bg=='
+		base64_message = base64_bytes.decode('ascii')
+		print(base64_message)
+		#UHl0aG9uIGlzIGZ1bg==
+		print("test_test_001_01_string_and_bytes_and_b64")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
