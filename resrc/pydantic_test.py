@@ -563,6 +563,18 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 	def test_b_003_02_1_OrderUpdate(self):
 		# product id is an additional value
 		toValidate = {"product_id":"  3   ","amount":"   5 "}
@@ -571,6 +583,65 @@ class pydanticTestCase(unittest.TestCase):
 		self.assertEqual(order.dict(),
 			{'amount': 5})
 		print("Test b_3_2_1:OrderUpdate Successful")
+
+	def test_b_003_02_2_OrderUpdate(self):
+		toValidate = {}
+		try:
+			order = OrderUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[ 
+				{'loc': ['amount'], 'msg': 'field required', 'type': 
+				'value_error.missing'}])
+		print("Test b_3_2_2:OrderUpdate:Fail:all missing required")
+
+	"""def test_b_003_02_3_OrderUpdate(self):
+		toValidate = {"product_id":{},"amount":{}}
+		try:
+			order = OrderUpdate(**toValidate)
+			self.assertEqual()
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'],
+			'msg': 'value is not a valid integer', 'type': 
+			'type_error.integer'}, {'loc': ['amount'], 'msg': 
+			'value is not a valid integer', 'type': 'type_error.integer'}])
+		print("Test b_3_2_3:OrderUpdate:Fail:wrong data types")
+
+
+	def test_b_003_02_4_OrderUpdate(self):
+		# product_id less than 0
+		# amount less than 0
+		toValidate = {"product_id":"-1","amount":"-1"}
+		try:
+			order = OrderUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'ensure this value is greater than 0', 'type': 
+				'value_error.number.not_gt', 'ctx': {'limit_value': 0}}, 
+				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
+				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
+		print("Test b_3_2_4:OrderUpdate:Fail:id less than 0, amount less than 0")
+
+	def test_b_003_02_5_OrderUpdate(self):
+		# non existent product id
+		# very big amount
+		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
+
+		try:
+			order = OrderUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'there is no Product with this id: 50000000', 'type': 
+				'value_error'}, {'loc': ['amount'], 'msg': 
+				'ensure this value is less than 1000', 'type': 
+				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
+		print("Test b_3_2_5:OrderUpdate:non existent product id, big amount")"""
 
 
 
