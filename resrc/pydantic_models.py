@@ -231,7 +231,7 @@ class ImagePost(BaseModel):
 	@validator('image_b64')
 	def b64_is_b64(cls, value):
 		try:
-			base64.decodestring(value)
+			base64.b64decode(value)
 		except:
 			raise ValueError('this image is not base64')
 		return value
