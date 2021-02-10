@@ -210,31 +210,8 @@ class OrderPost(BaseModel):
 
 
 class Order_Update(BaseModel):
-	product_id : id_con = NotReceived()
-	amount : amount_con = NotReceived()
-
-	@validator('product_id')
-	def product_exists(cls, value):
-		# Validatng that this product really exists
-		validate_model_id_pydantic(Product, value)
-		#Validating that the product is in stock before ordering it
-		product_in_stock = Product.query.get(value).in_stock
-		if not product_in_stock:
-			raise ValueError('this product is not in stock, '+
-				'so it can not be ordered')
-		return value
-
-def OrderUpdate(**kwargs):
-	order_object = Order_Update(**kwargs)
-	# Validating that there is at least one input
-	if type(order_object.product_id) != NotReceived :
-		return order_object
-	if type(order_object.amount) != NotReceived :
-		return order_object
-	# Now there are no inputs
-	raise ValueError(json.dumps([{"loc": ["amount"], 
-			"msg": "you must at least enter one value to change", 
-			"type": "value_error"}]))
+	# product id can not be modified
+	amount : amount_con
 
 	
 

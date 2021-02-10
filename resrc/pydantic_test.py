@@ -541,7 +541,7 @@ class pydanticTestCase(unittest.TestCase):
 				'value_error'}, {'loc': ['amount'], 'msg': 
 				'ensure this value is less than 1000', 'type': 
 				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
-		print("Test b_3_1_5:OrderPost:Fail:password mismatch")
+		print("Test b_3_1_5:OrderPost:non existent product id, big amount")
 
 	def test_b_003_01_6_OrderPost(self):
 		# a product that is not in stock
@@ -554,7 +554,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
 			'msg': 'this product is not in stock, so it can not be ordered', 
 			'type': 'value_error'}])
-		print("Test b_3_1_6:OrderPost:Added unknown value:Cleaned")
+		print("Test b_3_1_6:OrderPost:a product that is not in stock")
 
 
 
