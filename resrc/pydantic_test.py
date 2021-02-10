@@ -819,20 +819,29 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test b_4_2_3:ImageUpdate:Fail:wrong data type")
 
 
-	"""def test_b_004_02_4_ImageUpdate(self):
-		# amount less than 0
-		toValidate = {"amount":"-1"}
+	def test_b_004_02_4_ImageUpdate(self):
+		# short name
+		# non existent formatting
+		# short image
+		toValidate = {"name":"a","formatting":"gif", "image_b64":""}
 		try:
 			order = ImageUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[ 
-				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
-				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at least 3 characters', 
+				'type': 'value_error.any_str.min_length', 'ctx': 
+				{'limit_value': 3}}, {'loc': ['formatting'], 'msg': 
+				"this format \"gif\" is not in the list of accpted formats"+
+				" ['png', 'jpg']", 'type': 'value_error'}, {'loc': 
+				['image_b64'], 'msg': 
+				'ensure this value has at least 4 characters', 
+				'type': 'value_error.any_str.min_length', 'ctx': 
+				{'limit_value': 4}}])
 		print("Test b_4_2_4:OrderUpdate:Fail:amount less than 0")
 
-	def test_b_004_02_5_OrderUpdate(self):
+	"""def test_b_004_02_5_OrderUpdate(self):
 		# very big amount
 		# product id is additional, and it will not be returned
 		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}

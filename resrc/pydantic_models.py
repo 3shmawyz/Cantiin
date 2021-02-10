@@ -243,6 +243,13 @@ class Image_Update(BaseModel):
 	formatting : formatting_con = NotReceived()
 	image_b64 : image_b64_con = NotReceived()
 
+	@validator('formatting')
+	def formatting_in_range(cls, value):
+		if value not in IMAGE_ACCEPTED_FROMATS:
+			raise ValueError('this format "'+str(value)+'" is not in the list of '+
+				"accpted formats "+ str(IMAGE_ACCEPTED_FROMATS))
+		return value
+
 	@validator('image_b64')
 	def b64_is_b64(cls, value):
 		try:
