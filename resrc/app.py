@@ -16,6 +16,16 @@ class config:
 	SQLALCHEMY_DATABASE_URI = "sqlite:///databases/database.sqlite"
 	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
+
+class config_test:
+	#SECRET_KEY=os.urandom(32)
+	SECRET_KEY=secrets.token_urlsafe(5000)
+	basedir = os.path.abspath(os.path.dirname(__file__))
+	DEBUG = True
+	SQLALCHEMY_DATABASE_URI = "sqlite:///databases/test.sqlite"
+	SQLALCHEMY_TRACK_MODIFICATIONS= False
+
+
 def create_app():
 
 
@@ -120,5 +130,5 @@ def create_app():
 
 
 
-	
+
 	return app
