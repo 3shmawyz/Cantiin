@@ -825,7 +825,7 @@ class pydanticTestCase(unittest.TestCase):
 		# short image
 		toValidate = {"name":"a","formatting":"gif", "image_b64":""}
 		try:
-			order = ImageUpdate(**toValidate)
+			img = ImageUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
@@ -839,22 +839,39 @@ class pydanticTestCase(unittest.TestCase):
 				'ensure this value has at least 4 characters', 
 				'type': 'value_error.any_str.min_length', 'ctx': 
 				{'limit_value': 4}}])
-		print("Test b_4_2_4:OrderUpdate:Fail:amount less than 0")
+		print("Test b_4_2_4:ImageUpdate:Fail:amount less than 0")
 
-	"""def test_b_004_02_5_OrderUpdate(self):
+	def test_b_004_02_5_OrderUpdate(self):
 		# very big amount
 		# product id is additional, and it will not be returned
 		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
 
 		try:
-			order = OrderUpdate(**toValidate)
+			img = ImageUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
 				'ensure this value is less than 1000', 'type': 
 				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
-		print("Test b_4_2_5:OrderUpdate:non existent product id, big amount")"""
+		print("Test b_4_2_5:ImageUpdate:non existent product id, big amount")
+
+	def test_b_004_02_6_OrderUpdate(self):
+		# very big amount
+		# product id is additional, and it will not be returned
+		toValidate = {"name":123}
+		img = ImageUpdate(**toValidate)
+		self.assertEqual(type(img.formatting),NotReceived)
+		self.assertEqual(type(img.image_b64),NotReceived)
+		"""try:
+			print(order.dict())
+			#self.assertEqual(True,False)
+		except Exception as e:
+			print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
+				'ensure this value is less than 1000', 'type': 
+				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])"""
+		print("Test b_4_2_6:ImageUpdate:Not Received")
 
 
 
