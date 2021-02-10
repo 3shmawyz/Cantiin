@@ -768,10 +768,66 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
+	def test_b_004_02_1_ImageUpdate(self):
+		# product id is an additional value
+		toValidate = {"name":"abc","formatting":"png", "image_b64":"1111"}
+		img = ImageUpdate(**toValidate)
+		#print(img.dict())
+		self.assertEqual(img.dict(),
+			{'name': 'abc', 'formatting': 'png', 'image_b64': '1111'})
+		print("Test b_4_2_1:ImageUpdate Successful")
+
+	"""def test_b_004_02_2_ImageUpdate(self):
+		toValidate = {}
+		try:
+			img = ImageUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[ 
+				{'loc': ['amount'], 'msg': 'field required', 'type': 
+				'value_error.missing'}])
+		print("Test b_4_2_2:ImageUpdate:Fail:all missing required")
+
+	def test_b_004_02_3_ImageUpdate(self):
+		toValidate = {"amount":{}}
+		try:
+			img = ImageUpdate(**toValidate)
+			self.assertEqual()
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
+			'value is not a valid integer', 'type': 'type_error.integer'}])
+		print("Test b_4_2_3:ImageUpdate:Fail:wrong data type")
 
 
+	def test_b_004_02_4_ImageUpdate(self):
+		# amount less than 0
+		toValidate = {"amount":"-1"}
+		try:
+			order = ImageUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[ 
+				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
+				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
+		print("Test b_4_2_4:OrderUpdate:Fail:amount less than 0")
 
+	def test_b_004_02_5_OrderUpdate(self):
+		# very big amount
+		# product id is additional, and it will not be returned
+		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
 
+		try:
+			order = OrderUpdate(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
+				'ensure this value is less than 1000', 'type': 
+				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
+		print("Test b_4_2_5:OrderUpdate:non existent product id, big amount")"""
 
 
 

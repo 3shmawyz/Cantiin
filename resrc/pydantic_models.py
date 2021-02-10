@@ -253,16 +253,16 @@ class Image_Update(BaseModel):
 
 def ImageUpdate(**kwargs):
 	img = Image_Update(**kwargs)
-	if type(img.name) !=NotReceived :
+	if type(img.name) != NotReceived :
 		return img
-	if type(img.formatting) !=NotReceived :
+	if type(img.formatting) != NotReceived :
 		return img
-	if type(img.image_b64) !=NotReceived :
+	if type(img.image_b64) != NotReceived :
 		return img
 	raise ValueError(json.dumps([{"loc": ["image_b64"], 
 		"msg": "you must at least enter one value to change", 
 		"type": "value_error"}]))
-	
+
 	
 		
 
