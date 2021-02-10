@@ -32,9 +32,8 @@ formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
 image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=10000)
 
 
-
-
-
+# accepted frmats of images
+IMAGE_ACCEPTED_FROMATS=["png","jpg"]
 
 
 
@@ -221,10 +220,32 @@ class ImagePost(BaseModel):
 	formatting : formatting_con
 	image_b64 : image_b64_con 
 
+	@validator('formatting')
+	def formatting_in_range(cls, value):
+		if value not in IMAGE_ACCEPTED_FROMATS:
+			raise ValueError('this format '+str(value)+" is not in the list of "+
+				"accpted formats "+ str(IMAGE_ACCEPTED_FROMATS))
+		return value
+
+
+	@validator('image_b64')
+	def b64_is_b64(cls, value):
+		# Validatng that this product really exists
+		validate_model_id_pydantic(Product, value)
+		#Validating that the product is in stock before ordering it
+		product_in_stock = Product.query.get(value).in_stock
+		if not product_in_stock:
+			raise ValueError('this product is not in stock, '+
+				'so it can not be ordered')
+		return value
+
+
+
 class ImageUpdate(BaseModel):
 	name : image_name_con = NotReceived()
 	formatting : formatting_con = NotReceived()
 	image_b64 : image_b64_con = NotReceived()
+	
 		
 
 

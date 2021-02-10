@@ -667,6 +667,105 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
+	def test_b_003_01_1_ImagePost(self):
+		toValidate = {"name":"3","formatting":"5"}
+		order = ImagePost(**toValidate)
+		#print(order.dict())
+		self.assertEqual(order.dict(),
+			{'product_id': 3, 'amount': 5})
+		print("Test b_3_1_1:ImagePost Successful")
+
+	"""def test_b_003_01_2_ImagePost(self):
+		toValidate = {}
+		try:
+			order = ImagePost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'field required', 'type': 'value_error.missing'}, 
+				{'loc': ['amount'], 'msg': 'field required', 'type': 
+				'value_error.missing'}])
+		print("Test b_3_1_2:ImagePost:Fail:all missing required")
+
+	def test_b_003_01_3_ImagePost(self):
+		toValidate = {"product_id":{},"amount":{}}
+		try:
+			order = ImagePost(**toValidate)
+			self.assertEqual()
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'],
+			'msg': 'value is not a valid integer', 'type': 
+			'type_error.integer'}, {'loc': ['amount'], 'msg': 
+			'value is not a valid integer', 'type': 'type_error.integer'}])
+		print("Test b_3_1_3:ImagePost:Fail:wrong data types")
+
+
+	def test_b_003_01_4_ImagePost(self):
+		# product_id less than 0
+		# amount less than 0
+		toValidate = {"product_id":"-1","amount":"-1"}
+		try:
+			order = ImagePost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'ensure this value is greater than 0', 'type': 
+				'value_error.number.not_gt', 'ctx': {'limit_value': 0}}, 
+				{'loc': ['amount'], 'msg': 'ensure this value is greater than -1',
+				'type': 'value_error.number.not_gt', 'ctx': {'limit_value': -1}}])
+		print("Test b_3_1_4:ImagePost:Fail:id less than 0, amount less than 0")
+
+	def test_b_003_01_5_ImagePost(self):
+		# non existent product id
+		# very big amount
+		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
+
+		try:
+			order = ImagePost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+				'msg': 'there is no Product with this id: 50000000', 'type': 
+				'value_error'}, {'loc': ['amount'], 'msg': 
+				'ensure this value is less than 1000', 'type': 
+				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
+		print("Test b_3_1_5:ImagePost:non existent product id, big amount")
+
+	def test_b_003_01_6_ImagePost(self):
+		# a product that is not in stock
+		toValidate = {"product_id":"2","amount":"10"}
+		try:
+			order = ImagePost(**toValidate)
+			self.assertEqual(True,False)
+		except Exception as e:
+			#print(json.loads(e.json()))
+			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'], 
+			'msg': 'this product is not in stock, so it can not be ordered', 
+			'type': 'value_error'}])
+		print("Test b_3_1_6:ImagePost:a product that is not in stock")"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -715,6 +814,8 @@ class pydanticTestCase(unittest.TestCase):
 
 
 	def test_here(self):
+		#n = '0'*8
+		#print(n)
 		json.loads(json.dumps([{"loc": ["in_stock"], 
 			"msg": "You must at least enter one value to change", 
 			"type": "value_error"}]))
