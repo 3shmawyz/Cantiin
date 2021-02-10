@@ -596,21 +596,19 @@ class pydanticTestCase(unittest.TestCase):
 				'value_error.missing'}])
 		print("Test b_3_2_2:OrderUpdate:Fail:all missing required")
 
-	"""def test_b_003_02_3_OrderUpdate(self):
-		toValidate = {"product_id":{},"amount":{}}
+	def test_b_003_02_3_OrderUpdate(self):
+		toValidate = {"amount":{}}
 		try:
 			order = OrderUpdate(**toValidate)
 			self.assertEqual()
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'],
-			'msg': 'value is not a valid integer', 'type': 
-			'type_error.integer'}, {'loc': ['amount'], 'msg': 
+			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
 			'value is not a valid integer', 'type': 'type_error.integer'}])
-		print("Test b_3_2_3:OrderUpdate:Fail:wrong data types")
+		print("Test b_3_2_3:OrderUpdate:Fail:wrong data type")
 
 
-	def test_b_003_02_4_OrderUpdate(self):
+	"""def test_b_003_02_4_OrderUpdate(self):
 		# product_id less than 0
 		# amount less than 0
 		toValidate = {"product_id":"-1","amount":"-1"}
