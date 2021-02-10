@@ -689,21 +689,22 @@ class pydanticTestCase(unittest.TestCase):
 				'msg': 'field required', 'type': 'value_error.missing'}])
 		print("Test b_4_1_2:ImagePost:Fail:all missing required")
 
-	"""def test_b_004_01_3_ImagePost(self):
-		toValidate = {"product_id":{},"amount":{}}
+	def test_b_004_01_3_ImagePost(self):
+		toValidate = {"name":{},"formatting":{}, "image_b64":{}}
 		try:
 			img = ImagePost(**toValidate)
 			self.assertEqual()
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['product_id'],
-			'msg': 'value is not a valid integer', 'type': 
-			'type_error.integer'}, {'loc': ['amount'], 'msg': 
-			'value is not a valid integer', 'type': 'type_error.integer'}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'str type expected', 'type': 'type_error.str'}, 
+				{'loc': ['formatting'], 'msg': 'str type expected', 
+				'type': 'type_error.str'}, {'loc': ['image_b64'], 
+				'msg': 'str type expected', 'type': 'type_error.str'}])
 		print("Test b_4_1_3:ImagePost:Fail:wrong data types")
 
 
-	def test_b_004_01_4_ImagePost(self):
+	"""def test_b_004_01_4_ImagePost(self):
 		# product_id less than 0
 		# amount less than 0
 		toValidate = {"product_id":"-1","amount":"-1"}
