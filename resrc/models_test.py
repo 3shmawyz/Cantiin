@@ -1,5 +1,6 @@
 import unittest
-from models import (NotReceived, validate_key, MyModel, User, Product, Order, Image,
+from models import (NotReceived, validate_key, 
+MyModel, User, Product, Order, #Image,
 	populate_tables, db_drop_and_create_all,get_dict, get_in_stock_products)
 from app import create_app
 from models import db
@@ -240,23 +241,23 @@ class modelsTestCase(unittest.TestCase):
 		db.session.commit()
 		self.assertEqual(len(Order.query.all()),3)
 
-		img_to_delete1=Image(seller_id=1,name="abc",formatting = "png")
-		img_to_delete2=Image(seller_id=1,name="abce",formatting = "jpg")
-		db.session.add_all([img_to_delete1,img_to_delete2])
-		db.session.commit()
-		self.assertEqual(len(Image.query.all()),2)
+		#img_to_delete1=Image(seller_id=1,name="abc",formatting = "png")
+		#img_to_delete2=Image(seller_id=1,name="abce",formatting = "jpg")
+		#db.session.add_all([img_to_delete1,img_to_delete2])
+		#db.session.commit()
+		#self.assertEqual(len(Image.query.all()),2)
 
 		# Trying to delete
 		
-		img_to_delete2.delete()
-		self.assertEqual(len(Image.query.all()),1)
+		#img_to_delete2.delete()
+		#self.assertEqual(len(Image.query.all()),1)
 		order_to_del3.delete()
 		self.assertEqual(len(Order.query.all()),2)
 		prod_to_del2.delete()
 		self.assertEqual(len(Order.query.all()),1)
 		self.assertEqual(len(Product.query.all()),1)
 		user_to_del.delete()
-		self.assertEqual(len(Image.query.all()),0)
+		#self.assertEqual(len(Image.query.all()),0)
 		self.assertEqual(len(Order.query.all()),0)
 		self.assertEqual(len(Product.query.all()),0)
 		self.assertEqual(len(User.query.all()),0)
@@ -285,13 +286,14 @@ class modelsTestCase(unittest.TestCase):
 		prod = Product(name="789",price=123,seller_id=1)
 		prod.insert()
 		self.assertEqual(user_to_del.deep(),
-			{'id': 1, 'images': [], 'orders': [], 'products': 
+			{'id': 1, #'images': [], 
+			'orders': [], 'products': 
 			[{'id': 1, 'in_stock': True, 'name': '789', 'price': 123.0,
 			 'seller_id': 1}], 'username': 'abc'})
 		self.assertEqual(prod.deep(),{'id': 1, 'in_stock': True, 
 			'name': '789', 'orders': [], 'price': 123.0, 'seller': 
 			{'id': 1, 'username': 'abc'}, 'seller_id': 1})
-		print("Test 0a_1_4_1 : MyModel: deep")
+		print("Test 0a_1_5_1 : MyModel: deep")
 
 
 
@@ -370,11 +372,11 @@ class modelsTestCase(unittest.TestCase):
 			self.assertEqual(type(order.user_id),int)
 			self.assertEqual(type(order.product_id),int)
 			self.assertEqual(type(order.amount),int)
-		for image in user.images:
+		"""for image in user.images:
 			self.assertEqual(type(image.id),int)
 			self.assertEqual(type(image.seller_id),int)
 			self.assertEqual(type(image.name),str)
-			self.assertEqual(type(image.formatting),str)
+			self.assertEqual(type(image.formatting),str)"""
 		print("Test a_1_5: user values")
 
 
@@ -450,7 +452,7 @@ class modelsTestCase(unittest.TestCase):
 		users_before = len(User.query.all())
 		products_before = len(Product.query.all())
 		orders_before = len(Order.query.all())
-		images_before = len(Image.query.all())
+		#images_before = len(Image.query.all())
 
 		#adding a new user
 		usr_to_del = User(username="aklmnopq",password="123456789")
@@ -473,18 +475,18 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(len(Order.query.all()),orders_before+1)
 
 		#adding a new image
-		img_to_del = Image(seller_id=usr_to_del.id, name="Labtopfgfgfg", 
-			formatting="png")
-		db.session.add(img_to_del)
-		db.session.commit()
+		#img_to_del = Image(seller_id=usr_to_del.id, name="Labtopfgfgfg", 
+		#	formatting="png")
+		#db.session.add(img_to_del)
+		#db.session.commit()
 
-		self.assertEqual(len(Image.query.all()),images_before+1)
+		#self.assertEqual(len(Image.query.all()),images_before+1)
 		#print(usr_to_del.deep())
 		usr_to_del.delete()
 		self.assertEqual(len(User.query.all()),users_before)
 		self.assertEqual(len(Product.query.all()),products_before)
 		self.assertEqual(len(Order.query.all()),orders_before)
-		self.assertEqual(len(Image.query.all()),images_before)
+		#self.assertEqual(len(Image.query.all()),images_before)
 
 		print("Test a_1_10: user delete relationships")
 
@@ -492,10 +494,8 @@ class modelsTestCase(unittest.TestCase):
 		#measuring lengths beofre actions
 		usr = User.query.get(6)
 		self.assertEqual(usr.deep(),
-			{'id': 6, 'images': [{'formatting': 'png', 
-			'id': 6, 'name': 'Mouse', 'seller_id': 6}, 
-			{'formatting': 'jpg', 'id': 12, 'name': 'Radio', 
-			'seller_id': 6}], 'orders': [], 'products': [], 
+			{'id': 6, 
+			'orders': [], 'products': [], 
 			'username': 'water'})
 		print("Test a_1_11: user deep")
 
@@ -892,7 +892,7 @@ class modelsTestCase(unittest.TestCase):
 		print("Test a_3_13: order deep")
 
 
-	def test_a_4_000_image_intro(self):
+	"""def test_a_4_000_image_intro(self):
 		print("")
 		print("")
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -970,7 +970,7 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(Image.query.get(1).deep(),
 			{'formatting': 'png', 'id': 1, 'name': 'Mouse', 
 			'seller': {'id': 1, 'username': 'abc'}, 'seller_id': 1})
-		print("Test a_4_08: image deep")
+		print("Test a_4_08: image deep")"""
 
 	"""
 	get dict is deprecated

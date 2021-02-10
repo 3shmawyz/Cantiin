@@ -241,8 +241,8 @@ class User(db.Model,MyModel):
 		passive_deletes=False,backref="seller")
 	orders = db.relationship("Order",cascade="all, delete-orphan",
 		passive_deletes=False,backref="buyer")
-	images = db.relationship("Image",cascade="all, delete-orphan",
-		passive_deletes=False,backref="seller")
+	#images = db.relationship("Image",cascade="all, delete-orphan",
+	#	passive_deletes=False,backref="seller")
 
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
@@ -347,6 +347,12 @@ id,seller_id,name,formatting
 
 The image will be stroed with it's id
 '''
+"""
+
+No more adding features
+Learn new things
+
+
 class Image(db.Model, MyModel):
 	__tablename__="image"
 	# Autoincrementing, unique primary key
@@ -367,7 +373,7 @@ class Image(db.Model, MyModel):
 	# it can not be unique
 
 	def __init__(self,**kwargs):
-		MyModel.__init__(self,**kwargs)
+		MyModel.__init__(self,**kwargs)"""
 
 
 
@@ -437,7 +443,7 @@ def populate_tables():
 	db.session.add_all(orders)
 	db.session.commit()
 
-	images = list() 
+	"""images = list() 
 	#id, user, product, amount
 	images.append(Image(seller_id="1", name="Labtop", 
 		formatting="png"))
@@ -471,7 +477,7 @@ def populate_tables():
 		formatting="png"))
 
 	db.session.add_all(images)
-	db.session.commit()
+	db.session.commit()"""
 
 
 

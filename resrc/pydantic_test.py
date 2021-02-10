@@ -1,7 +1,8 @@
 import unittest
 from pydantic_models import (UserPost, UserUpdate, ProductPost, 
 	ProductUpdate, OrderPost, OrderUpdate,
-	ImagePost, ImageUpdate, validate_model_id,validate_model_id_pydantic,TestHere)
+	#ImagePost, ImageUpdate, 
+	validate_model_id,validate_model_id_pydantic,TestHere)
 #from app import create_app
 #from models import db
 import json
@@ -668,7 +669,7 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	def test_b_004_01_1_ImagePost(self):
+	"""def test_b_004_01_1_ImagePost(self):
 		toValidate = {"name":"abc","formatting":"png", "image_b64":"1111"}
 		img = ImagePost(**toValidate)
 		#print(img.dict())
@@ -760,7 +761,7 @@ class pydanticTestCase(unittest.TestCase):
 			#print(json.loads(e.json()))
 			self.assertEqual(json.loads(e.json()),[{'loc': ['image_b64'], 
 				'msg': 'this image is not base64', 'type': 'value_error'}])
-		print("Test b_4_1_6:ImagePost:Can not be converted to base64")
+		print("Test b_4_1_6:ImagePost:Can not be converted to base64")"""
 
 
 
@@ -783,7 +784,7 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	def test_b_004_02_1_ImageUpdate(self):
+	"""def test_b_004_02_1_ImageUpdate(self):
 		# product id is an additional value
 		toValidate = {"name":"abc","formatting":"png", "image_b64":"1111"}
 		img = ImageUpdate(**toValidate)
@@ -859,16 +860,16 @@ class pydanticTestCase(unittest.TestCase):
 				'ensure this value has at most 250000 characters', 
 				'type': 'value_error.any_str.max_length', 'ctx': 
 				{'limit_value': 250000}}])
-		print("Test b_4_2_5:ImageUpdate:non existent product id, big amount")
+		print("Test b_4_2_5:ImageUpdate:non existent product id, big amount")"""
 
-	def test_b_004_02_6_OrderUpdate(self):
+	"""def test_b_004_02_6_OrderUpdate(self):
 		# very big amount
 		# product id is additional, and it will not be returned
 		toValidate = {"name":123}
 		img = ImageUpdate(**toValidate)
 		self.assertEqual(type(img.formatting),NotReceived)
-		self.assertEqual(type(img.image_b64),NotReceived)
-		"""try:
+		self.assertEqual(type(img.image_b64),NotReceived)"""
+	"""try:
 			print(order.dict())
 			#self.assertEqual(True,False)
 		except Exception as e:
@@ -876,7 +877,7 @@ class pydanticTestCase(unittest.TestCase):
 			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
 				'ensure this value is less than 1000', 'type': 
 				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])"""
-		print("Test b_4_2_6:ImageUpdate:Not Received")
+		#print("Test b_4_2_6:ImageUpdate:Not Received")
 
 
 

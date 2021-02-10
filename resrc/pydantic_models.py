@@ -27,10 +27,10 @@ product_price_con = confloat(ge=.1, le=1000000)
 amount_con = conint(gt=-1, lt=1000)
 
 #Image
-image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
+"""image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
 formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
 image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=250000)
-
+"""
 
 # accepted frmats of images
 IMAGE_ACCEPTED_FROMATS=["png","jpg"]
@@ -215,7 +215,7 @@ class OrderUpdate(BaseModel):
 	
 
 
-class ImagePost(BaseModel):
+"""class ImagePost(BaseModel):
 	name :  image_name_con
 	formatting : formatting_con
 	image_b64 : image_b64_con 
@@ -235,8 +235,6 @@ class ImagePost(BaseModel):
 		except:
 			raise ValueError('this image is not base64')
 		return value
-
-
 
 class Image_Update(BaseModel):
 	name : image_name_con = NotReceived()
@@ -268,7 +266,7 @@ def ImageUpdate(**kwargs):
 		return img
 	raise ValueError(json.dumps([{"loc": ["image_b64"], 
 		"msg": "you must at least enter one value to change", 
-		"type": "value_error"}]))
+		"type": "value_error"}]))"""
 
 	
 		
