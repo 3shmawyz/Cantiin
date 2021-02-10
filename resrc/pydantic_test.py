@@ -804,19 +804,22 @@ class pydanticTestCase(unittest.TestCase):
 				'type': 'value_error'}])
 		print("Test b_4_2_2:ImageUpdate:Fail:all missing required")
 
-	"""def test_b_004_02_3_ImageUpdate(self):
-		toValidate = {"amount":{}}
+	def test_b_004_02_3_ImageUpdate(self):
+		toValidate = {"name":{},"formatting":{}, "image_b64":{}}
 		try:
 			img = ImageUpdate(**toValidate)
 			self.assertEqual()
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
-			'value is not a valid integer', 'type': 'type_error.integer'}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'str type expected', 'type': 'type_error.str'}, 
+				{'loc': ['formatting'], 'msg': 'str type expected', 
+				'type': 'type_error.str'}, {'loc': ['image_b64'], 
+				'msg': 'str type expected', 'type': 'type_error.str'}])
 		print("Test b_4_2_3:ImageUpdate:Fail:wrong data type")
 
 
-	def test_b_004_02_4_ImageUpdate(self):
+	"""def test_b_004_02_4_ImageUpdate(self):
 		# amount less than 0
 		toValidate = {"amount":"-1"}
 		try:
