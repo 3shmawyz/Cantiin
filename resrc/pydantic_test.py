@@ -842,18 +842,23 @@ class pydanticTestCase(unittest.TestCase):
 		print("Test b_4_2_4:ImageUpdate:Fail:amount less than 0")
 
 	def test_b_004_02_5_OrderUpdate(self):
-		# very big amount
-		# product id is additional, and it will not be returned
-		toValidate = {"product_id":"50000000","amount":"10000000000000000000"}
+		# long name
+		# long image
+		toValidate = {"name":"a"*201,"formatting":"png", 
+		"image_b64":"a"*250001}
 
 		try:
 			img = ImageUpdate(**toValidate)
 			self.assertEqual(True,False)
 		except Exception as e:
 			#print(json.loads(e.json()))
-			self.assertEqual(json.loads(e.json()),[{'loc': ['amount'], 'msg': 
-				'ensure this value is less than 1000', 'type': 
-				'value_error.number.not_lt', 'ctx': {'limit_value': 1000}}])
+			self.assertEqual(json.loads(e.json()),[{'loc': ['name'], 
+				'msg': 'ensure this value has at most 200 characters', 
+				'type': 'value_error.any_str.max_length', 'ctx': 
+				{'limit_value': 200}}, {'loc': ['image_b64'], 'msg': 
+				'ensure this value has at most 250000 characters', 
+				'type': 'value_error.any_str.max_length', 'ctx': 
+				{'limit_value': 250000}}])
 		print("Test b_4_2_5:ImageUpdate:non existent product id, big amount")
 
 	def test_b_004_02_6_OrderUpdate(self):
