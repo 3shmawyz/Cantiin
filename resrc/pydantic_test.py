@@ -890,7 +890,7 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
-	def test_test_001_01_string_and_bytes_and_b64(self):
+	def test_test_001_01_string_to_b64(self):
 		message = "Python is fun"
 		print(message)
 		#Python is fun
@@ -903,6 +903,21 @@ class pydanticTestCase(unittest.TestCase):
 		base64_message = base64_bytes.decode('ascii')
 		print(base64_message)
 		#UHl0aG9uIGlzIGZ1bg==
+		print("test_test_001_01_string_and_bytes_and_b64")
+
+	def test_test_001_02_b64_to_string(self):
+		base64_message = 'UHl0aG9uIGlzIGZ1bg=='
+		print(base64_message)
+		#
+		base64_bytes = base64_message.encode('ascii')
+		print(base64_bytes)
+		#
+		message_bytes = base64.b64decode(base64_bytes)
+		print(message_bytes)
+		#
+		message = message_bytes.decode('ascii')
+		print(message)
+		#
 		print("test_test_001_01_string_and_bytes_and_b64")
 
 
