@@ -563,6 +563,19 @@ class pydanticTestCase(unittest.TestCase):
 
 
 
+	def test_b_003_02_1_OrderUpdate(self):
+		# product id is an additional value
+		toValidate = {"product_id":"  3   ","amount":"   5 "}
+		order = OrderUpdate(**toValidate)
+		#print(order.dict())
+		self.assertEqual(order.dict(),
+			{'amount': 5})
+		print("Test b_3_2_1:OrderUpdate Successful")
+
+
+
+
+
 
 
 

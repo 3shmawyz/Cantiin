@@ -209,7 +209,7 @@ class OrderPost(BaseModel):
 		return value
 
 
-class Order_Update(BaseModel):
+class OrderUpdate(BaseModel):
 	# product id can not be modified
 	amount : amount_con
 
