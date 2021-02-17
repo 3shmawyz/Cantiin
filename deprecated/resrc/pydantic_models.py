@@ -226,7 +226,7 @@ IMAGE_ACCEPTED_FROMATS=["png","jpg"]
 		raise ValueError(json.dumps([{"loc": ["in_stock"],
 			"msg": "you must at least enter one value to change",
 			"type": "value_error"}]))"""
-	"""def ProductUpdate(**kwargs):
+"""def ProductUpdate(**kwargs):
 	toReturn = ProductUpdatee(**kwargs)
 	if type(toReturn.name) != NotReceived:
 		return toReturn
