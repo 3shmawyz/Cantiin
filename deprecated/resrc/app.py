@@ -11,6 +11,8 @@ from __init__ import db, SECRET
 from models import (NotReceived, User, Product, Order, #Image,
 	db_drop_and_create_all, populate_tables)
 from flask_cors import CORS
+from pydantic_models import (validate_model_id, validate_model_id_pydantic,
+UserPost, UserUpdatePassword, ProductPost, OrderPost, OrderUpdate)
 from flask_pydantic import validate
 
 
@@ -106,7 +108,7 @@ def create_app(DOCKER=False,testing=TESTING):
 
 	@app.route('/r', methods=['GET'])
 	def raised():
-		#raise Exception(jsonify({"success":True}),200)
+		# Testng the ability to raise custom responses
 		abort(make_response(jsonify({"sucess":True}),200))
 		return jsonify({"success":False})
 
