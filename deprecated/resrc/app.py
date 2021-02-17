@@ -11,7 +11,7 @@ from __init__ import db, SECRET
 from models import (NotReceived, User, Product, Order, #Image,
 	db_drop_and_create_all, populate_tables)
 from flask_cors import CORS
-
+from flask_pydantic import validate
 
 
 if "SECRET" in os.environ:
