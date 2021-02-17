@@ -9,11 +9,10 @@ from flask_sqlalchemy import SQLAlchemy
 import types
 from sqlalchemy.orm.collections import InstrumentedList
 
-#from __init__ import db,SQLALCHEMY_DATABASE_URI
+from __init__ import db
 
 SUPPORTED_TYPES = [int,str,float,bool,type(None)]
 RESTRICTED_FIELDS=["password"]
-db = SQLAlchemy()
 
 from flask_sqlalchemy.model import DefaultMeta
 
@@ -25,7 +24,7 @@ None != Not received
 """
 class NotReceived():
 	pass
-		
+
 
 
 """
@@ -56,19 +55,19 @@ validate_key
 		- False: do not let it pass (Default)
 - Function:
 	- telling us whether we should let this key of this object or dict pass or not
-- Output: 
+- Output:
 	- True: let ths pass
 	- False: do not let this key pass
 """
 def validate_key(the_object,key:str,
 	id:bool=False,
-	unsupported:bool = False, 
+	unsupported:bool = False,
 	dangerous:bool=False):
 	if type(the_object) == dict:
 		the_attribute = the_object[key]
 	else:
 		the_attribute = getattr(the_object, key)
-	
+
 	# Validating fields startng with "_"
 	if key[0] == "_":
 		return False
@@ -121,13 +120,13 @@ get_dict
 		- False: do not let it pass (Default)
 - Function:
 	- convert the object or the dict to a validated dict of fileds
-	- The fuelds will be validated, and you will get the clean fields 
+	- The fuelds will be validated, and you will get the clean fields
 		and their values only
-- Output: 
+- Output:
 	- dict clean
 """
 def get_dict(the_object,id:bool=False,
-	unsupported:bool = False, 
+	unsupported:bool = False,
 	dangerous:bool=False):
 	keys_list=[]
 	if type(the_object)==dict:
@@ -167,7 +166,7 @@ class MyModel():
 			#restrcted = True, we may need to update the password
 			validated_kwargs = get_dict(kwargs,dangerous=True)
 			for key in validated_kwargs:
-				setattr(self,key,validated_kwargs[key])  
+				setattr(self,key,validated_kwargs[key])
 			db.session.commit()
 		except:
 			db.session.rollback()
@@ -234,7 +233,7 @@ class User(db.Model,MyModel):
 	# Password is a string
 	# Example: "12345", "abc"
 	# it doesn't have to be unique
-	
+
 
 
 	products = db.relationship("Product",cascade="all, delete-orphan",
@@ -246,7 +245,7 @@ class User(db.Model,MyModel):
 
 	def __init__(self,**kwargs):
 		MyModel.__init__(self,**kwargs)
-	
+
 
 '''
 Product
@@ -267,7 +266,7 @@ class Product(db.Model, MyModel):
 	# Example: 5.0, 6.0 , 50.0, 0.5
 	# It should be float, allowing things with low
 	# price to be sold
-	in_stock =  db.Column(Boolean(), unique=False, 
+	in_stock =  db.Column(Boolean(), unique=False,
 		nullable=False, default=True)
 	# in_stock is a boolean
 	# Example: True, False
@@ -285,11 +284,11 @@ class Product(db.Model, MyModel):
 	orders = db.relationship("Order",cascade="all, delete-orphan",
 		passive_deletes=False,backref="product")
 
-	
+
 	"""orders = db.relationship("Order",backref=backref('product',
 						#uselist=True,
 						#cascade='all,delete-orphan'
-						cascade="all, delete",			
+						cascade="all, delete",
 						),passive_deletes=False)"""
 
 	#def __init__(self,**kwargs):
@@ -319,7 +318,7 @@ class Order(db.Model, MyModel):
 	# it is an integer
 	# Example: 1, 2 or 3
 	product_id  = db.Column(Integer(),ForeignKey("product.id"))
-	# product_id is an integer 
+	# product_id is an integer
 	# it refers to the product.id in the products table
 	# Example: 1, 2 , 3
 	amount =  db.Column(Integer(), unique=False, nullable=False)
@@ -429,7 +428,7 @@ def populate_tables():
 	db.session.add_all(products)
 	db.session.commit()
 
-	orders = list() 
+	orders = list()
 	#id, user, product, amount
 	orders.append(Order(user_id="1", product_id=1, amount=1))
 	orders.append(Order(user_id="2", product_id=1, amount=4))
@@ -443,37 +442,37 @@ def populate_tables():
 	db.session.add_all(orders)
 	db.session.commit()
 
-	"""images = list() 
+	"""images = list()
 	#id, user, product, amount
-	images.append(Image(seller_id="1", name="Labtop", 
+	images.append(Image(seller_id="1", name="Labtop",
 		formatting="png"))
-	images.append(Image(seller_id="2", name="Mobile", 
+	images.append(Image(seller_id="2", name="Mobile",
 		formatting="jpg"))
-	images.append(Image(seller_id="3", name="Lobtop", 
+	images.append(Image(seller_id="3", name="Lobtop",
 		formatting="png"))
-	images.append(Image(seller_id="4", name="Mobile", 
+	images.append(Image(seller_id="4", name="Mobile",
 		formatting="jpg"))
-	images.append(Image(seller_id="5", name="Keyboard", 
+	images.append(Image(seller_id="5", name="Keyboard",
 		formatting="png"))
-	images.append(Image(seller_id="6", name="Mouse", 
+	images.append(Image(seller_id="6", name="Mouse",
 		formatting="png"))
-	images.append(Image(seller_id="1", name="USB", 
+	images.append(Image(seller_id="1", name="USB",
 		formatting="png"))
-	images.append(Image(seller_id="2", name="Notebook", 
+	images.append(Image(seller_id="2", name="Notebook",
 		formatting="png"))
-	images.append(Image(seller_id="3", name="Spoon", 
+	images.append(Image(seller_id="3", name="Spoon",
 		formatting="jpg"))
-	images.append(Image(seller_id="4", name="Fork", 
+	images.append(Image(seller_id="4", name="Fork",
 		formatting="png"))
-	images.append(Image(seller_id="5", name="Camera", 
+	images.append(Image(seller_id="5", name="Camera",
 		formatting="png"))
-	images.append(Image(seller_id="6", name="Radio", 
+	images.append(Image(seller_id="6", name="Radio",
 		formatting="jpg"))
-	images.append(Image(seller_id="1", name="Pen", 
+	images.append(Image(seller_id="1", name="Pen",
 		formatting="png"))
-	images.append(Image(seller_id="2", name="Back bag", 
+	images.append(Image(seller_id="2", name="Back bag",
 		formatting="jpg"))
-	images.append(Image(seller_id="3", name="Wireless Headphones", 
+	images.append(Image(seller_id="3", name="Wireless Headphones",
 		formatting="png"))
 
 	db.session.add_all(images)
@@ -491,8 +490,3 @@ def get_in_stock_products():
     for product in products:
     	toReturn.append(product.simple())
     return toReturn
-
-
-
-
-

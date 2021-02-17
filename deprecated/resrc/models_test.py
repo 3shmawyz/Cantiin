@@ -1,9 +1,9 @@
 import unittest
-from models import (NotReceived, validate_key, 
+from models import (NotReceived, validate_key,
 MyModel, User, Product, Order, #Image,
 	populate_tables, db_drop_and_create_all,get_dict, get_in_stock_products)
 from app import create_app
-from models import db
+from __init__ import db
 
 
 unittest.TestLoader.sortTestMethodsUsing = None
@@ -19,9 +19,9 @@ class modelsTestCase(unittest.TestCase):
 		#self.client = self.app.test_client
 		#db.app = self.app
 		#db.init_app(self.app)
-		#db.create_all()        
+		#db.create_all()
 		pass
-	
+
 	def tearDown(self):
 		"""Executed after reach test"""
 		print("_+++++++++++++++++++++++++++++++++_")
@@ -161,7 +161,7 @@ class modelsTestCase(unittest.TestCase):
 		validated = get_dict(the_dict, id=True,dangerous=True)
 		self.assertEqual(validated,{"username":"tryu","bool1":True,"bool2":False,
 			"paSSword":"abc","Id":41})
-		
+
 		validated = get_dict(the_dict)
 		self.assertEqual(validated,{"username":"tryu","bool1":True,"bool2":False})
 		print("Test 0a_1_2_3 : get_dict: with dict")
@@ -230,7 +230,7 @@ class modelsTestCase(unittest.TestCase):
 		db.session.add_all([prod_to_del1,prod_to_del2])
 		db.session.commit()
 		self.assertEqual(len(Product.query.all()),2)
-		
+
 		order_to_del1 = Order(
 			user_id = user_to_del.id,product_id=prod_to_del1.id,amount=1)
 		order_to_del2 = Order(
@@ -248,7 +248,7 @@ class modelsTestCase(unittest.TestCase):
 		#self.assertEqual(len(Image.query.all()),2)
 
 		# Trying to delete
-		
+
 		#img_to_delete2.delete()
 		#self.assertEqual(len(Image.query.all()),1)
 		order_to_del3.delete()
@@ -286,12 +286,12 @@ class modelsTestCase(unittest.TestCase):
 		prod = Product(name="789",price=123,seller_id=1)
 		prod.insert()
 		self.assertEqual(user_to_del.deep(),
-			{'id': 1, #'images': [], 
-			'orders': [], 'products': 
+			{'id': 1, #'images': [],
+			'orders': [], 'products':
 			[{'id': 1, 'in_stock': True, 'name': '789', 'price': 123.0,
 			 'seller_id': 1}], 'username': 'abc'})
-		self.assertEqual(prod.deep(),{'id': 1, 'in_stock': True, 
-			'name': '789', 'orders': [], 'price': 123.0, 'seller': 
+		self.assertEqual(prod.deep(),{'id': 1, 'in_stock': True,
+			'name': '789', 'orders': [], 'price': 123.0, 'seller':
 			{'id': 1, 'username': 'abc'}, 'seller_id': 1})
 		print("Test 0a_1_5_1 : MyModel: deep")
 
@@ -391,7 +391,7 @@ class modelsTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except:
 			self.assertEqual(True,True)
-		
+
 		users = User.query.all()
 		new_records_number = len(users)
 
@@ -414,7 +414,7 @@ class modelsTestCase(unittest.TestCase):
 
 		except:
 			self.assertEqual(True,True)
-		
+
 		users = User.query.all()
 		new_records_number = len(users)
 
@@ -460,7 +460,7 @@ class modelsTestCase(unittest.TestCase):
 		db.session.commit()
 		self.assertEqual(len(User.query.all()),users_before+1)
 		#adding a new product
-		prod_to_del = Product(name="Labtopppp", 
+		prod_to_del = Product(name="Labtopppp",
 			price=3000, seller_id=7)
 		db.session.add(prod_to_del)
 		db.session.commit()
@@ -475,7 +475,7 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(len(Order.query.all()),orders_before+1)
 
 		#adding a new image
-		#img_to_del = Image(seller_id=usr_to_del.id, name="Labtopfgfgfg", 
+		#img_to_del = Image(seller_id=usr_to_del.id, name="Labtopfgfgfg",
 		#	formatting="png")
 		#db.session.add(img_to_del)
 		#db.session.commit()
@@ -494,8 +494,8 @@ class modelsTestCase(unittest.TestCase):
 		#measuring lengths beofre actions
 		usr = User.query.get(6)
 		self.assertEqual(usr.deep(),
-			{'id': 6, 
-			'orders': [], 'products': [], 
+			{'id': 6,
+			'orders': [], 'products': [],
 			'username': 'water'})
 		print("Test a_1_11: user deep")
 
@@ -595,9 +595,9 @@ class modelsTestCase(unittest.TestCase):
 			self.assertEqual(True,False)
 		except:
 			self.assertEqual(True,True)
-		
+
 		#db.session.rollback()
-		
+
 		products = Product.query.all()
 		new_records_number = len(products)
 
@@ -620,7 +620,7 @@ class modelsTestCase(unittest.TestCase):
 
 		except:
 			self.assertEqual(True,True)
-		
+
 		products = Product.query.all()
 		new_records_number = len(products)
 
@@ -674,9 +674,9 @@ class modelsTestCase(unittest.TestCase):
 	def test_a_2_011_product_deep(self):
 		#measuring lengths beofre actions
 		self.assertEqual(Product.query.get(3).deep(),
-			{'id': 3, 'in_stock': True, 'name': 'Candy', 
-			'orders': [{'amount': 5, 'id': 6, 'product_id': 3, 
-			'user_id': 2}], 'price': 0.5, 'seller': {'id': 3, 
+			{'id': 3, 'in_stock': True, 'name': 'Candy',
+			'orders': [{'amount': 5, 'id': 6, 'product_id': 3,
+			'user_id': 2}], 'price': 0.5, 'seller': {'id': 3,
 			'username': 'klmn'}, 'seller_id': 3})
 		print("Test a_2_11: product deep")
 
@@ -714,10 +714,10 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(len(orders),9)
 		print("Test a_3_1: Order insert")
 
-	
+
 	#amount = 0 is the function of pydantic
 	def test_a_3_002_order_insert_wrong_1(self):
-		
+
 		before = len(Order.query.all())
 		order1 = Order(user_id=20, product_id=5, amount=0)
 		order1.insert()
@@ -748,12 +748,12 @@ class modelsTestCase(unittest.TestCase):
 		self.assertEqual(order_1.amount,2)
 		print("Test a_3_4: Order update")
 
-	
+
 	#This is the function of pydantic
 	#This will not be done on the level of SQLAlchemy
 	def test_a_3_005_order_update_wrong(self):
 		before = len(Order.query.all())
-		order1 = Order.query.get(8)		
+		order1 = Order.query.get(8)
 		order1.update(amount=0)
 		after = len(Order.query.all())
 
@@ -795,7 +795,7 @@ class modelsTestCase(unittest.TestCase):
 
 		except:
 			self.assertEqual(True,True)
-		
+
 		after = len(Order.query.all())
 
 		self.assertEqual(before,after)
@@ -884,9 +884,9 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_3_013_order_deep(self):
 		self.assertEqual(Order.query.get(1).deep(),
-			{'amount': 2, 'buyer': {'id': 1, 'username': 'abc'}, 
-			'id': 1, 'product': {'id': 1, 'in_stock': True, 
-			'name': 'Labtop', 'price': 300.0, 'seller_id': 1}, 
+			{'amount': 2, 'buyer': {'id': 1, 'username': 'abc'},
+			'id': 1, 'product': {'id': 1, 'in_stock': True,
+			'name': 'Labtop', 'price': 300.0, 'seller_id': 1},
 			'product_id': 1, 'user_id': 1}
 			)
 		print("Test a_3_13: order deep")
@@ -968,7 +968,7 @@ class modelsTestCase(unittest.TestCase):
 
 	def test_a_4_008_image_deep(self):
 		self.assertEqual(Image.query.get(1).deep(),
-			{'formatting': 'png', 'id': 1, 'name': 'Mouse', 
+			{'formatting': 'png', 'id': 1, 'name': 'Mouse',
 			'seller': {'id': 1, 'username': 'abc'}, 'seller_id': 1})
 		print("Test a_4_08: image deep")"""
 

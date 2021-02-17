@@ -2,8 +2,6 @@ import unittest
 from pydantic_models import (UserPost, UserUpdatePassword, ProductPost,
 OrderPost, OrderUpdate,	validate_model_id,
 validate_model_id_pydantic, TestHere)
-#from app import create_app
-#from models import db
 import json
 from models import NotReceived, Product, populate_tables
 from app import create_app
