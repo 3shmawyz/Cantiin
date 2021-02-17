@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import (BaseModel, 
+from pydantic import (BaseModel,
 	ValidationError, validator, constr, conint, confloat)
 from models import NotReceived, User, Product
 import json
@@ -25,15 +25,6 @@ product_price_con = confloat(ge=.1, le=1000000)
 
 # Order
 amount_con = conint(gt=-1, lt=1000)
-
-#Image
-"""image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
-formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
-image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=250000)
-"""
-
-# accepted frmats of images
-IMAGE_ACCEPTED_FROMATS=["png","jpg"]
 
 
 
@@ -85,26 +76,6 @@ def validate_model_id_pydantic(model,id:int):
 
 
 
-"""
-validate_string_length_pydantic
-- Inputs:
-	- the_string: the string that we want to validate it's length
-	- minimum: minimum length of the string
-	- maximum: minimum length of the string
-- Function:
-	- raise correct error if the model does not exist
-- Output:
-	- No output, only error are raised
-"""
-def validate_string_length_pydantic(the_string:str,
-	minimum:int,maximum:int):
-	if len(the_string)<minimum:
-		raise ValueError("minimum length of this text is "+ 
-			str(minimum))
-	if len(the_string)>maximum:
-		raise ValueError("maximum length of this text is "+ 
-			str(maximum))
-
 
 class UserPost(BaseModel):
 	username : username_con
@@ -115,7 +86,7 @@ class UserPost(BaseModel):
 	def name_cant_contain_space(cls, value):
 		# Validating that username does not have any spaces
 		if ' ' in value:
-			raise ValueError('username should not contain a space')		
+			raise ValueError('username should not contain a space')
 		#Validate that this username is unique
 		all_users=User.query.all()
 		all_names=[str(u.username) for u in all_users]
@@ -130,7 +101,7 @@ class UserPost(BaseModel):
 		return value
 
 
-class UserUpdate(BaseModel):
+class UserUpdatePassword(BaseModel):
 	password1 : password_con
 	password2 : password_con
 
@@ -155,32 +126,6 @@ class ProductPost(BaseModel):
 	in_stock : bool=True
 
 
-class ProductUpdate(BaseModel):
-	name : product_name_con = NotReceived()
-	price : product_price_con = NotReceived()
-	in_stock : bool = NotReceived()
-	
-	def __init__(self, **kwargs):
-		BaseModel.__init__(self, **kwargs)
-		#print(self.dict())
-		if type(self.name) != NotReceived:
-			return 
-		if type(self.price) != NotReceived:
-			return 
-		if type(self.in_stock) != NotReceived:
-			return 
-		raise ValueError(json.dumps([{"loc": ["in_stock"], 
-			"msg": "you must at least enter one value to change", 
-			"type": "value_error"}]))
-	"""def ProductUpdate(**kwargs):
-	toReturn = ProductUpdatee(**kwargs)
-	if type(toReturn.name) != NotReceived:
-		return toReturn
-	if type(toReturn.price) != NotReceived:
-		return toReturn
-	if type(toReturn.in_stock) != NotReceived:
-		return toReturn
-	raise ValueError('You must at least enter one value to change')"""
 
 
 
@@ -212,13 +157,96 @@ class OrderUpdate(BaseModel):
 	# product id can not be modified
 	amount : amount_con
 
-	
+
+
+
+
+
+
+
+
+the_tst=constr(strip_whitespace=True, min_length=1,max_length=5)
+
+
+
+class TestHere(BaseModel):
+  a: str = None
+  b: str = None
+
+  @validator('b')
+  def check_a_or_b(cls, v, values):
+    if 'a' not in values and not b:
+      raise ValueError('either a or b is required')
+    return b
+"""
+external_data = {
+	'id': '123',
+	'signup_ts': '2019-06-01 12:22',
+	'friends': [1, 2, '3'],
+}
+user = User(**external_data)
+"""
+
+
+
+
+
+
+
+
+
+#Image
+"""image_name_con = constr(strip_whitespace=True, min_length=3,max_length=200)
+formatting_con = constr(strip_whitespace=True, min_length=2,max_length=15)
+image_b64_con = constr(strip_whitespace=True, min_length=4,max_length=250000)
+# accepted frmats of images
+IMAGE_ACCEPTED_FROMATS=["png","jpg"]
+"""
+
+
+
+
+
+
+
+"""class ProductUpdate(BaseModel):
+	name : product_name_con = NotReceived()
+	price : product_price_con = NotReceived()
+	in_stock : bool = NotReceived()
+
+	def __init__(self, **kwargs):
+		BaseModel.__init__(self, **kwargs)
+		#print(self.dict())
+		if type(self.name) != NotReceived:
+			return
+		if type(self.price) != NotReceived:
+			return
+		if type(self.in_stock) != NotReceived:
+			return
+		raise ValueError(json.dumps([{"loc": ["in_stock"],
+			"msg": "you must at least enter one value to change",
+			"type": "value_error"}]))"""
+	"""def ProductUpdate(**kwargs):
+	toReturn = ProductUpdatee(**kwargs)
+	if type(toReturn.name) != NotReceived:
+		return toReturn
+	if type(toReturn.price) != NotReceived:
+		return toReturn
+	if type(toReturn.in_stock) != NotReceived:
+		return toReturn
+	raise ValueError('You must at least enter one value to change')"""
+
+
+
+
+
+
 
 
 """class ImagePost(BaseModel):
 	name :  image_name_con
 	formatting : formatting_con
-	image_b64 : image_b64_con 
+	image_b64 : image_b64_con
 
 	@validator('formatting')
 	def formatting_in_range(cls, value):
@@ -264,33 +292,6 @@ def ImageUpdate(**kwargs):
 		return img
 	if type(img.image_b64) != NotReceived :
 		return img
-	raise ValueError(json.dumps([{"loc": ["image_b64"], 
-		"msg": "you must at least enter one value to change", 
+	raise ValueError(json.dumps([{"loc": ["image_b64"],
+		"msg": "you must at least enter one value to change",
 		"type": "value_error"}]))"""
-
-	
-		
-
-
-
-the_tst=constr(strip_whitespace=True, min_length=1,max_length=5)
-		
-
-
-class TestHere(BaseModel):
-  a: str = None
-  b: str = None
-
-  @validator('b')
-  def check_a_or_b(cls, v, values):
-    if 'a' not in values and not b:
-      raise ValueError('either a or b is required')
-    return b
-"""
-external_data = {
-	'id': '123',
-	'signup_ts': '2019-06-01 12:22',
-	'friends': [1, 2, '3'],
-}
-user = User(**external_data)
-"""
