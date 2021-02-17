@@ -1,11 +1,23 @@
+TESTING=True
+"""
+TESTING=False 	IN CASE OF PRODUCTION
+TESTING=True 	IN CASE OF TESTING
+"""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import secrets
 import os
-from models import db
-from models import (NotReceived, User, Product, Order, #Image, 
-	db_drop_and_create_all, populate_tables) 
+from __init__ import db, SECRET
+from models import (NotReceived, User, Product, Order, #Image,
+	db_drop_and_create_all, populate_tables)
 from flask_cors import CORS
+
+
+
+if "SECRET" in os.environ:
+	SECRET = os.environ["SECRET"]
+
+
 
 
 class config:
@@ -18,20 +30,20 @@ class config:
 
 
 class config_test:
-	#SECRET_KEY=os.urandom(32)
-	SECRET_KEY=secrets.token_urlsafe(5000)
-	basedir = os.path.abspath(os.path.dirname(__file__))
 	DEBUG = True
 	SQLALCHEMY_DATABASE_URI = "sqlite:///databases/test.sqlite"
-	SQLALCHEMY_TRACK_MODIFICATIONS= False
+
+class config_docker:
+	SQLALCHEMY_DATABASE_URI = "sqlite:////database//database.sqlite"
 
 
-def create_app():
-
+def create_app(DOCKER=False,testing=TESTING):
 	app = Flask(__name__)
-
 	app.config.from_object(config)
-
+	if TESTING:
+		app.config.from_object(config_test)
+	if DOCKER:
+		app.config.from_object(config_docker)
 
 	#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases/test.sqlite'
 	db.app = app
